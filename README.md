@@ -1,7 +1,6 @@
 <div style="text-align:center">  # CHALLENGE </div>
 
 ## Sobre a Vitta
-___
 
 A Vitta é uma empresa de tecnologia em saúde. Com mais de três anos de existência, se tornou líder no mercado de prontuário eletrônico na nuvem. Através do ClinicWeb, voltado para o segmento médico, garante uma operação eficiente, redução de gastos e agilidade: tudo em uma só plataforma.
 
@@ -17,7 +16,6 @@ A Vitta mantém sedes em São Paulo e Uberlândia.
 
 
 ## Sobre o desafio
-___
 
 Atualmente existem muitos erros na prescrição médica, que por vezes podem levar a um agravamento no quadro clínico do paciente. Neste desafio você deve construir uma aplicação que irá ajudar médicos a evitarem erros, verificando e alertando sobre interações medicamentosas dos princípios ativos dos medicamentos.
 
@@ -26,7 +24,6 @@ A aplicação deve permitir que o usuário identifique o médico e o paciente se
 Ao identificar uma interação medicamentosa o médico deve receber um alerta da gravidade contendo informações sobre os medicamentos envolvidos. Também deve ser possível visualizar as prescrições anteriores, com data e a lista de medicamentos.
 
 ## Considerações
-___
 
 - Caso o seu teste seja de front-end e você desenvolva atividades de back-end (ou vice-versa) terá pontos extras na avaliação;
 - Serão avaliados a qualidade do código e capricho na organização, portanto esperamos que realize seu melhor trabalho!
@@ -68,7 +65,6 @@ ___
 ```
 
 ## Front-end
-___
 
 ### Pré-requisitos
 - Desenvolvimento em Vue.js;
@@ -89,7 +85,6 @@ ___
 
 
 ## Back-end
-___
 
 ### Pré-requisitos
 - Desenvolvimento de uma API REST em Node.js;
@@ -107,7 +102,6 @@ ___
 - Deve ser possível rodar a aplicação com um só comando.
 
 ## Pronto para começar o desafio?
-___
 
 - Faça um "fork" deste repositório na sua conta do Github;
 - Após completar o desafio, crie um pull request nesse repositório comparando a sua branch com a master com o seu nome no título deste;

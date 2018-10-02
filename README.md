@@ -1,5 +1,3 @@
-<div style="text-align:center">  # CHALLENGE </div>
-
 ## Sobre a Vitta
 
 A Vitta é uma empresa de tecnologia em saúde. Com mais de três anos de existência, se tornou líder no mercado de prontuário eletrônico na nuvem. Através do ClinicWeb, voltado para o segmento médico, garante uma operação eficiente, redução de gastos e agilidade: tudo em uma só plataforma.

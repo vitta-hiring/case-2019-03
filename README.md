@@ -16,10 +16,7 @@ Dentro do diretório em que foi clonado o projeto, utilizando o prompt de comand
 
 		O projeto também pode ser acessado no endereço abaixo:
 
-
-
-
-
+		http://tested-shock.surge.sh/
 
 
 

@@ -1,3 +1,29 @@
+## Front End Teste para Vitta (Desenvolvido com React / Webpack / Sass e Bootstrap)
+
+## Para executar o projeto, faça um clone do repositório para a sua máquina.
+## será necessário ter instalado em sua máquina o yarn (https://yarnpkg.com/lang/en/) ou node (npm - https://nodejs.org/en/) para executar o app.
+
+Dentro do diretório em que foi clonado o projeto, utilizando o prompt de comando, executar o comando abaixo:
+
+		yarn run start  
+		
+		ou 
+		
+		npm start start
+
+
+		>> caso o navegador não abra após a compilação, digitar no browser localhost:8080
+
+		O projeto também pode ser acessado no endereço abaixo:
+
+
+
+
+
+
+
+
+
 ## Sobre a Vitta
 
 A Vitta é uma empresa de tecnologia em saúde. Com mais de três anos de existência, se tornou líder no mercado de prontuário eletrônico na nuvem. Através do ClinicWeb, voltado para o segmento médico, garante uma operação eficiente, redução de gastos e agilidade: tudo em uma só plataforma.

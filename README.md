@@ -17,9 +17,9 @@ A Vitta mantém sedes em São Paulo e Uberlândia.
 
 Atualmente existem muitos erros na prescrição médica, que por vezes podem levar a um agravamento no quadro clínico do paciente. Neste desafio você deve construir uma aplicação que irá ajudar médicos a evitarem erros, verificando e alertando sobre interações medicamentosas dos princípios ativos dos medicamentos.
 
-A aplicação deve permitir que o usuário identifique o médico e o paciente sendo atendido e posteriormente a criação da prescrição de um ou mais medicamentos. Para cada medicamento é necessário informar seu nome, posologia e via de administração. 
+A aplicação deve permitir que o usuário identifique o médico e o paciente sendo atendido e posteriormente a criação da prescrição de um ou mais medicamentos. Para cada medicamento é necessário informar seu nome, posologia e via de administração.
 
-Ao identificar uma interação medicamentosa o médico deve receber um alerta da gravidade contendo informações sobre os medicamentos envolvidos. Também deve ser possível visualizar as prescrições anteriores, com data e a lista de medicamentos.
+Ao identificar uma interação medicamentosa entre dois ou mais dos medicamentos escolhidos o médico deve receber um alerta da gravidade da interação, os fármacos envolvidos e a descrição. Também deve ser possível visualizar as prescrições anteriores, com data e a lista de medicamentos.
 
 ## Considerações
 
@@ -29,7 +29,7 @@ Ao identificar uma interação medicamentosa o médico deve receber um alerta da
 - O arquivo medicamentos.json possui uma coleção de medicamentos e os princípios ativos que fazem parte de sua composição. Os dados seguem o formato do exemplo abaixo, mas você pode modificar a estrutura no seu projeto se precisar:
 
 ```javascript
-{ 
+{
 	"IdMedicamento":36385,
 	"Nome":"RETAPAMULINA",
 	"Farmaco":null,
@@ -49,9 +49,9 @@ Ao identificar uma interação medicamentosa o médico deve receber um alerta da
 	"MIP":false,
 	"Label":"RETAPAMULINA 10MG/G - POMADA DERMATOLOGICA",
 	"Unificado":null
-} 
+}
 ```
-- O arquivo interacao_medicamentosa.json possui uma coleção de objetos que representam a interação medicamentosa entre os componentes dos medicamentos listados no arquivo anterior. Abaixo temos um exemplo do formato do objeto que também pode ter a estrutura modificada caso julgue necessário. 
+- O arquivo interacao_medicamentosa.json possui uma coleção de objetos que representam a interação medicamentosa entre os componentes dos medicamentos listados no arquivo anterior. Abaixo temos um exemplo do formato do objeto que também pode ter a estrutura modificada caso julgue necessário.
 
 ```javascript
 {

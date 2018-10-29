@@ -1,27 +1,27 @@
-(function () {
-    'use strict';
+(() => {
+  'use strict';
 
-    const mongoose = require('mongoose');
-    const Schema = mongoose.Schema;
+  const mongoose = require('mongoose');
+  const Schema = mongoose.Schema;
 
-    const schema = new Schema({
-        first_active_principle: {
-            type: String,
-            required: true,
-        },
-        seccond_active_principle: {
-            type: String,
-            required: true,
-        },
-        name: {
-            type: String,
-            required: true,
-        },
-        description: {
-            type: String,
-            required: true,
-        }
-    });
+  const schema = new Schema({
+    first_active_principle: {
+      type: String,
+      required: true,
+    },
+    seccond_active_principle: {
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    }
+  });
 
-    module.exports = mongoose.model('DrugInteraction', schema);
+  module.exports = mongoose.model('DrugInteraction', schema);
 })();

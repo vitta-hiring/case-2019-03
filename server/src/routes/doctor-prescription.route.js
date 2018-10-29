@@ -3,7 +3,7 @@
 
   const express = require('express');
   const router = express.Router();
-  const controller = require('../controllers/drug-interaction.controller');
+  const controller = require('../controllers/doctor-prescription.controller');
 
   router.get('/', controller.get);
   router.post('/', controller.post);

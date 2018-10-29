@@ -1,42 +1,96 @@
-(function () {
-    'use strict';
+(() => {
+  'use strict';
 
-    const mongoose = require('mongoose');
-    const Medication = mongoose.model('Medication');
+  const repository = require('../repositories/medication.repository');
 
-    exports.get = ('/', (req, res, next) => {
-        Medication.find({}).then(data => {
-            res.status(200).send(data);
-        }).catch(error => {
-            res.status(400).send(error);
-        });
-    });
+  exports.get = async (req, res, next) => {
+    try {
+      const data = await repository.get()
+      res.status(200).send(data);
+    } catch (error) {
+      res.status(500).send({
+        message: 'Falha ao processar requisição!',
+        data: error
+      });
+    }
+  };
 
-    exports.post = ('/', (req, res, next) => {
-        var medication = new Medication(req.body);
-        medication.save().then(x => {
-            res.status(201).send({
-                message: 'Medicação salva com sucesso!'
-            });
-        }).catch(error => {
-            res.status(400).send({
-                message: 'Falha ao cadastrar medicação!',
-                data: error
-            });
-        });
-    });
+  exports.getBySlug = async (req, res, next) => {
+    try {
+      const data = await repository.getBySlug(req.params.slug)
+      res.status(200).send(data);
+    } catch (error) {
+      res.status(500).send({
+        message: 'Falha ao processar requisição!',
+        data: error
+      });
+    }
+  };
 
-    exports.put = ('/:id', (req, res, next) => {
-        const id = req.params.id;
-        res.status(200).send({
-            id: id,
-            item: req.body
-        });
-    });
+  exports.getById = async (req, res, next) => {
+    try {
+      const data = await repository.getById(req.params.id)
+      res.status(200).send(data);
+    } catch (error) {
+      res.status(500).send({
+        message: 'Falha ao processar requisição!',
+        data: error
+      });
+    }
+  };
 
-    exports.delete = ('/', (req, res, next) => {
-        const id = req.params.id;
-        res.status(200).send(req.body);
-    });
+  exports.getByPrinciples = async (req, res, next) => {
+    try {
+      const data = await repository.getByPrinciples(req.params.active_principles)
+      res.status(200).send(data);
+    } catch (error) {
+      res.status(500).send({
+        message: 'Falha ao processar requisição!',
+        data: error
+      });
+    }
+  };
+
+  exports.post = async (req, res, next) => {
+    try {
+      await repository.create(req.body)
+      res.status(201).send({
+        message: 'Medicação salva com sucesso!'
+      });
+    } catch (error) {
+      res.status(500).send({
+        message: 'Falha ao processar requisição!',
+        data: error
+      });
+    }
+  };
+
+  exports.put = async (req, res, next) => {
+    try {
+      await repository.update(req.params.id, req.body.name)
+      res.status(201).send({
+        message: 'Medicação atualizada com sucesso!'
+      });
+    } catch (error) {
+      res.status(500).send({
+        message: 'Falha ao processar requisição!',
+        data: error
+      });
+    }
+  };
+
+  exports.delete = async (req, res, next) => {
+    try {
+      await repository.delete(req.body.id)
+      res.status(200).send({
+        message: 'Medicação removida com sucesso!'
+      });
+    } catch (error) {
+      res.status(500).send({
+        message: 'Falha ao processar requisição!',
+        data: error
+      });
+    }
+  };
 
 })();

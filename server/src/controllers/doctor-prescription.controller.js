@@ -1,31 +1,25 @@
 (() => {
   'use strict';
 
-  const ValidationContract = require('../validators/fluent.validator');
-  const repository = require('../repositories/patient.repository');
+  const repository = require('../repositories/doctor-prescription.repository');
 
   exports.get = async (req, res, next) => {
     try {
-      const data = await repository.get();
+      const data = await repository.get()
       res.status(200).send(data);
     } catch (error) {
-      res.status(500).send(error);
+      res.status(500).send({
+        message: 'Falha ao processar requisição!',
+        data: error
+      });
     }
   };
 
   exports.post = async (req, res, next) => {
-    let contract = new ValidationContract();
-    contract.hasMinLen(req.body.name, 3, 'O nome do paciente deve conter no mínimo 3 caracteres');
-
-    if (!contract.isValid()) {
-      res.status(400).send(contract.errors()).end();
-      return;
-    }
-
     try {
-      await repository.create(req.body);
+      await repository.create(req.body)
       res.status(201).send({
-        message: 'Paciente criado com sucesso!'
+        message: 'Prescrição médica salva com sucesso!'
       });
     } catch (error) {
       res.status(500).send({
@@ -37,9 +31,9 @@
 
   exports.put = async (req, res, next) => {
     try {
-      await repository.update(req.params.id, req.body.name);
+      await repository.update(req.params.id, req.body)
       res.status(201).send({
-        message: 'Paciente atualizado com sucesso!'
+        message: 'Prescrição médica atualizada com sucesso!'
       });
     } catch (error) {
       res.status(500).send({
@@ -51,9 +45,9 @@
 
   exports.delete = async (req, res, next) => {
     try {
-      await repository.delete(req.body.id);
+      await repository.delete(req.body.id)
       res.status(200).send({
-        message: 'Paciente removido com sucesso!'
+        message: 'Prescrição médica removida com sucesso!'
       });
     } catch (error) {
       res.status(500).send({

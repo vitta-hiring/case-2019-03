@@ -52,5 +52,4 @@
     const bind = typeof addr === 'string' ? `Pipe ${addr}` : `Port ${addr.port}`;
     debug(`Listening on ${bind}`);
   }
-
 })();

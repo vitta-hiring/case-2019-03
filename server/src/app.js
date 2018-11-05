@@ -27,6 +27,7 @@
   const doctorRoutes = require('./routes/doctor.route');
   const patientRoutes = require('./routes/patient.route');
   const prescriptionRoutes = require('./routes/doctor-prescription.route');
+  const drugInteractions = require('./routes/drug-interaction.route');
 
   app.use(cors());
 
@@ -51,6 +52,7 @@
   app.use('/doctors', doctorRoutes);
   app.use('/patients', patientRoutes);
   app.use('/prescriptions', prescriptionRoutes);
+  app.use('/interactions', drugInteractions);
 
   module.exports = app;
 })();

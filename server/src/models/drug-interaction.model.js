@@ -7,19 +7,19 @@
   const schema = new Schema({
     first_active_principle: {
       type: String,
-      required: true,
+      required: true
     },
     seccond_active_principle: {
       type: String,
-      required: true,
+      required: true
     },
     name: {
       type: String,
-      required: true,
+      required: true
     },
     description: {
       type: String,
-      required: true,
+      required: true
     }
   });
 

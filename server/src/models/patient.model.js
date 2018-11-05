@@ -10,11 +10,11 @@
       required: true,
       trim: true
     },
-    date_of_bird: {
+    date_of_birth: {
       type: Date,
       required: true
     },
-    genre: {
+    gender: {
       type: String,
       required: true,
       trim: true

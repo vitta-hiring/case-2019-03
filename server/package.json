@@ -4,7 +4,8 @@
   "description": "This is a This is an auxiliary application for doctors and health professionals regarding the prescription of medicines to their patients.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./bin/server.js"
+    "start": "nodemon ./bin/server.js",
+    "debug": "node --nolazy --inspect-brk ./bin/server.js"
   },
   "keywords": [
     "medication",

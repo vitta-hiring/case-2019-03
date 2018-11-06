@@ -7,6 +7,7 @@ import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 
 import App from './App.vue'
+import Home from './pages/home.page.vue'
 import Patients from './pages/patients.page.vue'
 import Doctors from './pages/doctors.page.vue'
 import Medications from './pages/medications.page.vue'
@@ -18,26 +19,30 @@ Vue.use(VueMaterial)
 Vue.use(Vuelidate)
 Vue.config.productionTip = false
 
-const routes = [{
-  path: '/patients',
-  component: Patients
-},
-{
-  path: '/doctors',
-  component: Doctors
-},
-{
-  path: '/medications',
-  component: Medications
-},
-{
-  path: '/prescriptions',
-  component: Prescriptions
-},
-{
-  path: '/interactions',
-  component: Interactions
-}
+const routes = [
+  {
+    path: '/',
+    component: Home
+  }, {
+    path: '/patients',
+    component: Patients
+  },
+  {
+    path: '/doctors',
+    component: Doctors
+  },
+  {
+    path: '/medications',
+    component: Medications
+  },
+  {
+    path: '/prescriptions',
+    component: Prescriptions
+  },
+  {
+    path: '/interactions',
+    component: Interactions
+  }
 ]
 
 const router = new VueRouter({

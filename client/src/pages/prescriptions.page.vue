@@ -15,17 +15,19 @@ export default {
 
   data: () => ({
     form: {
-      doctors: [],
-      patients: [],
-      medications: [],
-      interactions: [],
-      posology: ''
+      doctors: null,
+      patients: null,
+      medications: null,
+      posology: null
     },
+    snack: false,
+    interactions: [],
     alerts: [],
     selectedDoctor: [],
     selectedPatient: [],
     selectedMedications: [],
     alert: false,
+    showMessage: '',
     sending: false
   }),
 
@@ -100,7 +102,7 @@ export default {
       this.$v.$touch()
 
       if (!this.$v.$invalid) {
-        this.prescribeMedication()
+        this.verifyInteraction()
       }
     },
 
@@ -110,9 +112,8 @@ export default {
         let array = await patientService.getPatients()
         array.data.map(item => {
           item.date_of_birth = moment(item.date_of_birth).format('MM/DD/YYYY')
-          this.form.patients.push(Object(item))
+          this.form.patients.push(item)
         })
-        this.form.patients.sort()
       } catch (error) {
         console.log(error)
       }
@@ -123,9 +124,8 @@ export default {
         this.form.doctors = []
         let array = await doctorService.getDoctors()
         array.data.map(item => {
-          this.form.doctors.push(Object(item))
+          this.form.doctors.push(item)
         })
-        this.form.doctors.sort()
       } catch (error) {
         console.log(error)
       }
@@ -136,9 +136,8 @@ export default {
         this.interactions = []
         let array = await interactionService.getInteractions()
         array.data.map(item => {
-          this.interactions.push(Object(item))
+          this.interactions.push(item)
         })
-        this.interactions.sort()
       } catch (error) {
         console.log(error)
       }
@@ -149,9 +148,8 @@ export default {
         this.form.medications = []
         let array = await medicationService.getMedications()
         array.data.map(item => {
-          this.form.medications.push(Object(item))
+          this.form.medications.push(item)
         })
-        this.medications.sort()
       } catch (error) {
         console.log(error)
       }
@@ -173,36 +171,47 @@ export default {
         posology: this.form.posology,
         date: moment().format('MM/DD/YYYY')
       }
-      await prescriptionService.postPrescriptions(obj)
-      this.verifyInteraction(this.selectedMedications)
-    },
-
-    verifyInteraction (medications) {
-      this.alerts = []
-      for (let i = 0; i < medications.length; i++) {
-        let element = medications[i].active_principles
-        if (medications[i + 1]) {
-          let nextElement = medications[i + 1].active_principles
-          this.interactions.filter(interaction => {
-            if (
-              element.includes(interaction.first_active_principle) &&
-              nextElement.includes(interaction.seccond_active_principle)
-            ) {
-              this.alerts.push(interaction)
-              this.alert = true
-            }
-          })
-        }
+      try {
+        await prescriptionService.postPrescriptions(obj)
+        this.alert = false
+        this.snack = true
+        this.showMessage = 'Prescrição médica realizada com sucesso!'
+      } catch (error) {
+        this.snack = true
+        this.showMessage = 'Falha ao realizar prescrição médica!'
       }
       this.clearData()
       this.clearForm()
       this.getData()
+    },
+
+    verifyInteraction () {
+      this.alerts = []
+      const activePrinciples = this.selectedMedications.reduce(
+        (main, item) => main.concat(item.active_principles),
+        []
+      )
+
+      const interactions = this.interactions.filter(
+        item =>
+          activePrinciples.includes(item.first_active_principle) &&
+          activePrinciples.includes(item.seccond_active_principle)
+      )
+
+      interactions.map(item => this.alerts.push(item))
+
+      if (!this.alerts.length) {
+        this.prescribeMedication()
+      } else {
+        this.alert = true
+      }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+$list-width: 50vw;
 .md-card {
   min-width: 50vw;
 }
@@ -211,6 +220,26 @@ export default {
   top: 0;
   right: 0;
   left: 0;
+}
+.md-content {
+  width: 200px;
+  height: 200px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.list {
+  width: $list-width;
+}
+
+.full-control > .md-list {
+  width: $list-width;
+  max-width: 100%;
+  height: 400px;
+  display: inline-block;
+  overflow: auto;
+  border: 1px solid rgba(#000, 0.12);
+  vertical-align: top;
 }
 </style>
 
@@ -229,7 +258,7 @@ export default {
           v-if="!sending">
           <div class="md-layout md-gutter">
             <div class="md-layout-item md-small-size-100">
-              <md-field :class="getValidationClass('doctors')">
+              <md-field :class="getValidationClass('form.doctors')">
                 <label for="doctors">Médico</label>
                 <md-select
                   id="doctors"
@@ -350,14 +379,50 @@ export default {
         </md-card-actions>
       </md-card>
 
-      <md-snackbar
-        v-for="alert in alerts"
-        :md-active.sync="alert"
-        :key="alert._id">
-        <span>{{ alert.name }}</span>
-        <br>
-        <p>{{ alert.description }}</p>
-      </md-snackbar>
+      <div>
+        <md-dialog
+          :md-active.sync="alert"
+          :esc-to-close="false"
+          :md-click-outside-to-close="false">
+          <md-dialog-title>Alertas</md-dialog-title>
+          <md-dialog-content>
+            <div class="full-control">
+              <div class="list">
+                <md-list
+                  v-for="alert in alerts"
+                  :md-expand-single="false"
+                  :md-active.sync="alert"
+                  :key="alert._id">
+                  <md-list-item md-expand>
+                    <md-icon>warning</md-icon>
+                    <h4 class="md-list-item-text">{{ alert.name }}</h4>
+                    <md-list slot="md-expand">
+                      <p>{{ alert.description }}</p>
+                    </md-list>
+                  </md-list-item>
+                </md-list>
+              </div>
+            </div>
+          </md-dialog-content>
+          <md-dialog-actions
+            class="md-layout">
+            <md-button
+              class="md-accent md-raised"
+              @click="alert = false">Cancelar</md-button>
+            <md-button
+              class="md-primary md-raised"
+              @click="prescribeMedication()">Continuar mesmo assim</md-button>
+          </md-dialog-actions>
+        </md-dialog>
+
+        <md-snackbar
+          :md-position="center"
+          :md-duration="3000"
+          :md-active.sync="snack"
+          class="md-layout md-gutter md-alignment-center-space-around">
+          <span>{{ showMessage }}</span>
+        </md-snackbar>
+      </div>
     </form>
   </div>
 </template>

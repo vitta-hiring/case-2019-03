@@ -11,7 +11,9 @@ export default {
 
   putDoctors (doctor, id) {
     return httpService().put(`doctors/${id}`, {
-      name: doctor.name
+      name: doctor.name,
+      medical_speciality: doctor.medical_speciality,
+      hospital: doctor.hospital
     })
   },
 

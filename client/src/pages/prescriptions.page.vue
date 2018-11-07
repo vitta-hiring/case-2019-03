@@ -18,7 +18,8 @@ export default {
       doctors: null,
       patients: null,
       medications: null,
-      posology: null
+      posology: null,
+      use: null
     },
     snack: false,
     interactions: [],
@@ -43,6 +44,9 @@ export default {
         required
       },
       posology: {
+        required
+      },
+      use: {
         required
       }
     }
@@ -85,6 +89,7 @@ export default {
       this.form.patients = null
       this.form.medications = null
       this.form.posology = null
+      this.form.use = null
     },
 
     clearData () {
@@ -96,6 +101,7 @@ export default {
       this.form.doctors = []
       this.form.medications = []
       this.form.posology = ''
+      this.form.use = ''
     },
 
     validateForm () {
@@ -169,6 +175,7 @@ export default {
         doctor: this.selectedDoctor,
         medications: this.selectedMedications,
         posology: this.form.posology,
+        use: this.form.use,
         date: moment().format('MM/DD/YYYY')
       }
       try {
@@ -211,16 +218,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$list-width: 50vw;
 .md-card {
   min-width: 50vw;
 }
+
 .md-progress-bar {
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
 }
+
 .md-content {
   width: 200px;
   height: 200px;
@@ -228,18 +236,24 @@ $list-width: 50vw;
   justify-content: center;
   align-items: center;
 }
+
 .list {
-  width: $list-width;
+  width: 50vw;
+  white-space: normal;
 }
 
 .full-control > .md-list {
-  width: $list-width;
-  max-width: 100%;
-  height: 400px;
+  width: 100%;
+  height: auto;
   display: inline-block;
   overflow: auto;
   border: 1px solid rgba(#000, 0.12);
   vertical-align: top;
+  white-space: normal;
+}
+
+.md-list .md-theme-default{
+  white-space: normal !important;
 }
 </style>
 
@@ -301,8 +315,18 @@ $list-width: 50vw;
                       <md-option
                         v-for="medication in form.medications"
                         :key="medication._id"
-                        :value="medication">{{ medication.label }}</md-option>
+                        :value="medication">{{ medication.name }}</md-option>
                     </md-select>
+                    <span class="md-error">Campo obrigatorio!</span>
+                  </md-field>
+                </div>
+
+                <div class="md-layout-item md-small-size-100">
+                  <md-field :class="getValidationClass('use')">
+                    <label>Via de uso:</label>
+                    <md-input
+                      :disabled="sending"
+                      v-model="form.use"/>
                     <span class="md-error">Campo obrigatorio!</span>
                   </md-field>
                 </div>
@@ -397,6 +421,8 @@ $list-width: 50vw;
                     <md-icon>warning</md-icon>
                     <h4 class="md-list-item-text">{{ alert.name }}</h4>
                     <md-list slot="md-expand">
+                      <span class="md-list-item-text">{{ alert.first_active_principle }}</span>
+                      <span class="md-list-item-text">{{ alert.seccond_active_principle }}</span>
                       <p>{{ alert.description }}</p>
                     </md-list>
                   </md-list-item>

@@ -6,9 +6,9 @@
 
   exports.get = async () => {
     return await DoctorPrescription.find({})
-      .populate('doctor', 'name medical_specialty')
+      .populate('doctor', 'name medical_speciality hospital')
       .populate('patient', 'name')
-      .populate('medication', 'name active_principles administration package_leaflet special_control ');
+      .populate('medications', 'name active_principles administration package_leaflet special_control ');
   };
 
   exports.create = async (data) => {

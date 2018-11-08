@@ -21,7 +21,7 @@ If it is in the default set the System will run in:
 
 It is also possible to run the application on HOST and different port, using the command below:
 ```shell
-docker run -it -p 3001:3001 kalleodocker:vitta:client
+docker run -it -p 3001:3001 kalleodocker/vitta:client
 ```
 
 ### Execution in real time - client-side
@@ -39,7 +39,7 @@ If it is in the default set the System will run in:
 
 It is also possible to run the application on HOST and different port, using the command below:
 ```shell
-docker run -it -p 3001:3001 kalleodocker:vitta:client
+docker run -it -p 3001:3001 kalleodocker/vitta:client
 ```
 
 Developed by ** Kalléo Pinheiro **

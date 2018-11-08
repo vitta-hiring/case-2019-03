@@ -79,10 +79,7 @@ export default {
         name: this.form.name
       }
       try {
-        await patientService.putPatients(
-          toEdit,
-          this.patientId
-        )
+        await patientService.putPatients(toEdit, this.patientId)
         this.getPatients()
       } catch (error) {
         console.log(error)
@@ -90,16 +87,13 @@ export default {
     },
 
     async postPatients () {
-      debugger
       const obj = {
         name: this.form.name,
         date_of_birth: moment().format('MM/DD/YYYY'),
         gender: 'Masculino'
       }
       try {
-        await patientService.postPatients(
-          obj
-        )
+        await patientService.postPatients(obj)
         this.getPatients()
       } catch (error) {
         console.log(error)
@@ -117,8 +111,11 @@ export default {
     },
 
     searchOnTable () {
-      this.searchedItems = this.patients.filter(
-        item => item.name.toString().toLowerCase().includes(this.search.toString().toLowerCase())
+      this.searchedItems = this.patients.filter(item =>
+        item.name
+          .toString()
+          .toLowerCase()
+          .includes(this.search.toString().toLowerCase())
       )
     },
 
@@ -146,13 +143,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#patient-page {
-  margin-top: 20px;
-}
-
 .md-app-content .md-card {
   min-width: 50%;
-  height: 100%;
+  height: auto;
 }
 
 .md-dialog {
@@ -182,7 +175,7 @@ export default {
               <md-input
                 id="name"
                 v-model="form.name"
-                name="name" />
+                name="name"/>
               <span
                 v-if="!$v.form.name.required"
                 class="md-error">Campo obrigatório!</span>
@@ -207,6 +200,7 @@ export default {
         </div>
       </form>
     </div>
+
     <md-table
       v-else
       v-model="searchedItems"
@@ -226,11 +220,19 @@ export default {
             placeholder="Pesquisar por nome..."
             @input="searchOnTable()" />
         </md-field>
+        <div class="md-layout">
+          <md-button
+            md-fab-bottom-right
+            class="md-fab md-mini md-primary"
+            @click="newPatient()">
+            <md-icon>add</md-icon>
+          </md-button>
+        </div>
       </md-table-toolbar>
 
       <md-table-empty-state
-        :md-description="`Nenhum usuário com '${search}' encontrado. Tente um novo nome ou crie um novo paciente.`"
-        md-label="Nenhum usuário encontrado">
+        :md-description="`Nenhum paciente com '${search}' encontrado. Tente um novo nome ou crie um novo paciente.`"
+        md-label="Nenhum paciente encontrado">
         <md-button
           class="md-primary md-raised"
           @click="newPatient()">Criar novo Paciente</md-button>

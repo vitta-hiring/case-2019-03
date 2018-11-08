@@ -10,7 +10,7 @@
       required: true,
       trim: true
     },
-    medical_specialty: {
+    medical_speciality: {
       type: String,
       required: true,
       trim: true

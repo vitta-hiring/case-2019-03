@@ -25,6 +25,11 @@
       required: true,
       trim: true
     },
+    use: {
+      type: String,
+      required: true,
+      trim: true
+    },
     date: {
       type: Date,
       required: true,

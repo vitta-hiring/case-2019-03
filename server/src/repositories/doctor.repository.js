@@ -17,7 +17,8 @@
     return await Doctor.findByIdAndUpdate(id, {
       $set: {
         name: data.name,
-        medical_specialty: data.medical_specialty
+        medical_specialty: data.medical_specialty,
+        hospital: data.hospital
       }
     });
   };

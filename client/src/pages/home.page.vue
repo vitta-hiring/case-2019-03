@@ -20,7 +20,6 @@ export default {
       try {
         this.prescriptions = []
         const array = await prescriptionService.getPrescriptions()
-        debugger
         array.data.map(item => {
           item.date = moment(item.date).format('DD/MM/YYYY')
           item.medications = item.medications

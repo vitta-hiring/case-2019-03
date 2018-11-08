@@ -1,4 +1,4 @@
-## Vitta Project - server-side
+## Vitta Project
 
 ## Description
 
@@ -6,7 +6,7 @@ This application is an example of what an API in NodeJS is capable of and was pr
 
 ## Deploy the Application
 
-### Execution in real time
+### Execution in real time - server-side
 
 You can run the application locally using the command below:
 ```shell
@@ -21,7 +21,24 @@ If it is in the default set the System will run in:
 
 It is also possible to run the application on HOST and different port, using the command below:
 ```shell
-$ docker run -p {PORT}:3000 kalleodocker/vitta:api
+```
+
+### Execution in real time - client-side
+
+You can run the application locally using the command below:
+```shell
+$ docker run kalleodocker/vitta:client
+```
+
+After executing the command the application will run using the default port
+
+
+If it is in the default set the System will run in:
+[`http://localhost:3001`](http://localhost:3001).
+
+It is also possible to run the application on HOST and different port, using the command below:
+```shell
+docker run -it -p 3001:3001 kalleodocker:vitta:client
 ```
 
 Developed by ** Kalléo Pinheiro **

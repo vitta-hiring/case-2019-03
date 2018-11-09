@@ -1,6 +1,6 @@
 FROM node:9.11.1-alpine
 
-RUN npm install -g http-server -a
+RUN npm install -g http-server
 
 WORKDIR /app
 
@@ -14,6 +14,6 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE 3001
+EXPOSE 8080
 
-CMD [ "http-server", "dist" ]
+CMD [ "http-server", "dist", "-a" "0.0.0.0"]

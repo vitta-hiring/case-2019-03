@@ -1,6 +1,6 @@
 FROM node:9.11.1-alpine
 
-RUN npm install -g http-server
+RUN npm install -g http-server -a
 
 WORKDIR /app
 

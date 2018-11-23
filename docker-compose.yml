@@ -1,0 +1,14 @@
+version: '3'
+services:
+  prescription-service-deploy:
+    build: ./api
+    ports:
+     - "8123:8123"
+    depends_on:
+     - db
+    environment:
+     - DATABASE_HOST=db
+    volumes:
+     - ./api:/app/api
+  db:
+    build: ./database

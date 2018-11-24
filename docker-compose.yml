@@ -1,14 +1,17 @@
-version: '3'
+version: '2'
 services:
-  prescription-service-deploy:
+  api:
     build: ./api
     ports:
-     - "8123:8123"
+     - "3000:3000"
     depends_on:
      - db
     environment:
      - DATABASE_HOST=db
     volumes:
-     - ./api:/app/api
+     - ./api:/app
   db:
     build: ./database
+    restart: always
+    environment:
+    - MYSQL_ROOT_PASSWORD=123456

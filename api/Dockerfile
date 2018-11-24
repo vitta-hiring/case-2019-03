@@ -1,8 +1,8 @@
-FROM node:7.7.2-alpine
-
+FROM node
 WORKDIR /usr/app
-
-COPY package.json .
-RUN npm install --quiet
-
 COPY . .
+RUN ls -la
+RUN npm install
+RUN sed -i 's/\r$//' ./start.sh  && \  
+      chmod +x ./start.sh
+ENTRYPOINT ./start.sh

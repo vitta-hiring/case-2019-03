@@ -1,14 +1,14 @@
 {
   "name": "prescription",
   "version": "1.0.0",
-  "description": "",
+  "description": "Prescription Test",
   "main": "index.js",
   "scripts": {
     "start": "node ./bin/server.js",
     "start-dev": "nodemon ./bin/server.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["Prescription", "Medications"],
+  "author": "Elvisley Souza",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",

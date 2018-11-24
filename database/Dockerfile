@@ -1,6 +1,2 @@
-FROM mysql:latest
-
-ENV MYSQL_ROOT_PASSWORD root  
-ENV MYSQL_DATABASE prescriptiondb  
-ENV MYSQL_USER root  
-ENV MYSQL_PASSWORD root
+FROM mysql:5
+EXPOSE 3306

@@ -10,6 +10,10 @@ exports.getMedicationPrescription = async(prescription_id) => {
     return await repository.getMedicationPrescription(prescription_id);
 }
 
+exports.getPrescriptionsByPatientId = async(patient_id) => {
+    return await repository.getPrescriptionsByPatientId(patient_id);
+}
+
 exports.createPrescription = async(data) => {
 
     var prescription = {};

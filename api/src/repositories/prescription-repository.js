@@ -20,6 +20,19 @@ exports.get = async() => {
     .innerJoin(table_patients, `${table_prescription}.patient_id`, `${table_patients}.id`);
 };
 
+exports.getPrescriptionsByPatientId = async(patientId) => {
+    return await 
+    knex
+    .select(
+        `${table_prescription}.*`, 
+        `${table_doctors}.name as doctor_name`,
+        `${table_patients}.name as patient_name`)
+    .from(table_prescription)
+    .innerJoin(table_doctors, `${table_prescription}.doctor_id`, `${table_doctors}.id` )
+    .innerJoin(table_patients, `${table_prescription}.patient_id`, `${table_patients}.id`)
+    .where("patient_id", patientId);
+};
+
 exports.getMedicationPrescription = async(prescription_id) => {
     return await 
     knex

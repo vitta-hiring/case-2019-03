@@ -12,5 +12,12 @@ exports.getInterventionMedications = async() => {
 };
 
 exports.checkMedicationIntervention = async( medications ) => {
-    return await repositoryInterventionMedication.checkMedicationIntervention(medications);
+    const medicationsListName = await repositoryMedication.getNamesByListId(medications);
+
+    let formatListMedications = [];
+    medicationsListName.forEach(element => {
+        formatListMedications.push( element.pharmacos.replace(",", " + "));
+    });
+   
+    return await repositoryInterventionMedication.checkMedicationIntervention(formatListMedications);
 }

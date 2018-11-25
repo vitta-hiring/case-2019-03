@@ -1,6 +1,7 @@
 'use strict'
 
 const service = require('../services/prescription-service');
+const serviceMedication = require('../services/medication-service');
 const ValidationContract = require('../validators/fluent-validator');
 
 exports.get = async(req, res, next) => {
@@ -14,6 +15,28 @@ exports.get = async(req, res, next) => {
         });
     }
 };
+
+exports.getPrescriptionsByPatientId = async(req, res, next) => {
+
+    let validation = new ValidationContract();
+    validation.isRequired(req.params.id, "Id do paciente é obrigatorio!")
+
+    if(!validation.isValid()){
+        res.status(400).send(validation.errors()).end();
+        return;
+    }
+
+    try {
+        let data = await service.getPrescriptionsByPatientId(req.params.id);
+        res.status(200).send(data);   
+    } catch (error) {
+        res.status(500).send({
+            message: 'Falha ao processar sua requisicao',
+            data: error
+        });
+    }
+};
+
 
 exports.getMedicationPrescription = async(req, res, next) => {
 
@@ -47,6 +70,14 @@ exports.createPrescription = async(req, res, next) => {
     if(!validation.isValid()){
         res.status(400).send(validation.errors()).end();
         return;
+    }
+
+    if(req.body.ignore == false) {
+        let validationMedications = await serviceMedication.checkMedicationIntervention(req.body.medications);
+       
+        if(validationMedications.length > 0){
+            res.status(409).send(validationMedications);   
+        }
     }
 
     try {

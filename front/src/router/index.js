@@ -8,7 +8,7 @@ import PrescriptionMedication from '@/components/prescription/medication/Main'
 Vue.use(Router)
 
 export default new Router({
-  html5: true,
+  mode: 'history',
   routes: [
     {
       path: '/',

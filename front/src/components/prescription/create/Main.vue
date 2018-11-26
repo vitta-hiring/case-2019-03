@@ -70,7 +70,7 @@
             <div class="panel-body">
               <div class="alert alert-warning" role="alert" v-for="(conflict, idx) in medicationsConflict" :key="idx">
                 <b class="text-uppercase-style"> {{ conflict.name }} </b> ::
-                <b> {{ conflict.pharmaco_one }} + {{ conflict.pharmaco_pharmacos_two }} </b> {{ conflict.description }}
+                <b> {{ conflict.pharmaco_one }} </b> + <b> {{ conflict.pharmaco_pharmacos_two }} </b> {{ conflict.description }}
               </div>
             </div>
             <div class="panel-footer text-uppercase-style">
@@ -82,33 +82,33 @@
               </b-form-checkbox>
             </div>
           </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Medicamento</th>
+                  <th scope="col">Concentracao</th>
+                  <th scope="col">Via.Admin.</th>
+                  <th scope="col">Remover</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(presc, idx) in form.medications" :key="idx">
+                  <td scope="row">{{ presc.id }}</td>
+                  <td>{{ presc.label }}</td>
+                  <td>{{ presc.concentration }}</td>
+                  <td>{{ presc.via_administration }}</td>
+                  <td>
+                    <button @click="removeMedicationsPrescription(idx)" type="button" class="btn btn-primary">
+                      <i class="fa fa-close"></i>
+                    </button>
+                  </td>
+                </tr>
 
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Medicamento</th>
-                <th scope="col">Concentracao</th>
-                <th scope="col">Via.Admin.</th>
-                <th scope="col">Remover</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(presc, idx) in form.medications" :key="idx">
-                <th scope="row">{{ presc.id }}</th>
-                <td>{{ presc.label }}</td>
-                <td>{{ presc.concentration }}</td>
-                <td>{{ presc.via_administration }}</td>
-                <td>
-                   <button @click="removeMedicationsPrescription(idx)" type="button" class="btn btn-primary">
-                     <i class="fa fa-close"></i>
-                   </button>
-                </td>
-              </tr>
-
-            </tbody>
-          </table>
-
+              </tbody>
+            </table>
+          </div>
           <hr>
 
           <button class="btn btn-success btn-sm" type="submit">SALVAR</button>

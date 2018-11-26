@@ -77,6 +77,7 @@ exports.createPrescription = async(req, res, next) => {
        
         if(validationMedications.length > 0){
             res.status(409).send(validationMedications);   
+            return;
         }
     }
 

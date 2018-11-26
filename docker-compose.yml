@@ -15,3 +15,10 @@ services:
     restart: always
     environment:
     - MYSQL_ROOT_PASSWORD=123456
+  front:
+    build: ./front
+    ports:
+     - "8080:80"
+    depends_on:
+     - api
+    restart: always

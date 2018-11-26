@@ -5,10 +5,10 @@ module.exports = {
     development: {
         client: 'mysql',
         connection: {
-            host: 'localhost',
+            host: process.env.DATABASE_HOST || '127.0.0.1',
             user: 'root',
-            password: 'root',
-            database: 'prescricaodb',
+            password: '123456',
+            database: 'dbprescription',
             port: 3306
         },
         migrations: {
@@ -21,7 +21,7 @@ module.exports = {
     production: {
         client: 'mysql',
         connection: {
-            host: process.env.DATABASE_HOST || '127.0.0.1',
+            host: process.env.DATABASE_HOST,
             user: 'root',
             password: '123456',
             database: 'dbprescription',

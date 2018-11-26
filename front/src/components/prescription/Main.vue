@@ -32,31 +32,32 @@
           </b-form>
           </div>
         </div>
-
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Medico</th>
-              <th scope="col">Paciente</th>
-              <th scope="col">Data</th>
-              <th scope="col">Descricao</th>
-              <th scope="col">Detalhes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in prescriptionList" :key="item.id">
-              <th scope="row">{{ item.id }}</th>
-              <td>{{ item.doctor_name }}</td>
-              <td>{{ item.patient_name }}</td>
-              <td>{{ item.description }}</td>
-              <td>{{ item.created_at | moment("DD/MM/YYYY") }}</td>
-              <td>
-                <button @click="getMedications(item.id)" class="btn btn-success btn-sm"><i class="fa fa-list" aria-hidden="true"></i></button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Medico</th>
+                <th scope="col">Paciente</th>
+                <th scope="col">Data</th>
+                <th scope="col">Descricao</th>
+                <th scope="col">Detalhes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in prescriptionList" :key="item.id">
+                <td>{{ item.id }}</td>
+                <td>{{ item.doctor_name }}</td>
+                <td>{{ item.patient_name }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.created_at | moment("DD/MM/YYYY") }}</td>
+                <td>
+                  <button @click="getMedications(item.id)" class="btn btn-success btn-sm"><i class="fa fa-list" aria-hidden="true"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 

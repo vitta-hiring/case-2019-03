@@ -44,13 +44,16 @@
             
         });
 
-        let  interacoes = await daoInteracao.getInteracao(listFamacos);
 
-        if(interacoes.length > 0)
+        if(!data.flgConcorda)
         {
-            throw new appError(JSON.stringify(interacoes), 409);
+            let  interacoes = await daoInteracao.getInteracao(listFamacos);
+
+            if(interacoes.length > 0)
+            {
+                throw new appError(JSON.stringify(interacoes), 409);
+            }
         }
-  
 
         return await dao.create(data);
 

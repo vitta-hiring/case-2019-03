@@ -1,15 +1,33 @@
-#DOCKER-COMPOSE-NODEJS-EXPRESS-MYSQL
-In this sample, we will look at the functionality provided by 'Docker Compose' for defining and running multi-container Docker applications.
+Para executar 
 
-We are going to use 'MySQL' like our specialized database and 'Node.js' as our platform for creating highly performant web applications.
+docker-compose up
+
+Para testar o alerta 
+
+Post http://localhost:8888/prescricao
+
+{
+	"Nome" : "teste" ,
+	"Paciente_Id" : 1,
+	"Medico_Id" : 1 ,
+	"Medicamentos_Id" : [16736,39550,31553],
+	"flgConcorda" : false
+}
 
 
-#ScreenShots
+sem alerta
 
-<p align="center">
-    <img src="Screenshots/docker_nodejs.png" alt="docker_compose" width="50%"/>
-</p>
 
-<p align="center">
-    <img src="Screenshots/mysql.jpg" alt="docker_compose" width="50%"/>
-</p>
+{
+	"Nome" : "teste" ,
+	"Paciente_Id" : 1,
+	"Medico_Id" : 1 ,
+	"Medicamentos_Id" : [16736,39550],
+	"flgConcorda" : false
+}
+
+Eu estou fazendo um integra esses dias aqui na empresa, tive que ficar focado nela , nao tive muito tempo para fazer.
+
+hoje mesmo estou trabalhando para entrega que tem que ser para amanha. Parei um pouco para fazer o teste.
+
+Qualquer duvida me liga.

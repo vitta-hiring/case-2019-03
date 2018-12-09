@@ -6,8 +6,6 @@
  exports.get = async(req, res, next) => {
     try {
         
-        console.log('teste');
-
         const data = await pacienteservice.get();
         
 

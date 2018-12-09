@@ -5,8 +5,6 @@
 
  exports.create = async(req, res, next) => {
     try {
-        
-        console.log('teste');
 
         const data = await prescricaoervice.create(req.body);
         
@@ -25,8 +23,7 @@
 exports.getByPaciente = async(req, res, next) => {
     try {
         
-        console.log(req.params.id);
-        
+
         const data = await prescricaoervice.getByPaciente(req.params.id);
         
         res.status(200).send(data);   

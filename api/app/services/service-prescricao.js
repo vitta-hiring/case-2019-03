@@ -29,8 +29,6 @@
 
         famacos.forEach(element => {
 
-            console.log(element.Farmacos);
-
             if(element.Farmacos.indexOf(",") == -1)
             {
                 listFamacos.push( element.Farmacos);
@@ -63,6 +61,5 @@ catch (error) {
 };
 
 exports.getByPaciente = async(Paciente_Id) => {
-    console.log(Paciente_Id);
     return await dao.getByPaciente(Paciente_Id);
 };

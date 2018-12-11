@@ -39,16 +39,20 @@
             </tr>
             </tbody>
         </table>
+
+        <button v-on:click="savePrescription">Save</button>
     </Section>
 </template>
 
 <script>
     import Section from '../../components/Section';
+    import AttendanceService from '../../services/attendance';
 
     export default {
         name: "PrescriptionForm",
         data() {
             return {
+                attendanceService: new AttendanceService(),
                 section: {
                     title: 'Prescription',
                     actions: [
@@ -70,6 +74,18 @@
             }
         },
         methods: {
+            savePrescription: function() {
+
+                const prescription = {
+                    id: new Date().getTime(),
+                    date: this.section.form.date,
+                    medicines: this.section.table.items
+                };
+
+                this.attendanceService.addPrescription(prescription);
+
+                this.$router.push('/attendance/' + this.$route.params.id);
+            },
             addMedicine: function () {
                 this.section.table.items.push(this.section.form.prescription);
                 this.resetPrescriptionForm();

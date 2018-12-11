@@ -7,7 +7,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="item in section.table.items" v-bind:key="item.id">
+            <tr v-for="item in section.table.items" v-bind:key="item.medicine">
                 <td>{{item.medicine}}</td>
                 <td>{{item.dosage}}</td>
                 <td>{{item.via}}</td>

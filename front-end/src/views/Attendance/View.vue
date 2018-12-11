@@ -1,6 +1,6 @@
 <template>
     <div class="attendance__view">
-        <PageTitle :title="page.title + ' ' + $route.params.id" />
+        <PageTitle :title="page.title" />
         <Card :doctor-name="card.doctorName" :patient-name="card.patientName"/>
         <router-view></router-view>
     </div>
@@ -17,7 +17,7 @@
             return {
                 attendanceService: new AttendanceService(),
                 page: {
-                    title: 'Attendance'
+                    title: 'Attendance ' + this.$route.params.id
                 },
                 card: {
                     doctorName: '',

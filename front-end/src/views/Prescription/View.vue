@@ -19,11 +19,13 @@
 
 <script>
     import Section from '../../components/Section';
+    import AttendanceService from '../../services/attendance';
 
     export default {
         name: "PrescriptionView",
         data() {
             return {
+                attendanceService: new AttendanceService(),
                 section: {
                     title: 'Prescription ' + this.$route.params.idPrescription,
                     actions: [
@@ -31,16 +33,19 @@
                     ],
                     table: {
                         header: ['Medicine', 'Dosage', 'Via Administration'],
-                        items: [
-                            {id: 1, medicine: 'Novalgina', dosage: '2 vezes ao dia', via: 'ORAL'},
-                            {id: 2, medicine: 'Neosaldina', dosage: '12 em 12 horas', via: 'ORAL'},
-                            {id: 3, medicine: 'Paracetamol', dosage: '4 em 4 horas', via: 'NASAL'},
-                            {id: 4, medicine: 'Alegra', dosage: '15 gotas por dia', via: 'ORAL'},
-                            {id: 5, medicine: 'Simeticona', dosage: '1 sache por refeição', via: 'NASAL'}
-                        ]
+                        items: []
                     }
                 }
             }
+        },
+        mounted() {
+            this.getPrescription(this.$route.params.idPrescription);
+        },
+        methods: {
+            getPrescription(id) {
+                const prescription = this.attendanceService.getPrescription(id);
+                this.section.table.items = prescription[0].medicines;
+            },
         },
         components: {
             Section

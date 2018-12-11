@@ -9,19 +9,30 @@
 <script>
     import PageTitle from '../../components/PageTitle';
     import Card from '../../components/Card';
+    import AttendanceService from '../../services/attendance';
 
     export default {
         name: "AttendanceView",
         data() {
             return {
+                attendanceService: new AttendanceService(),
                 page: {
                     title: 'Attendance'
                 },
                 card: {
-                    doctorName: 'Annibal Machado',
-                    patientName: 'Guilherme de Almeida Gomes'
+                    doctorName: '',
+                    patientName: ''
                 }
             }
+        },
+        mounted() {
+            this.setCard();
+        },
+        methods: {
+            setCard() {
+                this.card.doctorName = this.attendanceService.getItem('doctorName');
+                this.card.patientName = this.attendanceService.getItem('patientName');
+            },
         },
         components: {
             PageTitle,

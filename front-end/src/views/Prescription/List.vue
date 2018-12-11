@@ -18,11 +18,13 @@
 
 <script>
     import Section from '../../components/Section';
+    import AttendanceService from '../../services/attendance';
 
     export default {
         name: "PrescriptionList",
         data() {
             return {
+                attendanceService: new AttendanceService(),
                 section: {
                     title: 'Prescriptions',
                     actions: [
@@ -30,16 +32,18 @@
                     ],
                     table: {
                         header: ['Date', 'View'],
-                        items: [
-                            {id: 1, date: '15/10/2018'},
-                            {id: 2, date: '08/10/2018'},
-                            {id: 3, date: '20/09/2018'},
-                            {id: 4, date: '13/06/2018'},
-                            {id: 5, date: '01/04/2018'}
-                        ]
+                        items: []
                     }
                 }
             }
+        },
+        mounted() {
+            this.getPrescriptions();
+        },
+        methods: {
+            getPrescriptions() {
+                this.section.table.items = this.attendanceService.getPrescriptions();
+            },
         },
         components: {
             Section

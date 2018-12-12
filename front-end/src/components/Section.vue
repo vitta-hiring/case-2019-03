@@ -1,9 +1,13 @@
 <template>
     <section class="section">
-        <SectionHeader :title="title" :actions="actions" />
-        <SectionBody>
-            <slot></slot>
-        </SectionBody>
+        <vi-card>
+            <div slot="body">
+                <SectionHeader :title="title" :actions="actions" />
+                <SectionBody>
+                    <slot></slot>
+                </SectionBody>
+            </div>
+        </vi-card>
     </section>
 </template>
 

@@ -1,54 +1,69 @@
 <template>
-    <Section :title="section.title" :actions="section.actions">
-        <table>
-            <thead>
-            <tr>
-                <th v-for="item in section.table.header" v-bind:key="item">{{item}}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="item in section.table.items" v-bind:key="item.medicine">
-                <td>{{item.medicine}}</td>
-                <td>{{item.dosage}}</td>
-                <td>{{item.via}}</td>
-            </tr>
-            </tbody>
-        </table>
+    <Section :title="getSectionTitle()" :actions="section.actions">
+
+        <div class="form">
+            <vi-input type="text" v-model="prescription.date" read-only>
+                <template slot="prefix">Date</template>
+            </vi-input>
+        </div>
+
+        <div class="table" v-if="prescription.medicines.length > 0">
+            <vi-table striped horizontalBordered :columns="section.table.header" :items="prescription.medicines">
+                <template slot-scope="{ item }">
+                    <td>{{item.medicine}}</td>
+                    <td>{{item.dosage}}</td>
+                    <td>{{item.via}}</td>
+                </template>
+            </vi-table>
+        </div>
+
     </Section>
 </template>
 
 <script>
     import Section from '../../components/Section';
-    import AttendanceService from '../../services/attendance';
 
     export default {
-        name: "PrescriptionView",
         data() {
             return {
-                attendanceService: new AttendanceService(),
+                id: this.$route.params['id'],
+                idPrescription: this.$route.params['idPrescription'],
                 section: {
-                    title: 'Prescription ' + this.$route.params.idPrescription,
                     actions: [
-                        {to: '/attendance/' + this.$route.params.id, label: 'Back to Prescriptions'}
+                        {to: '/attendance/' + this.$route.params['id'], label: 'Back to Prescriptions', icon: 'chevron-prev'}
                     ],
                     table: {
-                        header: ['Medicine', 'Dosage', 'Via Administration'],
-                        items: []
+                        header: [
+                            {id: 'medicine', label: 'Medicine', sortable: false},
+                            {id: 'dosage', label: 'Dosage', sortable: false},
+                            {id: 'via', label: 'Via Administration', sortable: false}
+                        ]
                     }
                 }
             }
         },
-        mounted() {
-            this.getPrescription(this.$route.params.idPrescription);
-        },
         methods: {
-            getPrescription(id) {
-                const prescription = this.attendanceService.getPrescription(id);
-                this.section.table.items = prescription[0].medicines;
-            },
+            getSectionTitle() {
+                return 'Prescription ' + this.$route.params['idPrescription'];
+            }
+        },
+        computed: {
+            prescription() {
+                const idPrescription = parseInt(this.$route.params['idPrescription'], 10);
+                return this.$store.getters.getPrescriptionById(idPrescription);
+            }
         },
         components: {
             Section
         }
     }
 </script>
+
+<style scoped>
+    .form {
+        padding-top: 20px;
+    }
+    .table{
+        padding-top: 20px;
+    }
+</style>

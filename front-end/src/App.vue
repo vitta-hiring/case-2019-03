@@ -1,25 +1,23 @@
 <template>
-    <div id="app">
+    <vi-wrapper grid class="grey">
         <router-view/>
-    </div>
+    </vi-wrapper>
 </template>
 
 <script>
 
     import {storageKey} from './constants/keys';
-    import initialState from './constants/initialState';
 
     export default {
         created() {
-            localStorage.setItem(storageKey, JSON.stringify(initialState));
+            localStorage.setItem(storageKey, JSON.stringify({}));
         }
     };
 
 </script>
 
-<style>
-    #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        color: #2c3e50;
+<style scoped>
+    .grey {
+        background: #E4E4E4;
     }
 </style>

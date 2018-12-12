@@ -1,10 +1,10 @@
 <template>
-    <div class="section__header">
+    <vi-wrapper class="section__header" no-spacing align-items="center" justify-content="space-between">
         <h2 class="section__title">{{title}}</h2>
         <div class="section__actions">
-            <router-link v-for="item in actions" v-bind:key="item.to" :to="item.to">{{item.label}}</router-link>
+            <vi-button v-for="item in actions" :key="item.to" @click="navigateTo(item.to)" small primary><vi-icon v-if="item.icon" :name="item.icon" />{{item.label}}</vi-button>
         </div>
-    </div>
+    </vi-wrapper>
 </template>
 
 <script>
@@ -13,6 +13,11 @@
         props: {
             title: String,
             actions: Array
+        },
+        methods: {
+            navigateTo(route) {
+                this.$router.push(route);
+            }
         }
     }
 </script>

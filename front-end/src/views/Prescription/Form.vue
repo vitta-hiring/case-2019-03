@@ -1,73 +1,72 @@
 <template>
     <Section :title="section.title" :actions="section.actions">
+        <div class="content">
 
-        <div class="form">
-            <div class="form__input-group">
-                <label class="form__label" for="date">Date</label>
-                <input type="text" class="form__input" name="date" id="date" v-model="section.form.date" readonly>
+            <div class="form">
+                <vi-input type="text" v-model="section.form.date" read-only>
+                    <template slot="prefix">Date</template>
+                </vi-input>
             </div>
+
+            <form @submit.prevent="addMedicine()" class="form">
+                <legend class="form__legend"><vi-icon name="stethoscope" /> Add medicine</legend>
+                <vi-wrapper tag="fieldset" justify-content="space-between">
+                    <vi-input placeholder="Medicine" required v-model="section.form.prescription.medicine" type="text" />
+                    <vi-input placeholder="Dosage" required v-model="section.form.prescription.dosage" type="text" />
+                    <vi-input placeholder="Via" required v-model="section.form.prescription.via" type="text" />
+                    <vi-button type="submit" success>Add</vi-button>
+                </vi-wrapper>
+            </form>
+
+            <div class="table" v-if="section.table.items.length > 0" >
+                <vi-table horizontalBordered :columns="section.table.header" :items="section.table.items">
+                    <template slot-scope="{ item }">
+                        <td>{{item.medicine}}</td>
+                        <td>{{item.dosage}}</td>
+                        <td>{{item.via}}</td>
+                    </template>
+                </vi-table>
+            </div>
+
+            <div class="button__submit">
+                <vi-button @click="savePrescription">Save</vi-button>
+            </div>
+
         </div>
-
-        <h3>Add medicine</h3>
-        <div class="form">
-            <div class="form__input-group">
-                <label class="form__label" for="medicine">Medicine</label>
-                <input type="text" class="form__input" name="medicine" id="medicine" v-model="section.form.prescription.medicine">
-            </div>
-            <div class="form__input-group">
-                <label class="form__label" for="dosage">Dosage</label>
-                <input type="text" class="form__input" name="dosage" id="dosage" v-model="section.form.prescription.dosage">
-            </div>
-            <div class="form__input-group">
-                <label class="form__label" for="via">Via</label>
-                <input type="text" class="form__input" name="via" id="via" v-model="section.form.prescription.via">
-            </div>
-            <button v-on:click="addMedicine">Add</button>
-        </div>
-
-        <table v-if="section.table.items.length > 0">
-            <thead>
-            <tr>
-                <th v-for="item in section.table.header" v-bind:key="item">{{item}}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="item in section.table.items" v-bind:key="item.medicine">
-                <td>{{item.medicine}}</td>
-                <td>{{item.dosage}}</td>
-                <td>{{item.via}}</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <button v-on:click="savePrescription">Save</button>
     </Section>
 </template>
 
 <script>
     import Section from '../../components/Section';
-    import AttendanceService from '../../services/attendance';
+    import DateHelper from '../../helpers/date';
 
     export default {
         name: "PrescriptionForm",
         data() {
             return {
-                attendanceService: new AttendanceService(),
                 section: {
                     title: 'Prescription',
                     actions: [
-                        {to: '/attendance/' + this.$route.params.id, label: 'Back to Prescriptions'}
+                        {to: '/attendance/' + this.$route.params['id'], label: 'Back to Prescriptions', icon: 'chevron-prev'}
                     ],
                     form: {
-                        date: this.currentDateFormatted(),
+                        date: DateHelper.currentDateFormatted(),
                         prescription: {
                             medicine: '',
                             dosage: '',
                             via: ''
+                        },
+                        customErrorMsg: {
+                            typeMismatch: 'Isso não é um email',
+                            valueMissing: 'Preencha o email',
                         }
                     },
                     table: {
-                        header: ['Medicine', 'Dosage', 'Via Administration'],
+                        header: [
+                            {id: 'medicine', label: 'Medicine', sortable: false},
+                            {id: 'dosage', label: 'Dosage', sortable: false},
+                            {id: 'via', label: 'Via Administration', sortable: false}
+                        ],
                         items: []
                     }
                 }
@@ -76,15 +75,13 @@
         methods: {
             savePrescription: function() {
 
-                const prescription = {
-                    id: new Date().getTime(),
+                this.$store.commit('addPrescription', {
+                    id: DateHelper.getTime(),
                     date: this.section.form.date,
                     medicines: this.section.table.items
-                };
+                });
 
-                this.attendanceService.addPrescription(prescription);
-
-                this.$router.push('/attendance/' + this.$route.params.id);
+                this.navigateTo(this.getAttendanceRoute());
             },
             addMedicine: function () {
                 this.section.table.items.push(this.section.form.prescription);
@@ -97,18 +94,11 @@
                     via: ''
                 };
             },
-            currentDateFormatted: function () {
-                const current = new Date(),
-                    year = current.getFullYear(),
-                    month = current.getMonth() + 1;
-
-                let day = current.getDate();
-
-                if (day > 0 && day < 10) {
-                    day = '0' + day;
-                }
-
-                return day + '/' + month + '/' + year;
+            getAttendanceRoute: function() {
+                return '/attendance/' + this.$route.params['id'];
+            },
+            navigateTo: function (route) {
+                this.$router.push(route);
             }
         },
         components: {
@@ -116,3 +106,21 @@
         }
     }
 </script>
+
+<style scoped>
+    .content {
+        padding-top: 20px;
+    }
+    .form {
+        padding: 20px 0 0 0;
+    }
+    .form__legend {
+        padding: 10px 0;
+    }
+    .table{
+        padding-top: 20px;
+    }
+    .button__submit{
+        padding-top: 20px;
+    }
+</style>

@@ -1,46 +1,33 @@
 <template>
     <div class="attendance__view">
-        <PageTitle :title="page.title" />
-        <Card :doctor-name="card.doctorName" :patient-name="card.patientName"/>
+        <Card :title="title" :doctor-name="doctorName" :patient-name="patientName" class="card"/>
         <router-view></router-view>
     </div>
 </template>
 
 <script>
-    import PageTitle from '../../components/PageTitle';
     import Card from '../../components/Card';
-    import AttendanceService from '../../services/attendance';
 
     export default {
-        name: "AttendanceView",
-        data() {
-            return {
-                attendanceService: new AttendanceService(),
-                page: {
-                    title: 'Attendance ' + this.$route.params.id
-                },
-                card: {
-                    doctorName: '',
-                    patientName: ''
-                }
+        computed: {
+            title() {
+                return 'Attendance ' + this.$route.params['id']
+            },
+            doctorName() {
+                return this.$store.state.doctorName;
+            },
+            patientName() {
+                return this.$store.state.patientName;
             }
         },
-        mounted() {
-            this.setCard();
-        },
-        methods: {
-            setCard() {
-                this.card.doctorName = this.attendanceService.getItem('doctorName');
-                this.card.patientName = this.attendanceService.getItem('patientName');
-            },
-        },
         components: {
-            PageTitle,
             Card
         }
     }
 </script>
 
 <style scoped>
-
+    .card {
+        margin-bottom: 20px;
+    }
 </style>

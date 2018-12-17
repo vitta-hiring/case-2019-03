@@ -26,10 +26,6 @@
                 </vi-wrapper>
             </form>
 
-            <ul class="medicine__search">
-                <li class="medicine__search-item" v-for="medicine in medicines" :key="medicine.IdMedicamento">{{medicine.Nome}}<vi-button @click="chooseMedicine(medicine)" mini>Choose</vi-button></li>
-            </ul>
-
             <div class="table" v-if="section.table.items.length > 0" >
                 <vi-table horizontalBordered :columns="section.table.header" :items="section.table.items">
                     <template slot-scope="{ item }">

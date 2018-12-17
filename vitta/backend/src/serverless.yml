@@ -1,0 +1,47 @@
+service: sls-backend
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+  serverless-offline:
+    port: 3030
+    debug: true
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: us-east-1
+
+functions:
+  - '${file(handler/apiGateway.serverless.yml)}'
+#  getMedicos:
+#    handler: handler.getMedicos
+#    events:
+#      - http: get /medicos
+#  getPacientes:
+#    handler: handler.getPacientes
+#    events:
+#      - http: get /pacientes
+#  getMedicamentos:
+#    handler: handler.getMedicamentos
+#    events:
+#      - http: get /medicamentos
+#  validaInteracoes:
+#    handler: handler.validaInteracoes
+#    events:
+#      - http: get /validaInteracoes/{medicamentos}
+#  getAtendimentos:
+#    handler: handler.getAtendimentos
+#    events:
+#      - http: get /atendimentos/{idPessoa}
+#  getMedicamentosAtendimento:
+#    handler: handler.getMedicamentosAtendimento
+#    events:
+#      - http: get /atendimento/medicamentos/{idAtendimento}
+

@@ -1,0 +1,29 @@
+version: '2'
+services:
+  db:
+    build: ./mysql
+    restart: always
+    ports: 
+     - "3306:3306"
+    environment:
+     - MYSQL_ROOT_PASSWORD=A1b2c3d4 
+     - MYSQL_USER=vitta 
+     - MYSQL_PASSWORD=vitta 
+     - MYSQL_DATABASE=vitta
+    network_mode: "host"
+  backend:
+    build: ./backend
+    ports:
+     - "3030:3030"
+    restart: always
+    depends_on:
+     - db
+    network_mode: "host"
+  front:
+    build: ./frontend
+    ports:
+     - "80:3000"
+    depends_on:
+     - backend
+    restart: always
+    network_mode: "host"

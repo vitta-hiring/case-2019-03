@@ -1,3 +1,13 @@
+## Execução do Teste
+Para executar o teste, basta entrar na pasta vitta e rodar o comando docker-compose
+
+```bash
+cd vitta
+docker-compose up -d
+```
+
+Após o término da execução do docker-compose o teste estará disponível no http://localhost:3000.
+
 ## Sobre a Vitta
 
 A Vitta é uma empresa de tecnologia em saúde. Com mais de três anos de existência, se tornou líder no mercado de prontuário eletrônico na nuvem. Através do ClinicWeb, voltado para o segmento médico, garante uma operação eficiente, redução de gastos e agilidade: tudo em uma só plataforma.

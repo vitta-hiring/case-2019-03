@@ -5,11 +5,15 @@ Vue.use(Vuex);
 
 import card from './stores/card';
 import prescriptions from './stores/prescriptions';
+import medicines from './stores/medicines';
+import interactions from './stores/interactions';
 
 export default new Vuex.Store({
     state: {
         ...card,
-        ...prescriptions
+        ...prescriptions,
+        ...medicines,
+        ...interactions
     },
     getters: {
         getPrescriptionById: state => id => {

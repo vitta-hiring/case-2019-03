@@ -11,12 +11,24 @@
             <form @submit.prevent="addMedicine()" class="form">
                 <legend class="form__legend"><vi-icon name="stethoscope" /> Add medicine</legend>
                 <vi-wrapper tag="fieldset" justify-content="space-between">
-                    <vi-input placeholder="Medicine" required v-model="section.form.prescription.medicine" type="text" />
-                    <vi-input placeholder="Dosage" required v-model="section.form.prescription.dosage" type="text" />
-                    <vi-input placeholder="Via" required v-model="section.form.prescription.via" type="text" />
-                    <vi-button type="submit" success>Add</vi-button>
+                    <div class="form__group">
+                        <input class="form__input" placeholder="Medicine" required v-model="section.form.prescription.medicine" type="text" />
+                    </div>
+                    <div class="form__group">
+                        <input class="form__input" placeholder="Dosage" required v-model="section.form.prescription.dosage" type="text" />
+                    </div>
+                    <div class="form__group">
+                        <input class="form__input" placeholder="Via" required v-model="section.form.prescription.via" type="text" />
+                    </div>
+                    <div class="form__group form__group--button">
+                        <vi-button type="submit" success>Add</vi-button>
+                    </div>
                 </vi-wrapper>
             </form>
+
+            <ul class="medicine__search">
+                <li class="medicine__search-item" v-for="medicine in medicines" :key="medicine.IdMedicamento">{{medicine.Nome}}<vi-button @click="chooseMedicine(medicine)" mini>Choose</vi-button></li>
+            </ul>
 
             <div class="table" v-if="section.table.items.length > 0" >
                 <vi-table horizontalBordered :columns="section.table.header" :items="section.table.items">
@@ -44,6 +56,7 @@
         name: "PrescriptionForm",
         data() {
             return {
+                medicineChosen: {},
                 section: {
                     title: 'Prescription',
                     actions: [
@@ -55,10 +68,6 @@
                             medicine: '',
                             dosage: '',
                             via: ''
-                        },
-                        customErrorMsg: {
-                            typeMismatch: 'Isso não é um email',
-                            valueMissing: 'Preencha o email',
                         }
                     },
                     table: {
@@ -72,7 +81,17 @@
                 }
             }
         },
+        computed: {
+            medicines() {
+                return this.$store.state.medicines.filter(medicine => {
+                    return medicine['Nome'].toLowerCase().includes(this.section.form.prescription.medicine.toLowerCase());
+                });
+            }
+        },
         methods: {
+            chooseMedicine: function(medicine) {
+                this.medicineChosen = medicine;
+            },
             savePrescription: function() {
 
                 this.$store.commit('addPrescription', {
@@ -107,20 +126,57 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
     .content {
         padding-top: 20px;
     }
+
     .form {
         padding: 20px 0 0 0;
+
+        &__legend {
+            padding: 10px 0;
+        }
+
+        &__group {
+            position: relative;
+            flex-grow: 2;
+        }
+
+        &__input {
+            width: 100%;
+        }
+
+        &__submit{
+            padding-top: 20px;
+        }
     }
-    .form__legend {
-        padding: 10px 0;
-    }
+
     .table{
         padding-top: 20px;
     }
-    .button__submit{
-        padding-top: 20px;
+
+    .medicine {
+
+        &__search {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border: solid 1px #000;
+            width: 100%;
+            max-height: 150px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background-color: #FFFFFF;
+
+            &-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                align-content: center;
+                padding: 4px;
+            }
+        }
     }
 </style>

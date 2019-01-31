@@ -11,5 +11,6 @@ exports.get = async(req, res, next) => {
             message: 'Falha ao processar sua requisicao',
             data: error
         });
+        next(error);
     }
 };

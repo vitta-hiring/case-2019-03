@@ -1,0 +1,17 @@
+version: '3'
+services:
+  api:
+    build: ./api
+    ports:
+     - "4200:4200"
+    depends_on:
+     - db
+    environment:
+     - DATABASE_HOST=db
+    volumes:
+     - ./api:/src
+  db:
+    build: ./api/database
+    ports:
+     - "3306:3306"
+    restart: always

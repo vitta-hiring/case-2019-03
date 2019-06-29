@@ -1,12 +1,12 @@
 'use strict'
 
-const repository = require('../repository/PacienteRep');
+const repository = require('../repository/MedicamentoRep');
 
 exports.findAll = async() => {
-    return await repository.findAll();
+    return await models.Medicamento.findAll();
 }
 
-exports.find = async(id) => {
+exports.find = async(_id) => {
     return await repository.findByPk(id);
 }
 
@@ -17,5 +17,3 @@ exports.create = async(obj) => {
 exports.update = async(_id, obj) => {
     return await repository.update(_id, obj);
 }
-
-

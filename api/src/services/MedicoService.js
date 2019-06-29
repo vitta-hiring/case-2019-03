@@ -1,19 +1,19 @@
 'use strict'
 
-const models = require('../models');
+const repository = require('../repository/MedicoRep');
 
 exports.findAll = async() => {
-    return await models.Medico.findAll();
+    return await repository.findAll();
 }
 
 exports.find = async(id) => {
-    return await models.Medico.findByPk(id);
+    return await repository.findByPk(id);
 }
 
 exports.create = async(obj) => {
-    return await models.Medico.create(obj);
+    return await repository.create(obj);
 }
 
 exports.update = async(_id, obj) => {
-    return await models.Medico.update(obj, {where: {id: _id}});
+    return await repository.update(_id, obj);
 }

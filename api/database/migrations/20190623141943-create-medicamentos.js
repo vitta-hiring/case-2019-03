@@ -3,7 +3,7 @@
 module.exports = {
   up: (queryInterface, DataTypes) => {
     return queryInterface.createTable('Medicamentos', {
-      IdMedicamento: {
+      Id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,

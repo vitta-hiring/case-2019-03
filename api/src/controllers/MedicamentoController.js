@@ -1,4 +1,4 @@
-const service = require('../services/MedicoService');
+const service = require('../services/MedicamentoService');
 
 module.exports = {
     async findall(req, res){

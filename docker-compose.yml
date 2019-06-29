@@ -11,7 +11,7 @@ services:
     volumes:
      - ./api:/src
   db:
-    build: ./database
+    build: ./api/database
     ports:
      - "3306:3306"
     restart: always

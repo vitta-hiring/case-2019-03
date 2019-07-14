@@ -1,0 +1,34 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+// importa tipografía desde google fonts
+@import url("https://fonts.googleapis.com/css?family=PT+Sans");
+// asigna la tipografía por defecto
+$font-family-sans-serif: "PT Sans", sans-serif;
+// modifica los colores por defecto
+$green: #41b883;
+$red: #ce679b;
+$blue: #7952b3;
+
+.form-signin {
+  .text-danger {
+    font-size: .8em;
+  }
+}
+
+.navbar-brand {
+  .logo-vitta {
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin: 1px auto;
+    background: url(assets/images/logo.png) no-repeat;
+    background-size: 60px;
+  }
+}
+.navbar-nav {
+  .router-link-exact-active {
+    border-bottom: 2px solid $blue
+  }
+}

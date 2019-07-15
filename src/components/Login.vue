@@ -72,6 +72,8 @@ export default {
     }
   },
   mounted () {
+    service.removeUserSession()
+    service.removePrescricao()
     this.getAuthentication()
   }
 }

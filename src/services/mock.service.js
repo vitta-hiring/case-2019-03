@@ -20,6 +20,10 @@ export default {
     return user
   },
 
+  removeUserSession () {
+    this.getWindowStorage().removeItem(USER_SESSION)
+  },
+
   setPrescricao (prescricao) {
     this.getWindowStorage().setItem(PRESCRICAO, JSON.stringify(prescricao))
   },
@@ -27,6 +31,10 @@ export default {
   getPrescricao () {
     let pacientes = JSON.parse(this.getWindowStorage().getItem(PRESCRICAO))
     return pacientes
+  },
+
+  removePrescricao () {
+    this.getWindowStorage().removeItem(PRESCRICAO)
   },
 
   getAuthentication () {

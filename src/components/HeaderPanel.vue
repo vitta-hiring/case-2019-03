@@ -21,17 +21,26 @@
         </li>
       </ul>
     </div>
+    <a href @click="clearSessions" class="nav-link">Logout</a>
   </nav>
 </template>
 
 <script>
+import service from '@/services/mock.service'
+
 export default {
   name: 'HeaderPanel',
   components: { },
   data () {
     return { }
   },
-  methods: { },
+  methods: {
+    clearSessions () {
+      service.removeUserSession()
+      service.removePrescricao()
+      this.$router.push({name: 'login'})
+    }
+  },
   mounted () {}
 }
 </script>

@@ -59,6 +59,11 @@
           </tr>
         </tbody>
       </table>
+      <center>
+        <div v-if="isLoading" class="spinner-border text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </center>
       <button type="submit" class="btn btn-primary" v-if="medicamentosSelecionados.length > 0" @click="criarPrescricao">Criar Prescrição</button>
     </div>
   </div>
@@ -74,6 +79,7 @@ export default {
   mixins: [mainClass],
   data () {
     return {
+      isLoading: false,
       errors: { },
       model: { },
       pacientes: [],
@@ -112,6 +118,7 @@ export default {
     },
     adicionarMedicacao (medicamento, e) {
       let interacaoEncontrada = false
+      this.isLoading = true
       if (this.verifyForm()) {
         if (this.medicamentosSelecionados.length > 0) {
           for (let i = 0; i < medicamento.Farmacos.length; i++) {
@@ -131,6 +138,7 @@ export default {
           if (!interacaoEncontrada) {
             this.inserirNaLista(medicamento)
           }
+          this.isLoading = false
         } else {
           this.inserirNaLista(medicamento)
         }
@@ -139,6 +147,7 @@ export default {
     inserirNaLista (medicamento) {
       medicamento.posologia = this.model.posologia
       this.medicamentosSelecionados.push(medicamento)
+      this.isLoading = false
     },
     verifyInteracaoMedicamentosa (novo, outro, searchInteracao) {
       let result = false
@@ -180,12 +189,15 @@ export default {
       })
     },
     getInteracaoMedicamentosa () {
+      this.isLoading = true
       service.getInteracaoMedicamentosa().then(result => {
         if (result) {
           this.interacaoMedicamentosa = result.data
+          this.isLoading = false
         }
       }).catch(() => {
         this.notify('Erro ao buscar o serviço!')
+        this.isLoading = false
       })
     },
     getUser () {
@@ -200,10 +212,13 @@ export default {
       prescricao.data = new Date()
       this.prescricoes.push(prescricao)
       service.setPrescricao(this.prescricoes)
+      this.notify('Prescrição criada com sucesso.', 'success')
+      this.$router.push({name: 'prescricao'})
     },
-    notify (msg) {
+    notify (msg, type) {
       this.$notify({
         group: 'foo',
+        type: !type ? 'error' : type,
         title: 'Important message',
         text: msg
       })

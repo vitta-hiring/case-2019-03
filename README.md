@@ -1,8 +1,8 @@
 ## Sobre a Vitta
 
-A Vitta é uma empresa de tecnologia em saúde. Com mais de três anos de existência, se tornou líder no mercado de prontuário eletrônico na nuvem. Através do ClinicWeb, voltado para o segmento médico, garante uma operação eficiente, redução de gastos e agilidade: tudo em uma só plataforma.
+A Vitta é uma empresa de tecnologia em saúde. Com mais de cinco anos de existência, se tornou líder no mercado de prontuário eletrônico na nuvem. Através do ClinicWeb, voltado para o segmento médico, garante uma operação eficiente, redução de gastos e agilidade: tudo em uma só plataforma.
 
-Aproximadamente 10 milhões de pacientes passaram pelo sistema que já transformou a rotina de mais de 10 mil profissionais da saúde. Além disso, o ClinicWeb é certificado pelo SBIS-CFM, o que comprova o mais rígido padrão de qualidade e segurança.
+Aproximadamente 17 milhões de pacientes passaram pelo sistema que já transformou a rotina de mais de 10 mil profissionais da saúde. Além disso, o ClinicWeb é certificado pelo SBIS-CFM, o que comprova o mais rígido padrão de qualidade e segurança.
 
 Por conta dessa confiança, a Vitta traz em seu portfólio de clientes, instituições de excelência no segmento como: Hospital Israelita Albert Einstein, Hospital do Coração (HCor) e a rede de Clínicas Oftalmológicas Lotten Eyes, além de extensa base de consultórios, localizados em todas as regiões brasileiras.
 

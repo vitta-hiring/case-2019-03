@@ -1,0 +1,230 @@
+{
+	"info": {
+		"_postman_id": "24b92661-1437-4de5-bb24-26f69605bb4d",
+		"name": "API PRESCRICAO MEDICA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Dados da api",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscar medicos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/doctors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"doctors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscar pacientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/patients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar medicamentos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/medications",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"medications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscar intervencoes de medicamentos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/medications_interventions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"medications_interventions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar prescricao",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/prescription",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"prescription"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar medicamentos prescricao",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/prescription/14/medications",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"prescription",
+						"14",
+						"medications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verificar medicamentos prescritos",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"medications\": [\"TETRACICLINA\",\"ACETAZOLAMIDA\",\"LIDOCAINA + OXITETRACICLINA\"]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/medications_interventions/checkMedicationIntervention",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"medications_interventions",
+						"checkMedicationIntervention"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Salvar Prescricao Medica",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"description\": \"Prescricao 02\",\n\t\"patient_id\": 1,\n\t\"doctor_id\": 1,\n\t\"medications\": [40812,40814]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/prescription",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"prescription"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

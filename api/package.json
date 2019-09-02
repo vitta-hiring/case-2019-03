@@ -1,0 +1,30 @@
+{
+  "name": "prescription",
+  "version": "1.0.0",
+  "description": "Prescription Test",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./bin/server.js",
+    "start-dev": "nodemon ./bin/server.js"
+  },
+  "keywords": [
+    "Prescription",
+    "Medications"
+  ],
+  "author": "Elvisley Souza",
+  "license": "ISC",
+  "dependencies": {
+    "@bugsnag/js": "^5.2.0",
+    "@bugsnag/plugin-express": "^5.2.0",
+    "body-parser": "^1.18.3",
+    "debug": "^4.1.0",
+    "event-stream": "^4.0.1",
+    "express": "^4.16.4",
+    "http": "0.0.0",
+    "knex": "^0.15.2",
+    "mysql": "^2.16.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.6"
+  }
+}

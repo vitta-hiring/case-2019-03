@@ -21,99 +21,10 @@ A aplicação deve permitir que o usuário identifique o médico e o paciente se
 
 Ao identificar uma interação medicamentosa entre dois ou mais dos medicamentos escolhidos o médico deve receber um alerta da gravidade da interação, os fármacos envolvidos e a descrição. Também deve ser possível visualizar as prescrições anteriores, com data e a lista de medicamentos.
 
-## Considerações
+## Como executar
 
-- Caso o seu teste seja de front-end e você desenvolva atividades de back-end (ou vice-versa) terá pontos extras na avaliação;
-- Serão avaliados a qualidade do código e capricho na organização, portanto esperamos que realize seu melhor trabalho!
-- Você deverá enviar um e-mail para ti@vitta.me com quantos dias precisará para responder o teste. Leve em consideração que quanto maior o prazo solicitado, maior o rigor na avaliação. A pontualidade na entrega também será avaliada;
-- O arquivo medicamentos.json possui uma coleção de medicamentos e os princípios ativos que fazem parte de sua composição. Os dados seguem o formato do exemplo abaixo, mas você pode modificar a estrutura no seu projeto se precisar:
-
-```javascript
-{
-	"IdMedicamento":36385,
-	"Nome":"RETAPAMULINA",
-	"Farmaco":null,
-	"Farmacos":["RETAPAMULINA"],
-	"Concentracao":"10",
-	"Unidade":"MG/G",
-	"TipoMedicamento":"GENERICO",
-	"FormaFarmaceutica":"POMADA DERMATOLOGICA",
-	"ViaAdministracao":"TOP",
-	"CodigoATC":"D06AX13",
-	"UsoInterno":true,
-	"Antimicrobiano":true,
-"Bula":"http://www.anvisa.gov.br/datavisa/fila_bula/frmVisualizarBula.asp?pNuTransacao=9442872014&pIdAnexo=2273137",
-	"Portaria344":"",
-	"ControleEspecial":false,
-	"TISS":"510611203161218",
-	"MIP":false,
-	"Label":"RETAPAMULINA 10MG/G - POMADA DERMATOLOGICA",
-	"Unificado":null
-}
-```
-- O arquivo interacao_medicamentosa.json possui uma coleção de objetos que representam a interação medicamentosa entre os componentes dos medicamentos listados no arquivo anterior. Abaixo temos um exemplo do formato do objeto que também pode ter a estrutura modificada caso julgue necessário.
-
-```javascript
-{
-	"Farmaco1":"VORTIOXETINA",
-	"Farmaco2":"CITALOPRAM",
-	"Nome":"Grave",
-	"Descricao":"O uso concomitante de vortioxetina e agentes serotonérgicos pode resultar em aumento do risco de síndrome serotoninérgica (hipertensão, hipertermia,mioclonia,alterações do estado mental)."
- }
-```
-
-## Front-end
-
-### Pré-requisitos
-- Desenvolvimento em Vue.js;
-- Documentar como rodamos o projeto no README.MD;
-- Dados deverão ser salvos em LocalStorage (No caso da implementação do Back-end isso não se faz necessário);
-- Layout responsivo;
-- Deve ser uma SPA;
-
-### Diferenciais/Extras
-- Desenvolvimento de um Dockerfile/Docker-Compose.yml para rodar o projeto;
-- Criação de servidor para os mocks da tela;
-- Usabilidade e feedback para o usuário no carregamento da consulta;
-- Seguir algum Javascript Style Guide;
-- Utilização de es2015;
-- Utilização de padrões de projeto;
-- Utilização de um pré-processador (Less, Sass, Stylus);
-- Deve ser possível rodar a aplicação com um só comando.
-
-
-## Back-end
-
-### Pré-requisitos
-- Desenvolvimento de uma API REST em Node.js;
-- Documentar como rodamos o projeto no README.MD;
-- Desenvolvimento de um Dockerfile/Docker-Compose.yml para rodar o projeto;
-- Utilização de banco relacional;
-
-### Diferenciais/Extras
-- Resistência a falhas de containers na arquitetura desenvolvida;
-- Implementação de Testes de unidade e/ou integração;
-- Seguir algum Javascript Style Guide;
-- Utilização de es2015;
-- Utilização de padrões de projeto;
-- Migrations e seeders;
-- Deve ser possível rodar a aplicação com um só comando.
-
-## Pronto para começar o desafio?
-
-- Faça um "fork" deste repositório na sua conta do Github;
-- Após completar o desafio, crie um pull request nesse repositório comparando a sua branch com a master com o seu nome no título deste;
-- Envie um e-mail para ti@vitta.me notificando que a solução está entregue;
-Analisaremos sua solução e entraremos em contato via e-mail.
-
-## FAQ
-> Posso utilizar algum tipo de boilerplate como vue-cli?
-
-Sim qualquer tipo de boilerplate, manda bala o que vai valer é o seu código e como estruturou ele dentro do boilerplate;
-> Preciso necessariamente fazer um fork do projeto?
-
-Sim, desta forma utilizaremos isso para monitorar o tempo gasto desde o momento do fork até a entrega do projeto!
-
-> Ainda tem dúvidas?
-
-Mande um e-mail para ti@vitta.me e iremos respondê-lo o mais breve possível
+Acesse o diretorio raiz do projeto 
+Execute docker-compose up -d
+Acesse no navegador a aplicação pelo endereço http://localhost:8080
+Obs: pode demorar alguns segundos para rodar as migrations dentro da api
+     - Adicionei apenas alguns medicamentos e interaçoes, para validar a regra selecione o medicamento com id 28438 e 40812

@@ -1,16 +1,20 @@
 ## Sobre a Vitta
 
-A Vitta é uma empresa de tecnologia em saúde. Com mais de cinco anos de existência, se tornou líder no mercado de prontuário eletrônico na nuvem. Através do ClinicWeb, voltado para o segmento médico, garante uma operação eficiente, redução de gastos e agilidade: tudo em uma só plataforma.
+A Vitta nasceu com a missão de transformar a saúde do Brasil. Em poucos anos se tornou uma das maiores startups de health tech no mercado, e mesmo com o crescimento, mantemos em nosso DNA a inovação, a experiência, a praticidade e a segurança. 
+Desde então temos trabalhado para construir nossa marca e cultura a fim de desenvolver um produto altamente eficiente, capaz de revolucionar a saúde no nosso país. 
+Além das melhores soluções de tecnologia e atendimento excepcional voltadas ao mercado de saúde, contamos também com as melhores pessoas, os nossos Vittanos. 
 
-Aproximadamente 17 milhões de pacientes passaram pelo sistema que já transformou a rotina de mais de 10 mil profissionais da saúde. Além disso, o ClinicWeb é certificado pelo SBIS-CFM, o que comprova o mais rígido padrão de qualidade e segurança.
+Nossos valores:
+Guerreiros por natureza; 
+Vencemos em time;
+O cliente é a nossa vida;
+Excelência inegociável.
 
-Por conta dessa confiança, a Vitta traz em seu portfólio de clientes, instituições de excelência no segmento como: Hospital Israelita Albert Einstein, Hospital do Coração (HCor) e a rede de Clínicas Oftalmológicas Lotten Eyes, além de extensa base de consultórios, localizados em todas as regiões brasileiras.
-
-Seu time é formado por Vittanos, profissionais que trabalham firmes no que acreditam e que desejam não somente colocar a Vitta entre as melhores e maiores, mas sim torná-la definitivamente a MELHOR e MAIOR empresa de TECNOLOGIA EM SAÚDE DO BRASIL!
+Estamos procurando pessoas interessadas em atuar em projetos desafiadores, dispostas a revolucionar a saúde do Brasil junto com a gente. 
 
 A Vitta mantém sedes em São Paulo e Uberlândia.
 
-\#vemmudarasaudedobrasil
+\#vemmudarasaudedobrasil #saudenonstop
 
 
 ## Sobre o desafio

@@ -69,7 +69,7 @@ Ao identificar uma interação medicamentosa entre dois ou mais dos medicamentos
 ## Front-end
 
 ### Pré-requisitos
-- Desenvolvimento utilizando um framework/biblioteca de componentização (Vue,React,Angular);
+- Desenvolvimento utilizando um framework/biblioteca Javascript como Vue,React,Angular;
 - Documentar como rodamos o projeto no README.MD;
 - Dados deverão ser salvos em LocalStorage (No caso da implementação do Back-end isso não se faz necessário);
 - Layout responsivo;

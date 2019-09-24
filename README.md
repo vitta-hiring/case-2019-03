@@ -4,7 +4,7 @@ A Vitta nasceu com a missão de transformar a saúde do Brasil. Em poucos anos s
 Desde então temos trabalhado para construir nossa marca e cultura a fim de desenvolver um produto altamente eficiente, capaz de revolucionar a saúde no nosso país. 
 Além das melhores soluções de tecnologia e atendimento excepcional voltadas ao mercado de saúde, contamos também com as melhores pessoas, os nossos Vittanos. 
 
-- Nossos valores:
+Nossos valores:
 - Guerreiros por natureza; 
 - Vencemos em time;
 - O cliente é a nossa vida;

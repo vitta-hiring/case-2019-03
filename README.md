@@ -65,7 +65,7 @@ Ao identificar uma interação medicamentosa entre dois ou mais dos medicamentos
 ## Front-end
 
 ### Pré-requisitos
-- Desenvolvimento em Vue.js;
+- Desenvolvimento utilizando um framework/biblioteca de componentização (Vue,React,Angular);
 - Documentar como rodamos o projeto no README.MD;
 - Dados deverão ser salvos em LocalStorage (No caso da implementação do Back-end isso não se faz necessário);
 - Layout responsivo;
@@ -79,13 +79,14 @@ Ao identificar uma interação medicamentosa entre dois ou mais dos medicamentos
 - Utilização de es2015;
 - Utilização de padrões de projeto;
 - Utilização de um pré-processador (Less, Sass, Stylus);
-- Deve ser possível rodar a aplicação com um só comando.
+- Deve ser possível rodar a aplicação com um só comando;
+- Desenvolvimento utilizando Vue.js.
 
 
 ## Back-end
 
 ### Pré-requisitos
-- Desenvolvimento de uma API REST em Node.js;
+- Desenvolvimento de uma API REST;
 - Documentar como rodamos o projeto no README.MD;
 - Desenvolvimento de um Dockerfile/Docker-Compose.yml para rodar o projeto;
 - Utilização de banco relacional;
@@ -97,7 +98,8 @@ Ao identificar uma interação medicamentosa entre dois ou mais dos medicamentos
 - Utilização de es2015;
 - Utilização de padrões de projeto;
 - Migrations e seeders;
-- Deve ser possível rodar a aplicação com um só comando.
+- Deve ser possível rodar a aplicação com um só comando;
+- Desenvolvimento utilizando Node.js.
 
 ## Pronto para começar o desafio?
 

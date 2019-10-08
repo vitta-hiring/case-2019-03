@@ -1,18 +1,24 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 from prescricoes.models import *
+from medicamentos.api.serializers import InteracaoSerializer
 
 
 class ItemSerializer(ModelSerializer):
     id = serializers.IntegerField(required=False)
+    interacoes = serializers.SerializerMethodField()
 
     class Meta:
         model = Item
         fields = [
             'id',
             'medicamento',
-            'observacoes'
+            'observacoes',
+            'interacoes'
         ]
+
+    def get_interacoes(self, obj):
+        return obj.get('interacoes', [])
 
 
 class PrescricaoSerializer(ModelSerializer):

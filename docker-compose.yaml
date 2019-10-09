@@ -11,7 +11,7 @@ services:
   web:
     build: .
     restart: always
-    command: bash -c "chmod +x appinit.sh ; ./appinit.sh"
+    command: bash -c "chmod +x wait-for-it.sh ; ./wait-for-it.sh db:5432 ; chmod +x appinit.sh ; ./appinit.sh"
     volumes:
       - .:/code
     ports:

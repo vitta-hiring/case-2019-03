@@ -14,7 +14,7 @@ class Medicamento(models.Model):
     via_administracao = models.CharField(max_length=255, null=True)
     codigo_atc = models.CharField(max_length=255, null=True)
     uso_interno = models.BooleanField(default=False)
-    antimicromiano = models.BooleanField(default=False)
+    antimicrobiano = models.BooleanField(default=False)
     bula = models.URLField(null=True)
     portaria344 = models.CharField(max_length=255, blank=True, null=True)
     controle_especial = models.BooleanField(default=False)

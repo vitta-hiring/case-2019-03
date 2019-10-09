@@ -44,7 +44,7 @@ def inserir_medicamento(item):
         medicamento.via_administracao = item.get('ViaAdministracao')
         medicamento.codigo_atc = item.get('CodigoATC')
         medicamento.uso_interno = item.get('UsoInterno')
-        medicamento.antimicromiano = item.get('Antimicrobiano')
+        medicamento.antimicrobiano = item.get('Antimicrobiano')
         medicamento.bula = item.get('Bula')
         medicamento.portaria344 = item.get('Portaria344')
         medicamento.controle_especial = item.get('ControleEspecial')

@@ -6,11 +6,11 @@ django.setup()
 from medicamentos.models import Interacao
 
 
-def interacao_existe(farmaco1, farmaco2, nome):
+def interacao_existe(farmaco1, farmaco2, tipo_interacao):
     resultado = Interacao.objects\
-        .filter(farmaco1__iexact=farmaco1)\
-        .filter(farmaco2__iexact=farmaco2)\
-        .filter(nome__iexact=nome)
+        .filter(farmaco1__exact=farmaco1)\
+        .filter(farmaco2__exact=farmaco2)\
+        .filter(tipo_interacao__iexact=tipo_interacao)
     if not resultado:
         return False
     return True
@@ -19,9 +19,11 @@ def interacao_existe(farmaco1, farmaco2, nome):
 def inserir_interacao(item):
     try:
         interacao = Interacao()
-        interacao.farmaco1 = item.get('Farmaco1')
-        interacao.farmaco2 = item.get('Farmaco2')
-        interacao.nome = item.get('Nome')
+        farmaco1 = item.get('Farmaco1')
+        farmaco2 = item.get('Farmaco2')
+        interacao.farmaco1 = farmaco1.replace(" + ", "+").split("+")
+        interacao.farmaco2 = farmaco2.replace(" + ", "+").split("+")
+        interacao.tipo_interacao = item.get('Nome')
         interacao.descricao = item.get('Descricao')
         interacao.save()
     except Exception as e:
@@ -38,8 +40,10 @@ if not lista_interacao:
 print('Inserindo interacoes no banco... Total a ser inseridas: ' + str(len(lista_interacao)))
 for item in lista_interacao:
         farmaco1 = item.get('Farmaco1')
+        farmaco1 = farmaco1.replace(" + ", "+").split("+")
         farmaco2 = item.get('Farmaco2')
-        nome = item.get('Nome')
-        if not interacao_existe(farmaco1, farmaco2, nome):
+        farmaco2 = farmaco2.replace(" + ", "+").split("+")
+        tipo_interacao = item.get('Nome')
+        if not interacao_existe(farmaco1, farmaco2, tipo_interacao):
             inserir_interacao(item)
 

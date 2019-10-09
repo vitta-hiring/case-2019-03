@@ -124,6 +124,17 @@ Sim, desta forma utilizaremos isso para monitorar o tempo gasto desde o momento 
 
 Mande um e-mail para ti@vitta.me e iremos respondê-lo o mais breve possível
 
+## Como rodar o projeto
+>Para rodar o projeto pela primeira vez, utilizar o comando abaixo:
+```
+docker-compose up --build
+```
+>Apos ter rodado a primeira vez com o build, em outras vezes que precisar rodar o projeto, utilizar como descrito abaixo:
+```
+docker-compose up (para rodar e monitorar o log)
+docker-compose up -d (para rodar em segundo plano e liberar o terminal)
+```
+
 ## Area de administracao dos dados (admin)
 >URL e dados de acesso
 ```

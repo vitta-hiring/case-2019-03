@@ -83,8 +83,6 @@ class PrescricaoSerializer(ModelSerializer):
         except Exception as e:
             raise serializers.ValidationError({'detail': str(e)})
 
-
-    @transaction.atomic
     def update(self, instance, validated_data):
         try:
             with transaction.atomic():

@@ -1,4 +1,3 @@
-from rest_framework import permissions
 from rest_framework.viewsets import ModelViewSet
 from prescricoes.models import Prescricao, Item
 from .serializers import PrescricaoSerializer, ItemSerializer

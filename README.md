@@ -124,7 +124,13 @@ Sim, desta forma utilizaremos isso para monitorar o tempo gasto desde o momento 
 
 Mande um e-mail para ti@vitta.me e iremos respondê-lo o mais breve possível
 
-
+## Area de administracao dos dados (admin)
+>URL e dados de acesso
+```
+HOST:8000/admin
+usuario: admin
+senha: admin
+```
 ## Como utilizar a API
 
 ##### End-Point prescricoes/

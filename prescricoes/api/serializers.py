@@ -92,6 +92,9 @@ class PrescricaoSerializer(ModelSerializer):
                 instance.save()
                 manter_items = []
 
+                if not items:
+                    return instance
+
                 for item in items:
                     if "id" in item.keys():
                         if Item.objects.filter(id=item["id"]).exists():

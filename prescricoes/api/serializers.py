@@ -1,5 +1,6 @@
 from django.db import transaction
 from rest_framework import serializers
+from django.db.models import Q
 from rest_framework.serializers import ModelSerializer
 from prescricoes.models import *
 from medicamentos.models import Medicamento, Interacao
@@ -41,10 +42,17 @@ class ItemSerializer(ModelSerializer):
                     continue
 
                 for medicamento in outros_medicamentos_prescritos:
-                    interacoes = Interacao.objects.filter(
-                        farmaco1__exact=medicamento_atual.farmacos,
-                        farmaco2__exact=medicamento.farmacos
-                    ).select_related().values('tipo_interacao', 'descricao')
+                    farmacos_atual = medicamento_atual.farmacos
+                    farmacos_comparacao = medicamento.farmacos
+
+                    query = Q()
+                    for fa in farmacos_atual:
+                        for fc in farmacos_comparacao:
+                            q = Q(farmaco1__contains=[fa], farmaco2__contains=[fc])
+                            query |= q
+
+                    interacoes = Interacao.objects.filter(query).select_related().values('tipo_interacao', 'descricao')
+
                     if not interacoes.count():
                         continue
 

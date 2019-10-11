@@ -123,3 +123,79 @@ Sim, desta forma utilizaremos isso para monitorar o tempo gasto desde o momento 
 > Ainda tem dúvidas?
 
 Mande um e-mail para ti@vitta.me e iremos respondê-lo o mais breve possível
+
+## Como rodar o projeto
+>Para rodar o projeto pela primeira vez, utilizar o comando abaixo:
+```
+docker-compose up --build
+```
+>Apos ter rodado a primeira vez com o build, em outras vezes que precisar rodar o projeto, utilizar como descrito abaixo:
+```
+docker-compose up (para rodar e monitorar o log)
+docker-compose up -d (para rodar em segundo plano e liberar o terminal)
+```
+
+## Area de administracao dos dados (admin)
+>URL e dados de acesso
+```
+HOST:8000/admin
+usuario: admin
+senha: admin
+```
+## Como utilizar a API
+
+##### End-Point prescricoes/
+>Criar uma nova prescricao
+```
+POST HOST:8000/prescricoes/
+```
+- (Para id dos medicamentos, ver HOST:8000/medicamentos
+- (Para id de pacientes, ver HOST:8000/pacientes
+- (Para id de medicos, ver HOST:8000/medicos
+```
+Payload de exemplo: 
+
+{
+    "paciente": 2,
+    "medico": 1,
+    "items": [
+        {
+            "medicamento": 25,
+            "observacoes": "Uma vez ao dia"
+        },
+        {
+            "medicamento": 99,
+            "observacoes": "12 em 12 horas"
+        },
+        {
+            "medicamento": 400,
+            "observacoes": "8 em 8 horas"
+        }
+    ]
+}
+```
+
+>Buscar prescricoes
+```
+GET HOST:8000/prescricoes
+```
+>Buscar uma prescricao especifica
+```
+GET HOST:8000/prescricoes/id_da_prescricao
+```
+>Apagar uma prescricao
+```
+DELETE HOST:/prescricoes/id_da_prescricao/
+```
+>Atualizar parcialmente uma prescricao
+```
+PATCH HOST:8000/prescricoes/id_da_prescricao/
+```
+```
+Payload de atualizacao parcial de exemplo (Alterar apenas o paciente)
+
+{
+    "id": 2,
+    "paciente": 2
+}
+```

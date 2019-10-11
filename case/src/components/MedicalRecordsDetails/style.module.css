@@ -1,0 +1,9 @@
+.listDrugs {
+  display: flex !important;
+  flex-direction: column;
+}
+.headerIdentifaction {
+  flex-direction: row !important;
+  justify-content: space-between;
+  padding: 0 12px;
+}

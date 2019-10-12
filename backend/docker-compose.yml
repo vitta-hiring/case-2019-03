@@ -6,7 +6,7 @@ services:
     build:
       context: ./
       dockerfile: ./docker/node/Dockerfile
-    container_name: vitta-assessment-dev
+    container_name: vitta-assessment-backend-node
     working_dir: /application
     volumes:
       - .:/application
@@ -16,7 +16,7 @@ services:
 
   mysql:
     image: mysql:5.7
-    container_name: vitta-assessment-mysql
+    container_name: vitta-assessment-backend-mysql
     working_dir: /application
     volumes:
       - .:/application

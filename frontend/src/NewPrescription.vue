@@ -4,10 +4,10 @@
             <el-form-item label="Escolha o Médico">
                 <el-select v-model="form.doctor" filterable placeholder="Select">
                     <el-option
-                            v-for="item in options"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value">
+                            v-for="item in doctors"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id">
                     </el-option>
                 </el-select>
             </el-form-item>
@@ -15,14 +15,13 @@
             <el-form-item label="Escolha o Paciente">
                 <el-select v-model="form.patient" filterable placeholder="Select">
                     <el-option
-                            v-for="item in options"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value">
+                            v-for="item in patients"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id">
                     </el-option>
                 </el-select>
             </el-form-item>
-
 
         </el-form>
     </div>
@@ -33,26 +32,26 @@
         name: "NewPrescription",
         data() {
             return {
-                options: [{
-                    value: 'Option1',
-                    label: 'Option1'
-                }, {
-                    value: 'Option2',
-                    label: 'Option2'
-                }, {
-                    value: 'Option3',
-                    label: 'Option3'
-                }, {
-                    value: 'Option4',
-                    label: 'Option4'
-                }, {
-                    value: 'Option5',
-                    label: 'Option5'
-                }],
+                doctors: [],
+                patients: [],
                 form: {
                     doctor: '',
                     patient: ''
                 }
+            }
+        },
+        mounted() {
+            this.getDoctors()
+            this.getPatients()
+        },
+        methods: {
+            async getDoctors() {
+                let response = await this.$http.get('/doctors')
+                this.doctors = response.data
+            },
+            async getPatients() {
+                let response = await this.$http.get('/patients');
+                this.patients = response.data
             }
         }
     }

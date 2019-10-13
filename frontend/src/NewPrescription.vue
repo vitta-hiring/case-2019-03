@@ -35,7 +35,7 @@
             <h4>Lista de Medicamentos</h4>
 
             <el-tabs v-model="activeMedicine">
-                <el-tab-pane :label="'Med' + (index + 1)" :name="'med' + (index + 1)" v-for="(medicine, index) in form.medicines ">
+                <el-tab-pane :label="tabName(index)" :name="tabName(index)" v-for="(medicine, index) in form.medicines ">
 
                     <el-row :gutter="20">
 
@@ -105,7 +105,7 @@
                         {id: null, name: null, route_of_administration: null, dosage: null}
                     ],
                 },
-                activeMedicine: 'med1',
+                activeMedicine: 'Med1',
                 prescriptionFormRules: {
                     doctor_id: [
                         { required: true, message: 'Campo obrigatorio', trigger: 'change' }
@@ -137,7 +137,7 @@
             },
             addMedicine() {
                 this.form.medicines.push({id: null, name: null, route_of_administration: null, dosage: null})
-                this.activeMedicine = 'med' + this.form.medicines.length
+                this.activeMedicine = 'Med' + this.form.medicines.length
             },
             fillMedicineInfo(selectedMedicineId, formMedicine) {
                 let selectedMedicine = this.medicinesFound.find(medicine => medicine.id === selectedMedicineId);
@@ -152,6 +152,9 @@
                         this.$http.post('/prescription', this.form)
                     }
                 });
+            },
+            tabName(index) {
+                return 'Med' + (index + 1)
             }
         }
     }

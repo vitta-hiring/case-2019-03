@@ -1,13 +1,13 @@
 <template>
     <div>
-        <el-form ref="form" :model="form" labelPosition="top" label-width="200px">
+        <el-form ref="prescriptionForm" :model="form" :rules="prescriptionFormRules" labelPosition="top" label-width="200px">
 
             <h4>Prescriçao de Medicamentos</h4>
 
             <el-row :gutter="20">
                 <el-col :span="12" :xs="24">
-                    <el-form-item label="Escolha o Médico">
-                        <el-select v-model="form.doctor" filterable placeholder="Select">
+                    <el-form-item label="Escolha o Médico" prop="doctor_id">
+                        <el-select v-model="form.doctor_id" filterable placeholder="Select">
                             <el-option
                                     v-for="item in doctors"
                                     :key="item.id"
@@ -19,8 +19,8 @@
                 </el-col>
 
                 <el-col :span="12" :xs="24">
-                    <el-form-item label="Escolha o Paciente">
-                        <el-select v-model="form.patient" filterable placeholder="Select">
+                    <el-form-item label="Escolha o Paciente" prop="patient_id">
+                        <el-select v-model="form.patient_id" filterable placeholder="Select">
                             <el-option
                                     v-for="item in patients"
                                     :key="item.id"
@@ -40,7 +40,7 @@
                     <el-row :gutter="20">
 
                         <el-col :span="14" :xs="24">
-                            <el-form-item label="Medicamento">
+                            <el-form-item label="Medicamento" :required="true">
                                 <el-select
                                         v-model="medicine.id"
                                         filterable
@@ -59,7 +59,7 @@
                         </el-col>
 
                         <el-col :span="10" :xs="24">
-                            <el-form-item label="Via de Administraçao">
+                            <el-form-item label="Via de Administraçao" :required="true">
                                 <el-input v-model="medicine.route_of_administration"></el-input>
                             </el-form-item>
                         </el-col>
@@ -69,7 +69,7 @@
                     <el-row :gutter="20" :xs="24">
 
                         <el-col :span="24">
-                            <el-form-item label="Posologia">
+                            <el-form-item label="Posologia" :required="true">
                                 <el-input v-model="medicine.dosage" type="textarea" :rows="2"></el-input>
                             </el-form-item>
                         </el-col>
@@ -82,7 +82,7 @@
             <el-row class="actions-footer">
                 <el-col>
                     <el-button type="primary" icon="el-icon-plus" @click="addMedicine">Adicionar Medicamento</el-button>
-                    <el-button type="success" icon="el-icon-check">Registrar Prescriçao</el-button>
+                    <el-button type="success" icon="el-icon-check" @click="savePrescription">Registrar Prescriçao</el-button>
                 </el-col>
             </el-row>
 
@@ -99,13 +99,21 @@
                 patients: [],
                 medicinesFound: [],
                 form: {
-                    doctor_id: '',
-                    patient_id: '',
+                    doctor_id: null,
+                    patient_id: null,
                     medicines: [
                         {id: null, name: null, route_of_administration: null, dosage: null}
                     ],
                 },
-                activeMedicine: 'med1'
+                activeMedicine: 'med1',
+                prescriptionFormRules: {
+                    doctor_id: [
+                        { required: true, message: 'Campo obrigatorio', trigger: 'change' }
+                    ],
+                    patient_id: [
+                        { required: true, message: 'Campo obrigatorio', trigger: 'change' }
+                    ],
+                }
             }
         },
         mounted() {
@@ -137,6 +145,13 @@
                 formMedicine.id = selectedMedicine.id
                 formMedicine.name = selectedMedicine.name
                 formMedicine.route_of_administration = selectedMedicine.route_of_administration
+            },
+            savePrescription() {
+                this.$refs['prescriptionForm'].validate((valid) => {
+                    if (valid) {
+                        this.$http.post('/prescription', this.form)
+                    }
+                });
             }
         }
     }

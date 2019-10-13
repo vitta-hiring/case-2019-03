@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-form ref="form" :model="form" labelPosition="top">
+        <el-form ref="form" :model="form" labelPosition="left" label-width="200px">
             <el-form-item label="Escolha o Médico">
                 <el-select v-model="form.doctor" filterable placeholder="Select">
                     <el-option
@@ -26,6 +26,16 @@
         </el-form>
     </div>
 </template>
+
+<style>
+    .el-form {
+        margin-top: 30px;
+    }
+
+    div {
+        text-align: left;
+    }
+</style>
 
 <script>
     export default {

@@ -1,0 +1,27 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended", "tslint-react"],
+  "jsRules": {
+    "no-unused-expression": true
+  },
+  "rules": {
+    "quotemark": [true, "single", "jsx-double"],
+    "member-access": [false],
+    "ordered-imports": [false],
+    "max-line-length": [false],
+    "member-ordering": [false],
+    "interface-name": [false],
+    "arrow-parens": false,
+    "object-literal-sort-keys": false,
+    "object-literal-key-quotes": false,
+    "no-default-export": [true],
+    "no-any": false,
+    "no-console": {
+      "severity": "warning",
+      "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
+    },
+    "jsx-key": true,
+    "jsx-no-bind": true,
+    "semicolon": [true, "always", "ignore-bound-class-methods"]
+  }
+}

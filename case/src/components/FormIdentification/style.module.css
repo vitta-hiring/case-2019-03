@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+.seeDrugs {
+  max-height: 420px;
+  overflow: auto;
+}

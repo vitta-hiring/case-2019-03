@@ -1,21 +1,21 @@
 ## Sobre a Vitta
 
-A Vitta nasceu com a missão de transformar a saúde do Brasil. Em poucos anos se tornou uma das maiores startups de health tech no mercado, e mesmo com o crescimento, mantemos em nosso DNA a inovação, a experiência, a praticidade e a segurança. 
-Desde então temos trabalhado para construir nossa marca e cultura a fim de desenvolver um produto altamente eficiente, capaz de revolucionar a saúde no nosso país. 
-Além das melhores soluções de tecnologia e atendimento excepcional voltadas ao mercado de saúde, contamos também com as melhores pessoas, os nossos Vittanos. 
+A Vitta nasceu com a missão de transformar a saúde do Brasil. Em poucos anos se tornou uma das maiores startups de health tech no mercado, e mesmo com o crescimento, mantemos em nosso DNA a inovação, a experiência, a praticidade e a segurança.
+Desde então temos trabalhado para construir nossa marca e cultura a fim de desenvolver um produto altamente eficiente, capaz de revolucionar a saúde no nosso país.
+Além das melhores soluções de tecnologia e atendimento excepcional voltadas ao mercado de saúde, contamos também com as melhores pessoas, os nossos Vittanos.
 
 Nossos valores:
-- Guerreiros por natureza; 
+
+- Guerreiros por natureza;
 - Vencemos em time;
 - O cliente é a nossa vida;
 - Excelência inegociável.
 
-Estamos procurando pessoas interessadas em atuar em projetos desafiadores, dispostas a revolucionar a saúde do Brasil junto com a gente. 
+Estamos procurando pessoas interessadas em atuar em projetos desafiadores, dispostas a revolucionar a saúde do Brasil junto com a gente.
 
 A Vitta mantém sedes em São Paulo e Uberlândia.
 
 \#vemmudarasaudedobrasil #saudenonstop
-
 
 ## Sobre o desafio
 
@@ -55,6 +55,7 @@ Ao identificar uma interação medicamentosa entre dois ou mais dos medicamentos
 	"Unificado":null
 }
 ```
+
 - O arquivo interacao_medicamentosa.json possui uma coleção de objetos que representam a interação medicamentosa entre os componentes dos medicamentos listados no arquivo anterior. Abaixo temos um exemplo do formato do objeto que também pode ter a estrutura modificada caso julgue necessário.
 
 ```javascript
@@ -69,6 +70,7 @@ Ao identificar uma interação medicamentosa entre dois ou mais dos medicamentos
 ## Front-end
 
 ### Pré-requisitos
+
 - Desenvolvimento utilizando um framework/biblioteca Javascript como Vue,React,Angular;
 - Documentar como rodamos o projeto no README.MD;
 - Dados deverão ser salvos em LocalStorage (No caso da implementação do Back-end isso não se faz necessário);
@@ -76,6 +78,7 @@ Ao identificar uma interação medicamentosa entre dois ou mais dos medicamentos
 - Deve ser uma SPA;
 
 ### Diferenciais/Extras
+
 - Desenvolvimento de um Dockerfile/Docker-Compose.yml para rodar o projeto;
 - Criação de servidor para os mocks da tela;
 - Usabilidade e feedback para o usuário no carregamento da consulta;
@@ -86,16 +89,17 @@ Ao identificar uma interação medicamentosa entre dois ou mais dos medicamentos
 - Deve ser possível rodar a aplicação com um só comando;
 - Desenvolvimento utilizando Vue.js.
 
-
 ## Back-end
 
 ### Pré-requisitos
+
 - Desenvolvimento de uma API REST;
 - Documentar como rodamos o projeto no README.MD;
 - Desenvolvimento de um Dockerfile/Docker-Compose.yml para rodar o projeto;
 - Utilização de banco relacional;
 
 ### Diferenciais/Extras
+
 - Resistência a falhas de containers na arquitetura desenvolvida;
 - Implementação de Testes de unidade e/ou integração;
 - Seguir algum Javascript Style Guide;
@@ -110,12 +114,14 @@ Ao identificar uma interação medicamentosa entre dois ou mais dos medicamentos
 - Faça um "fork" deste repositório na sua conta do Github;
 - Após completar o desafio, crie um pull request nesse repositório comparando a sua branch com a master com o seu nome no título deste;
 - Envie um e-mail para ti@vitta.me notificando que a solução está entregue;
-Analisaremos sua solução e entraremos em contato via e-mail.
+  Analisaremos sua solução e entraremos em contato via e-mail.
 
 ## FAQ
+
 > Posso utilizar algum tipo de boilerplate como vue-cli?
 
 Sim qualquer tipo de boilerplate, manda bala o que vai valer é o seu código e como estruturou ele dentro do boilerplate;
+
 > Preciso necessariamente fazer um fork do projeto?
 
 Sim, desta forma utilizaremos isso para monitorar o tempo gasto desde o momento do fork até a entrega do projeto!

@@ -1,0 +1,8 @@
+.medicalRecords {
+  display: flex !important;
+  flex-direction: column;
+}
+.boxIdentification {
+  display: flex;
+  justify-content: space-between;
+}

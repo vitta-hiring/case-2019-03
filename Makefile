@@ -5,6 +5,7 @@ init-back:
 	(cd backend; docker-compose up -d)
 	(cd backend; docker-compose exec node adonis key:generate)
 	make migrate
+	make seed
 	make import-data
 
 init-front:
@@ -37,6 +38,9 @@ migrate:
 
 rollback:
 	(cd backend; docker-compose exec node adonis migration:rollback)
+
+seed:
+	(cd backend; docker-compose exec node adonis seed)
 
 import-data:
 	(cd backend; docker-compose exec -T mysql bash -c "mysql -u root -pvitta_password assessment < dados/medicines.sql")

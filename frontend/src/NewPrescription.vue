@@ -34,38 +34,54 @@
 
             <h4>Lista de Medicamentos</h4>
 
-            <el-row :gutter="20">
+            <el-tabs v-model="activeMedicine">
+                <el-tab-pane :label="'Med' + (index + 1)" :name="'med' + (index + 1)" v-for="(medicine, index) in form.medicines ">
 
-                <el-col :span="14" :xs="24">
-                    <el-form-item label="Medicamento">
-                        <el-select value="med_1">
-                            <el-option label="Meicamento 1" value="med_1"></el-option>
-                            <el-option label="Meicamento 2" value="med_2"></el-option>
-                        </el-select>
-                    </el-form-item>
-                </el-col>
+                    <el-row :gutter="20">
 
-                <el-col :span="10" :xs="24">
-                    <el-form-item label="Via de Administraçao">
-                        <el-input></el-input>
-                    </el-form-item>
-                </el-col>
+                        <el-col :span="14" :xs="24">
+                            <el-form-item label="Medicamento">
+                                <el-select
+                                        v-model="medicine.id"
+                                        filterable
+                                        remote
+                                        :remote-method="searchMedicines"
+                                        placeholder="Digite um trecho do nome do medicamento"
+                                        @change="fillMedicineInfo($event, medicine)">
+                                    <el-option
+                                            v-for="item in medicinesFound"
+                                            :key="item.id"
+                                            :label="item.name"
+                                            :value="item.id">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                        </el-col>
 
-            </el-row>
+                        <el-col :span="10" :xs="24">
+                            <el-form-item label="Via de Administraçao">
+                                <el-input v-model="medicine.route_of_administration"></el-input>
+                            </el-form-item>
+                        </el-col>
 
-            <el-row :gutter="20" :xs="24">
+                    </el-row>
 
-                <el-col :span="24">
-                    <el-form-item label="Posologia">
-                        <el-input type="textarea" :rows="2"></el-input>
-                    </el-form-item>
-                </el-col>
+                    <el-row :gutter="20" :xs="24">
 
-            </el-row>
+                        <el-col :span="24">
+                            <el-form-item label="Posologia">
+                                <el-input v-model="medicine.dosage" type="textarea" :rows="2"></el-input>
+                            </el-form-item>
+                        </el-col>
+
+                    </el-row>
+
+                </el-tab-pane>
+            </el-tabs>
 
             <el-row class="actions-footer">
                 <el-col>
-                    <el-button type="primary" icon="el-icon-plus">Adicionar Medicamento</el-button>
+                    <el-button type="primary" icon="el-icon-plus" @click="addMedicine">Adicionar Medicamento</el-button>
                     <el-button type="success" icon="el-icon-check">Registrar Prescriçao</el-button>
                 </el-col>
             </el-row>
@@ -73,6 +89,58 @@
         </el-form>
     </div>
 </template>
+
+<script>
+    export default {
+        name: "NewPrescription",
+        data() {
+            return {
+                doctors: [],
+                patients: [],
+                medicinesFound: [],
+                form: {
+                    doctor_id: '',
+                    patient_id: '',
+                    medicines: [
+                        {id: null, name: null, route_of_administration: null, dosage: null}
+                    ],
+                },
+                activeMedicine: 'med1'
+            }
+        },
+        mounted() {
+            this.getDoctors()
+            this.getPatients()
+        },
+        methods: {
+            async getDoctors() {
+                this.$http.get('/doctors')
+                    .then(response => this.doctors = response.data)
+            },
+            async getPatients() {
+                this.$http.get('/patients')
+                    .then(response => this.patients = response.data)
+            },
+            async searchMedicines(query) {
+                if (query !== '') {
+                    this.$http.post('/medicines/search', {query})
+                        .then(response => this.medicinesFound = response.data)
+                }
+            },
+            addMedicine() {
+                this.form.medicines.push({id: null, name: null, route_of_administration: null, dosage: null})
+                this.activeMedicine = 'med' + this.form.medicines.length
+            },
+            fillMedicineInfo(selectedMedicineId, formMedicine) {
+                let selectedMedicine = this.medicinesFound.find(medicine => medicine.id === selectedMedicineId);
+
+                formMedicine.id = selectedMedicine.id
+                formMedicine.name = selectedMedicine.name
+                formMedicine.route_of_administration = selectedMedicine.route_of_administration
+            }
+        }
+    }
+</script>
 
 <style>
     h4 {
@@ -103,33 +171,3 @@
         margin-top: 20px;
     }
 </style>
-
-<script>
-    export default {
-        name: "NewPrescription",
-        data() {
-            return {
-                doctors: [],
-                patients: [],
-                form: {
-                    doctor: '',
-                    patient: ''
-                }
-            }
-        },
-        mounted() {
-            this.getDoctors()
-            this.getPatients()
-        },
-        methods: {
-            async getDoctors() {
-                let response = await this.$http.get('/doctors')
-                this.doctors = response.data
-            },
-            async getPatients() {
-                let response = await this.$http.get('/patients');
-                this.patients = response.data
-            }
-        }
-    }
-</script>

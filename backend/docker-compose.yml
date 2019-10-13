@@ -10,7 +10,7 @@ services:
     working_dir: /application
     volumes:
       - .:/application
-    command: npm start
+    command: adonis serve --dev
     ports:
       - 3333:3333
 

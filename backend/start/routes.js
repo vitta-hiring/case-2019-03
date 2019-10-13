@@ -22,3 +22,4 @@ Route.get('/', () => {
 
 Route.get('/doctors', 'DoctorController.index')
 Route.get('/patients', 'PatientController.index')
+Route.post('/medicines/search', 'MedicineController.search')

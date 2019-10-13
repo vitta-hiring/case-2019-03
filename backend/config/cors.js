@@ -16,7 +16,7 @@ module.exports = {
   | Function - Receives the current origin and should return one of the above values.
   |
   */
-  origin: ['http://0.0.0.0:8010'],
+  origin: ['http://0.0.0.0:8010', 'http://localhost:8010'],
 
   /*
   |--------------------------------------------------------------------------

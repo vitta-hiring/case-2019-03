@@ -1,13 +1,21 @@
 <template>
     <div>
-        <el-form ref="prescriptionForm" :model="form" :rules="prescriptionFormRules" labelPosition="top" label-width="200px">
+        <el-form
+            :model="form"
+            ref="prescriptionForm"
+            :rules="prescriptionFormRules"
+            labelPosition="top"
+            label-width="200px">
 
             <h4>Prescriçao de Medicamentos</h4>
 
             <el-row :gutter="20">
                 <el-col :span="12" :xs="24">
                     <el-form-item label="Escolha o Médico" prop="doctor_id">
-                        <el-select v-model="form.doctor_id" filterable placeholder="Select">
+                        <el-select
+                            v-model="form.doctor_id"
+                            filterable
+                            placeholder="Select">
                             <el-option
                                     v-for="item in doctors"
                                     :key="item.id"
@@ -20,7 +28,10 @@
 
                 <el-col :span="12" :xs="24">
                     <el-form-item label="Escolha o Paciente" prop="patient_id">
-                        <el-select v-model="form.patient_id" filterable placeholder="Select">
+                        <el-select
+                            v-model="form.patient_id"
+                            filterable
+                            placeholder="Select">
                             <el-option
                                     v-for="item in patients"
                                     :key="item.id"
@@ -35,7 +46,10 @@
             <h4>Lista de Medicamentos</h4>
 
             <el-tabs v-model="activeMedicine">
-                <el-tab-pane :label="tabName(index)" :name="tabName(index)" v-for="(medicine, index) in form.medicines ">
+                <el-tab-pane
+                    :label="tabName(index)"
+                    :name="tabName(index)"
+                    v-for="(medicine, index) in form.medicines ">
 
                     <el-row :gutter="20">
 
@@ -70,7 +84,10 @@
 
                         <el-col :span="24">
                             <el-form-item label="Posologia" :required="true">
-                                <el-input v-model="medicine.dosage" type="textarea" :rows="2"></el-input>
+                                <el-input
+                                    v-model="medicine.dosage"
+                                    type="textarea"
+                                    :rows="2"></el-input>
                             </el-form-item>
                         </el-col>
 
@@ -81,8 +98,16 @@
 
             <el-row class="actions-footer">
                 <el-col>
-                    <el-button type="primary" icon="el-icon-plus" @click="addMedicine">Adicionar Medicamento</el-button>
-                    <el-button type="success" icon="el-icon-check" @click="savePrescription">Registrar Prescriçao</el-button>
+                    <el-button
+                        type="primary"
+                        icon="el-icon-plus"
+                        @click="addMedicine">
+                        Adicionar Medicamento</el-button>
+
+                    <el-button
+                        type="success"
+                        icon="el-icon-check"
+                        @click="savePrescription">Registrar Prescriçao</el-button>
                 </el-col>
             </el-row>
 
@@ -91,73 +116,73 @@
 </template>
 
 <script>
-    export default {
-        name: "NewPrescription",
-        data() {
-            return {
-                doctors: [],
-                patients: [],
-                medicinesFound: [],
-                form: {
-                    doctor_id: null,
-                    patient_id: null,
-                    medicines: [
-                        {id: null, name: null, route_of_administration: null, dosage: null}
-                    ],
-                },
-                activeMedicine: 'Med1',
-                prescriptionFormRules: {
-                    doctor_id: [
-                        { required: true, message: 'Campo obrigatorio', trigger: 'change' }
-                    ],
-                    patient_id: [
-                        { required: true, message: 'Campo obrigatorio', trigger: 'change' }
-                    ],
-                }
-            }
-        },
-        mounted() {
-            this.getDoctors()
-            this.getPatients()
-        },
-        methods: {
-            async getDoctors() {
-                this.$http.get('/doctors')
-                    .then(response => this.doctors = response.data)
-            },
-            async getPatients() {
-                this.$http.get('/patients')
-                    .then(response => this.patients = response.data)
-            },
-            async searchMedicines(query) {
-                if (query !== '') {
-                    this.$http.post('/medicines/search', {query})
-                        .then(response => this.medicinesFound = response.data)
-                }
-            },
-            addMedicine() {
-                this.form.medicines.push({id: null, name: null, route_of_administration: null, dosage: null})
-                this.activeMedicine = 'Med' + this.form.medicines.length
-            },
-            fillMedicineInfo(selectedMedicineId, formMedicine) {
-                let selectedMedicine = this.medicinesFound.find(medicine => medicine.id === selectedMedicineId);
-
-                formMedicine.id = selectedMedicine.id
-                formMedicine.name = selectedMedicine.name
-                formMedicine.route_of_administration = selectedMedicine.route_of_administration
-            },
-            savePrescription() {
-                this.$refs['prescriptionForm'].validate((valid) => {
-                    if (valid) {
-                        this.$http.post('/prescription', this.form)
-                    }
-                });
-            },
-            tabName(index) {
-                return 'Med' + (index + 1)
-            }
-        }
+export default {
+  name: 'NewPrescription',
+  data() {
+    return {
+      doctors: [],
+      patients: [],
+      medicinesFound: [],
+      form: {
+        doctor_id: null,
+        patient_id: null,
+        medicines: [
+          { id: null, name: null, route_of_administration: null, dosage: null }
+        ]
+      },
+      activeMedicine: 'Med1',
+      prescriptionFormRules: {
+        doctor_id: [
+          { required: true, message: 'Campo obrigatorio', trigger: 'change' }
+        ],
+        patient_id: [
+          { required: true, message: 'Campo obrigatorio', trigger: 'change' }
+        ]
+      }
     }
+  },
+  mounted() {
+    this.getDoctors()
+    this.getPatients()
+  },
+  methods: {
+    async getDoctors() {
+      this.$http.get('/doctors')
+        .then(response => this.doctors = response.data)
+    },
+    async getPatients() {
+      this.$http.get('/patients')
+        .then(response => this.patients = response.data)
+    },
+    async searchMedicines(query) {
+      if (query !== '') {
+        this.$http.post('/medicines/search', { query })
+          .then(response => this.medicinesFound = response.data)
+      }
+    },
+    addMedicine() {
+      this.form.medicines.push({ id: null, name: null, route_of_administration: null, dosage: null })
+      this.activeMedicine = 'Med' + this.form.medicines.length
+    },
+    fillMedicineInfo(selectedMedicineId, formMedicine) {
+      const selectedMedicine = this.medicinesFound.find(medicine => medicine.id === selectedMedicineId)
+
+      formMedicine.id = selectedMedicine.id
+      formMedicine.name = selectedMedicine.name
+      formMedicine.route_of_administration = selectedMedicine.route_of_administration
+    },
+    savePrescription() {
+      this.$refs.prescriptionForm.validate((valid) => {
+        if (valid) {
+          this.$http.post('/prescription', this.form)
+        }
+      })
+    },
+    tabName(index) {
+      return 'Med' + (index + 1)
+    }
+  }
+}
 </script>
 
 <style>

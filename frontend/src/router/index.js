@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import NewPrescription from '../NewPrescription'
-import Doctors from '../Doctors'
-import Patients from '../Patients'
+import NewPrescription from '../views/NewPrescription'
+import Doctors from '../views/Doctors'
+import Patients from '../views/Patients'
 
 Vue.use(Router)
 

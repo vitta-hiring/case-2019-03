@@ -15,16 +15,16 @@
 </template>
 
 <script>
-    export default {
-        name: "Header",
-        data() {
-            return {
-                activeIndex: 'new-prescription',
-            };
-        },
-        methods: {
-        }
+export default {
+  name: 'Header',
+  data() {
+    return {
+      activeIndex: 'new-prescription'
     }
+  },
+  methods: {
+  }
+}
 </script>
 
 <style>

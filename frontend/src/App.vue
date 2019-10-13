@@ -6,15 +6,15 @@
 </template>
 
 <script>
-    import Header from "./Header";
+import Header from './components/Header'
 
-    export default {
-        name: "App",
-        methods: {},
-        components: {
-            Header
-        }
-    }
+export default {
+  name: 'App',
+  methods: {},
+  components: {
+    Header
+  }
+}
 </script>
 
 <style>

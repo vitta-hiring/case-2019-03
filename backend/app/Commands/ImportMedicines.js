@@ -1,6 +1,6 @@
 'use strict'
 
-const ImportMedicinesService = use('App/Services/Medicines/ImportMedicinesService')
+const ImportMedicinesService = use('App/Services/ImportMedicinesService')
 
 const { Command } = require('@adonisjs/ace')
 

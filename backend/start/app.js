@@ -54,7 +54,8 @@ const aliases = {}
 |
 */
 const commands = [
-  'App/Commands/ImportMedicines'
+  'App/Commands/ImportMedicines',
+  'App/Commands/ImportDrugsInteraction',
 ]
 
 module.exports = { providers, aceProviders, aliases, commands }

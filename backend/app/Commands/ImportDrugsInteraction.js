@@ -14,7 +14,7 @@ class ImportDrugsInteraction extends Command {
   }
 
   async handle (args, options) {
-    await (new ImportDrugsInteractionService).run()
+    await (new ImportDrugsInteractionService()).run()
       .then(() => this.completed('import', 'Drugs interaction imported'))
   }
 }

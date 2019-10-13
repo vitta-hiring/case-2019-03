@@ -14,7 +14,7 @@ class ImportMedicines extends Command {
   }
 
   async handle (args, options) {
-    await (new ImportMedicinesService).run()
+    await (new ImportMedicinesService()).run()
       .then(() => this.completed('import', 'Medicines imported'))
   }
 }

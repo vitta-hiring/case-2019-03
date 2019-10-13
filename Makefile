@@ -4,6 +4,8 @@ init-back:
 	cp backend/.env.example backend/.env
 	(cd backend; docker-compose up -d)
 	(cd backend; docker-compose exec node adonis key:generate)
+	make migrate
+	make import-data
 
 init-front:
 	(cd frontend; docker-compose up -d)
@@ -29,6 +31,12 @@ bash-front:
 ps:
 	(cd backend; docker-compose ps)
 	(cd frontend; docker-compose ps)
+
+migrate:
+	(cd backend; docker-compose exec node adonis migration:run)
+
+rollback:
+	(cd backend; docker-compose exec node adonis migration:rollback)
 
 import-data:
 	(cd backend; docker-compose exec -T mysql bash -c "mysql -u root -pvitta_password assessment < dados/medicines.sql")

@@ -29,3 +29,8 @@ bash-front:
 ps:
 	(cd backend; docker-compose ps)
 	(cd frontend; docker-compose ps)
+
+import-data:
+	(cd backend; docker-compose exec -T mysql bash -c "mysql -u root -pvitta_password assessment < dados/medicines.sql")
+	(cd backend; docker-compose exec -T mysql bash -c "mysql -u root -pvitta_password assessment < dados/medicine_pharmaco.sql")
+	(cd backend; docker-compose exec -T mysql bash -c "mysql -u root -pvitta_password assessment < dados/drugs_interaction.sql")

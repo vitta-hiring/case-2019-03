@@ -1,0 +1,32 @@
+getMedicos:
+  handler: handler/pessoa.getMedicos
+  events:
+    - http: get /medicos
+getPacientes:
+  handler: handler/pessoa.getPacientes
+  events:
+    - http: get /pacientes
+getMedicamentos:
+  handler: handler/medicamentos.getMedicamentos
+  events:
+    - http: get /medicamentos
+validaInteracoes:
+  handler: handler/interacoes.validaInteracoes
+  events:
+    - http: get /validaInteracoes/{medicamentos}
+getAtendimentos:
+  handler: handler/atendimentos.getAtendimentos
+  events:
+    - http: get /atendimentos/{idPessoa}
+getMedicamentosAtendimento:
+  handler: handler/atendimentos.getMedicamentosAtendimento
+  events:
+    - http: get /atendimento/medicamentos/{idAtendimento}
+novoAtendimento:
+  handler: handler/atendimentos.novoAtendimento
+  events:
+    - http: post /novoAtendimento
+controle:
+  handler: handler/controle.validaSeeder
+  events:
+    - http: get /controle

@@ -85,7 +85,9 @@ class CheckDrugsInteractionService {
       const possibleDrugInteraction = await (new DrugInteractionRepository())
         .getByPharmacons(pharmacon.pharmacon, pharmaconFromLoop.pharmacon)
 
-      if (possibleDrugInteraction.size()) this.warnings.push(possibleDrugInteraction.toJSON())
+      if (possibleDrugInteraction.size()) {
+        this.warnings.push(possibleDrugInteraction.toJSON()[0])
+      }
     })
   }
 

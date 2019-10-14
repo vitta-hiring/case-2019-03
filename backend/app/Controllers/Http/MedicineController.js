@@ -2,7 +2,7 @@
 const MedicineRepository = use('App/Repositories/MedicineRepository')
 
 class MedicineController {
-  search ({ request, response }) {
+  search ({ request }) {
     return (new MedicineRepository())
       .searchByQueryName(request.input('query'))
   }

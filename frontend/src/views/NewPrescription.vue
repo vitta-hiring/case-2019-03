@@ -17,10 +17,10 @@
                             filterable
                             placeholder="Select">
                             <el-option
-                                    v-for="item in doctors"
-                                    :key="item.id"
-                                    :label="item.name"
-                                    :value="item.id">
+                                v-for="item in doctors"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
                             </el-option>
                         </el-select>
                     </el-form-item>
@@ -33,10 +33,10 @@
                             filterable
                             placeholder="Select">
                             <el-option
-                                    v-for="item in patients"
-                                    :key="item.id"
-                                    :label="item.name"
-                                    :value="item.id">
+                                v-for="item in patients"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
                             </el-option>
                         </el-select>
                     </el-form-item>
@@ -56,17 +56,17 @@
                         <el-col :span="14" :xs="24">
                             <el-form-item label="Medicamento" :required="true">
                                 <el-select
-                                        v-model="medicine.id"
-                                        filterable
-                                        remote
-                                        :remote-method="searchMedicines"
-                                        placeholder="Digite um trecho do nome do medicamento"
-                                        @change="fillMedicineInfo($event, medicine)">
+                                    v-model="medicine.id"
+                                    filterable
+                                    remote
+                                    :remote-method="searchMedicines"
+                                    placeholder="Digite um trecho do nome do medicamento"
+                                    @change="fillMedicineInfo($event, medicine)">
                                     <el-option
-                                            v-for="item in medicinesFound"
-                                            :key="item.id"
-                                            :label="item.name"
-                                            :value="item.id">
+                                        v-for="item in medicinesFound"
+                                        :key="item.id"
+                                        :label="item.name"
+                                        :value="item.id">
                                     </el-option>
                                 </el-select>
                             </el-form-item>
@@ -102,12 +102,14 @@
                         type="primary"
                         icon="el-icon-plus"
                         @click="addMedicine">
-                        Adicionar Medicamento</el-button>
+                        Adicionar Medicamento
+                    </el-button>
 
                     <el-button
                         type="success"
                         icon="el-icon-check"
-                        @click="savePrescription">Registrar Prescriçao</el-button>
+                        @click="savePrescription">Registrar Prescriçao
+                    </el-button>
                 </el-col>
             </el-row>
 
@@ -174,7 +176,7 @@ export default {
     savePrescription() {
       this.$refs.prescriptionForm.validate((valid) => {
         if (valid) {
-          this.$http.post('/prescription', this.form)
+          this.$http.post('/prescriptions', this.form)
         }
       })
     },

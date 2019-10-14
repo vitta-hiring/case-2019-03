@@ -3,6 +3,15 @@ const Prescription = use('App/Models/Prescription')
 const PrescriptionMedicine = use('App/Models/PrescriptionMedicine')
 
 class PrescriptionRepository {
+  getWithRelations () {
+    return Prescription
+      .query()
+      .with('medicines.medicine')
+      .with('doctor')
+      .with('patient')
+      .fetch()
+  }
+
   async storeWithMedicines (data) {
     const createdPrescription = await Prescription.create({
       doctor_id: data.doctor_id,

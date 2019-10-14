@@ -4,6 +4,17 @@
 const Model = use('Model')
 
 class Prescription extends Model {
+  medicines () {
+    return this.hasMany('App/Models/PrescriptionMedicine')
+  }
+
+  doctor () {
+    return this.belongsTo('App/Models/Doctor')
+  }
+
+  patient () {
+    return this.belongsTo('App/Models/Patient')
+  }
 }
 
 module.exports = Prescription

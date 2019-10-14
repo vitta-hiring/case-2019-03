@@ -8,8 +8,7 @@
                 active-text-color="white"
                 :router="true">
             <el-menu-item index="new-prescription">Nova Prescrição</el-menu-item>
-            <el-menu-item index="doctors">Médicos</el-menu-item>
-            <el-menu-item index="patients">Pacientes</el-menu-item>
+            <el-menu-item index="prescriptions">Historico de Prescriçoes</el-menu-item>
         </el-menu>
     </div>
 </template>

@@ -15,6 +15,10 @@ class PrescriptionMedicine extends Model {
   static get updatedAtColumn () {
     return null
   }
+
+  medicine () {
+    return this.belongsTo('App/Models/Medicine')
+  }
 }
 
 module.exports = PrescriptionMedicine

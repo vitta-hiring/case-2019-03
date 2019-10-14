@@ -2,7 +2,11 @@
 const PrescriptionRepository = use('App/Repositories/PrescriptionRepository')
 
 class PrescriptionController {
-  store ({ request, response }) {
+  index () {
+    return (new PrescriptionRepository()).getWithRelations()
+  }
+
+  store ({ request }) {
     return (new PrescriptionRepository()).storeWithMedicines(request.all())
   }
 }

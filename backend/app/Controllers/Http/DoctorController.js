@@ -2,7 +2,7 @@
 const Doctor = use('App/Models/Doctor')
 
 class DoctorController {
-  index ({ request, response }) {
+  index () {
     return Doctor.all()
   }
 }

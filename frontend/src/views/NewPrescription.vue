@@ -189,6 +189,12 @@ components: {
               if (response.data.warnings === true) {
                   this.warnings = response.data.warnings
                   this.drugsInteraction = response.data.drugsInteraction
+              } else {
+                  this.$message({
+                      message: 'Prescrição cadastrada com sucesso',
+                      type: 'success'
+                  })
+                  this.clearForm()
               }
           })
         }
@@ -196,6 +202,22 @@ components: {
     },
     tabName(index) {
       return 'Med' + (index + 1)
+    },
+    clearForm() {
+        this.medicinesFound = []
+        this.activeMedicine = 'Med1'
+        this.warnings = false
+        this.drugsInteraction = []
+
+        this.form = {
+            doctor_id: null,
+            patient_id: null,
+            medicines: [
+                {id: null, name: null, route_of_administration: null, dosage: null}
+            ]
+        }
+
+        this.$refs.prescriptionForm.resetFields()
     }
   }
 }

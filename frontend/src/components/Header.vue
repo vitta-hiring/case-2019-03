@@ -20,8 +20,6 @@ export default {
     return {
       activeIndex: 'new-prescription'
     }
-  },
-  methods: {
   }
 }
 </script>

@@ -3,7 +3,7 @@ const Doctor = use('App/Models/Doctor')
 
 class DoctorController {
   index () {
-    return Doctor.all()
+    return Doctor.query().orderBy('name').fetch()
   }
 }
 

@@ -15,6 +15,14 @@ class Prescription extends Model {
   patient () {
     return this.belongsTo('App/Models/Patient')
   }
+
+  static castDates (field, value) {
+    if (field === 'created_at') {
+      return value ? value.format("DD/MM/YYYY HH:mm") : value
+    }
+
+    return super.formatDates(field, value)
+  }
 }
 
 module.exports = Prescription

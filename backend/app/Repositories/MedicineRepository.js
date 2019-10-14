@@ -9,6 +9,14 @@ class MedicineRepository {
       .limit(50)
       .fetch()
   }
+
+  getByIdsWithPharmacons (ids) {
+    return Medicine
+      .query()
+      .with('pharmacons')
+      .whereIn('id', ids)
+      .fetch()
+  }
 }
 
 module.exports = MedicineRepository

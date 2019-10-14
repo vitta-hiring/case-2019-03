@@ -4,6 +4,9 @@
 const Model = use('Model')
 
 class Medicine extends Model {
+  pharmacons () {
+    return this.hasMany('App/Models/MedicinePharmacon')
+  }
 }
 
 module.exports = Medicine

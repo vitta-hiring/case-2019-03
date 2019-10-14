@@ -9,6 +9,7 @@ class PrescriptionRepository {
       .with('medicines.medicine')
       .with('doctor')
       .with('patient')
+      .orderBy('created_at', 'desc')
       .fetch()
   }
 

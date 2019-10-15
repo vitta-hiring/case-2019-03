@@ -146,6 +146,7 @@ export default {
       doctors: [],
       patients: [],
       medicinesFound: [],
+      medicinesInUse: [],
       form: {
         doctor_id: null,
         patient_id: null,
@@ -158,9 +159,9 @@ export default {
       drugsInteraction: [],
     }
   },
-components: {
+  components: {
     AlertDrugInteration
-},
+  },
   mounted() {
     this.getDoctors()
     this.getPatients()
@@ -177,7 +178,9 @@ components: {
     async searchMedicines(query) {
       if (query !== '') {
         this.$http.post('/medicines/search', { query })
-          .then(response => this.medicinesFound = response.data)
+          .then(response => {
+              this.medicinesFound = response.data.concat(this.medicinesInUse)
+          })
       }
     },
     addMedicine() {
@@ -186,6 +189,8 @@ components: {
     },
     fillMedicineInfo(selectedMedicineId, formMedicine) {
       const selectedMedicine = this.medicinesFound.find(medicine => medicine.id === selectedMedicineId)
+
+      this.medicinesInUse.push(selectedMedicine)
 
       formMedicine.id = selectedMedicine.id
       formMedicine.name = selectedMedicine.name

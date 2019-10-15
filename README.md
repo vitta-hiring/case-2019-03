@@ -5,7 +5,7 @@ Go to the project folder and run `make` or `./init.sh`
 ## Access the application
 When build ends, you will be able to access the address below:
 
-[http://localhost:8010](http://localhost:8010)
+[http://0.0.0.0:8010](http://0.0.0.0:8010)
 
 ## Access backend container
     make bash-back

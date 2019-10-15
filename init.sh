@@ -10,3 +10,5 @@ sleep 10
 (cd backend; docker-compose exec -T mysql bash -c "mysql -u root -pvitta_password assessment < dados/medicines.sql")
 (cd backend; docker-compose exec -T mysql bash -c "mysql -u root -pvitta_password assessment < dados/medicine_pharmaco.sql")
 (cd backend; docker-compose exec -T mysql bash -c "mysql -u root -pvitta_password assessment < dados/drugs_interaction.sql")
+(cd frontend; docker-compose build --no-cache)
+(cd frontend; docker-compose up -d)

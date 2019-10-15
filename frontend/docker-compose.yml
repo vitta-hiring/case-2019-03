@@ -10,6 +10,7 @@ services:
     working_dir: /application
     volumes:
       - .:/application
+      - /application/node_modules
     command: npm run dev
     ports:
       - 8010:8010

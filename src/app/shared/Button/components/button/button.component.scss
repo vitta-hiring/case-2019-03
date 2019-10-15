@@ -1,0 +1,24 @@
+@import '../../../../../assets/styles/scss/colors/colors';
+@import '../../../../../assets/styles/scss/typography/typography';
+
+.shared-button {
+  display: flex;
+  border: 0;
+  padding: 12px 24px;
+  background-color: get-color('azure');
+  font-weight: 700;
+  @include getFontSize(16px);
+  border-radius: 4px;
+  transition: all .4s ease;
+
+  &:hover {
+    box-shadow: 1px 1px 6px rgba(get-color('black'), 0.16);
+  }
+
+  &.is-full {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+}

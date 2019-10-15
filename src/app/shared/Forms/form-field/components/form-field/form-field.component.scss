@@ -1,0 +1,194 @@
+@import '../../../../../../assets/styles/scss/colors/colors';
+
+.shared-form-field {
+
+  display: block;
+  padding-bottom: 24px;
+
+  .shared-form-field-wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+
+    .shared-form-field-container {
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      transition: all .4s ease;
+
+      background-color: get-color('white');
+      border-color: get-color('battleship-grey');
+
+      .shared-form-field-aside-prefix {
+        padding-left: 12px;
+      }
+      .shared-form-field-aside-suffix {
+        padding-right: 12px;
+      }
+
+      .shared-form-field-content {
+        width: 100%;
+        position: relative;
+        padding: 0 12px;
+
+        .form-field-label-wrapper {
+          position: absolute;
+          left: 12px;
+          top: -15px;
+          transition: all .4s ease;
+          .form-field-label {
+            transition: all .4s ease;
+            margin: 0;
+            font-size: 12px;
+            color: get-color('gunmetal');
+          }
+        }
+
+        input, textarea {
+          width: 100%;
+          letter-spacing: 0.05em;
+          border: 0;
+          font-size: 16px;
+          color: get-color('gunmetal');
+          background-color: get-color('white');
+          outline: none;
+          &:-internal-autofill-selected{
+            background-color: transparent !important;
+            color: get-color('gunmetal') !important;
+          }
+        }
+
+      }
+
+    }
+
+    .shared-form-field-footer {
+      display: flex;
+      flex-direction: column;
+      .shared-form-field-footer-wrapper {
+        padding: 0 12px;
+        font-size: 12px;
+        position: relative;
+
+        .shared-form-field-hint-wrapper {
+          position: absolute;
+          left: 12px;
+          right: 12px;
+          .form-field-hint-container {
+            display: flex;
+            width: 100%;
+            align-items: flex-start;
+            justify-content: space-between;
+          }
+        }
+        .shared-form-field-error-wrapper {
+          position: absolute;
+          left: 12px;
+          right: 12px;
+          color: get-color('crismon');
+        }
+      }
+    }
+
+  }
+
+  &:hover{
+    .shared-form-field-wrapper {
+      .shared-form-field-container {
+        box-shadow: 0 2px 2px 0 rgba(get-color('black'), .16);
+      }
+    }
+  }
+
+  &.shared-form-field-with-border {
+
+    .shared-form-field-wrapper {
+      .shared-form-field-container {
+        border-color: get-color('battleship-grey');
+      }
+    }
+
+  }
+
+  &.shared-form-field-empty {
+    .shared-form-field-wrapper {
+      .shared-form-field-container {
+        .shared-form-field-content {
+          .form-field-label-wrapper {
+            top: 0;
+            .form-field-label {
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.shared-form-field-focused {
+    .shared-form-field-wrapper {
+      .shared-form-field-container {
+        border-color: get-color('azure');
+        .shared-form-field-content {
+          .form-field-label-wrapper {
+            top: -15px;
+            .form-field-label {
+              font-size: 12px;
+              color: get-color('azure');
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.shared-form-field-disabled {
+    .shared-form-field-wrapper {
+      .shared-form-field-container {
+        border-style: dashed;
+        border-color:  get-color('battleship-grey');
+        background-color: get-color('concrete');
+        .shared-form-field-content {
+          input, textarea{
+            background-color: get-color('concrete');
+          }
+        }
+      }
+    }
+  }
+
+  &.shared-form-field-invalid.ng-invalid.ng-touched {
+    .shared-form-field-wrapper {
+      .shared-form-field-container {
+        border-color: get-color('crismon');
+        .shared-form-field-content {
+          .form-field-label-wrapper {
+            .form-field-label {
+              color: get-color('crismon');
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.shared-form-field-valid{
+    .shared-form-field-wrapper {
+      .shared-form-field-container {
+        border-color: get-color('kelly-green');
+        .shared-form-field-content {
+          .form-field-label-wrapper {
+            .form-field-label {
+              color: get-color('kelly-green');
+            }
+          }
+        }
+      }
+    }
+  }
+};

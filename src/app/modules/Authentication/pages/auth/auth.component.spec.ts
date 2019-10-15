@@ -1,9 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from '../../components/header/header.component';
+import { FormComponent } from '../../components/form/form.component';
 
 import { AuthComponent } from './auth.component';
-import { CardModule } from 'src/app/shared';
+import { CardModule, FormFieldModule, ButtonModule } from '../../../../shared';
 
 describe('AuthComponent', () => {
   let component: AuthComponent;
@@ -11,8 +12,8 @@ describe('AuthComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuthComponent, HeaderComponent ],
-      imports: [ CardModule ]
+      declarations: [ AuthComponent, HeaderComponent, FormComponent ],
+      imports: [ CardModule, FormFieldModule, ButtonModule ]
     })
     .compileComponents();
   }));

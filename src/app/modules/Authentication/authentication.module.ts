@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthComponent } from './pages/auth/auth.component';
 
-import { CardModule } from '../../shared';
+import { CardModule, FormFieldModule, ButtonModule } from '../../shared';
 import { HeaderComponent } from './components/header/header.component';
+import { FormComponent } from './components/form/form.component';
 
 @NgModule({
-  declarations: [AuthComponent, HeaderComponent],
+  declarations: [AuthComponent, HeaderComponent, FormComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
@@ -16,7 +17,9 @@ import { HeaderComponent } from './components/header/header.component';
         component: AuthComponent
       }
     ]),
-    CardModule
+    CardModule,
+    FormFieldModule,
+    ButtonModule
   ],
   exports: [
     RouterModule

@@ -34,7 +34,7 @@ export default {
   name: 'Prescriptions',
   data() {
     return {
-        prescriptions: []
+      prescriptions: []
     }
   },
   mounted() {
@@ -42,8 +42,8 @@ export default {
   },
   methods: {
     getPrescriptions () {
-        this.$http.get('/prescriptions')
-            .then(response => this.prescriptions = response.data)
+      this.$http.get('/prescriptions')
+        .then(response => this.prescriptions = response.data)
     }
   }
 }

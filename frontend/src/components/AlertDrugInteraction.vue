@@ -24,10 +24,10 @@
 </template>
 
 <script>
-    export default {
-        name: 'AlertDrugInteraction',
-        props: ["warnings", "drugsInteraction"],
-    }
+export default {
+  name: 'AlertDrugInteraction',
+  props: ['warnings', 'drugsInteraction']
+}
 </script>
 
 <style>

@@ -24,7 +24,7 @@ class CheckDrugsInteractionService {
    * @returns {Promise<void>}
    */
   async loadMedicinesWithPharmacons (data) {
-    let medicinesIds = data.medicines.map(medicine => medicine.id)
+    const medicinesIds = data.medicines.map(medicine => medicine.id)
     const medicinesWithPharmacons = await (new MedicineRepository()).getByIdsWithPharmacons(medicinesIds)
 
     this.medicinesWithPharmacons = await medicinesWithPharmacons.toJSON()
@@ -49,7 +49,7 @@ class CheckDrugsInteractionService {
    */
   async walkThroughMedicinePharmacons (medicine) {
     await this.asyncForEach((medicine.pharmacons), async (pharmacon) => {
-      await this.checkMedicineDrugInteractionByPharmacon (medicine, pharmacon)
+      await this.checkMedicineDrugInteractionByPharmacon(medicine, pharmacon)
     })
   }
 
@@ -63,11 +63,9 @@ class CheckDrugsInteractionService {
    */
   async checkMedicineDrugInteractionByPharmacon (medicine, pharmacon) {
     await this.asyncForEach((this.medicinesWithPharmacons), async (medicineFromLoop) => {
-
       if (medicine.id !== medicineFromLoop.id) {
         await this.checkWarningsInDrugsInteraction(medicineFromLoop, pharmacon)
       }
-
     })
   }
 
@@ -81,7 +79,6 @@ class CheckDrugsInteractionService {
    */
   async checkWarningsInDrugsInteraction (medicine, pharmacon) {
     await this.asyncForEach((medicine.pharmacons), async (pharmaconFromLoop) => {
-
       const possibleDrugInteraction = await (new DrugInteractionRepository())
         .getByPharmacons(pharmacon.pharmacon, pharmaconFromLoop.pharmacon)
 

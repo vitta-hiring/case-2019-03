@@ -10,7 +10,7 @@ class PrescriptionController {
   async store ({ request }) {
     const drugsInteraction = await (new CheckDrugsInteractionService()).run(request.all())
 
-    if (drugsInteraction.length) return {warnings: true, drugsInteraction}
+    if (drugsInteraction.length) return { warnings: true, drugsInteraction }
 
     return (new PrescriptionRepository()).storeWithMedicines(request.all())
   }

@@ -108,7 +108,11 @@
 
                     </el-row>
 
-                    <el-link type="danger" class="btn-remove-medicine" @click="removeMedicine(index)">Remover este medicamento</el-link>
+                    <el-link
+                        type="danger"
+                        class="btn-remove-medicine"
+                        @click="removeMedicine(index)">
+                        Remover este medicamento</el-link>
 
                 </el-tab-pane>
             </el-tabs>
@@ -156,7 +160,7 @@ export default {
       },
       activeMedicine: 'Med1',
       warnings: false,
-      drugsInteraction: [],
+      drugsInteraction: []
     }
   },
   components: {
@@ -179,7 +183,7 @@ export default {
       if (query !== '') {
         this.$http.post('/medicines/search', { query })
           .then(response => {
-              this.medicinesFound = response.data.concat(this.medicinesInUse)
+            this.medicinesFound = response.data.concat(this.medicinesInUse)
           })
       }
     },
@@ -200,22 +204,22 @@ export default {
       this.$refs.prescriptionForm.validate((valid) => {
         if (valid) {
           this.$http.post('/prescriptions', this.form).then((response) => {
-              if (response.data.warnings === true) {
-                  this.warnings = response.data.warnings
-                  this.drugsInteraction = response.data.drugsInteraction
-              } else {
-                  this.$message({
-                      message: 'Prescrição cadastrada com sucesso',
-                      type: 'success'
-                  })
-                  this.clearForm()
-              }
+            if (response.data.warnings === true) {
+              this.warnings = response.data.warnings
+              this.drugsInteraction = response.data.drugsInteraction
+            } else {
+              this.$message({
+                message: 'Prescrição cadastrada com sucesso',
+                type: 'success'
+              })
+              this.clearForm()
+            }
           })
         } else {
-            this.$message({
-                message: 'Todos os campos, inclusive de medicamentos, são obrigatórios',
-                type: 'warning'
-            })
+          this.$message({
+            message: 'Todos os campos, inclusive de medicamentos, são obrigatórios',
+            type: 'warning'
+          })
         }
       })
     },
@@ -223,43 +227,43 @@ export default {
       return 'Med' + (index + 1)
     },
     removeMedicine(index) {
-        if (this.form.medicines.length > 1) {
-            this.$confirm('Deseja remover este medicamento da prescrição?', 'Atenção!', {
-                confirmButtonText: 'Sim, remover',
-                cancelButtonText: 'Cancelar',
-                type: 'error',
-            }).then(() => {
-                if (this.form.medicines.length - 1 === index) this.activeMedicine = 'Med' + index
+      if (this.form.medicines.length > 1) {
+        this.$confirm('Deseja remover este medicamento da prescrição?', 'Atenção!', {
+          confirmButtonText: 'Sim, remover',
+          cancelButtonText: 'Cancelar',
+          type: 'error'
+        }).then(() => {
+          if (this.form.medicines.length - 1 === index) this.activeMedicine = 'Med' + index
 
-                this.$delete(this.form.medicines, index)
+          this.$delete(this.form.medicines, index)
 
-                this.$message({
-                    type: 'success',
-                    message: 'Medicamento removido'
-                })
-            })
-        } else {
-            this.$message({
-                message: 'Não é possível remover o único medicamento',
-                type: 'info'
-            })
-        }
+          this.$message({
+            type: 'success',
+            message: 'Medicamento removido'
+          })
+        })
+      } else {
+        this.$message({
+          message: 'Não é possível remover o único medicamento',
+          type: 'info'
+        })
+      }
     },
     clearForm() {
-        this.medicinesFound = []
-        this.activeMedicine = 'Med1'
-        this.warnings = false
-        this.drugsInteraction = []
+      this.medicinesFound = []
+      this.activeMedicine = 'Med1'
+      this.warnings = false
+      this.drugsInteraction = []
 
-        this.form = {
-            doctor_id: null,
-            patient_id: null,
-            medicines: [
-                {id: null, name: null, route_of_administration: null, dosage: null}
-            ]
-        }
+      this.form = {
+        doctor_id: null,
+        patient_id: null,
+        medicines: [
+          { id: null, name: null, route_of_administration: null, dosage: null }
+        ]
+      }
 
-        this.$refs.prescriptionForm.resetFields()
+      this.$refs.prescriptionForm.resetFields()
     }
   }
 }

@@ -1,0 +1,16 @@
+.auth-header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  .auth-header-logo {
+    display: flex;
+    align-items: center;
+  }
+  .auth-header-title {
+    display: flex;
+    align-items: center;
+    font-weight: 900;
+  }
+}

@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { HeaderComponent } from '../../components/header/header.component';
+
 import { AuthComponent } from './auth.component';
+import { CardModule } from 'src/app/shared';
 
 describe('AuthComponent', () => {
   let component: AuthComponent;
@@ -8,7 +11,8 @@ describe('AuthComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuthComponent ]
+      declarations: [ AuthComponent, HeaderComponent ],
+      imports: [ CardModule ]
     })
     .compileComponents();
   }));

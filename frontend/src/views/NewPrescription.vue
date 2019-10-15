@@ -93,6 +93,8 @@
 
                     </el-row>
 
+                    <el-link type="danger" @click="removeMedicine(index)">Remover este medicamento</el-link>
+
                 </el-tab-pane>
             </el-tabs>
 
@@ -202,6 +204,13 @@ components: {
     },
     tabName(index) {
       return 'Med' + (index + 1)
+    },
+    removeMedicine(index) {
+        if (this.form.medicines.length > 1) {
+            if (this.form.medicines.length - 1 === index) this.activeMedicine = 'Med' + index
+
+            this.$delete(this.form.medicines, index)
+        }
     },
     clearForm() {
         this.medicinesFound = []

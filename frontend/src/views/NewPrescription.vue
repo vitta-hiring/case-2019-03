@@ -3,15 +3,17 @@
         <el-form
             :model="form"
             ref="prescriptionForm"
-            :rules="prescriptionFormRules"
             labelPosition="top"
             label-width="200px">
 
-            <h4>Prescriçao de Medicamentos</h4>
+            <h4>Prescrição de Medicamentos</h4>
 
             <el-row :gutter="20">
                 <el-col :span="12" :xs="24">
-                    <el-form-item label="Escolha o Médico" prop="doctor_id">
+                    <el-form-item
+                        label="Escolha o Médico"
+                        prop="doctor_id"
+                        :rules="{required: true, message: 'Campo obrigatório', trigger: 'change'}">
                         <el-select
                             v-model="form.doctor_id"
                             filterable
@@ -27,7 +29,10 @@
                 </el-col>
 
                 <el-col :span="12" :xs="24">
-                    <el-form-item label="Escolha o Paciente" prop="patient_id">
+                    <el-form-item
+                        label="Escolha o Paciente"
+                        prop="patient_id"
+                        :rules="{required: true, message: 'Campo obrigatório', trigger: 'change'}">
                         <el-select
                             v-model="form.patient_id"
                             filterable
@@ -49,12 +54,16 @@
                 <el-tab-pane
                     :label="tabName(index)"
                     :name="tabName(index)"
-                    v-for="(medicine, index) in form.medicines ">
+                    v-for="(medicine, index) in form.medicines"
+                    :key="index">
 
                     <el-row :gutter="20">
 
                         <el-col :span="14" :xs="24">
-                            <el-form-item label="Medicamento" :required="true">
+                            <el-form-item
+                                label="Medicamento"
+                                :prop="'medicines.' + index + '.id'"
+                                :rules="{required: true, message: 'Campo obrigatório', trigger: 'blur'}">
                                 <el-select
                                     v-model="medicine.id"
                                     filterable
@@ -73,7 +82,10 @@
                         </el-col>
 
                         <el-col :span="10" :xs="24">
-                            <el-form-item label="Via de Administraçao" :required="true">
+                            <el-form-item
+                                label="Via de Administraçao"
+                                :prop="'medicines.' + index + '.route_of_administration'"
+                                :rules="{required: true, message: 'Campo obrigatório', trigger: 'blur'}">
                                 <el-input v-model="medicine.route_of_administration"></el-input>
                             </el-form-item>
                         </el-col>
@@ -83,7 +95,10 @@
                     <el-row :gutter="20" :xs="24">
 
                         <el-col :span="24">
-                            <el-form-item label="Posologia" :required="true">
+                            <el-form-item
+                                label="Posologia"
+                                :prop="'medicines.' + index + '.dosage'"
+                                :rules="{required: true, message: 'Campo obrigatório', trigger: 'blur'}">
                                 <el-input
                                     v-model="medicine.dosage"
                                     type="textarea"
@@ -93,7 +108,7 @@
 
                     </el-row>
 
-                    <el-link type="danger" @click="removeMedicine(index)">Remover este medicamento</el-link>
+                    <el-link type="danger" class="btn-remove-medicine" @click="removeMedicine(index)">Remover este medicamento</el-link>
 
                 </el-tab-pane>
             </el-tabs>
@@ -112,7 +127,7 @@
                     <el-button
                         type="success"
                         icon="el-icon-check"
-                        @click="savePrescription">Registrar Prescriçao
+                        @click="savePrescription">Registrar Prescrição
                     </el-button>
                 </el-col>
             </el-row>
@@ -139,14 +154,6 @@ export default {
         ]
       },
       activeMedicine: 'Med1',
-      prescriptionFormRules: {
-        doctor_id: [
-          { required: true, message: 'Campo obrigatorio', trigger: 'change' }
-        ],
-        patient_id: [
-          { required: true, message: 'Campo obrigatorio', trigger: 'change' }
-        ]
-      },
       warnings: false,
       drugsInteraction: [],
     }
@@ -199,6 +206,11 @@ components: {
                   this.clearForm()
               }
           })
+        } else {
+            this.$message({
+                message: 'Todos os campos, inclusive de medicamentos, são obrigatórios',
+                type: 'warning'
+            })
         }
       })
     },
@@ -207,9 +219,25 @@ components: {
     },
     removeMedicine(index) {
         if (this.form.medicines.length > 1) {
-            if (this.form.medicines.length - 1 === index) this.activeMedicine = 'Med' + index
+            this.$confirm('Deseja remover este medicamento da prescrição?', 'Atenção!', {
+                confirmButtonText: 'Sim, remover',
+                cancelButtonText: 'Cancelar',
+                type: 'error',
+            }).then(() => {
+                if (this.form.medicines.length - 1 === index) this.activeMedicine = 'Med' + index
 
-            this.$delete(this.form.medicines, index)
+                this.$delete(this.form.medicines, index)
+
+                this.$message({
+                    type: 'success',
+                    message: 'Medicamento removido'
+                })
+            })
+        } else {
+            this.$message({
+                message: 'Não é possível remover o único medicamento',
+                type: 'info'
+            })
         }
     },
     clearForm() {
@@ -242,7 +270,7 @@ components: {
     }
 
     .el-form-item {
-        margin-bottom: 5px;
+        margin-bottom: 15px;
     }
 
     .el-select {
@@ -259,5 +287,9 @@ components: {
 
     .actions-footer {
         margin-top: 20px;
+    }
+
+    .btn-remove-medicine {
+        margin-top: 15px;
     }
 </style>

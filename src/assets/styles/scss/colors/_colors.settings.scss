@@ -1,0 +1,52 @@
+$contrasts: 'default', 'contrast-black';
+
+$teal-blue: #007fad;
+$azure: #00a5e3;
+$gunmetal: #424458;
+$battleship-grey: #74748b;
+$gray-82: #d1d1d1;
+$concrete: #f3f3f3;
+$white: #FFFFFF;
+$crismon: #de1111;
+$sunflower: #ffd800;
+$kelly-green: #00af30;
+$cerulean: #0095cc;
+$peacock-blue: #00688e;
+$black: #000000;
+$pale-grey: #F3FAFD;
+$greyish-brown: #404040;
+$greyish-brown-two: #505050;
+$brownish-grey: #6e6b6b;
+$brownish-grey-two: #646464;
+$brown-grey: #8d8d8d;
+$very-light: #d0d0d0;
+$pale-blue: #cef2ff;
+
+$default: (
+  'azure': $azure,
+  'battleship-grey': $battleship-grey,
+  'black': $black,
+  'cerulean': $cerulean,
+  'concrete': $concrete,
+  'crismon': $crismon,
+  'gray-82': $gray-82,
+  'gunmetal': $gunmetal,
+  'kelly-green': $kelly-green,
+  'pale-grey': $pale-grey,
+  'peacock-blue': $peacock-blue,
+  'sunflower': $sunflower,
+  'teal-blue': $teal-blue,
+  'white': $white,
+  'pale-blue': $pale-blue,
+  'brown-grey': $brown-grey,
+  'brownish-grey-two': $brownish-grey-two,
+);
+
+
+$colors: (
+  'default': $default,
+);
+
+$colors_font: (
+  'default': $default,
+);

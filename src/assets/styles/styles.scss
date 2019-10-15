@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+@import './scss/utils/reset';
+@import './scss/breakpoints/breakpoints';
+@import './scss/colors/colors';
+@import './scss/typography/typography';
+
+*, html {
+  box-sizing: border-box;
+}
+
+.container {
+  display: block;
+  width: 100%;
+  max-width: 592px;
+  padding: 0 12px;
+  margin: auto;
+}
+
+@include set-base-colors();
+
+@include set-defaults-typographys();
+
+

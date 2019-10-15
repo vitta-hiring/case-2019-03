@@ -1,0 +1,25 @@
+@mixin getFontSize($size) {
+  font-size: $size + 0px;
+  font-size: _calc($size);
+}
+
+@mixin set-defaults-typographys() {
+
+  *, html {
+    letter-spacing: $base_font_letter_spacing;
+    font-size-adjust: $base_font_ajust;
+  }
+
+  body {
+    font-size: _calc($base_font_size_default);
+    @include bp-large-up() {
+      font-size: _calc($base_font_size_largest);
+    }
+    font-weight: $base_font_weight;
+    font-family: $base_font_family;
+    line-height: $base_font_line_height;
+    -webkit-font-smoothing: $base_font_smoothing-webkit;
+    -moz-osx-font-smoothing: $base_font_smoothing-moz-osx;
+    text-rendering: $base_font_rendering;
+  }
+}

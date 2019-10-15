@@ -1,0 +1,23 @@
+@function get-color($color, $contrast: 'default') {
+  $colors_contrast: map-get($colors, $contrast);
+  $setColor: map-get($colors_contrast, $color);
+  @if $setColor {
+    @return $setColor;
+  } @else {
+    // Libsass still doesn't seem to support @error
+    @warn "=> ERROR: COLOR NOT FOUND! <= | Your #{$color}, $contrast combination did not match any of the values in the $colors map.";
+    @return null;
+  }
+};
+
+@function get-color-font($color, $contrast: 'default') {
+  $colors_contrast: map-get($colors_font, $contrast);
+  $setColor: map-get($colors_contrast, $color);
+  @if $setColor {
+    @return $setColor;
+  } @else {
+    // Libsass still doesn't seem to support @error
+    @warn "=> ERROR: COLOR NOT FOUND! <= | Your #{$color}, $contrast combination did not match any of the values in the $colors map.";
+    @return null;
+  }
+};

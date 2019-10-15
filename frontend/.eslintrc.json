@@ -1,0 +1,35 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": [
+        "plugin:vue/essential",
+        "standard"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "vue"
+    ],
+    "rules": {
+        "no-console": 0,
+        "no-undef": 0,
+        "space-before-function-paren": 0,
+        "object-property-newline": 0,
+        "vue/order-in-components": 0,
+        "vue/max-attributes-per-line": [2, {
+            "singleline": 2,
+            "multiline": {
+                "max": 2,
+                "allowFirstLine": false
+            }
+        }]
+    }
+}

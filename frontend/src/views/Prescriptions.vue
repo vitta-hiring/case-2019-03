@@ -6,35 +6,20 @@
             <el-table-column type="expand">
                 <template slot-scope="props">
 
-                    <el-table
-                        :data="props.row.medicines"
-                        style="width: 100%"
-                        size="mini">
-                        <el-table-column
-                            prop="medicine.name"
-                            label="Medicamento"
-                            width="180">
-                        </el-table-column>
-                        <el-table-column
-                            prop="route_of_administration"
-                            label="Via"
-                            width="180">
-                        </el-table-column>
-                        <el-table-column
-                            prop="dosage"
-                            label="Posologia">
-                        </el-table-column>
-                    </el-table>
+                    <p><b>Médico:</b> {{ props.row.doctor.name }}</p>
+
+                    <el-card class="box-card" v-for="medicine in props.row.medicines">
+                        <p><b>Medicamento:</b> {{ medicine.medicine.name }}</p>
+                        <p><b>Via de Administração:</b> {{ medicine.route_of_administration }}</p>
+                        <p><b>Posologia:</b> {{ medicine.dosage }}</p>
+                    </el-card>
 
                 </template>
             </el-table-column>
             <el-table-column
                 label="Data"
-                prop="created_at">
-            </el-table-column>
-            <el-table-column
-                label="Medico"
-                prop="doctor.name">
+                prop="created_at"
+                width="200">
             </el-table-column>
             <el-table-column
                 label="Paciente"
@@ -63,3 +48,18 @@ export default {
   }
 }
 </script>
+
+<style>
+    .el-table__expanded-cell[class*=cell] {
+        padding: 10px;
+    }
+
+    .el-card {
+        margin-bottom: 15px;
+    }
+
+    .el-card__body {
+        padding: 10px 20px;
+        color: #666;
+    }
+</style>

@@ -121,7 +121,7 @@
                         type="primary"
                         icon="el-icon-plus"
                         @click="addMedicine">
-                        Adicionar Medicamento
+                        Medicamento
                     </el-button>
 
                     <el-button

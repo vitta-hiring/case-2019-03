@@ -18,7 +18,7 @@ class Prescription extends Model {
 
   static castDates (field, value) {
     if (field === 'created_at') {
-      return value ? value.format("DD/MM/YYYY HH:mm") : value
+      return value ? value.format("DD/MM/YYYY") : value
     }
 
     return super.formatDates(field, value)

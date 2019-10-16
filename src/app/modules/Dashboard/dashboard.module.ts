@@ -11,6 +11,7 @@ import { CardModule, FormFieldModule, ButtonModule } from '../../shared';
 import { MedicineInfoComponent } from './components/medicine-info/medicine-info.component';
 import { MedicineStatusComponent } from './components/medicine-status/medicine-status.component';
 import { MedicineListComponent } from './components/medicine-list/medicine-list.component';
+import { PrescriptionsListComponent } from './components/prescriptions-list/prescriptions-list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MedicineListComponent } from './components/medicine-list/medicine-list.
     PrescriptionComponent,
     MedicineInfoComponent,
     MedicineStatusComponent,
-    MedicineListComponent
+    MedicineListComponent,
+    PrescriptionsListComponent
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,29 @@
+@import '../../../../../assets/styles/scss/breakpoints/breakpoints';
+
 .dashboard-prescriptions {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 0 12px;
+
+  .dashboard-prescriptions-list,
+  .dashboard-perscriptions-form{
+    margin-bottom: 24px;
+  }
+
+  @include bp-large-up(){
+    flex-direction: row;
+    padding: 0 24px;
+    .dashboard-perscriptions-form {
+      width: 60%;
+      margin-right: 12px;
+    }
+
+    .dashboard-prescriptions-list {
+      width: 40%;
+      margin-left: 12px;
+    }
+
+  }
+
 }

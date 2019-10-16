@@ -1,0 +1,104 @@
+@import '../../../../../assets/styles/scss/breakpoints/breakpoints';
+@import '../../../../../assets/styles/scss/colors/colors';
+@import '../../../../../assets/styles/scss/typography/typography';
+
+.prescriptions-list {
+  border: 1px solid get-color('gray-82');
+  background-color: rgba(get-color('gray-82'), .2);
+  padding: 6px;
+  border-radius: 4px;
+
+  .prescriptions-list-header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    @include getFontSize(20px);
+    img {
+      margin-right: 6px;
+    }
+  }
+
+  .prescriptions-list-group {
+    border: 1px solid get-color('gray-82');
+    background-color: get-color('white');
+    padding: 12px;
+    margin: 12px 0;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+
+    @include bp-medium-up(){
+      flex-direction: row;
+    }
+
+    .prescriptions-list-group-header {
+      background-color: get-color('azure');
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      color: get-color('white');
+      text-align: center;
+      @include bp-medium-up(){
+        width: 15%;
+        height: max-content;
+        margin-right: 12px;
+      }
+      h1 {
+        padding: 6px 0 4px 0;
+        @include getFontSize(24px);
+        line-height: 1;
+      }
+      h4 {
+        padding: 0 0 6px 0;
+        @include getFontSize(16px);
+        line-height: 1;
+      }
+      .prescriptions-list-group-header-footer {
+        @include getFontSize(12px);
+        background-color: rgba(get-color('black'), .16);
+        padding: 6px;
+      }
+    }
+
+    .prescriptions-list-group-itens {
+      margin-top: 12px;
+      width: 100%;
+      position: relative;
+      @include bp-medium-up(){
+        margin-top: 0;
+        padding-left: 12px;
+        &:before{
+          content: '';
+          position: absolute;
+          top: 5px;
+          bottom: 5px;
+          width: 1px;
+          background-color: get-color('gray-82');
+          left: 0;
+        }
+      }
+      list-style: none;
+      .prescriptions-list-group-itens-item {
+        padding: 6px 0;
+        &:not(:last-child) {
+          border-bottom: 1px solid get-color('gray-82');
+        }
+        .prescriptions-list-group-itens-item-header {
+          h1 {
+            @include getFontSize(18px);
+            line-height: 1;
+          }
+          .prescriptions-list-group-itens-item-header-fulldate {
+            @include getFontSize(12px);
+            color: get-color('azure');
+          }
+        }
+        .list {
+          margin-left: 30px;
+        }
+      }
+    }
+
+  }
+
+}

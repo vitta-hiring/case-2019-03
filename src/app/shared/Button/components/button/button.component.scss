@@ -8,10 +8,21 @@
   font-weight: 700;
   border-radius: 4px;
   transition: all .4s ease;
+  border: 1px solid transparent;
 
   &.is-disabled, &:disabled {
     background-color: get-color('gray-82');
     color: get-color('battleship-grey');
+  }
+
+  &.is-outline {
+    border-color: get-color('azure');
+    color: get-color('azure');
+    background-color: transparent;
+    &.is-disabled, &:disabled {
+      border-color: get-color('gray-82');
+      color: get-color('battleship-grey');
+    }
   }
 
   &.is-size-small{

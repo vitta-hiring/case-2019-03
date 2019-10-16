@@ -22,6 +22,7 @@ export class ButtonComponent {
   @Input() size: ButtonPossibleSize = 'medium';
   @Input() isDisabled = false;
   @Input() isFullSize = false;
+  @Input() isOutline = false;
 
   handleButtonSize(size: ButtonPossibleSize) {
     if (this.size === size) {

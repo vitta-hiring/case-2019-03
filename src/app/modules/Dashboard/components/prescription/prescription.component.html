@@ -6,37 +6,55 @@
         <h1>Nova Receita</h1>
       </div>
     </card-header>
-    <form>
-      <card-content>
+
+    <card-content>
+      <form>
+
         <div class="prescription-field" role="none">
           <form-field>
-            <form-field-label>Paciente</form-field-label>
-            <input FormFieldInput type="text" name="patient" aria-label="Nome do paciente" autofocus/>
-          </form-field>
-        </div>
+              <form-field-label>Paciente</form-field-label>
+              <input FormFieldInput type="text" name="patient" aria-label="Nome do paciente" autofocus/>
+            </form-field>
+          </div>
         <div class="prescription-field" role="none">
           <form-field>
             <form-field-label>Medicamento</form-field-label>
             <input FormFieldInput type="text" name="medicine" aria-label="Nome do medicamento"/>
           </form-field>
         </div>
+
         <div class="prescription-medicine-info" role="none">
           <dashboard-medicine-info></dashboard-medicine-info>
         </div>
+
         <div class="prescription-medicine-status" role="none">
           <dashboard-medicine-status></dashboard-medicine-status>
         </div>
-      </card-content>
 
-      <card-footer>
-        <shared-button
-          type="submit"
-          isFullSize="true"
-        >
-          Adicionar
-        </shared-button>
-      </card-footer>
+        <div role="none">
+          <shared-button
+            isFullSize="true"
+            isOutline="true"
+          >
+            Confirmar medicamento
+          </shared-button>
+          <button></button>
+        </div>
 
-    </form>
+      </form>
+    </card-content>
+
+    <card-content>
+      <dashboard-medicine-list></dashboard-medicine-list>
+    </card-content>
+
+    <card-footer>
+      <shared-button
+        isFullSize="true"
+      >
+        Finalizar Prescrição
+      </shared-button>
+    </card-footer>
+
   </shared-card>
 </section>

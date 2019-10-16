@@ -10,6 +10,7 @@ import { PrescriptionComponent } from './components/prescription/prescription.co
 import { CardModule, FormFieldModule, ButtonModule } from '../../shared';
 import { MedicineInfoComponent } from './components/medicine-info/medicine-info.component';
 import { MedicineStatusComponent } from './components/medicine-status/medicine-status.component';
+import { MedicineListComponent } from './components/medicine-list/medicine-list.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MedicineStatusComponent } from './components/medicine-status/medicine-s
     PrescriptionsComponent,
     PrescriptionComponent,
     MedicineInfoComponent,
-    MedicineStatusComponent
+    MedicineStatusComponent,
+    MedicineListComponent
   ],
   imports: [
     CommonModule,

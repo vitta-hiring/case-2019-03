@@ -5,6 +5,8 @@ import { FormComponent } from '../../components/form/form.component';
 
 import { AuthComponent } from './auth.component';
 import { CardModule, FormFieldModule, ButtonModule } from '../../../../shared';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AuthComponent', () => {
   let component: AuthComponent;
@@ -13,7 +15,7 @@ describe('AuthComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ AuthComponent, HeaderComponent, FormComponent ],
-      imports: [ CardModule, FormFieldModule, ButtonModule ]
+      imports: [BrowserAnimationsModule, ReactiveFormsModule, CardModule, FormFieldModule, ButtonModule ]
     })
     .compileComponents();
   }));

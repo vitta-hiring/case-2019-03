@@ -1,5 +1,14 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
+/**
+ * Possible type of button.
+ */
+export type ButtonPossibleType = 'button' | 'reset' | 'menu' | 'submit';
+
+/**
+ * Possible Button Size
+ */
+export type ButtonPossibleSize = 'small' | 'medium' | 'large';
 
 @Component({
   selector: 'shared-button',
@@ -7,14 +16,18 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./button.component.scss']
 })
 
-export class ButtonComponent implements OnInit {
+export class ButtonComponent {
 
-  @Input() type = 'button';
+  @Input() type: ButtonPossibleType = 'button';
+  @Input() size: ButtonPossibleSize = 'medium';
+  @Input() isDisabled = false;
   @Input() isFullSize = false;
 
-  constructor() { }
-
-  ngOnInit() {
+  handleButtonSize(size: ButtonPossibleSize) {
+    if (this.size === size) {
+      return true;
+    }
+    return false;
   }
 
 }

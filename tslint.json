@@ -21,7 +21,8 @@
       "element",
       "app",
       "kebab-case",
-      "shared"
+      "shared",
+      "dashboard"
     ],
     "import-blacklist": [
       true,

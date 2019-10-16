@@ -1,0 +1,51 @@
+@import '../../../../../assets/styles/scss/colors/colors';
+@import '../../../../../assets/styles/scss/typography/typography';
+
+.medicine-status {
+
+  .medicine-status-alert {
+    border: 1px dashed get-color('crismon');
+    border-radius: 4px;
+    background-color: rgba(get-color('crismon'), .16);
+    padding: 6px;
+
+    .medicine-status-alert-header {
+      h1 {
+        @include getFontSize(16px);
+        color: get-color('crismon');
+      }
+    }
+    .medicine-status-alert-content {
+      padding: 6px 0;
+      .medicine-status-alert-content-header {
+        @include getFontSize(14px);
+        color: get-color('black');
+        font-weight: 700;
+      }
+      .medicine-status-alert-content-list {
+        margin-left: 30px;
+        .medicine-status-alert-content-list-item {
+          &:not(:last-child) {
+            padding-bottom: 6px;
+          }
+        }
+      }
+    }
+
+    .medicine-status-alert-footer {
+      .medicine-status-alert-footer-title {
+        @include getFontSize(14px);
+        font-weight: 700;
+        small {
+          margin-right: 4px;
+        }
+      }
+      .medicine-status-alert-footer-desc {
+        @include getFontSize(16px);
+        color: get-color('black');
+      }
+    }
+
+  }
+
+}

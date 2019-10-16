@@ -1,0 +1,42 @@
+@import '../../../../../assets/styles/scss/breakpoints/breakpoints';
+@import '../../../../../assets/styles/scss/colors/colors';
+@import '../../../../../assets/styles/scss/typography/typography';
+
+.medicine-info {
+  border: 1px dashed get-color('battleship-grey');
+  background-color: get-color('concrete');
+  padding: 6px;
+  border-radius: 4px;
+  .medicine-info-list {
+    list-style: none;
+    .medicine-info-list-item {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+
+      &:not(:last-child) {
+        padding-bottom: 6px;
+      }
+      .medicine-info-list-item-key {
+        @include getFontSize(12px);
+        font-weight: 700;
+        line-height: 1;
+      }
+      .medicine-info-list-item-value {
+        @include getFontSize(16px);
+        color: get-color('black');
+      }
+
+      @include bp-medium-up() {
+        align-items: center;
+        flex-direction: row;
+        .medicine-info-list-item-key {
+          @include getFontSize(16px);
+          line-height: 1.5;
+          margin-right: 4px;
+        }
+      }
+
+    }
+  }
+}

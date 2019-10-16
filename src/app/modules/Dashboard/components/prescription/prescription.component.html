@@ -1,0 +1,42 @@
+<section class="prescription">
+  <shared-card>
+    <card-header>
+      <div role="none" class="prescription-header">
+        <img src="https://img.icons8.com/cotton/64/000000/treatment-plan.png" alt="" aria-hidden="true" role="none" width="36" height="36">
+        <h1>Nova Receita</h1>
+      </div>
+    </card-header>
+    <form>
+      <card-content>
+        <div class="prescription-field" role="none">
+          <form-field>
+            <form-field-label>Paciente</form-field-label>
+            <input FormFieldInput type="text" name="patient" aria-label="Nome do paciente" autofocus/>
+          </form-field>
+        </div>
+        <div class="prescription-field" role="none">
+          <form-field>
+            <form-field-label>Medicamento</form-field-label>
+            <input FormFieldInput type="text" name="medicine" aria-label="Nome do medicamento"/>
+          </form-field>
+        </div>
+        <div class="prescription-medicine-info" role="none">
+          <dashboard-medicine-info></dashboard-medicine-info>
+        </div>
+        <div class="prescription-medicine-status" role="none">
+          <dashboard-medicine-status></dashboard-medicine-status>
+        </div>
+      </card-content>
+
+      <card-footer>
+        <shared-button
+          type="submit"
+          isFullSize="true"
+        >
+          Adicionar
+        </shared-button>
+      </card-footer>
+
+    </form>
+  </shared-card>
+</section>

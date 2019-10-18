@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PrescriptionComponent } from './prescription.component';
+import { CardModule, ButtonModule, FormFieldModule } from 'src/app/shared';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('PrescriptionComponent', () => {
   let component: PrescriptionComponent;
@@ -8,7 +10,8 @@ describe('PrescriptionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PrescriptionComponent ]
+      declarations: [ PrescriptionComponent ],
+      imports: [ CardModule, ButtonModule, FormFieldModule, ReactiveFormsModule ]
     })
     .compileComponents();
   }));

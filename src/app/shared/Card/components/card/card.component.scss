@@ -1,0 +1,10 @@
+@import '../../../../../assets/styles/scss/colors/colors';
+
+.shared-card {
+  background-color: get-color('white');
+  box-shadow: 2px 0 6px rgba(0,0,0, .16);
+  border-radius: 4px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}

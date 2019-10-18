@@ -1,0 +1,112 @@
+@import '../../../../../assets/styles/scss/colors/colors';
+@import '../../../../../assets/styles/scss/typography/typography';
+
+.medicine-status-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: rgba( get-color('black'), .8);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .medicine-status {
+    width: 100%;
+    min-width: 300px;
+    max-width: 500px;
+    margin: 12px;
+    padding: 12px;
+    background-color: get-color('white');
+    border-radius: 4px;
+    border: 1px solid get-color('concrete');
+    max-height: 60%;
+    overflow-y: auto;
+
+    .medicine-status-alert {
+      border-radius: 4px;
+      padding: 6px;
+      margin-bottom: 12px;
+
+      .medicine-status-alert-header {
+        h1 {
+          @include getFontSize(16px);
+        }
+      }
+
+      &.info {
+        border: 1px dashed get-color('teal-blue');
+        background-color: rgba(get-color('teal-blue'), .16);
+        .medicine-status-alert-header {
+          h1 {
+            color: get-color('teal-blue');
+          }
+        }
+      }
+      &.warning {
+        border: 1px dashed get-color('sunflower');
+        background-color: rgba(get-color('sunflower'), .16);
+        .medicine-status-alert-header {
+          h1 {
+            color: get-color('amber');
+          }
+        }
+      }
+      &.danger {
+        border: 1px dashed get-color('crismon');
+        background-color: rgba(get-color('crismon'), .16);
+        .medicine-status-alert-header {
+          h1 {
+            color: get-color('crismon');
+          }
+        }
+      }
+
+
+      .medicine-status-alert-content {
+        padding: 6px 0;
+        .medicine-status-alert-content-header {
+          @include getFontSize(14px);
+          color: get-color('black');
+          font-weight: 700;
+        }
+        .medicine-status-alert-content-list {
+          margin-left: 30px;
+          .medicine-status-alert-content-list-item {
+            &:not(:last-child) {
+              padding-bottom: 6px;
+            }
+          }
+        }
+      }
+
+      .medicine-status-alert-footer {
+        .medicine-status-alert-footer-title {
+          @include getFontSize(14px);
+          font-weight: 700;
+          small {
+            margin-right: 4px;
+          }
+        }
+        .medicine-status-alert-footer-desc {
+          @include getFontSize(16px);
+          color: get-color('black');
+        }
+      }
+
+    }
+
+    .medicine-status-alert-footer {
+      .medicine-status-alert-footer-btn {
+        &:first-child {
+          margin-bottom: 12px;
+        }
+      }
+    }
+
+  }
+
+}

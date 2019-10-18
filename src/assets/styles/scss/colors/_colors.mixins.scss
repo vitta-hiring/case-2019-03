@@ -1,0 +1,17 @@
+@mixin set-base-colors() {
+  body {
+    color: get-color('gunmetal');
+    background-color: get-color('concrete');
+  }
+}
+
+@mixin set-colors-classes() {
+  @each $name, $color in $default {
+    .bg-#{$name} {
+      background-color: $color;
+    }
+    .#{$name} {
+      color: $color;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+@import '../../../../../assets/styles/scss/typography/typography';
+
+.prescription {
+
+  .prescription-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    @include getFontSize(20px);
+  }
+}

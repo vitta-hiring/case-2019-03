@@ -1,0 +1,59 @@
+<section class="prescription">
+  <shared-card>
+    <card-header>
+      <div role="none" class="prescription-header">
+        <img src="https://img.icons8.com/cotton/64/000000/treatment-plan.png" alt="" aria-hidden="true" role="none" width="36" height="36">
+        <h1>Nova Receita</h1>
+      </div>
+    </card-header>
+
+    <card-content>
+      <div class="prescription-field" role="none">
+        <form [formGroup]="prescriptionForm">
+          <form-field>
+            <form-field-label>Paciente</form-field-label>
+            <input FormFieldInput formControlName="patient" type="text" name="patient" aria-label="Nome do paciente" autofocus/>
+            <form-field-error *ngIf="hasFieldError('patient')">{{getErrorMensage('patient')}}</form-field-error>
+          </form-field>
+        </form>
+      </div>
+    </card-content>
+
+    <card-content>
+
+      <div class="prescription-field" role="none">
+        <form [formGroup]="prescriptionForm">
+          <form-field>
+            <form-field-label>Buscar Medicamento: </form-field-label>
+            <input FormFieldInput formControlName="medicine" type="text" name="medicine" aria-label="Nome do medicamento"/>
+            <form-field-error *ngIf="hasFieldError('medicine')">{{getErrorMensage('medicine')}}</form-field-error>
+          </form-field>
+        </form>
+      </div>
+
+      <div class="prescription-medicine-info" role="none">
+        <dashboard-medicine-info [options]="medicineDataList" (handleSelect)="selectedMedicine($event)"></dashboard-medicine-info>
+      </div>
+
+      <div class="prescription-medicine-status" role="none">
+        <dashboard-medicine-status [list]="drugsInteractions" [currentMedicine]="waitingConfirmation"></dashboard-medicine-status>
+      </div>
+
+    </card-content>
+
+    <card-content>
+      <dashboard-medicine-list></dashboard-medicine-list>
+    </card-content>
+
+    <card-footer>
+      <shared-button
+        isFullSize="true"
+        [isDisabled]="hasAvalibleForNewPrescription()"
+        (click)="createNewPrescription()"
+      >
+        Criar Prescrição
+      </shared-button>
+    </card-footer>
+
+  </shared-card>
+</section>

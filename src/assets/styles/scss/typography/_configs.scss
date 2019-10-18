@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,700,900&display=swap');
+
+$browser-context: 16 !default;
+
+$base_font_size_default: 14px;
+$base_font_size_largest: 16px;
+$base_font_family: 'Lato', sans-serif;
+$base_font_letter_spacing: 0.05em;
+$base_font_line_height: 1.6;
+$base_font_rendering: optimizeLegibility;
+$base_font_smoothing-webkit: antialiased;
+$base_font_smoothing-moz-osx: grayscale;
+$base_font_ajust: 100%;
+$base_font_weight: 400;
+
+$default: (
+  h1: 30px,
+  h2: 24px,
+  h3: 20px,
+  h4: 18px,
+  h5: 16px,
+  h6: 14px
+);
+
+$largest: (
+  h1: 48px,
+  h2: 32px,
+  h3: 26px,
+  h4: 20px,
+  h5: 18px,
+  h6: 16px
+);
+
+$displayDefault: (
+  1: 64px,
+  2: 48px,
+  3: 40px,
+  4: 36px
+);
+
+$displayLargest: (
+  1: 96px,
+  2: 80px,
+  3: 64px,
+  4: 56px
+);

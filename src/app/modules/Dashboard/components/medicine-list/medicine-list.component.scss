@@ -1,0 +1,30 @@
+@import '../../../../../assets/styles/scss/breakpoints/breakpoints';
+@import '../../../../../assets/styles/scss/typography/typography';
+@import '../../../../../assets/styles/scss/colors/colors';
+
+.medicine-list {
+  .medicine-list-header {
+    @include getFontSize(20px);
+  }
+  .medicine-list-items {
+    margin-left: 20px;
+    .medicine-list-items-desc {
+      padding-bottom: 6px;
+      &:last-child{
+        padding-bottom: 12px;
+      }
+
+      h1 {
+        @include getFontSize(18px);
+      }
+
+      .medicine-list-itens-desc-infos {
+        ul {
+          list-style: none;
+          @include getFontSize(12px);
+        }
+      }
+
+    }
+  }
+}

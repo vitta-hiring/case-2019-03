@@ -1,0 +1,14 @@
+<button class="shared-button"
+  [ngClass]="{
+    'is-full-size': isFullSize,
+    'is-outline': isOutline,
+    'is-size-small': handleButtonSize('small'),
+    'is-size-medium': handleButtonSize('medium'),
+    'is-size-large': handleButtonSize('large'),
+    'is-disabled': isDisabled
+  }"
+  [type]="type"
+  [disabled]="isDisabled"
+  >
+  <ng-content></ng-content>
+</button>

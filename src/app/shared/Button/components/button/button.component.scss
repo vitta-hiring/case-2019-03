@@ -1,0 +1,52 @@
+@import '../../../../../assets/styles/scss/colors/colors';
+@import '../../../../../assets/styles/scss/typography/typography';
+
+.shared-button {
+  display: flex;
+  border: 0;
+  background-color: get-color('azure');
+  font-weight: 700;
+  border-radius: 4px;
+  transition: all .4s ease;
+  border: 1px solid transparent;
+
+  &.is-disabled, &:disabled {
+    background-color: get-color('gray-82');
+    color: get-color('battleship-grey');
+  }
+
+  &.is-outline {
+    border-color: get-color('azure');
+    color: get-color('azure');
+    background-color: transparent;
+    &.is-disabled, &:disabled {
+      border-color: get-color('gray-82');
+      color: get-color('battleship-grey');
+    }
+  }
+
+  &.is-size-small{
+    padding: 6px 12px;
+    @include getFontSize(12px);
+  }
+  &.is-size-medium{
+    padding: 12px 24px;
+    @include getFontSize(16px);
+  }
+  &.is-size-large{
+    padding: 18px 30px;
+    @include getFontSize(18px);
+  }
+
+  &.is-full-size {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  &:not(.is-disabled):hover {
+    box-shadow: 0 0 4px rgba(get-color('black'), 0.37);
+  }
+
+
+}

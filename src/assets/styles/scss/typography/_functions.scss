@@ -1,0 +1,26 @@
+@function _calcRem($value, $context) {
+  @if (unitless($value)) {
+    $value: $value * 1px;
+  }
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+  @return $value / $context * 1rem;
+}
+
+@function _calcEm($value,){
+  @if (unitless($value)) {
+    $value: $value * 1px;
+  }
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+  @return $value / $context * 1em;
+}
+
+@function _calc($pixel, $context: $browser-context, $unit: 'rem') {
+  @if ($unit == 'rem') {
+    @return _calcRem($pixel, $context);
+  }
+  @return _calcEm($pixel, $context);
+}

@@ -1,0 +1,33 @@
+<section class="auth-form">
+  <form [formGroup]="authForm" (ngSubmit)="handleSubmit()">
+
+    <div class="auth-form-field" role="none">
+      <form-field>
+        <form-field-label>Usuário ( e-mail )</form-field-label>
+        <input FormFieldInput formControlName="email" type="text" name="email" aria-label="Email do usuário" autofocus/>
+        <form-field-error *ngIf="hasFieldError('email')">{{getErrorMensage('email')}}</form-field-error>
+      </form-field>
+    </div>
+
+    <div class="auth-form-field" role="none">
+      <form-field>
+        <form-field-label>Senha</form-field-label>
+        <input FormFieldInput formControlName="password" type="password" name="password" aria-label="Senha do usuário"/>
+        <form-field-error *ngIf="hasFieldError('password')">{{getErrorMensage('password')}}</form-field-error>
+      </form-field>
+    </div>
+
+    <p *ngIf="errorMessage" class="auth-form-error">
+      {{errorMessage}}
+    </p>
+
+    <div class="auth-form-btn" role="none">
+      <shared-button
+        type="submit"
+        isFullSize="true"
+        [isDisabled]="isButtonDisabled()"
+      >Acessar</shared-button>
+    </div>
+
+  </form>
+</section>

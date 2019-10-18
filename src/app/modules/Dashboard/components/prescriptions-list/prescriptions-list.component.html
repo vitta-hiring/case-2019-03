@@ -1,0 +1,35 @@
+<section class="prescriptions-list">
+  <header class="prescriptions-list-header">
+    <img src="https://img.icons8.com/cotton/64/000000/checklist--v2.png" alt="" aria-hidden="true" role="none" width="24" height="24">
+    <h1>Prescrições realizadas</h1>
+  </header>
+
+  <section class="prescriptions-list-group" *ngFor="let item of list">
+
+    <header class="prescriptions-list-group-header">
+      <h1>{{getDay(item.date)}}</h1>
+      <h4>{{getMonth(item.date)}}</h4>
+      <footer class="prescriptions-list-group-header-footer">
+        {{getYear(item.date)}}
+      </footer>
+    </header>
+
+    <ul class="prescriptions-list-group-itens">
+      <li class="prescriptions-list-group-itens-item" *ngFor="let pres of item.values">
+        <header role="none" class="prescriptions-list-group-itens-item-header">
+          <h1>Paciente: {{pres.patient}}</h1>
+          <small class="prescriptions-list-group-itens-item-header-fulldate">
+            {{pres.fullDate}} às {{pres.time}}
+          </small>
+        </header>
+        <ol class="list">
+          <li *ngFor="let drug of pres.drugs">
+            {{drug.Label}}
+          </li>
+        </ol>
+      </li>
+    </ul>
+
+  </section>
+
+</section>

@@ -1,0 +1,95 @@
+@mixin bp-xsmall-up() {
+  @media screen and (min-width: get-breakpoint('default', 'min')) {
+    @content;
+  }
+}
+
+@mixin bp-xsmall-down() {
+  @media screen and (max-width: get-breakpoint('default', 'max')){
+    @content;
+  }
+}
+
+@mixin bp-xsmall-only() {
+  @media screen and (min-width: get-breakpoint('default', 'min') ) and ( max-width: get-breakpoint('default', 'max')) {
+    @content;
+  }
+}
+
+@mixin bp-small-up() {
+  @media screen and (min-width: get-breakpoint('small', 'min')) {
+    @content;
+  }
+}
+
+@mixin bp-small-down() {
+  @media screen and (max-width: get-breakpoint('small', 'max')){
+    @content;
+  }
+}
+
+@mixin bp-small-only() {
+  @media screen and (min-width: get-breakpoint('small', 'min') ) and ( max-width: get-breakpoint('small', 'max')) {
+    @content;
+  }
+}
+
+@mixin bp-medium-up() {
+  @media screen and (min-width: get-breakpoint('medium', 'min')) {
+    @content;
+  }
+}
+
+@mixin bp-medium-down() {
+  @media screen and (max-width: get-breakpoint('medium', 'max')){
+    @content;
+  }
+}
+
+@mixin bp-medium-only() {
+  @media screen and (min-width: get-breakpoint('medium', 'min') ) and ( max-width: get-breakpoint('medium', 'max')) {
+    @content;
+  }
+}
+
+@mixin bp-large-up() {
+  @media screen and (min-width: get-breakpoint('large', 'min')) {
+    @content;
+  }
+}
+
+@mixin bp-large-down() {
+  @media screen and (max-width: get-breakpoint('large', 'max')){
+    @content;
+  }
+}
+
+@mixin bp-large-only() {
+  @media screen and (min-width: get-breakpoint('large', 'min') ) and ( max-width: get-breakpoint('large', 'max')) {
+    @content;
+  }
+}
+
+@mixin bp-xlarge-up() {
+  @media screen and (min-width: get-breakpoint('xlarge', 'min')) {
+    @content;
+  }
+}
+
+@mixin bp-xlarge-down() {
+  @media screen and (max-width: get-breakpoint('xlarge', 'max')){
+    @content;
+  }
+}
+
+@mixin bp-xlarge-only() {
+  @media screen and (min-width: get-breakpoint('xlarge', 'min') ) and ( max-width: get-breakpoint('xlarge', 'max')) {
+    @content;
+  }
+}
+
+@mixin bp-xxlarge-up() {
+  @media screen and (min-width: get-breakpoint('xxlarge', 'min')) {
+    @content;
+  }
+}

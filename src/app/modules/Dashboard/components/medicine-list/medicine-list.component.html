@@ -1,0 +1,28 @@
+<section class="medicine-list">
+  <header class="medicine-list-header">
+    Medicamentos adicionados à receita
+  </header>
+
+  <p *ngIf="!list || list.length === 0">
+    Nenhum medicamento foi inserido nesta receita
+  </p>
+
+  <ol class="medicine-list-items" *ngIf="list && list.length > 0">
+    <li class="medicine-list-items-desc" *ngFor="let med of list">
+      <h1>{{med.Label}}</h1>
+      <div class="medicine-list-itens-desc-infos" role="none">
+        <ul>
+          <li>
+            <strong role="none">Posologia: </strong>
+            <span role="none">{{med.Posologia}}</span>
+          </li>
+          <li>
+            <strong role="none">Via de Administração: </strong>
+            <span role="none">{{med.ViaAdministracao}} </span>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ol>
+
+</section>

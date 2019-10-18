@@ -1,0 +1,44 @@
+$small: (
+  min: 320px,
+  max: 767px,
+);
+$medium: (
+  min: 768px,
+  max: 1023px
+);
+$large: (
+  min: 1024px,
+  max: 1439px,
+);
+$xlarge: (
+  min: 1440px,
+  max: 1919px,
+);
+$xxlarge: (
+  min: 1920px,
+  max: 0
+);
+
+$breakpoints: (
+  small: $small,
+  medium: $medium,
+  large: $large,
+  xlarge: $xlarge,
+  xxlarge: $xxlarge
+);
+
+$screens: (
+  'default': 'screen',
+  'mobile-only': 'screen and (max-width: #{ get-breakpoint('small', 'max') })',
+  'mobile-up': 'screen and (max-width: #{ get-breakpoint('small', 'min') })',
+  'tablet-only': 'screen and (min-width: #{ get-breakpoint('medium', 'min') }) and (max-width: #{ get-breakpoint('medium', 'max') })',
+  'tablet-down': 'screen and (max-width: #{ get-breakpoint('medium', 'max') })',
+  'tablet-up': 'screen and (max-width: #{ get-breakpoint('medium', 'min') })',
+  'laptop-only': 'screen and (min-width: #{ get-breakpoint('large', 'min') }) and (max-width: #{ get-breakpoint('large', 'max') })',
+  'laptop-down': 'screen and (max-width: #{ get-breakpoint('large', 'max') })',
+  'laptop-up': 'screen and (max-width: #{ get-breakpoint('large', 'min') })',
+  'desktop-only': 'screen and (min-width: #{ get-breakpoint('xlarge', 'min') }) and (max-width: #{ get-breakpoint('xlarge', 'max') })',
+  'desktop-down': 'screen and (max-width: #{ get-breakpoint('xlarge', 'max') })',
+  'desktop-up': 'screen and (max-width: #{ get-breakpoint('xlarge', 'min') })',
+  '2k-up': 'screen and (max-width: #{ get-breakpoint('xxlarge', 'min') })',
+);

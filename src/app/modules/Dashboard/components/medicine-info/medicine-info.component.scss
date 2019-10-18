@@ -1,0 +1,102 @@
+@import '../../../../../assets/styles/scss/breakpoints/breakpoints';
+@import '../../../../../assets/styles/scss/colors/colors';
+@import '../../../../../assets/styles/scss/typography/typography';
+
+.medicine-info {
+  border: 1px dashed get-color('battleship-grey');
+  padding: 12px;
+  border-radius: 4px;
+  position: relative;
+  .medicine-info-list {
+    list-style: none;
+    max-height: 180px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    .medicine-info-list-item {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+
+      .medicine-info-list-item-btn {
+        padding: 12px 6px;
+        border: 0;
+        font-weight: 700;
+        text-align: left;
+        &:hover{
+          cursor: pointer;
+          background-color: get-color('gray-82');
+        }
+      }
+
+      &:not(:last-child) {
+        padding-bottom: 6px;
+      }
+
+    }
+  }
+
+  .selected-medicine {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: rgba( get-color('black'), .8);
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .selected-medicine-container {
+      width: 100%;
+      min-width: 300px;
+      max-width: 500px;
+      margin: 12px;
+      padding: 12px;
+      background-color: get-color('white');
+      border-radius: 4px;
+      border: 1px solid get-color('concrete');
+      .selected-medicine-header {
+        padding: 12px;
+        h1 {
+          @include getFontSize(20px);
+        }
+        margin-bottom: 12px;
+      }
+
+      .selected-medicine-form {
+        margin-bottom: 12px;
+      }
+
+      .selected-medicine-buttons {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: flex-end;
+        flex-direction: column;
+
+        .selected-medicine-buttons-item {
+          width: 100%;
+          &:first-child {
+            margin-bottom: 6px;
+          }
+        }
+
+        @include bp-medium-up() {
+          flex-direction: row;
+          .selected-medicine-buttons-item {
+            width: auto;
+            &:first-child {
+              margin-bottom: 0;
+              margin-right: 6px;
+            }
+          }
+        }
+
+      }
+    }
+
+  }
+
+}

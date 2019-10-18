@@ -1,0 +1,46 @@
+<div class="medicine-status-overlay" role="none" *ngIf="showContent">
+    <section class="medicine-status">
+
+      <section class="medicine-status-alert {{handleStatusInteraction(interaction.Nome)}} " *ngFor="let interaction of list">
+        <header class="medicine-status-alert-header">
+          <h1>Alerta de gravidade na interação</h1>
+        </header>
+        <section class="medicine-status-alert-content">
+          <header class="medicine-status-alert-content-header">
+            Lista de fármacos envolvidos
+          </header>
+          <ol class="medicine-status-alert-content-list">
+            <li class="medicine-status-alert-content-list-item">{{interaction.Farmaco1}}</li>
+            <li class="medicine-status-alert-content-list-item">{{interaction.Farmaco2}}</li>
+          </ol>
+        </section>
+        <footer class="medicine-status-alert-footer">
+          <header class="medicine-status-alert-footer-title"><small>Ocorrencia:</small> <strong>{{interaction.Nome}}</strong> </header>
+          <p class="medicine-status-alert-footer-desc">
+            {{interaction.Descricao}}
+          </p>
+        </footer>
+      </section>
+
+        <footer class="medicine-status-alert-footer">
+          <div class="medicine-status-alert-footer-btn" role="none">
+            <shared-button
+              isFullSize="true"
+              isOutline="true"
+              (click)="handleCancel()"
+            >
+              Cancelar
+            </shared-button>
+          </div>
+          <div class="medicine-status-alert-footer-btn" role="none">
+            <shared-button
+              isFullSize="true"
+              (click)="handleConfirm()"
+            >
+              Confirmar
+            </shared-button>
+          </div>
+        </footer>
+
+      </section>
+</div>

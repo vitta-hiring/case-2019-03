@@ -1,0 +1,12 @@
+@import '../../../../../assets/styles/scss/colors/colors';
+@import '../../../../../assets/styles/scss/typography/typography';
+
+.auth-form-error {
+  border: 1px dashed get-color('crismon');
+  padding: 6px;
+  color: get-color('crismon');
+  background-color: rgba(get-color('crismon'), .16);
+  transition: all .4s ease;
+  @include getFontSize(12px);
+  margin-bottom: 12px;
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IMedicine, PrescriptionsService } from '../../service/prescriptions.service';
 
 @Component({
   selector: 'dashboard-medicine-list',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MedicineListComponent implements OnInit {
 
-  constructor() { }
+  list: IMedicine[] = [];
+
+  constructor( private service: PrescriptionsService ) {}
 
   ngOnInit() {
+    this.service.currentDrugsList.subscribe( response => {
+      this.list = response;
+    });
   }
 
 }

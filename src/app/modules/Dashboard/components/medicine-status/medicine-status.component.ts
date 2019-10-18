@@ -1,15 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, Input, SimpleChanges } from '@angular/core';
+import { IDrugsInteraction, IMedicine, PrescriptionsService } from '../../service/prescriptions.service';
 
 @Component({
   selector: 'dashboard-medicine-status',
   templateUrl: './medicine-status.component.html',
   styleUrls: ['./medicine-status.component.scss']
 })
-export class MedicineStatusComponent implements OnInit {
+export class MedicineStatusComponent implements OnChanges {
 
-  constructor() { }
+  @Input() currentMedicine: IMedicine;
+  @Input() list: IDrugsInteraction[];
 
-  ngOnInit() {
+  showContent = false;
+
+  constructor( private service: PrescriptionsService ) { }
+
+  ngOnChanges( changes: SimpleChanges ) {
+    const { list: { currentValue } } = changes;
+    if ( currentValue && currentValue.length > 0 ) {
+      this.showContent = true;
+    }
+  }
+
+  handleStatusInteraction(type: string) {
+    if ( type === 'Leve' ) {
+      return 'info';
+    }
+    if ( type === 'Moderada') {
+      return 'warning';
+    }
+    if ( type === 'Grave' ) {
+      return 'danger';
+    }
+  }
+
+  handleCancel() {
+    this.showContent = false;
+  }
+
+  handleConfirm() {
+    this.service.addMedicine(this.currentMedicine);
+    this.showContent = false;
   }
 
 }

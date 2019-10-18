@@ -17,11 +17,15 @@
       </form-field>
     </div>
 
+    <p *ngIf="errorMessage" class="auth-form-error">
+      {{errorMessage}}
+    </p>
+
     <div class="auth-form-btn" role="none">
       <shared-button
         type="submit"
         isFullSize="true"
-        [isDisabled]="!authForm.valid"
+        [isDisabled]="isButtonDisabled()"
       >Acessar</shared-button>
     </div>
 

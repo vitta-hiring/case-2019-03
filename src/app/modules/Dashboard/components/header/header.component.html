@@ -1,18 +1,18 @@
 <header class="dashboard-header">
   <div class="dashboard-header-content" role="none">
     <figure class="dashboard-header-picture">
-      <img src="./assets/images/doctor-profile.png" alt="Doctor Profile Photo">
+      <img [src]="profile.picture" alt="Doctor Profile Photo">
     </figure>
     <div class="dashboard-header-infos" role="none">
       <h1 class="dashboard-header-infos-title">
-        <small class="dashboard-header-infos-title-prefix">Dra</small>
-        Lisa Cuddy
+        <small class="dashboard-header-infos-title-prefix">{{profile.prefix_name}}</small>
+        {{profile.name}}
       </h1>
       <h4 class="dashboard-header-infos-desc">
-        Endocrinologia
+        {{profile.specialty}}
       </h4>
       <p class="dashboard-header-infos-info">
-        <small>CRM:  0000000000/MG</small>
+        <small>CRM:  {{profile.crm}}</small>
       </p>
     </div>
   </div>

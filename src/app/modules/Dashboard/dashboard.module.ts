@@ -13,6 +13,10 @@ import { MedicineStatusComponent } from './components/medicine-status/medicine-s
 import { MedicineListComponent } from './components/medicine-list/medicine-list.component';
 import { PrescriptionsListComponent } from './components/prescriptions-list/prescriptions-list.component';
 
+import { UserService } from './service/user.service';
+import { PrescriptionsService } from './service/prescriptions.service';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -26,6 +30,7 @@ import { PrescriptionsListComponent } from './components/prescriptions-list/pres
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule.forChild([{
       path: '',
       component: DashboardComponent,
@@ -40,6 +45,10 @@ import { PrescriptionsListComponent } from './components/prescriptions-list/pres
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    UserService,
+    PrescriptionsService
   ]
 })
 

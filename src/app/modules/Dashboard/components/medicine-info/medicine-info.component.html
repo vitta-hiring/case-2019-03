@@ -1,18 +1,51 @@
-<section class="medicine-info">
+<section class="medicine-info" *ngIf="options && options.length > 0">
+  <header>
+    Selecione um dos medicamentos da lista:
+  </header>
   <ul class="medicine-info-list">
-    <li class="medicine-info-list-item">
-      <span class="medicine-info-list-item-key" role="none">Medicamento: </span>
-      <span class="medicine-info-list-item-value" role="none">Nome do medicamento</span>
-    </li>
-    <li class="medicine-info-list-item">
-      <span class="medicine-info-list-item-key" role="none">Posologia: </span>
-      <span class="medicine-info-list-item-value" role="none">Posologia</span>
-    </li>
-    <li class="medicine-info-list-item">
-      <span class="medicine-info-list-item-key" role="none">Via de administração: </span>
-      <span class="medicine-info-list-item-value" role="none">administração</span>
+    <li class="medicine-info-list-item" *ngFor="let med of options">
+      <button class="medicine-info-list-item-btn" (click)="handleClick(med)">
+        {{med.Label}}
+      </button>
     </li>
   </ul>
-</section>
 
-<!-- nome, posologia e via de administração. -->
+  <section class="selected-medicine" *ngIf="showComplement">
+    <div class="selected-medicine-container" role="none">
+      <header class="selected-medicine-header">
+        <h1>{{selectedMedicine.Label}}</h1>
+      </header>
+      <form [formGroup]="posologiaForm" (ngSubmit)="handleSubmit()">
+        <div class="selected-medicine-form" role="none">
+          <form-field>
+            <form-field-label>Informe a posologia: </form-field-label>
+            <textarea FormFieldInput formControlName="posologia" type="text" name="posologia" aria-label="Descrição de posologia do medicamento" autofocus></textarea>
+            <form-field-error *ngIf="hasFormError()">Campo de preenchimento obrigatório</form-field-error>
+          </form-field>
+        </div>
+
+        <div class="selected-medicine-buttons" role="none">
+          <div class="selected-medicine-buttons-item" role="none">
+            <shared-button
+              (click)="resetSelectedMedicine()"
+              isFullSize="true"
+              isOutline="true"
+            >
+              Cancelar
+            </shared-button>
+          </div>
+          <div class="selected-medicine-buttons-item" role="none">
+            <shared-button
+              [isDisabled]="isDisabledConfirmation()"
+              type="submit"
+              isFullSize="true"
+            >
+              Confirmar medicamento
+            </shared-button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</section>

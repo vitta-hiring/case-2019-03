@@ -4,98 +4,32 @@
     <h1>Prescrições realizadas</h1>
   </header>
 
-  <section class="prescriptions-list-group">
+  <section class="prescriptions-list-group" *ngFor="let item of list">
 
     <header class="prescriptions-list-group-header">
-      <h1>16</h1>
-      <h4>Out</h4>
+      <h1>{{getDay(item.date)}}</h1>
+      <h4>{{getMonth(item.date)}}</h4>
       <footer class="prescriptions-list-group-header-footer">
-        2019
+        {{getYear(item.date)}}
       </footer>
     </header>
 
     <ul class="prescriptions-list-group-itens">
-      <li class="prescriptions-list-group-itens-item">
+      <li class="prescriptions-list-group-itens-item" *ngFor="let pres of item.values">
         <header role="none" class="prescriptions-list-group-itens-item-header">
-          <h1>Paciente: </h1>
+          <h1>Paciente: {{pres.patient}}</h1>
           <small class="prescriptions-list-group-itens-item-header-fulldate">
-            16/10/2019 às 16:55:35
+            {{pres.fullDate}} às {{pres.time}}
           </small>
         </header>
         <ol class="list">
-          <li>
-            Medicamento
-          </li>
-          <li>
-            Medicamento
-          </li>
-        </ol>
-      </li>
-      <li class="prescriptions-list-group-itens-item">
-        <header role="none" class="prescriptions-list-group-itens-item-header">
-          <h1>Paciente: </h1>
-          <small class="prescriptions-list-group-itens-item-header-fulldate">
-            16/10/2019 às 16:55:35
-          </small>
-        </header>
-        <ol class="list">
-          <li>
-            Medicamento
-          </li>
-          <li>
-            Medicamento
+          <li *ngFor="let drug of pres.drugs">
+            {{drug.Label}}
           </li>
         </ol>
       </li>
     </ul>
 
   </section>
-
-  <section class="prescriptions-list-group">
-
-      <header class="prescriptions-list-group-header">
-        <h1>16</h1>
-        <h4>Out</h4>
-        <footer class="prescriptions-list-group-header-footer">
-          2019
-        </footer>
-      </header>
-
-      <ul class="prescriptions-list-group-itens">
-        <li class="prescriptions-list-group-itens-item">
-          <header role="none" class="prescriptions-list-group-itens-item-header">
-            <h1>Paciente: </h1>
-            <small class="prescriptions-list-group-itens-item-header-fulldate">
-              16/10/2019 às 16:55:35
-            </small>
-          </header>
-          <ol class="list">
-            <li>
-              Medicamento
-            </li>
-            <li>
-              Medicamento
-            </li>
-          </ol>
-        </li>
-        <li class="prescriptions-list-group-itens-item">
-          <header role="none" class="prescriptions-list-group-itens-item-header">
-            <h1>Paciente: </h1>
-            <small class="prescriptions-list-group-itens-item-header-fulldate">
-              16/10/2019 às 16:55:35
-            </small>
-          </header>
-          <ol class="list">
-            <li>
-              Medicamento
-            </li>
-            <li>
-              Medicamento
-            </li>
-          </ol>
-        </li>
-      </ul>
-
-    </section>
 
 </section>

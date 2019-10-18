@@ -9,6 +9,7 @@ $concrete: #f3f3f3;
 $white: #FFFFFF;
 $crismon: #de1111;
 $sunflower: #ffd800;
+$amber: #ffb300;
 $kelly-green: #00af30;
 $cerulean: #0095cc;
 $peacock-blue: #00688e;
@@ -23,6 +24,7 @@ $very-light: #d0d0d0;
 $pale-blue: #cef2ff;
 
 $default: (
+  'amber': $amber,
   'azure': $azure,
   'battleship-grey': $battleship-grey,
   'black': $black,

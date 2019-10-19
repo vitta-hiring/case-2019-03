@@ -1,0 +1,11 @@
+{
+	"name": "server",
+	"license": "MIT",
+	"version": "0.0.1",
+	"devDependencies": {
+		"json-server": "^0.15.1"
+	},
+	"scripts": {
+		"start": "rm -rf db.json && cp db-backup.json db.json && node index.js"
+	}
+}

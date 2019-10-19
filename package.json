@@ -1,0 +1,19 @@
+{
+	"name": "case-2019-03",
+	"version": "0.0.1",
+	"private": true,
+	"repository": "git@github.com:andredovale/case-2019-03.git",
+	"author": "André do Vale <andrealka@gmail.com>",
+	"workspaces": {
+		"packages": [
+			"server",
+			"web"
+		]
+	},
+	"devDependencies": {
+		"concurrently": "^5.0.0"
+	},
+	"scripts": {
+		"start": "yarn && concurrently -n server,web \"yarn workspace server start\" \"yarn workspace web start\""
+	}
+}

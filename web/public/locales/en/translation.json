@@ -1,4 +1,5 @@
 {
+	"minititle": "Vitta",
 	"title": "Vitta Challenge",
 	"language": {
 		"set": "Set language",
@@ -8,6 +9,7 @@
 	"login": {
 		"title": "Login",
 		"fail": "Invalid data. Try again.",
+		"problem": "Has a problem. Try again.",
 		"email": {
 			"title": "Email",
 			"placeholder": "Type your email",
@@ -22,7 +24,8 @@
 			"validations": {
 				"empty": "The password field is empty"
 			}
-		}
+		},
+		"logoff": "Logoff"
 	},
 	"exceptions": {
 		"title": "Exceptions",
@@ -65,5 +68,10 @@
 			"state": "State",
 			"country": "Country"
 		}
+	},
+	"prescriptions": {
+		"create": "Create prescription",
+		"list": "List prescriptions",
+		"read": "Prescription details"
 	}
 }

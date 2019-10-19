@@ -1,7 +1,7 @@
 {
 	"name": "web",
-	"license": "MIT",
 	"version": "0.0.1",
+	"private": true,
 	"dependencies": {
 		"@types/jest": "24.0.19",
 		"@types/node": "12.11.1",

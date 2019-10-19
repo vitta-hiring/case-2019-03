@@ -1,0 +1,72 @@
+{
+	"title": "Vitta Challenge",
+	"language": {
+		"set": "Definir idioma",
+		"english": "Inglês",
+		"portuguese": "Português"
+	},
+	"login": {
+		"title": "Entrar",
+		"fail": "Dados inválidos. Tente novamente.",
+		"email": {
+			"title": "E-mail",
+			"placeholder": "Digite seu e-mail",
+			"validations": {
+				"empty": "O campo de e-mail está vazio",
+				"invalid": "O e-mail é inválido"
+			}
+		},
+		"password": {
+			"title": "Senha",
+			"placeholder": "Digite sua senha",
+			"validations": {
+				"empty": "O campo de senha está vazio"
+			}
+		}
+	},
+	"exceptions": {
+		"title": "Exceções",
+		"403": {
+			"title": "Não autorizado",
+			"subTitle": "Desculpe, você não está autorizado a acessar esta página.",
+			"button": "Voltar para tela inicial"
+		},
+		"404": {
+			"title": "Não encontrado",
+			"subTitle": "Desculpe, a página que você visitou não existe.",
+			"button": "Voltar para tela inicial"
+		},
+		"500": {
+			"title": "Erro interno de servidor",
+			"subTitle": "Desculpe, ocorreu um erro com o servidor.",
+			"button": "Voltar para tela inicial"
+		},
+		"requests": {
+			"problem": "Existem alguns problemas com sua operação."
+		}
+	},
+	"generics": {
+		"yes": "Sim",
+		"no": "Não",
+		"ok": "Tudo certo",
+		"cancel": "Cancelar",
+		"remove": "Remover",
+		"phone": "Telefone",
+		"email": "E-mail",
+		"update": "Atualizar",
+		"address": "Endereço",
+		"personalData": "Dados Pessoais",
+		"addressFields": {
+			"addressType": "Logradouro",
+			"street": "Rua",
+			"number": "Número",
+			"complement": "Complemento",
+			"neighborhood": "Bairro",
+			"city": "Cidade",
+			"province": "Província",
+			"region": "Região",
+			"state": "Estado",
+			"country": "País"
+		}
+	}
+}

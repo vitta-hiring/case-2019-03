@@ -1,19 +1,15 @@
 import React from "react";
-import { Provider, useSelector } from "react-redux";
+import { Provider } from "react-redux";
+
 import store from "./store";
+import Layout from "./components/Layout";
 
 const App: React.FC = () => {
 	return (
 		<Provider store={store}>
-			<h1>Vitta Challenge</h1>
-			<Test />
+			<Layout logged={true} />
 		</Provider>
 	);
-};
-
-const Test = () => {
-	const teste = useSelector(state => console.log(state));
-	return <></>;
 };
 
 export default App;

@@ -1,0 +1,69 @@
+{
+	"title": "Vitta Challenge",
+	"language": {
+		"set": "Set language",
+		"english": "English",
+		"portuguese": "Portuguese"
+	},
+	"login": {
+		"title": "Login",
+		"fail": "Invalid data. Try again.",
+		"email": {
+			"title": "Email",
+			"placeholder": "Type your email",
+			"validations": {
+				"empty": "The email field is empty",
+				"invalid": "Invalid email"
+			}
+		},
+		"password": {
+			"title": "Password",
+			"placeholder": "Type your password",
+			"validations": {
+				"empty": "The password field is empty"
+			}
+		}
+	},
+	"exceptions": {
+		"title": "Exceptions",
+		"403": {
+			"title": "Forbidden",
+			"subTitle": "Sorry, you are not authorized to access this page.",
+			"button": "Back to home"
+		},
+		"404": {
+			"title": "Not found",
+			"subTitle": "Sorry, the page you visited does not exist.",
+			"button": "Back to home"
+		},
+		"500": {
+			"title": "Internal server error",
+			"subTitle": "Sorry, the server is wrong.",
+			"button": "Back to home"
+		},
+		"requests": {
+			"problem": "There are some problems with your operation."
+		}
+	},
+	"generics": {
+		"yes": "Yes",
+		"no": "No",
+		"ok": "Ok",
+		"cancel": "Cancel",
+		"remove": "Remove",
+		"phone": "Phone",
+		"email": "Email",
+		"addressFields": {
+			"addressType": "Address type",
+			"street": "Street",
+			"number": "Number",
+			"complement": "Complement",
+			"neighborhood": "Neighborhood",
+			"city": "City",
+			"province": "Province",
+			"region": "Region",
+			"state": "State",
+			"country": "Country"
+		}
+	}
+}

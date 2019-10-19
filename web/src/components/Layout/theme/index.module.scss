@@ -1,0 +1,63 @@
+.loader {
+	align-items: center;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	width: 100vw;
+
+	:global .anticon {
+		font-size: 2rem;
+	}
+}
+
+.container {
+	min-height: 100vh;
+}
+
+.sider {
+	overflow: hidden;
+}
+
+.trigger {
+	font-size: 18px;
+	line-height: 64px;
+	padding: 0 24px;
+	cursor: pointer;
+	transition: color 0.3s;
+}
+
+.header {
+	align-items: center;
+	background-color: #fff;
+	display: flex;
+	padding: 0 0.5rem;
+
+	> :global(.ant-btn),
+	> :global(.ant-dropdown-link) {
+		font-size: 1rem;
+		height: 100%;
+		padding: 0 20px;
+
+		&:first-child {
+			margin-right: auto;
+		}
+
+		:global .anticon {
+			font-size: 1em;
+		}
+	}
+
+	> :global(.ant-btn:hover),
+	> :global(.ant-dropdown-link:hover) {
+		border-radius: 0;
+	}
+}
+
+.content {
+	padding: 24px;
+	min-height: 280px;
+}
+
+.footer {
+	text-align: center;
+}

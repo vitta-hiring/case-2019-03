@@ -69,10 +69,7 @@ const example: Reducer = (state = INITIAL_STATE, { type, payload }) =>
 				return;
 
 			case SAVE_CURRENT_CREATE:
-				draft.currentCreate = {
-					doctor: Number(payload.doctor),
-					patient: Number(payload.patient)
-				};
+				draft.currentCreate = payload;
 
 				localStorage.setItem(
 					"current-create-prescription",

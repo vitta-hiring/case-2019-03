@@ -3,7 +3,8 @@ import {
 	CLEAR_PATIENTS_FAIL,
 	GET_DOCTORS,
 	GET_PATIENTS,
-	SAVE_CURRENT_CREATE
+	SAVE_CURRENT_CREATE,
+	GET_MEDICINES
 } from "./constants";
 import { Payload } from "./types";
 
@@ -36,4 +37,17 @@ export const clearPatientsFail = () => ({
 export const saveCurrentCreate = (payload: Payload) => ({
 	type: SAVE_CURRENT_CREATE,
 	payload
+});
+
+export const getMedicines = (Nome_like: string) => ({
+	type: GET_MEDICINES,
+	payload: {
+		request: {
+			url: "/medicines",
+			params: {
+				Nome_like,
+				_limit: 10
+			}
+		}
+	}
 });

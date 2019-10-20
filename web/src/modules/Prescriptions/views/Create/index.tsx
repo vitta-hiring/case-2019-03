@@ -1,7 +1,7 @@
 import React, { useEffect, useState, SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Form, Icon, Select, message } from "antd";
+import { Button, Form, Icon, Select, message, Row, Col } from "antd";
 
 import {
 	clearDoctorsFail,
@@ -15,6 +15,7 @@ import { makePayload, makeErrorsFromYup } from "../../../../utils/forms";
 import { selectionDoctorPatientSchema } from "../../constants";
 import { usePrevious } from "../../../../utils/hooks";
 import { useHistory } from "react-router";
+import Medicines from "./components/Medicines";
 
 const { Item } = Form;
 const { Option } = Select;
@@ -43,6 +44,8 @@ const Create: React.FC = () => {
 
 	const [errors, setErrors] = useState<State["errors"]>({});
 
+	const [medicines, setMedicines] = useState<{}[]>([]);
+
 	const onSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();
 
@@ -66,9 +69,40 @@ const Create: React.FC = () => {
 	return (
 		<>
 			<h1>{translate("prescriptions.create.title")}</h1>
+			<Row gutter={24}>
+				<Col span={12}>
+					<h2>{translate("prescriptions.create.doctors.label")}</h2>
+					<p>{doctor.name}</p>
+				</Col>
+				<Col span={12}>
+					<h2>{translate("prescriptions.create.patients.label")}</h2>
+					<p>{patient.name}</p>
+				</Col>
+			</Row>
 			<form onSubmit={onSubmit}>
-				<Button htmlType="submit" type="primary">
-					{translate("prescriptions.create.submit")}
+				<input name={doctor} type="hidden" value={doctor.id} />
+				<input name={patient} type="hidden" value={patient.id} />
+				<fieldset>
+					<legend>
+						{translate("prescriptions.create.medicines.label")}
+					</legend>
+					<Medicines
+						onAdd={
+							(medicine: {}) =>
+								console.log(
+									"TCL: Create:React.FC -> medicine",
+									medicine
+								)
+							// setMedicines([...medicines, medicine])
+						}
+					/>
+				</fieldset>
+				<Button
+					disabled={!medicines.length}
+					htmlType="submit"
+					type="primary"
+				>
+					{translate("generics.save")}
 				</Button>
 			</form>
 		</>

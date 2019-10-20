@@ -8,8 +8,6 @@
 	},
 	"login": {
 		"title": "Entrar",
-		"fail": "Dados inválidos. Tente novamente.",
-		"problem": "Houve um problema. Tente novamente.",
 		"email": {
 			"title": "E-mail",
 			"placeholder": "Digite seu e-mail",
@@ -70,7 +68,11 @@
 			"region": "Região",
 			"state": "Estado",
 			"country": "País"
-		}
+		},
+		"fail": "Dados inválidos. Tente novamente.",
+		"problem": "Houve um problema. Tente novamente.",
+		"add": "Adicionar",
+		"save": "Salvar"
 	},
 	"prescriptions": {
 		"create": {
@@ -90,7 +92,32 @@
 				},
 				"patient": {
 					"empty": "O campo do paciente está vazio"
+				},
+				"medicines": {
+					"empty": "Nenhum medicamento encontrado",
+					"length": "O campo de medicamento requer 3 caracteres ou mais"
+				},
+				"medicine": {
+					"empty": "O campo do medicamento está vazio ou é inválido"
+				},
+				"dosage": {
+					"empty": "O campo da posologia está vazio"
+				},
+				"administrationRoute": {
+					"empty": "O campo da via de administração está vazio"
 				}
+			},
+			"medicines": {
+				"label": "Medicamentos"
+			},
+			"medicine": {
+				"label": "Medicamento"
+			},
+			"dosage": {
+				"label": "Posologia"
+			},
+			"administrationRoute": {
+				"label": "Via de administração"
 			}
 		},
 		"list": "Listar prescrições",

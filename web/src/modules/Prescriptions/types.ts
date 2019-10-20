@@ -21,10 +21,32 @@ export type Payload = {
 	patient: string;
 };
 
+export type Medicine = {
+	id: number;
+	Nome: string;
+	Farmaco: null | string;
+	Farmacos: string[];
+	Concentracao: string;
+	Unidade: string;
+	TipoMedicamento: string;
+	FormaFarmaceutica: string;
+	ViaAdministracao: string;
+	CodigoATC: string;
+	UsoInterno: boolean;
+	Antimicrobiano: boolean;
+	Bula: null | string;
+	Portaria344: string;
+	ControleEspecial: boolean;
+	TISS: string;
+	MIP: boolean;
+	Label: string;
+	Unificado: null | string;
+};
+
 export type State = {
 	currentCreate: {
-		doctor: number;
-		patient: number;
+		doctor: Person;
+		patient: Person;
 	};
 	doctors: Person[];
 	doctorsFail: string | null;
@@ -47,7 +69,7 @@ export type Reducer = (
 			| typeof GET_PATIENTS_FAIL
 			| typeof GET_PATIENTS_SUCCESS
 			| typeof SAVE_CURRENT_CREATE;
-		payload: any;
+		payload?: any;
 	}
 ) => State;
 

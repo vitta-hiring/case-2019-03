@@ -6,10 +6,11 @@ import { makePayload, makeErrorsFromYup } from "../../../../utils/forms";
 import { selectionDoctorPatientSchema } from "../../constants";
 import Doctors from "./components/Doctors";
 import Patients from "./components/Patients";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { saveCurrentCreate } from "../../actions";
-import { Payload } from "../../types";
+import { Payload, Person } from "../../types";
 import { useHistory } from "react-router";
+import { reducers } from "../../../../store/reducers";
 
 type State = {
 	errors: {
@@ -27,6 +28,10 @@ const PreCreate: React.FC = () => {
 
 	const { push } = useHistory();
 
+	const { doctors, patients } = useSelector(
+		(state: typeof reducers) => state.prescriptions
+	);
+
 	const onSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();
 
@@ -38,7 +43,20 @@ const PreCreate: React.FC = () => {
 			selectionDoctorPatientSchema
 				.validate(payload, { abortEarly: false })
 				.then(() => {
-					dispatch(saveCurrentCreate(payload as Payload));
+					const doctor = doctors.filter(
+						(doctor: Person) => doctor.id === Number(payload.doctor)
+					)[0];
+					const patient = patients.filter(
+						(patient: Person) =>
+							patient.id === Number(payload.patient)
+					)[0];
+					dispatch(
+						saveCurrentCreate({
+							doctor,
+							patient
+						})
+					);
+
 					push("/prescriptions/create");
 				})
 				.catch(err => {

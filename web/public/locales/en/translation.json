@@ -67,7 +67,9 @@
 			"country": "Country"
 		},
 		"fail": "Invalid data. Try again.",
-		"problem": "Has a problem. Try again."
+		"problem": "Has a problem. Try again.",
+		"add": "Add",
+		"save": "Save"
 	},
 	"prescriptions": {
 		"create": {
@@ -87,7 +89,32 @@
 				},
 				"patient": {
 					"empty": "The patient field is empty"
+				},
+				"medicines": {
+					"empty": "None medicine found",
+					"length": "The medicine field require 3 characters or more"
+				},
+				"medicine": {
+					"empty": "The medicine field is empty or invalid"
+				},
+				"dosage": {
+					"empty": "The dosage field is empty"
+				},
+				"administrationRoute": {
+					"empty": "The administration route field is empty"
 				}
+			},
+			"medicines": {
+				"label": "Medicines"
+			},
+			"medicine": {
+				"label": "Medicine"
+			},
+			"dosage": {
+				"label": "Dosage"
+			},
+			"administrationRoute": {
+				"label": "Administration route"
 			}
 		},
 		"list": "List prescriptions",

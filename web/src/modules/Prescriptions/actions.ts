@@ -4,9 +4,12 @@ import {
 	GET_DOCTORS,
 	GET_PATIENTS,
 	SAVE_CURRENT_CREATE,
-	GET_MEDICINES
+	GET_MEDICINES,
+	GET_DRUG_INTERACTION,
+	CLEAR_DRUG_INTERACTION
 } from "./constants";
 import { Payload } from "./types";
+import { Dispatch } from "redux";
 
 export const getDoctors = () => ({
 	type: GET_DOCTORS,
@@ -50,4 +53,24 @@ export const getMedicines = (Nome_like: string) => ({
 			}
 		}
 	}
+});
+
+export const getDrugInteraction = (drugs: string[]) => (dispatch: Dispatch) => {
+	const regexDrugs = drugs.map(drug => `^${drug}$`).join("|");
+	return dispatch({
+		type: GET_DRUG_INTERACTION,
+		payload: {
+			request: {
+				url: "/drug-interaction",
+				params: {
+					Farmaco1_like: regexDrugs,
+					Farmaco2_like: regexDrugs
+				}
+			}
+		}
+	});
+};
+
+export const clearDrugInteraction = () => ({
+	type: CLEAR_DRUG_INTERACTION
 });

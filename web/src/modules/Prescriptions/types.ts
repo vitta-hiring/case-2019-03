@@ -7,7 +7,11 @@ import {
 	GET_PATIENTS,
 	GET_PATIENTS_FAIL,
 	GET_PATIENTS_SUCCESS,
-	SAVE_CURRENT_CREATE
+	SAVE_CURRENT_CREATE,
+	GET_DRUG_INTERACTION,
+	GET_DRUG_INTERACTION_FAIL,
+	GET_DRUG_INTERACTION_SUCCESS,
+	CLEAR_DRUG_INTERACTION
 } from "./constants";
 import { string } from "prop-types";
 
@@ -49,6 +53,13 @@ export type MedicinePrescription = {
 	administrationRoute: Medicine["ViaAdministracao"];
 };
 
+export type DrugInteraction = {
+	Descricao: string;
+	Farmaco1: Medicine["Farmacos"][0];
+	Farmaco2: Medicine["Farmacos"][0];
+	Nome: "Leve" | "Moderada" | "Grave";
+};
+
 export type State = {
 	currentCreate: {
 		doctor: Person;
@@ -60,6 +71,8 @@ export type State = {
 	patients: Person[];
 	patientsFail: string | null;
 	patientsLoading: boolean;
+	drugInteractionLoading: boolean;
+	drugInteraction: DrugInteraction[];
 };
 
 export type Reducer = (
@@ -74,7 +87,11 @@ export type Reducer = (
 			| typeof GET_PATIENTS
 			| typeof GET_PATIENTS_FAIL
 			| typeof GET_PATIENTS_SUCCESS
-			| typeof SAVE_CURRENT_CREATE;
+			| typeof SAVE_CURRENT_CREATE
+			| typeof GET_DRUG_INTERACTION
+			| typeof GET_DRUG_INTERACTION_FAIL
+			| typeof GET_DRUG_INTERACTION_SUCCESS
+			| typeof CLEAR_DRUG_INTERACTION;
 		payload?: any;
 	}
 ) => State;

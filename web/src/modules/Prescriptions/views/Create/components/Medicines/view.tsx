@@ -60,7 +60,7 @@ const View: React.FC<Props> = ({ medicines, onRemove }) => {
 			dataSource={[...medicines]}
 			pagination={false}
 			rowKey={(record: MedicinePrescription) =>
-				`${record.medicine && record.medicine.Nome}_${record.dosage}_${
+				`${record.medicine && record.medicine.id}_${record.dosage}_${
 					record.administrationRoute
 				}`
 			}

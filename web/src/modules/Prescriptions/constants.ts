@@ -11,6 +11,10 @@ export const GET_PATIENTS_FAIL = "GET_PATIENTS_FAIL";
 export const SAVE_CURRENT_CREATE = "SAVE_CURRENT_CREATE";
 export const GET_MEDICINES = "GET_MEDICINES";
 export const GET_MEDICINES_SUCCESS = "GET_MEDICINES_SUCCESS";
+export const GET_DRUG_INTERACTION = "GET_DRUG_INTERACTION";
+export const GET_DRUG_INTERACTION_SUCCESS = "GET_DRUG_INTERACTION_SUCCESS";
+export const GET_DRUG_INTERACTION_FAIL = "GET_DRUG_INTERACTION_FAIL";
+export const CLEAR_DRUG_INTERACTION = "CLEAR_DRUG_INTERACTION";
 
 export const selectionDoctorPatientSchema = object().shape({
 	doctor: string().required("prescriptions.create.validations.doctor.empty"),

@@ -9,7 +9,11 @@ import {
 	GET_PATIENTS,
 	GET_PATIENTS_FAIL,
 	GET_PATIENTS_SUCCESS,
-	SAVE_CURRENT_CREATE
+	SAVE_CURRENT_CREATE,
+	GET_DRUG_INTERACTION_SUCCESS,
+	GET_DRUG_INTERACTION,
+	GET_DRUG_INTERACTION_FAIL,
+	CLEAR_DRUG_INTERACTION
 } from "./constants";
 
 const INITIAL_STATE: State = {
@@ -22,7 +26,9 @@ const INITIAL_STATE: State = {
 	doctorsLoading: false,
 	patients: [],
 	patientsFail: null,
-	patientsLoading: false
+	patientsLoading: false,
+	drugInteractionLoading: false,
+	drugInteraction: []
 };
 
 const example: Reducer = (state = INITIAL_STATE, { type, payload }) =>
@@ -76,6 +82,23 @@ const example: Reducer = (state = INITIAL_STATE, { type, payload }) =>
 					JSON.stringify(draft.currentCreate)
 				);
 
+				return;
+
+			case GET_DRUG_INTERACTION:
+				draft.drugInteractionLoading = true;
+				return;
+
+			case GET_DRUG_INTERACTION_FAIL:
+				draft.drugInteractionLoading = false;
+				return;
+
+			case GET_DRUG_INTERACTION_SUCCESS:
+				draft.drugInteractionLoading = false;
+				draft.drugInteraction = payload.data;
+				return;
+
+			case CLEAR_DRUG_INTERACTION:
+				draft.drugInteraction = [];
 				return;
 		}
 	});

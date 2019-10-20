@@ -1,4 +1,4 @@
-import React, { useState, SyntheticEvent } from "react";
+import React, { useState, SyntheticEvent, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "antd";
 
@@ -7,7 +7,7 @@ import { selectionDoctorPatientSchema } from "../../constants";
 import Doctors from "./components/Doctors";
 import Patients from "./components/Patients";
 import { useDispatch, useSelector } from "react-redux";
-import { saveCurrentCreate } from "../../actions";
+import { saveCurrentCreate, clearDrugInteraction } from "../../actions";
 import { Person } from "../../types";
 import { useHistory } from "react-router";
 import { reducers } from "../../../../store/reducers";
@@ -25,6 +25,10 @@ const PreCreate: React.FC = () => {
 	const [errors, setErrors] = useState<State["errors"]>({});
 
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(clearDrugInteraction());
+	}, []);
 
 	const { push } = useHistory();
 

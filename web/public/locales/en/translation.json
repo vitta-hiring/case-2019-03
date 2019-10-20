@@ -69,7 +69,9 @@
 		"fail": "Invalid data. Try again.",
 		"problem": "Has a problem. Try again.",
 		"add": "Add",
-		"save": "Save"
+		"save": "Save",
+		"continue": "Continue",
+		"ignoreContinue": "Ignore and continue"
 	},
 	"prescriptions": {
 		"create": {
@@ -115,6 +117,13 @@
 			},
 			"administrationRoute": {
 				"label": "Administration route"
+			},
+			"drugInteraction": {
+				"drug": "Drug",
+				"drugs": "Drugs",
+				"label": "Drug interaction",
+				"warning": "There are drug interaction alerts",
+				"report": "See report"
 			}
 		},
 		"list": "List prescriptions",

@@ -72,7 +72,9 @@
 		"fail": "Dados inválidos. Tente novamente.",
 		"problem": "Houve um problema. Tente novamente.",
 		"add": "Adicionar",
-		"save": "Salvar"
+		"save": "Salvar",
+		"continue": "Continuar",
+		"ignoreContinue": "Ignorar e continuar"
 	},
 	"prescriptions": {
 		"create": {
@@ -118,6 +120,13 @@
 			},
 			"administrationRoute": {
 				"label": "Via de administração"
+			},
+			"drugInteraction": {
+				"drug": "Fármaco",
+				"drugs": "Fármacos",
+				"label": "Interações medicamentosas",
+				"warning": "Há alertas de interações medicamentosas",
+				"report": "Ver relatório"
 			}
 		},
 		"list": "Listar prescrições",

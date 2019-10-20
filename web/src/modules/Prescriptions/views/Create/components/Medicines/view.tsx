@@ -6,7 +6,7 @@ import { MedicinePrescription, Medicine } from "../../../../types";
 
 type Props = {
 	medicines: MedicinePrescription[];
-	onRemove: (index: number) => void;
+	onRemove?: (index: number) => void;
 };
 
 const View: React.FC<Props> = ({ medicines, onRemove }) => {
@@ -20,12 +20,15 @@ const View: React.FC<Props> = ({ medicines, onRemove }) => {
 				render: (medicine: Medicine) => (
 					<span>
 						{medicine.Nome}
-						{medicine.Farmacos.map(farmaco => (
-							<React.Fragment key={`${medicine.id}_${farmaco}`}>
-								<Divider type="vertical" />
-								<Tag key={farmaco}>{farmaco}</Tag>
-							</React.Fragment>
-						))}
+						{onRemove &&
+							medicine.Farmacos.map(farmaco => (
+								<React.Fragment
+									key={`${medicine.id}_${farmaco}`}
+								>
+									<Divider type="vertical" />
+									<Tag key={farmaco}>{farmaco}</Tag>
+								</React.Fragment>
+							))}
 					</span>
 				)
 			},
@@ -39,17 +42,24 @@ const View: React.FC<Props> = ({ medicines, onRemove }) => {
 				),
 				dataIndex: "administrationRoute"
 			},
-			{
-				render: (
-					_: string,
-					record: MedicinePrescription,
-					index: number
-				) => (
-					<Button onClick={() => onRemove(index)} type="danger">
-						Deletar
-					</Button>
-				)
-			}
+			...(onRemove
+				? [
+						{
+							render: (
+								_: string,
+								record: MedicinePrescription,
+								index: number
+							) => (
+								<Button
+									onClick={() => onRemove(index)}
+									type="danger"
+								>
+									Deletar
+								</Button>
+							)
+						}
+				  ]
+				: [])
 		],
 		[onRemove, translate]
 	);
@@ -57,13 +67,15 @@ const View: React.FC<Props> = ({ medicines, onRemove }) => {
 	return (
 		<Table
 			columns={columns}
-			dataSource={[...medicines]}
+			dataSource={medicines}
 			pagination={false}
 			rowKey={(record: MedicinePrescription) =>
 				`${record.medicine && record.medicine.id}_${record.dosage}_${
 					record.administrationRoute
 				}`
 			}
+			bordered={onRemove ? false : true}
+			size={onRemove ? "default" : "small"}
 		/>
 	);
 };

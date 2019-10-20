@@ -1,6 +1,6 @@
 import React, { useState, SyntheticEvent, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Button } from "antd";
+import { Button, Row, Col } from "antd";
 
 import { makePayload, makeErrorsFromYup } from "../../../../utils/forms";
 import { selectionDoctorPatientSchema } from "../../constants";
@@ -74,8 +74,14 @@ const PreCreate: React.FC = () => {
 		<>
 			<h1>{translate("prescriptions.create.title")}</h1>
 			<form onSubmit={onSubmit}>
-				<Doctors error={errors.doctor} />
-				<Patients error={errors.patient} />
+				<Row gutter={24}>
+					<Col span={12}>
+						<Doctors error={errors.doctor} />
+					</Col>
+					<Col span={12}>
+						<Patients error={errors.patient} />
+					</Col>
+				</Row>
 				<Button htmlType="submit" type="primary">
 					{translate("prescriptions.create.submit")}
 				</Button>

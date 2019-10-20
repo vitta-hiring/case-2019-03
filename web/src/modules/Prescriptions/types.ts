@@ -14,7 +14,13 @@ import {
 	CLEAR_DRUG_INTERACTION,
 	CREATE_PRESCRIPTION,
 	CREATE_PRESCRIPTION_FAIL,
-	CREATE_PRESCRIPTION_SUCCESS
+	CREATE_PRESCRIPTION_SUCCESS,
+	GET_PRESCRIPTIONS,
+	GET_PRESCRIPTIONS_FAIL,
+	GET_PRESCRIPTIONS_SUCCESS,
+	DELETE_PRESCRIPTION,
+	DELETE_PRESCRIPTION_FAIL,
+	DELETE_PRESCRIPTION_SUCCESS
 } from "./constants";
 import { string } from "prop-types";
 
@@ -64,9 +70,11 @@ export type DrugInteraction = {
 };
 
 export type Prescription = {
+	id?: number;
 	doctor: Person;
 	patient: Person;
 	medicines: MedicinePrescription[];
+	drugInteraction: DrugInteraction[];
 };
 
 export type State = {
@@ -85,6 +93,10 @@ export type State = {
 	createPrescriptionFail: string | null;
 	createPrescriptionLoading: boolean;
 	createPrescriptionSuccess: boolean;
+	prescriptions: Prescription[];
+	prescriptionsFail: string | null;
+	prescriptionsLoading: boolean;
+	prescriptionToRemove: number | null;
 };
 
 export type Reducer = (
@@ -106,7 +118,13 @@ export type Reducer = (
 			| typeof CLEAR_DRUG_INTERACTION
 			| typeof CREATE_PRESCRIPTION
 			| typeof CREATE_PRESCRIPTION_FAIL
-			| typeof CREATE_PRESCRIPTION_SUCCESS;
+			| typeof CREATE_PRESCRIPTION_SUCCESS
+			| typeof GET_PRESCRIPTIONS
+			| typeof GET_PRESCRIPTIONS_FAIL
+			| typeof GET_PRESCRIPTIONS_SUCCESS
+			| typeof DELETE_PRESCRIPTION
+			| typeof DELETE_PRESCRIPTION_FAIL
+			| typeof DELETE_PRESCRIPTION_SUCCESS;
 		payload?: any;
 	}
 ) => State;

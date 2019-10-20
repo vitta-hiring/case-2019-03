@@ -17,7 +17,11 @@ import { useHistory } from "react-router";
 
 import { reducers } from "../../../../store/reducers";
 import { usePrevious } from "../../../../utils/hooks";
-import { getDrugInteraction, createPrescription } from "../../actions";
+import {
+	getDrugInteraction,
+	createPrescription,
+	clearDrugInteraction
+} from "../../actions";
 import { MedicinePrescription, DrugInteraction } from "../../types";
 
 import Medicines, { View } from "./components/Medicines";
@@ -78,6 +82,10 @@ const Create: React.FC = () => {
 	useEffect(() => {
 		if (drugs.length >= 2 && !_isEqual(previousDrugs, drugs)) {
 			dispatch(getDrugInteraction(drugs));
+		}
+
+		if (drugs.length < 2) {
+			dispatch(clearDrugInteraction());
 		}
 	}, [drugs]);
 

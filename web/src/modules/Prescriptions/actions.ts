@@ -7,7 +7,9 @@ import {
 	GET_MEDICINES,
 	GET_DRUG_INTERACTION,
 	CLEAR_DRUG_INTERACTION,
-	CREATE_PRESCRIPTION
+	CREATE_PRESCRIPTION,
+	GET_PRESCRIPTIONS,
+	DELETE_PRESCRIPTION
 } from "./constants";
 import { Payload, Prescription } from "./types";
 import { Dispatch } from "redux";
@@ -83,6 +85,26 @@ export const createPrescription = (data: Prescription) => ({
 			data,
 			method: "post",
 			url: "/prescriptions"
+		}
+	}
+});
+
+export const getPrescriptions = () => ({
+	type: GET_PRESCRIPTIONS,
+	payload: {
+		request: {
+			url: "/prescriptions"
+		}
+	}
+});
+
+export const removePrescription = (id: number, index: number) => ({
+	type: DELETE_PRESCRIPTION,
+	payload: {
+		data: index,
+		request: {
+			method: "delete",
+			url: `/prescriptions/${id}`
 		}
 	}
 });

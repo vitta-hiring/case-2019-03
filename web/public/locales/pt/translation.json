@@ -1,0 +1,138 @@
+{
+	"minititle": "Vitta",
+	"title": "Vitta Challenge",
+	"language": {
+		"set": "Definir idioma",
+		"english": "Inglês",
+		"portuguese": "Português"
+	},
+	"login": {
+		"title": "Entrar",
+		"email": {
+			"title": "E-mail",
+			"placeholder": "Digite seu e-mail",
+			"validations": {
+				"empty": "O campo de e-mail está vazio",
+				"invalid": "O e-mail é inválido"
+			}
+		},
+		"password": {
+			"title": "Senha",
+			"placeholder": "Digite sua senha",
+			"validations": {
+				"empty": "O campo de senha está vazio"
+			}
+		},
+		"logoff": "Sair"
+	},
+	"exceptions": {
+		"title": "Exceções",
+		"403": {
+			"title": "Não autorizado",
+			"subTitle": "Desculpe, você não está autorizado a acessar esta página.",
+			"button": "Voltar para tela inicial"
+		},
+		"404": {
+			"title": "Não encontrado",
+			"subTitle": "Desculpe, a página que você visitou não existe.",
+			"button": "Voltar para tela inicial"
+		},
+		"500": {
+			"title": "Erro interno de servidor",
+			"subTitle": "Desculpe, ocorreu um erro com o servidor.",
+			"button": "Voltar para tela inicial"
+		},
+		"requests": {
+			"problem": "Existem alguns problemas com sua operação."
+		}
+	},
+	"generics": {
+		"yes": "Sim",
+		"no": "Não",
+		"ok": "Tudo certo",
+		"cancel": "Cancelar",
+		"remove": "Remover",
+		"phone": "Telefone",
+		"email": "E-mail",
+		"update": "Atualizar",
+		"address": "Endereço",
+		"personalData": "Dados Pessoais",
+		"addressFields": {
+			"addressType": "Logradouro",
+			"street": "Rua",
+			"number": "Número",
+			"complement": "Complemento",
+			"neighborhood": "Bairro",
+			"city": "Cidade",
+			"province": "Província",
+			"region": "Região",
+			"state": "Estado",
+			"country": "País"
+		},
+		"fail": "Dados inválidos. Tente novamente.",
+		"problem": "Houve um problema. Tente novamente.",
+		"add": "Adicionar",
+		"save": "Salvar",
+		"continue": "Continuar",
+		"ignoreContinue": "Ignorar e continuar",
+		"date": "Data"
+	},
+	"prescriptions": {
+		"create": {
+			"title": "Criar prescrição",
+			"doctors": {
+				"label": "Médico",
+				"placeholder": "Selecione o médico"
+			},
+			"patients": {
+				"label": "Paciente",
+				"placeholder": "Selecione o paciente"
+			},
+			"submit": "Ir para a prescrição",
+			"validations": {
+				"doctor": {
+					"empty": "O campo do médico está vazio"
+				},
+				"patient": {
+					"empty": "O campo do paciente está vazio"
+				},
+				"medicines": {
+					"empty": "Nenhum medicamento encontrado",
+					"length": "O campo de medicamento requer 3 caracteres ou mais"
+				},
+				"medicine": {
+					"empty": "O campo do medicamento está vazio ou é inválido"
+				},
+				"dosage": {
+					"empty": "O campo da posologia está vazio"
+				},
+				"administrationRoute": {
+					"empty": "O campo da via de administração está vazio"
+				}
+			},
+			"medicines": {
+				"label": "Medicamentos"
+			},
+			"medicine": {
+				"label": "Medicamento"
+			},
+			"dosage": {
+				"label": "Posologia"
+			},
+			"administrationRoute": {
+				"label": "Via de administração"
+			},
+			"drugInteraction": {
+				"drug": "Fármaco",
+				"drugs": "Fármacos",
+				"label": "Interações medicamentosas",
+				"warning": "Há alertas de interações medicamentosas",
+				"report": "Ver relatório"
+			},
+			"success": "Prescrição salva com sucesso"
+		},
+		"list": "Listar prescrições",
+		"read": "Detalhes da prescrição",
+		"remove": "Tem certeza de que deseja remover esta receita?"
+	}
+}

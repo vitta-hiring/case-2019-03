@@ -1,0 +1,41 @@
+import { object, string } from "yup";
+
+export const CLEAR_DOCTORS_FAIL = "CLEAR_DOCTORS_FAIL";
+export const GET_DOCTORS = "GET_DOCTORS";
+export const GET_DOCTORS_SUCCESS = "GET_DOCTORS_SUCCESS";
+export const GET_DOCTORS_FAIL = "GET_DOCTORS_FAIL";
+export const CLEAR_PATIENTS_FAIL = "CLEAR_PATIENTS_FAIL";
+export const GET_PATIENTS = "GET_PATIENTS";
+export const GET_PATIENTS_SUCCESS = "GET_PATIENTS_SUCCESS";
+export const GET_PATIENTS_FAIL = "GET_PATIENTS_FAIL";
+export const SAVE_CURRENT_CREATE = "SAVE_CURRENT_CREATE";
+export const GET_MEDICINES = "GET_MEDICINES";
+export const GET_MEDICINES_SUCCESS = "GET_MEDICINES_SUCCESS";
+export const GET_DRUG_INTERACTION = "GET_DRUG_INTERACTION";
+export const GET_DRUG_INTERACTION_SUCCESS = "GET_DRUG_INTERACTION_SUCCESS";
+export const GET_DRUG_INTERACTION_FAIL = "GET_DRUG_INTERACTION_FAIL";
+export const CLEAR_DRUG_INTERACTION = "CLEAR_DRUG_INTERACTION";
+export const CREATE_PRESCRIPTION = "CREATE_PRESCRIPTION";
+export const CREATE_PRESCRIPTION_SUCCESS = "CREATE_PRESCRIPTION_SUCCESS";
+export const CREATE_PRESCRIPTION_FAIL = "CREATE_PRESCRIPTION_FAIL";
+export const GET_PRESCRIPTIONS = "GET_PRESCRIPTIONS";
+export const GET_PRESCRIPTIONS_SUCCESS = "GET_PRESCRIPTIONS_SUCCESS";
+export const GET_PRESCRIPTIONS_FAIL = "GET_PRESCRIPTIONS_FAIL";
+export const DELETE_PRESCRIPTION = "DELETE_PRESCRIPTION";
+export const DELETE_PRESCRIPTION_SUCCESS = "DELETE_PRESCRIPTION_SUCCESS";
+export const DELETE_PRESCRIPTION_FAIL = "DELETE_PRESCRIPTION_FAIL";
+
+export const selectionDoctorPatientSchema = object().shape({
+	doctor: string().required("prescriptions.create.validations.doctor.empty"),
+	patient: string().required("prescriptions.create.validations.patient.empty")
+});
+
+export const addMedicineSchema = object().shape({
+	medicine: object().required(
+		"prescriptions.create.validations.medicine.empty"
+	),
+	dosage: string().required("prescriptions.create.validations.dosage.empty"),
+	administrationRoute: string().required(
+		"prescriptions.create.validations.administrationRoute.empty"
+	)
+});

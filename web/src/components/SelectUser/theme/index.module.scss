@@ -1,0 +1,14 @@
+.avatar {
+	margin-right: 10px;
+
+	@media all and (max-width: 768px) {
+		margin-right: 4px;
+		+ span {
+			display: none;
+		}
+	}
+}
+
+.dropdownIcon {
+	margin-left: 17px;
+}

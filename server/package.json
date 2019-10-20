@@ -1,0 +1,11 @@
+{
+	"name": "server",
+	"version": "0.0.1",
+	"private": true,
+	"devDependencies": {
+		"json-server": "^0.15.1"
+	},
+	"scripts": {
+		"start": "rm -rf db.json && cp db-backup.json db.json && node index.js"
+	}
+}

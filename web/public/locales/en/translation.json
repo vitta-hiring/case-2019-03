@@ -1,0 +1,138 @@
+{
+	"minititle": "Vitta",
+	"title": "Vitta Challenge",
+	"language": {
+		"set": "Set language",
+		"english": "English",
+		"portuguese": "Portuguese"
+	},
+	"login": {
+		"title": "Login",
+		"email": {
+			"title": "Email",
+			"placeholder": "Type your email",
+			"validations": {
+				"empty": "The email field is empty",
+				"invalid": "Invalid email"
+			}
+		},
+		"password": {
+			"title": "Password",
+			"placeholder": "Type your password",
+			"validations": {
+				"empty": "The password field is empty"
+			}
+		},
+		"logoff": "Logoff"
+	},
+	"exceptions": {
+		"title": "Exceptions",
+		"403": {
+			"title": "Forbidden",
+			"subTitle": "Sorry, you are not authorized to access this page.",
+			"button": "Back to home"
+		},
+		"404": {
+			"title": "Not found",
+			"subTitle": "Sorry, the page you visited does not exist.",
+			"button": "Back to home"
+		},
+		"500": {
+			"title": "Internal server error",
+			"subTitle": "Sorry, the server is wrong.",
+			"button": "Back to home"
+		},
+		"requests": {
+			"problem": "There are some problems with your operation."
+		}
+	},
+	"generics": {
+		"yes": "Yes",
+		"no": "No",
+		"ok": "Ok",
+		"cancel": "Cancel",
+		"remove": "Remove",
+		"phone": "Phone",
+		"email": "Email",
+		"update": "Update",
+		"address": "Address",
+		"personalData": "Personal data",
+		"addressFields": {
+			"addressType": "Address type",
+			"street": "Street",
+			"number": "Number",
+			"complement": "Complement",
+			"neighborhood": "Neighborhood",
+			"city": "City",
+			"province": "Province",
+			"region": "Region",
+			"state": "State",
+			"country": "Country"
+		},
+		"fail": "Invalid data. Try again.",
+		"problem": "Has a problem. Try again.",
+		"add": "Add",
+		"save": "Save",
+		"continue": "Continue",
+		"ignoreContinue": "Ignore and continue",
+		"date": "Date"
+	},
+	"prescriptions": {
+		"create": {
+			"title": "Create prescription",
+			"doctors": {
+				"label": "Doctor",
+				"placeholder": "Select the doctor"
+			},
+			"patients": {
+				"label": "Patient",
+				"placeholder": "Select the patient"
+			},
+			"submit": "Go to prescription",
+			"validations": {
+				"doctor": {
+					"empty": "The doctor field is empty"
+				},
+				"patient": {
+					"empty": "The patient field is empty"
+				},
+				"medicines": {
+					"empty": "None medicine found",
+					"length": "The medicine field require 3 characters or more"
+				},
+				"medicine": {
+					"empty": "The medicine field is empty or invalid"
+				},
+				"dosage": {
+					"empty": "The dosage field is empty"
+				},
+				"administrationRoute": {
+					"empty": "The administration route field is empty"
+				}
+			},
+			"medicines": {
+				"label": "Medicines"
+			},
+			"medicine": {
+				"label": "Medicine"
+			},
+			"dosage": {
+				"label": "Dosage"
+			},
+			"administrationRoute": {
+				"label": "Administration route"
+			},
+			"drugInteraction": {
+				"drug": "Drug",
+				"drugs": "Drugs",
+				"label": "Drug interaction",
+				"warning": "There are drug interaction alerts",
+				"report": "See report"
+			},
+			"success": "Prescription saved with success"
+		},
+		"list": "List prescriptions",
+		"read": "Prescription details",
+		"remove": "Are you sure you want to remove this prescription?"
+	}
+}

@@ -1,0 +1,12 @@
+.add {
+	margin-top: 42px;
+
+	:global .ant-btn {
+		width: 100%;
+	}
+
+	@media all and (max-width: 575px) {
+		margin-bottom: 2em;
+		margin-top: 1em;
+	}
+}

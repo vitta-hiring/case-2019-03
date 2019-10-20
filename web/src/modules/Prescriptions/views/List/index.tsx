@@ -1,17 +1,18 @@
-import React, { useMemo, useEffect } from "react";
-import { Button, Divider, Table, Tag, message } from "antd";
+import React, { useMemo, useEffect, useState } from "react";
+import { Button, Table, message, Modal } from "antd";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+
+import { reducers } from "../../../../store/reducers";
+import { removePrescription, getPrescriptions } from "../../actions";
+import Drawer from "../../components/Drawer";
+import View from "../../components/View";
 import {
 	Prescription,
-	Medicine,
 	MedicinePrescription,
 	Person,
 	DrugInteraction
 } from "../../types";
-import { removePrescription, getPrescriptions } from "../../actions";
-import { useDispatch, useSelector } from "react-redux";
-import { View } from "../Create/components/Medicines";
-import { reducers } from "../../../../store/reducers";
 
 const List: React.FC = () => {
 	const dispatch = useDispatch();
@@ -20,6 +21,10 @@ const List: React.FC = () => {
 		prescriptionsFail,
 		prescriptionsLoading
 	} = useSelector((state: typeof reducers) => state.prescriptions);
+	const [opened, setOpened] = useState(false);
+	const [drugInteraction, setDrugInteraction] = useState<DrugInteraction[]>(
+		[]
+	);
 	const { t: translate } = useTranslation();
 
 	useEffect(() => {
@@ -33,6 +38,12 @@ const List: React.FC = () => {
 	}, [prescriptionsFail]);
 
 	const onRemove = (id: number, index: number) =>
+		Modal.confirm({
+			title: translate("prescriptions.remove"),
+			onOk: () => remove(id, index)
+		});
+
+	const remove = (id: number, index: number) =>
 		dispatch(removePrescription(id, index));
 
 	const columns = useMemo(
@@ -68,6 +79,10 @@ const List: React.FC = () => {
 								shape="round"
 								icon="warning"
 								size="small"
+								onClick={() => {
+									setDrugInteraction(drugInteraction);
+									toggleDrawer();
+								}}
 							>
 								{translate(
 									"prescriptions.create.drugInteraction.report"
@@ -83,13 +98,15 @@ const List: React.FC = () => {
 						onClick={() => record.id && onRemove(record.id, index)}
 						type="danger"
 					>
-						Deletar
+						{translate("generics.remove")}
 					</Button>
 				)
 			}
 		],
 		[onRemove, translate]
 	);
+
+	const toggleDrawer = () => setOpened(!opened);
 
 	return (
 		<>
@@ -99,11 +116,14 @@ const List: React.FC = () => {
 				loading={prescriptionsLoading}
 				dataSource={prescriptions}
 				pagination={false}
-				// rowKey={(record: MedicinePrescription) =>
-				// 	`${record.medicine && record.medicine.id}_${
-				// 		record.dosage
-				// 	}_${record.administrationRoute}`
-				// }
+				rowKey={(record: Prescription, index: number) =>
+					`${record.id && record.id}_${index}`
+				}
+			/>
+			<Drawer
+				drugInteraction={drugInteraction}
+				opened={opened}
+				toggleDrawer={toggleDrawer}
 			/>
 		</>
 	);

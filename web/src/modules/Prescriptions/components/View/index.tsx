@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { Button, Divider, Table, Tag } from "antd";
 import { useTranslation } from "react-i18next";
 
-import { MedicinePrescription, Medicine } from "../../../../types";
+import { MedicinePrescription, Medicine } from "../../types";
 
 type Props = {
 	medicines: MedicinePrescription[];

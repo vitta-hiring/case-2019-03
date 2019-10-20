@@ -1,15 +1,5 @@
 import React, { useEffect, useState, SyntheticEvent, useRef } from "react";
-import {
-	Alert,
-	Button,
-	Drawer,
-	Row,
-	Col,
-	Badge,
-	Divider,
-	Modal,
-	message
-} from "antd";
+import { Button, Row, Col, Badge, Modal, message } from "antd";
 import _isEqual from "lodash/isEqual";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
@@ -22,14 +12,12 @@ import {
 	createPrescription,
 	clearDrugInteraction
 } from "../../actions";
-import { MedicinePrescription, DrugInteraction } from "../../types";
+import Drawer from "../../components/Drawer";
+import View from "../../components/View";
+import { MedicinePrescription } from "../../types";
 
-import Medicines, { View } from "./components/Medicines";
+import Medicines from "./components/Medicines";
 import styles from "./theme/index.module.scss";
-
-type State = {
-	errors: {};
-};
 
 const Create: React.FC = () => {
 	const [drugs, setDrugs] = useState<string[]>([]);
@@ -118,7 +106,7 @@ const Create: React.FC = () => {
 	const onSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();
 
-		if (!viewedInteraction) {
+		if (!!drugInteraction.length && !viewedInteraction) {
 			return Modal.confirm({
 				title: translate(
 					"prescriptions.create.drugInteraction.warning"
@@ -220,43 +208,11 @@ const Create: React.FC = () => {
 					{translate("generics.save")}
 				</Button>
 			</form>
-			{!!drugInteraction.length && (
-				<Drawer
-					className={styles.drawer}
-					title={translate(
-						"prescriptions.create.drugInteraction.label"
-					)}
-					closable
-					onClose={toggleDrawer}
-					visible={opened}
-					width="70vw"
-				>
-					{drugInteraction.map(
-						(drug: DrugInteraction, index: number) => (
-							<React.Fragment
-								key={`${drug.Farmaco1}_${drug.Farmaco2}`}
-							>
-								<Alert
-									message={`${translate(
-										"prescriptions.create.drugInteraction.drugs"
-									)}: ${drug.Farmaco1} | ${drug.Farmaco2}`}
-									description={drug.Descricao}
-									type={
-										drug.Nome === "Leve"
-											? "info"
-											: drug.Nome === "Moderada"
-											? "warning"
-											: "error"
-									}
-								/>
-								{drugInteraction.length - 1 !== index && (
-									<Divider />
-								)}
-							</React.Fragment>
-						)
-					)}
-				</Drawer>
-			)}
+			<Drawer
+				drugInteraction={drugInteraction}
+				opened={opened}
+				toggleDrawer={toggleDrawer}
+			/>
 		</>
 	);
 };

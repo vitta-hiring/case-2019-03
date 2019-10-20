@@ -16,10 +16,6 @@ import { AxiosResponse } from "../../../../../../types";
 import { Medicine, MedicinePrescription } from "../../../../types";
 import { makeErrorsFromYup } from "../../../../../../utils/forms";
 
-import View from "./view";
-
-export { View };
-
 const { Item } = Form;
 
 type State = {

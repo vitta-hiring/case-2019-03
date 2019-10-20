@@ -131,6 +131,7 @@
 			"success": "Prescrição salva com sucesso"
 		},
 		"list": "Listar prescrições",
-		"read": "Detalhes da prescrição"
+		"read": "Detalhes da prescrição",
+		"remove": "Tem certeza de que deseja remover esta receita?"
 	}
 }

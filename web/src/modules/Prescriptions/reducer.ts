@@ -115,6 +115,7 @@ const example: Reducer = (state = INITIAL_STATE, { type, payload }) =>
 
 			case CLEAR_DRUG_INTERACTION:
 				draft.drugInteraction = [];
+				draft.createPrescriptionSuccess = false;
 				return;
 
 			case CREATE_PRESCRIPTION:
@@ -171,6 +172,7 @@ const example: Reducer = (state = INITIAL_STATE, { type, payload }) =>
 					)
 				];
 				draft.prescriptionsLoading = false;
+				draft.prescriptionToRemove = null;
 				return;
 		}
 	});

@@ -54,6 +54,9 @@
 		"remove": "Remove",
 		"phone": "Phone",
 		"email": "Email",
+		"update": "Update",
+		"address": "Address",
+		"personalData": "Personal data",
 		"addressFields": {
 			"addressType": "Address type",
 			"street": "Street",
@@ -128,6 +131,7 @@
 			"success": "Prescription saved with success"
 		},
 		"list": "List prescriptions",
-		"read": "Prescription details"
+		"read": "Prescription details",
+		"remove": "Are you sure you want to remove this prescription?"
 	}
 }

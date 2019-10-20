@@ -127,6 +127,7 @@ const List: React.FC = () => {
 				rowKey={(record: Prescription, index: number) =>
 					`${record.id && record.id}_${index}`
 				}
+				scroll={{ x: true }}
 			/>
 			<Drawer
 				drugInteraction={drugInteraction}

@@ -77,7 +77,11 @@ const Page: React.FC<Props> = ({ children, logged }) => {
 					<Header className={styles.header}>
 						{(logged && (
 							<>
-								<Button onClick={toggle} type="link">
+								<Button
+									className={styles.trigger}
+									onClick={toggle}
+									type="link"
+								>
 									<Icon
 										type={
 											collapsed

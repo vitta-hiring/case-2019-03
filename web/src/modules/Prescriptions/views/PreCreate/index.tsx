@@ -72,10 +72,10 @@ const PreCreate: React.FC = () => {
 			<h1>{translate("prescriptions.create.title")}</h1>
 			<form onSubmit={onSubmit}>
 				<Row gutter={24}>
-					<Col span={12}>
+					<Col sm={12} xs={24}>
 						<Doctors error={errors.doctor} />
 					</Col>
-					<Col span={12}>
+					<Col sm={12} xs={24}>
 						<Patients error={errors.patient} />
 					</Col>
 				</Row>

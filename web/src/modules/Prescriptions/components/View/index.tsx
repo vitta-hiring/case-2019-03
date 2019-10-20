@@ -74,6 +74,7 @@ const View: React.FC<Props> = ({ medicines, onRemove }) => {
 			}
 			bordered={onRemove ? false : true}
 			size={onRemove ? "default" : "small"}
+			scroll={{ x: true }}
 		/>
 	);
 };

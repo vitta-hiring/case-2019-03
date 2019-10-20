@@ -129,8 +129,8 @@ const Medicines: React.FC<Props> = ({ onAdd }) => {
 	};
 
 	return (
-		<Row gutter={24}>
-			<Col span={10}>
+		<Row gutter={24} align="bottom">
+			<Col md={10} sm={16} xs={24}>
 				<Item
 					label={translate("prescriptions.create.medicine.label")}
 					hasFeedback
@@ -154,7 +154,7 @@ const Medicines: React.FC<Props> = ({ onAdd }) => {
 					/>
 				</Item>
 			</Col>
-			<Col span={5}>
+			<Col md={5} sm={8} xs={24}>
 				<Item
 					htmlFor="prescriptions:create:dosage"
 					label={translate("prescriptions.create.dosage.label")}
@@ -170,7 +170,7 @@ const Medicines: React.FC<Props> = ({ onAdd }) => {
 					/>
 				</Item>
 			</Col>
-			<Col span={5}>
+			<Col md={5} sm={8} xs={24}>
 				<Item
 					htmlFor="prescriptions:create:administrationRoute"
 					label={translate(
@@ -193,7 +193,7 @@ const Medicines: React.FC<Props> = ({ onAdd }) => {
 					/>
 				</Item>
 			</Col>
-			<Col span={4} className={styles.add}>
+			<Col md={4} sm={8} xs={24} className={styles.add}>
 				<Button onClick={onPreAdd}>{translate("generics.add")}</Button>
 			</Col>
 		</Row>

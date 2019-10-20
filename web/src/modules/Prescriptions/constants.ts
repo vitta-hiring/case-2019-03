@@ -8,6 +8,7 @@ export const CLEAR_PATIENTS_FAIL = "CLEAR_PATIENTS_FAIL";
 export const GET_PATIENTS = "GET_PATIENTS";
 export const GET_PATIENTS_SUCCESS = "GET_PATIENTS_SUCCESS";
 export const GET_PATIENTS_FAIL = "GET_PATIENTS_FAIL";
+export const SAVE_CURRENT_CREATE = "SAVE_CURRENT_CREATE";
 
 export const selectionDoctorPatientSchema = object().shape({
 	doctor: string().required("prescriptions.create.validations.doctor.empty"),

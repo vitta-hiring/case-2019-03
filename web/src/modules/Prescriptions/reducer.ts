@@ -8,10 +8,15 @@ import {
 	CLEAR_PATIENTS_FAIL,
 	GET_PATIENTS,
 	GET_PATIENTS_FAIL,
-	GET_PATIENTS_SUCCESS
+	GET_PATIENTS_SUCCESS,
+	SAVE_CURRENT_CREATE
 } from "./constants";
 
 const INITIAL_STATE: State = {
+	currentCreate:
+		JSON.parse(
+			localStorage.getItem("current-create-prescription") || "{}"
+		) || {},
 	doctors: [],
 	doctorsFail: null,
 	doctorsLoading: false,
@@ -61,6 +66,19 @@ const example: Reducer = (state = INITIAL_STATE, { type, payload }) =>
 			case GET_PATIENTS_SUCCESS:
 				draft.patientsLoading = false;
 				draft.patients = payload.data;
+				return;
+
+			case SAVE_CURRENT_CREATE:
+				draft.currentCreate = {
+					doctor: Number(payload.doctor),
+					patient: Number(payload.patient)
+				};
+
+				localStorage.setItem(
+					"current-create-prescription",
+					JSON.stringify(draft.currentCreate)
+				);
+
 				return;
 		}
 	});

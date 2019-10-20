@@ -6,15 +6,26 @@ import {
 	CLEAR_PATIENTS_FAIL,
 	GET_PATIENTS,
 	GET_PATIENTS_FAIL,
-	GET_PATIENTS_SUCCESS
+	GET_PATIENTS_SUCCESS,
+	SAVE_CURRENT_CREATE
 } from "./constants";
+import { string } from "prop-types";
 
 export type Person = {
 	id: number;
 	name: string;
 };
 
+export type Payload = {
+	doctor: string;
+	patient: string;
+};
+
 export type State = {
+	currentCreate: {
+		doctor: number;
+		patient: number;
+	};
 	doctors: Person[];
 	doctorsFail: string | null;
 	doctorsLoading: boolean;
@@ -34,7 +45,8 @@ export type Reducer = (
 			| typeof CLEAR_PATIENTS_FAIL
 			| typeof GET_PATIENTS
 			| typeof GET_PATIENTS_FAIL
-			| typeof GET_PATIENTS_SUCCESS;
+			| typeof GET_PATIENTS_SUCCESS
+			| typeof SAVE_CURRENT_CREATE;
 		payload: any;
 	}
 ) => State;

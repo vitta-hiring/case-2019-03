@@ -14,6 +14,7 @@ import { Person } from "../../types";
 import { makePayload, makeErrorsFromYup } from "../../../../utils/forms";
 import { selectionDoctorPatientSchema } from "../../constants";
 import { usePrevious } from "../../../../utils/hooks";
+import { useHistory } from "react-router";
 
 const { Item } = Form;
 const { Option } = Select;
@@ -29,46 +30,18 @@ const Create: React.FC = () => {
 	const { t: translate } = useTranslation();
 
 	const {
-		doctors,
-		doctorsFail,
-		doctorsLoading,
-		patients,
-		patientsFail,
-		patientsLoading
+		currentCreate: { doctor, patient }
 	} = useSelector((state: typeof reducers) => state.prescriptions);
 
-	const dispatch = useDispatch();
+	const { replace } = useHistory();
 
 	useEffect(() => {
-		dispatch(getDoctors());
-		dispatch(getPatients());
+		if (!doctor || !patient) {
+			replace("/prescriptions/pre-create");
+		}
 	}, []);
 
 	const [errors, setErrors] = useState<State["errors"]>({});
-
-	const previousDoctorsFail = usePrevious(doctorsFail);
-	useEffect(() => {
-		if (
-			doctorsFail &&
-			doctorsFail.length &&
-			doctorsFail !== previousDoctorsFail
-		) {
-			message.error(translate(doctorsFail));
-			dispatch(clearDoctorsFail());
-		}
-	}, [doctorsFail, previousDoctorsFail]);
-
-	const previousPatientsFail = usePrevious(patientsFail);
-	useEffect(() => {
-		if (
-			patientsFail &&
-			patientsFail.length &&
-			patientsFail !== previousPatientsFail
-		) {
-			message.error(translate(patientsFail));
-			dispatch(clearPatientsFail());
-		}
-	}, [patientsFail, previousPatientsFail]);
 
 	const onSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();
@@ -94,39 +67,6 @@ const Create: React.FC = () => {
 		<>
 			<h1>{translate("prescriptions.create.title")}</h1>
 			<form onSubmit={onSubmit}>
-				<Item
-					htmlFor="prescriptions:create:doctor"
-					label={translate("prescriptions.create.doctors.label")}
-					hasFeedback
-					validateStatus={
-						doctorsLoading
-							? "validating"
-							: errors.doctor
-							? "error"
-							: undefined
-					}
-					help={
-						!doctorsLoading &&
-						errors.doctor &&
-						translate(errors.doctor)
-					}
-				>
-					<input
-						type="hidden"
-						id="prescriptions:create:doctor"
-						name="doctor"
-					/>
-					<Select
-						size="large"
-						placeholder={translate(
-							"prescriptions.create.doctors.placeholder"
-						)}
-					>
-						{doctors.map((doctor: Person) => (
-							<Option value={doctor.id}>{doctor.name}</Option>
-						))}
-					</Select>
-				</Item>
 				<Button htmlType="submit" type="primary">
 					{translate("prescriptions.create.submit")}
 				</Button>

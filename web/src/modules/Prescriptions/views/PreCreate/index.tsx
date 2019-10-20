@@ -6,6 +6,10 @@ import { makePayload, makeErrorsFromYup } from "../../../../utils/forms";
 import { selectionDoctorPatientSchema } from "../../constants";
 import Doctors from "./components/Doctors";
 import Patients from "./components/Patients";
+import { useDispatch } from "react-redux";
+import { saveCurrentCreate } from "../../actions";
+import { Payload } from "../../types";
+import { useHistory } from "react-router";
 
 type State = {
 	errors: {
@@ -19,6 +23,10 @@ const PreCreate: React.FC = () => {
 
 	const [errors, setErrors] = useState<State["errors"]>({});
 
+	const dispatch = useDispatch();
+
+	const { push } = useHistory();
+
 	const onSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();
 
@@ -26,12 +34,12 @@ const PreCreate: React.FC = () => {
 
 		if (e.target instanceof HTMLFormElement) {
 			const payload = makePayload(e.target.elements);
-			console.log("TCL: onSubmit -> payload", payload);
 
 			selectionDoctorPatientSchema
 				.validate(payload, { abortEarly: false })
 				.then(() => {
-					console.log("dados válidos!");
+					dispatch(saveCurrentCreate(payload as Payload));
+					push("/prescriptions/create");
 				})
 				.catch(err => {
 					const yupErrors = makeErrorsFromYup(err);

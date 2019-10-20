@@ -5,9 +5,10 @@ import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { reducers } from "../../store/reducers";
 import { logoff } from "../../modules/Login/actions";
-import { withRouter } from "react-router";
+import { useHistory } from "react-router";
 
-const SelectUser = withRouter(({ history: { replace } }) => {
+const SelectUser = () => {
+	const { replace } = useHistory();
 	const { i18n, t: translate } = useTranslation();
 	const userName = useSelector(
 		(state: typeof reducers) => state.login.user.name
@@ -43,6 +44,6 @@ const SelectUser = withRouter(({ history: { replace } }) => {
 			</Button>
 		</Dropdown>
 	);
-});
+};
 
 export default SelectUser;

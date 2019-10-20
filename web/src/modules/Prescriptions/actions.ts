@@ -2,8 +2,10 @@ import {
 	CLEAR_DOCTORS_FAIL,
 	CLEAR_PATIENTS_FAIL,
 	GET_DOCTORS,
-	GET_PATIENTS
+	GET_PATIENTS,
+	SAVE_CURRENT_CREATE
 } from "./constants";
+import { Payload } from "./types";
 
 export const getDoctors = () => ({
 	type: GET_DOCTORS,
@@ -29,4 +31,9 @@ export const clearDoctorsFail = () => ({
 
 export const clearPatientsFail = () => ({
 	type: CLEAR_PATIENTS_FAIL
+});
+
+export const saveCurrentCreate = (payload: Payload) => ({
+	type: SAVE_CURRENT_CREATE,
+	payload
 });

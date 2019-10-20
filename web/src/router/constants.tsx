@@ -24,10 +24,16 @@ export const routes: Routes = [
 	{
 		render: props => <Prescriptions {...props} view="create" />,
 		exact: true,
+		path: "/pescriptions/create",
+		title: "prescriptions.create.title"
+	},
+	{
+		render: props => <Prescriptions {...props} view="pre-create" />,
+		exact: true,
 		icon: "plus",
 		menu: true,
-		path: "/pescriptions/create",
-		title: "prescriptions.create"
+		path: "/pescriptions/pre-create",
+		title: "prescriptions.create.title"
 	},
 	{
 		render: props => <Prescriptions {...props} view="list" />,

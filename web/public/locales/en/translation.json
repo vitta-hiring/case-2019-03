@@ -8,8 +8,6 @@
 	},
 	"login": {
 		"title": "Login",
-		"fail": "Invalid data. Try again.",
-		"problem": "Has a problem. Try again.",
 		"email": {
 			"title": "Email",
 			"placeholder": "Type your email",
@@ -67,10 +65,31 @@
 			"region": "Region",
 			"state": "State",
 			"country": "Country"
-		}
+		},
+		"fail": "Invalid data. Try again.",
+		"problem": "Has a problem. Try again."
 	},
 	"prescriptions": {
-		"create": "Create prescription",
+		"create": {
+			"title": "Create prescription",
+			"doctors": {
+				"label": "Doctor",
+				"placeholder": "Select the doctor"
+			},
+			"patients": {
+				"label": "Patient",
+				"placeholder": "Select the patient"
+			},
+			"submit": "Go to prescription",
+			"validations": {
+				"doctor": {
+					"empty": "The doctor field is empty"
+				},
+				"patient": {
+					"empty": "The patient field is empty"
+				}
+			}
+		},
 		"list": "List prescriptions",
 		"read": "Prescription details"
 	}

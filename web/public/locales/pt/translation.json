@@ -73,7 +73,26 @@
 		}
 	},
 	"prescriptions": {
-		"create": "Criar prescrição",
+		"create": {
+			"title": "Criar prescrição",
+			"doctors": {
+				"label": "Médico",
+				"placeholder": "Selecione o médico"
+			},
+			"patients": {
+				"label": "Paciente",
+				"placeholder": "Selecione o paciente"
+			},
+			"submit": "Ir para a prescrição",
+			"validations": {
+				"doctor": {
+					"empty": "O campo do médico está vazio"
+				},
+				"patient": {
+					"empty": "O campo do paciente está vazio"
+				}
+			}
+		},
 		"list": "Listar prescrições",
 		"read": "Detalhes da prescrição"
 	}

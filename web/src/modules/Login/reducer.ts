@@ -25,7 +25,7 @@ const login: Reducer = (state = INITIAL_STATE, { type, payload }) =>
 				draft.loading = false;
 
 				if (!payload.data.length) {
-					draft.fail = "login.problem";
+					draft.fail = "generics.problem";
 					return;
 				}
 
@@ -45,7 +45,9 @@ const login: Reducer = (state = INITIAL_STATE, { type, payload }) =>
 			case LOGIN_FAIL:
 				draft.loading = false;
 				draft.fail =
-					payload && payload.error ? payload.error : "login.problem";
+					payload && payload.error
+						? payload.error
+						: "generics.problem";
 				return;
 
 			case LOGOFF:

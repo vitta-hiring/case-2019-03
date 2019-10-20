@@ -2,6 +2,7 @@ import React, { useMemo, useEffect, useState } from "react";
 import { Button, Table, message, Modal } from "antd";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
+import { format } from "date-fns";
 
 import { reducers } from "../../../../store/reducers";
 import { removePrescription, getPrescriptions } from "../../actions";
@@ -48,6 +49,13 @@ const List: React.FC = () => {
 
 	const columns = useMemo(
 		() => [
+			{
+				title: translate("generics.date"),
+				dataIndex: "date",
+				render: (date: number) => (
+					<span>{!!date && format(date, "dd/MM/yyyy HH:mm")}</span>
+				)
+			},
 			{
 				title: translate("prescriptions.create.doctors.label"),
 				dataIndex: "doctor",

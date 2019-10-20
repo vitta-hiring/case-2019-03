@@ -74,7 +74,8 @@
 		"add": "Adicionar",
 		"save": "Salvar",
 		"continue": "Continuar",
-		"ignoreContinue": "Ignorar e continuar"
+		"ignoreContinue": "Ignorar e continuar",
+		"date": "Data"
 	},
 	"prescriptions": {
 		"create": {

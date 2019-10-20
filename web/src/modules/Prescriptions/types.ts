@@ -70,6 +70,7 @@ export type DrugInteraction = {
 };
 
 export type Prescription = {
+	date: number;
 	id?: number;
 	doctor: Person;
 	patient: Person;

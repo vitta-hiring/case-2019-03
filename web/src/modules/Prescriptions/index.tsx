@@ -3,7 +3,6 @@ import { Props } from "./types";
 import Create from "./views/Create";
 import List from "./views/List";
 import PreCreate from "./views/PreCreate";
-import Read from "./views/Read";
 
 const Prescriptions: React.FC<Props> = ({ view }) => {
 	const renderSubRoute = () => {
@@ -12,10 +11,8 @@ const Prescriptions: React.FC<Props> = ({ view }) => {
 				return <Create />;
 			case "list":
 				return <List />;
-			case "pre-create":
-				return <PreCreate />;
 			default:
-				return <Read />;
+				return <PreCreate />;
 		}
 	};
 

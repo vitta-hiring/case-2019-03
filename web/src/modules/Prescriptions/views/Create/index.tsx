@@ -125,6 +125,7 @@ const Create: React.FC = () => {
 
 	const submit = () => {
 		const payload = {
+			date: Date.now(),
 			doctor,
 			drugInteraction,
 			medicines,

@@ -1,14 +1,23 @@
 import React, { useEffect, useState, SyntheticEvent, useRef } from "react";
-import { Alert, Button, Drawer, Row, Col, Badge, Divider, Modal } from "antd";
+import {
+	Alert,
+	Button,
+	Drawer,
+	Row,
+	Col,
+	Badge,
+	Divider,
+	Modal,
+	message
+} from "antd";
 import _isEqual from "lodash/isEqual";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 
 import { reducers } from "../../../../store/reducers";
-import { makePayload } from "../../../../utils/forms";
 import { usePrevious } from "../../../../utils/hooks";
-import { getDrugInteraction } from "../../actions";
+import { getDrugInteraction, createPrescription } from "../../actions";
 import { MedicinePrescription, DrugInteraction } from "../../types";
 
 import Medicines, { View } from "./components/Medicines";
@@ -20,14 +29,13 @@ type State = {
 
 const Create: React.FC = () => {
 	const [drugs, setDrugs] = useState<string[]>([]);
-	const [errors, setErrors] = useState<State["errors"]>({});
 	const [medicines, setMedicines] = useState<MedicinePrescription[]>([]);
 	const [opened, setOpened] = useState(false);
 	const [viewedInteraction, setViewedInteraction] = useState(false);
 
 	const dispatch = useDispatch();
 
-	const { replace } = useHistory();
+	const { push, replace } = useHistory();
 
 	const previousDrugs = usePrevious(drugs);
 	const previousMedicines = usePrevious(medicines);
@@ -37,7 +45,10 @@ const Create: React.FC = () => {
 	const {
 		currentCreate: { doctor, patient },
 		drugInteraction,
-		drugInteractionLoading
+		drugInteractionLoading,
+		createPrescriptionFail,
+		createPrescriptionLoading,
+		createPrescriptionSuccess
 	} = useSelector((state: typeof reducers) => state.prescriptions);
 
 	const { t: translate } = useTranslation();
@@ -47,6 +58,22 @@ const Create: React.FC = () => {
 			replace("/prescriptions/pre-create");
 		}
 	}, []);
+
+	useEffect(() => {
+		if (createPrescriptionFail) {
+			message.error(translate(createPrescriptionFail));
+		}
+	}, [createPrescriptionFail]);
+
+	useEffect(() => {
+		if (createPrescriptionSuccess) {
+			Modal.success({
+				title: translate("prescriptions.create.success"),
+				onCancel: () => push("/prescriptions/pre-create"),
+				onOk: () => push("/prescriptions/pre-create")
+			});
+		}
+	}, [createPrescriptionSuccess]);
 
 	useEffect(() => {
 		if (drugs.length >= 2 && !_isEqual(previousDrugs, drugs)) {
@@ -101,14 +128,14 @@ const Create: React.FC = () => {
 	};
 
 	const submit = () => {
-		setErrors({});
+		const payload = {
+			doctor,
+			drugInteraction,
+			medicines,
+			patient
+		};
 
-		const e = form.current;
-
-		if (e) {
-			const payload = makePayload(e.elements);
-			console.log("TCL: onSubmit -> payload", payload);
-		}
+		dispatch(createPrescription(payload));
 	};
 
 	return (
@@ -173,8 +200,13 @@ const Create: React.FC = () => {
 				</fieldset>
 				<Button
 					className={styles.save}
-					disabled={!medicines.length}
+					disabled={
+						!medicines.length ||
+						drugInteractionLoading ||
+						createPrescriptionLoading
+					}
 					htmlType="submit"
+					loading={createPrescriptionLoading}
 					type="primary"
 				>
 					{translate("generics.save")}

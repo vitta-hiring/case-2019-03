@@ -124,7 +124,8 @@
 				"label": "Drug interaction",
 				"warning": "There are drug interaction alerts",
 				"report": "See report"
-			}
+			},
+			"success": "Prescription saved with success"
 		},
 		"list": "List prescriptions",
 		"read": "Prescription details"

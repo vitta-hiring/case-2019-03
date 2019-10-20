@@ -15,6 +15,9 @@ export const GET_DRUG_INTERACTION = "GET_DRUG_INTERACTION";
 export const GET_DRUG_INTERACTION_SUCCESS = "GET_DRUG_INTERACTION_SUCCESS";
 export const GET_DRUG_INTERACTION_FAIL = "GET_DRUG_INTERACTION_FAIL";
 export const CLEAR_DRUG_INTERACTION = "CLEAR_DRUG_INTERACTION";
+export const CREATE_PRESCRIPTION = "CREATE_PRESCRIPTION";
+export const CREATE_PRESCRIPTION_SUCCESS = "CREATE_PRESCRIPTION_SUCCESS";
+export const CREATE_PRESCRIPTION_FAIL = "CREATE_PRESCRIPTION_FAIL";
 
 export const selectionDoctorPatientSchema = object().shape({
 	doctor: string().required("prescriptions.create.validations.doctor.empty"),

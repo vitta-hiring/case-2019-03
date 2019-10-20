@@ -6,9 +6,10 @@ import {
 	SAVE_CURRENT_CREATE,
 	GET_MEDICINES,
 	GET_DRUG_INTERACTION,
-	CLEAR_DRUG_INTERACTION
+	CLEAR_DRUG_INTERACTION,
+	CREATE_PRESCRIPTION
 } from "./constants";
-import { Payload } from "./types";
+import { Payload, Prescription } from "./types";
 import { Dispatch } from "redux";
 
 export const getDoctors = () => ({
@@ -73,4 +74,15 @@ export const getDrugInteraction = (drugs: string[]) => (dispatch: Dispatch) => {
 
 export const clearDrugInteraction = () => ({
 	type: CLEAR_DRUG_INTERACTION
+});
+
+export const createPrescription = (data: Prescription) => ({
+	type: CREATE_PRESCRIPTION,
+	payload: {
+		request: {
+			data,
+			method: "post",
+			url: "/prescriptions"
+		}
+	}
 });

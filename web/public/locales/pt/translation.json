@@ -127,7 +127,8 @@
 				"label": "Interações medicamentosas",
 				"warning": "Há alertas de interações medicamentosas",
 				"report": "Ver relatório"
-			}
+			},
+			"success": "Prescrição salva com sucesso"
 		},
 		"list": "Listar prescrições",
 		"read": "Detalhes da prescrição"

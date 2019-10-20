@@ -13,7 +13,10 @@ import {
 	GET_DRUG_INTERACTION_SUCCESS,
 	GET_DRUG_INTERACTION,
 	GET_DRUG_INTERACTION_FAIL,
-	CLEAR_DRUG_INTERACTION
+	CLEAR_DRUG_INTERACTION,
+	CREATE_PRESCRIPTION,
+	CREATE_PRESCRIPTION_FAIL,
+	CREATE_PRESCRIPTION_SUCCESS
 } from "./constants";
 
 const INITIAL_STATE: State = {
@@ -28,7 +31,10 @@ const INITIAL_STATE: State = {
 	patientsFail: null,
 	patientsLoading: false,
 	drugInteractionLoading: false,
-	drugInteraction: []
+	drugInteraction: [],
+	createPrescriptionFail: null,
+	createPrescriptionLoading: false,
+	createPrescriptionSuccess: false
 };
 
 const example: Reducer = (state = INITIAL_STATE, { type, payload }) =>
@@ -99,6 +105,22 @@ const example: Reducer = (state = INITIAL_STATE, { type, payload }) =>
 
 			case CLEAR_DRUG_INTERACTION:
 				draft.drugInteraction = [];
+				return;
+
+			case CREATE_PRESCRIPTION:
+				draft.createPrescriptionFail = null;
+				draft.createPrescriptionLoading = true;
+				draft.createPrescriptionSuccess = false;
+				return;
+
+			case CREATE_PRESCRIPTION_FAIL:
+				draft.createPrescriptionFail = "generics.problem";
+				draft.createPrescriptionLoading = false;
+				return;
+
+			case CREATE_PRESCRIPTION_SUCCESS:
+				draft.createPrescriptionLoading = false;
+				draft.createPrescriptionSuccess = true;
 				return;
 		}
 	});

@@ -1,30 +1,17 @@
 import React, { useEffect, useState, SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { Button, Form, Icon, Select, message, Row, Col } from "antd";
+import { useSelector } from "react-redux";
+import { Button, Row, Col } from "antd";
+import _isEqual from "lodash/isEqual";
 
-import {
-	clearDoctorsFail,
-	clearPatientsFail,
-	getDoctors,
-	getPatients
-} from "../../actions";
 import { reducers } from "../../../../store/reducers";
-import { Person } from "../../types";
-import { makePayload, makeErrorsFromYup } from "../../../../utils/forms";
-import { selectionDoctorPatientSchema } from "../../constants";
-import { usePrevious } from "../../../../utils/hooks";
+import { MedicinePrescription } from "../../types";
+import { makePayload } from "../../../../utils/forms";
 import { useHistory } from "react-router";
-import Medicines from "./components/Medicines";
-
-const { Item } = Form;
-const { Option } = Select;
+import Medicines, { View } from "./components/Medicines";
 
 type State = {
-	errors: {
-		doctor?: string;
-		patient?: string;
-	};
+	errors: {};
 };
 
 const Create: React.FC = () => {
@@ -44,7 +31,7 @@ const Create: React.FC = () => {
 
 	const [errors, setErrors] = useState<State["errors"]>({});
 
-	const [medicines, setMedicines] = useState<{}[]>([]);
+	const [medicines, setMedicines] = useState<MedicinePrescription[]>([]);
 
 	const onSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();
@@ -53,16 +40,7 @@ const Create: React.FC = () => {
 
 		if (e.target instanceof HTMLFormElement) {
 			const payload = makePayload(e.target.elements);
-
-			selectionDoctorPatientSchema
-				.validate(payload, { abortEarly: false })
-				.then(() => {
-					console.log("dados válidos!");
-				})
-				.catch(err => {
-					const yupErrors = makeErrorsFromYup(err);
-					setErrors(yupErrors);
-				});
+			console.log("TCL: onSubmit -> payload", payload);
 		}
 	};
 
@@ -87,13 +65,24 @@ const Create: React.FC = () => {
 						{translate("prescriptions.create.medicines.label")}
 					</legend>
 					<Medicines
-						onAdd={
-							(medicine: {}) =>
-								console.log(
-									"TCL: Create:React.FC -> medicine",
-									medicine
-								)
-							// setMedicines([...medicines, medicine])
+						onAdd={(medicine: MedicinePrescription) => {
+							if (
+								!!medicines.filter(innerMedicine =>
+									_isEqual(innerMedicine, medicine)
+								).length
+							)
+								return;
+
+							setMedicines([...medicines, medicine]);
+						}}
+					/>
+					<View
+						medicines={medicines}
+						onRemove={index =>
+							setMedicines([
+								...medicines.slice(0, index),
+								...medicines.slice(index + 1)
+							])
 						}
 					/>
 				</fieldset>

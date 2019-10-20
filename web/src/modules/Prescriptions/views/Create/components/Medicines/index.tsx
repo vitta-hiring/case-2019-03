@@ -13,8 +13,12 @@ import { SelectValue } from "antd/lib/select";
 
 import styles from "./theme/index.module.scss";
 import { AxiosResponse } from "../../../../../../types";
-import { Medicine } from "../../../../types";
+import { Medicine, MedicinePrescription } from "../../../../types";
 import { makeErrorsFromYup } from "../../../../../../utils/forms";
+
+import View from "./view";
+
+export { View };
 
 const { Item } = Form;
 
@@ -26,19 +30,17 @@ type State = {
 	};
 };
 
-const Medicines: React.FC<{ onAdd: (medicine: {}) => void }> = ({ onAdd }) => {
+const Medicines: React.FC<{
+	onAdd: (medicine: MedicinePrescription) => void;
+}> = ({ onAdd }) => {
 	const { t: translate } = useTranslation();
 
 	const [errors, setErrors] = useState<State["errors"]>({});
 	const [loading, setLoading] = useState(false);
 	const [medicines, setMedicines] = useState([]);
 	const [medicinesDataSource, setMedicinesDataSource] = useState([]);
-	const [payload, setPayload] = useState<{
-		medicine: Medicine | null;
-		dosage: string;
-		administrationRoute: string;
-	}>({
-		medicine: null,
+	const [payload, setPayload] = useState<MedicinePrescription>({
+		medicine: undefined,
 		dosage: "",
 		administrationRoute: ""
 	});
@@ -48,7 +50,7 @@ const Medicines: React.FC<{ onAdd: (medicine: {}) => void }> = ({ onAdd }) => {
 	const onSearch = _debounce(val => {
 		setLoading(false);
 		setMedicines([]);
-		setPayload({ ...payload, medicine: null });
+		setPayload({ ...payload, medicine: undefined });
 		setMedicinesDataSource([]);
 
 		if (val.length < 3) {

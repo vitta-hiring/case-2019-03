@@ -43,6 +43,12 @@ export type Medicine = {
 	Unificado: null | string;
 };
 
+export type MedicinePrescription = {
+	medicine?: Medicine;
+	dosage: string;
+	administrationRoute: Medicine["ViaAdministracao"];
+};
+
 export type State = {
 	currentCreate: {
 		doctor: Person;

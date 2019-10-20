@@ -32,8 +32,6 @@ const Menu = () => {
 
 	if (!user) return null;
 
-	const { role } = user;
-
 	return (
 		<MenuAntd
 			theme="dark"

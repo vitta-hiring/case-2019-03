@@ -8,7 +8,7 @@ import Doctors from "./components/Doctors";
 import Patients from "./components/Patients";
 import { useDispatch, useSelector } from "react-redux";
 import { saveCurrentCreate } from "../../actions";
-import { Payload, Person } from "../../types";
+import { Person } from "../../types";
 import { useHistory } from "react-router";
 import { reducers } from "../../../../store/reducers";
 

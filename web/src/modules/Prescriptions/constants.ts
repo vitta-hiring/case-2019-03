@@ -18,9 +18,9 @@ export const selectionDoctorPatientSchema = object().shape({
 });
 
 export const addMedicineSchema = object().shape({
-	medicine: object()
-		.nullable()
-		.required("prescriptions.create.validations.medicine.empty"),
+	medicine: object().required(
+		"prescriptions.create.validations.medicine.empty"
+	),
 	dosage: string().required("prescriptions.create.validations.dosage.empty"),
 	administrationRoute: string().required(
 		"prescriptions.create.validations.administrationRoute.empty"

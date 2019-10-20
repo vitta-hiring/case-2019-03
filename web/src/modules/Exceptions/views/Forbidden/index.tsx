@@ -1,12 +1,12 @@
 import React from "react";
 import { Button, Result } from "antd";
 import { useTranslation } from "react-i18next";
-import { History } from "history";
+import { useHistory } from "react-router-dom";
 
-const Forbidden: React.FC<{ history: History }> = ({
-	history: { replace }
-}) => {
+const Forbidden: React.FC = () => {
+	const { replace } = useHistory();
 	const { t: translate } = useTranslation();
+
 	return (
 		<Result
 			status="403"

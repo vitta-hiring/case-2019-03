@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Drawer as DrawerAntd, Alert, Divider } from "antd";
 import { useTranslation } from "react-i18next";
 
@@ -27,9 +27,7 @@ const Drawer: React.FC<Props> = ({ drugInteraction, opened, toggleDrawer }) => {
 				>
 					{drugInteraction.map(
 						(drug: DrugInteraction, index: number) => (
-							<React.Fragment
-								key={`${drug.Farmaco1}_${drug.Farmaco2}`}
-							>
+							<Fragment key={`${drug.Farmaco1}_${drug.Farmaco2}`}>
 								<Alert
 									message={`${translate(
 										"prescriptions.create.drugInteraction.drugs"
@@ -46,7 +44,7 @@ const Drawer: React.FC<Props> = ({ drugInteraction, opened, toggleDrawer }) => {
 								{drugInteraction.length - 1 !== index && (
 									<Divider />
 								)}
-							</React.Fragment>
+							</Fragment>
 						)
 					)}
 				</DrawerAntd>

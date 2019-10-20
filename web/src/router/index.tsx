@@ -1,16 +1,13 @@
 import React, { useEffect } from "react";
-import {
-	Switch,
-	Route,
-	RouteProps,
-	useHistory,
-	useLocation
-} from "react-router";
 import { useSelector, useDispatch } from "react-redux";
+import { Switch, Route, RouteProps } from "react-router";
+import { useHistory, useLocation } from "react-router-dom";
+
 import Layout from "../components/Layout";
 import { logoff } from "../modules/Login/actions";
 import { reducers } from "../store/reducers";
 import { routeToProps } from "../utils/router";
+
 import { routes } from "./constants";
 import { Route as RouteT } from "./types";
 

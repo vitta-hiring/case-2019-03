@@ -1,19 +1,21 @@
-import { Avatar, Icon, Menu, Dropdown, Button } from "antd";
 import React from "react";
-import styles from "./theme/index.module.scss";
+import { Avatar, Icon, Menu, Dropdown, Button } from "antd";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
-import { reducers } from "../../store/reducers";
+import { useHistory } from "react-router-dom";
+
 import { logoff } from "../../modules/Login/actions";
-import { useHistory } from "react-router";
+import { reducers } from "../../store/reducers";
+
+import styles from "./theme/index.module.scss";
 
 const SelectUser = () => {
+	const dispatch = useDispatch();
 	const { replace } = useHistory();
-	const { i18n, t: translate } = useTranslation();
 	const userName = useSelector(
 		(state: typeof reducers) => state.login.user.name
 	);
-	const dispatch = useDispatch();
+	const { i18n, t: translate } = useTranslation();
 
 	const menu = (
 		<Menu

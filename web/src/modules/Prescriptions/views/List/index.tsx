@@ -1,8 +1,8 @@
 import React, { useMemo, useEffect, useState } from "react";
 import { Button, Table, message, Modal } from "antd";
+import { format } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { format } from "date-fns";
 
 import { reducers } from "../../../../store/reducers";
 import { removePrescription, getPrescriptions } from "../../actions";

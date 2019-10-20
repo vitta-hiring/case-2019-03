@@ -1,13 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import styles from "./theme/index.module.scss";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
-type LogoProps = {
+import styles from "./theme/index.module.scss";
+
+type Props = {
 	className?: string;
 };
 
-const Logo: React.FC<LogoProps> = ({ className = "" }) => {
+const Logo: React.FC<Props> = ({ className = "" }) => {
 	const { t: translate } = useTranslation();
 
 	return (

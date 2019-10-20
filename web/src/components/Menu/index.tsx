@@ -1,12 +1,12 @@
 import React from "react";
-import { useHistory, useLocation } from "react-router-dom";
 import { Icon, Menu as MenuAntd } from "antd";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { useHistory, useLocation } from "react-router-dom";
 
 import { routes } from "../../router/constants";
-import { Route } from "../../router/types";
 import { reducers } from "../../store/reducers";
-import { useSelector } from "react-redux";
+import { Route } from "../../router/types";
 
 const { Item, SubMenu } = MenuAntd;
 
@@ -26,9 +26,8 @@ const menuIcon = (route: Route) => {
 const Menu = () => {
 	const { push } = useHistory();
 	const { pathname } = useLocation();
-	const { t: translate } = useTranslation();
-
 	const user = useSelector((state: typeof reducers) => state.login.user);
+	const { t: translate } = useTranslation();
 
 	if (!user) return null;
 

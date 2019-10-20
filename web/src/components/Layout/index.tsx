@@ -7,13 +7,14 @@ import {
 	Spin
 } from "antd";
 import { useTranslation } from "react-i18next";
+
+import { usePrevious } from "../../utils/hooks";
 import Logo from "../Logo";
 import Menu from "../Menu";
 import SelectLanguage from "../SelectLanguage";
 import SelectUser from "../SelectUser";
 
 import styles from "./theme/index.module.scss";
-import { usePrevious } from "../../utils/hooks";
 
 const { Content, Footer, Header, Sider } = AntdLayout;
 
@@ -26,17 +27,29 @@ const parseStringLocale = (locale: "en" | "pt") => {
 	}
 };
 
-const Page: React.FC<{ logged: boolean }> = ({ children, logged }) => {
-	const [collapsed, setCollapsed] = useState(false);
-	const toggle = () => setCollapsed(!collapsed);
+type Props = { logged: boolean };
 
+const Page: React.FC<Props> = ({ children, logged }) => {
+	const [collapsed, setCollapsed] = useState(false);
 	const {
 		i18n: { language }
 	} = useTranslation();
-
+	const previousLanguage = usePrevious(language);
 	const [locale, setLocale] = useState({
 		locale: parseStringLocale(language as "en" | "pt")
 	});
+
+	useEffect(() => {
+		fetchLocale(parseStringLocale(language as "en" | "pt"));
+	}, []);
+
+	useEffect(() => {
+		if (previousLanguage && language !== previousLanguage) {
+			fetchLocale(parseStringLocale(language as "en" | "pt"));
+		}
+	}, [language]);
+
+	const toggle = () => setCollapsed(!collapsed);
 
 	const fetchLocale = async (antdStringLocale: "en_US" | "pt_BR") => {
 		const module = await import(`antd/es/locale/${antdStringLocale}`);
@@ -44,17 +57,6 @@ const Page: React.FC<{ logged: boolean }> = ({ children, logged }) => {
 			setLocale(module.default);
 		}
 	};
-
-	useEffect(() => {
-		fetchLocale(parseStringLocale(language as "en" | "pt"));
-	}, []);
-
-	const previousLanguage = usePrevious(language);
-	useEffect(() => {
-		if (previousLanguage && language !== previousLanguage) {
-			fetchLocale(parseStringLocale(language as "en" | "pt"));
-		}
-	}, [language]);
 
 	return (
 		<Provider locale={locale}>
@@ -104,7 +106,7 @@ const Loader = () => (
 	</div>
 );
 
-const Layout: React.FC<{ logged: boolean }> = ({ children, logged }) => (
+const Layout: React.FC<Props> = ({ children, logged }) => (
 	<Suspense fallback={<Loader />}>
 		<Page logged={logged}>{children}</Page>
 	</Suspense>

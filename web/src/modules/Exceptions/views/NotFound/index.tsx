@@ -1,10 +1,12 @@
 import React from "react";
 import { Button, Result } from "antd";
 import { useTranslation } from "react-i18next";
-import { History } from "history";
+import { useHistory } from "react-router-dom";
 
-const NotFound: React.FC<{ history: History }> = ({ history: { replace } }) => {
+const NotFound: React.FC = () => {
+	const { replace } = useHistory();
 	const { t: translate } = useTranslation();
+
 	return (
 		<Result
 			status="404"

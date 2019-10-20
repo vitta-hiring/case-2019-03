@@ -3,7 +3,7 @@ import { Button, Row, Col, Badge, Modal, message } from "antd";
 import _isEqual from "lodash/isEqual";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 
 import { reducers } from "../../../../store/reducers";
 import { usePrevious } from "../../../../utils/hooks";
@@ -20,20 +20,12 @@ import Medicines from "./components/Medicines";
 import styles from "./theme/index.module.scss";
 
 const Create: React.FC = () => {
-	const [drugs, setDrugs] = useState<string[]>([]);
-	const [medicines, setMedicines] = useState<MedicinePrescription[]>([]);
-	const [opened, setOpened] = useState(false);
-	const [viewedInteraction, setViewedInteraction] = useState(false);
-
 	const dispatch = useDispatch();
-
 	const { push, replace } = useHistory();
-
+	const [drugs, setDrugs] = useState<string[]>([]);
 	const previousDrugs = usePrevious(drugs);
+	const [medicines, setMedicines] = useState<MedicinePrescription[]>([]);
 	const previousMedicines = usePrevious(medicines);
-
-	const form = useRef<any>();
-
 	const {
 		currentCreate: { doctor, patient },
 		drugInteraction,
@@ -42,7 +34,8 @@ const Create: React.FC = () => {
 		createPrescriptionLoading,
 		createPrescriptionSuccess
 	} = useSelector((state: typeof reducers) => state.prescriptions);
-
+	const [opened, setOpened] = useState(false);
+	const [viewedInteraction, setViewedInteraction] = useState(false);
 	const { t: translate } = useTranslation();
 
 	useEffect(() => {
@@ -166,7 +159,7 @@ const Create: React.FC = () => {
 					<p>{patient.name}</p>
 				</Col>
 			</Row>
-			<form onSubmit={onSubmit} ref={form}>
+			<form onSubmit={onSubmit}>
 				<input name={doctor} type="hidden" value={doctor.id} />
 				<input name={patient} type="hidden" value={patient.id} />
 				<fieldset>

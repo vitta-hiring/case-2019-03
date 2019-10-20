@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { Fragment, useMemo } from "react";
 import { Button, Divider, Table, Tag } from "antd";
 import { useTranslation } from "react-i18next";
 
@@ -22,12 +22,10 @@ const View: React.FC<Props> = ({ medicines, onRemove }) => {
 						{medicine.Nome}
 						{onRemove &&
 							medicine.Farmacos.map(farmaco => (
-								<React.Fragment
-									key={`${medicine.id}_${farmaco}`}
-								>
+								<Fragment key={`${medicine.id}_${farmaco}`}>
 									<Divider type="vertical" />
 									<Tag key={farmaco}>{farmaco}</Tag>
-								</React.Fragment>
+								</Fragment>
 							))}
 					</span>
 				)

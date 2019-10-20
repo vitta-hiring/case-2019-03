@@ -1,16 +1,17 @@
 import React, { useState, SyntheticEvent, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { Button, Row, Col } from "antd";
+import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
+import { reducers } from "../../../../store/reducers";
 import { makePayload, makeErrorsFromYup } from "../../../../utils/forms";
+import { saveCurrentCreate, clearDrugInteraction } from "../../actions";
 import { selectionDoctorPatientSchema } from "../../constants";
+import { Person } from "../../types";
+
 import Doctors from "./components/Doctors";
 import Patients from "./components/Patients";
-import { useDispatch, useSelector } from "react-redux";
-import { saveCurrentCreate, clearDrugInteraction } from "../../actions";
-import { Person } from "../../types";
-import { useHistory } from "react-router";
-import { reducers } from "../../../../store/reducers";
 
 type State = {
 	errors: {
@@ -20,21 +21,17 @@ type State = {
 };
 
 const PreCreate: React.FC = () => {
-	const { t: translate } = useTranslation();
-
-	const [errors, setErrors] = useState<State["errors"]>({});
-
 	const dispatch = useDispatch();
+	const { push } = useHistory();
+	const { doctors, patients } = useSelector(
+		(state: typeof reducers) => state.prescriptions
+	);
+	const [errors, setErrors] = useState<State["errors"]>({});
+	const { t: translate } = useTranslation();
 
 	useEffect(() => {
 		dispatch(clearDrugInteraction());
 	}, []);
-
-	const { push } = useHistory();
-
-	const { doctors, patients } = useSelector(
-		(state: typeof reducers) => state.prescriptions
-	);
 
 	const onSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();

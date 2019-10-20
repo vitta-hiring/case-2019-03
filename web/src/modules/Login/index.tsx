@@ -1,16 +1,17 @@
 import React, { SyntheticEvent, useState, useEffect } from "react";
 import { Button, Form, Icon, Input, message } from "antd";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { makePayload, makeErrorsFromYup } from "../../utils/forms";
 
-import { loginSchema } from "./constants";
-import styles from "./theme/index.module.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { login, clearFail } from "./actions";
 import { reducers } from "../../store/reducers";
 import { usePrevious } from "../../utils/hooks";
-import { RouteChildrenProps } from "react-router";
+
+import { login, clearFail } from "./actions";
+import { loginSchema } from "./constants";
+import styles from "./theme/index.module.scss";
 
 const { Item } = Form;
 const { Password } = Input;
@@ -22,14 +23,28 @@ type State = {
 	};
 };
 
-const Login: React.FC<RouteChildrenProps> = ({ history }) => {
-	const loading = useSelector(
-		(state: typeof reducers) => state.login.loading
-	);
-
+const Login: React.FC = () => {
 	const dispatch = useDispatch();
+	const { replace } = useHistory();
+	const { fail, loading, user } = useSelector(
+		(state: typeof reducers) => state.login
+	);
+	const previousFail = usePrevious(fail);
 	const [errors, setErrors] = useState<State["errors"]>({});
 	const { t: translate } = useTranslation();
+
+	useEffect(() => {
+		if (user) {
+			replace("/");
+		}
+	}, [user]);
+
+	useEffect(() => {
+		if (fail && fail.length && fail !== previousFail) {
+			message.error(translate(fail));
+			dispatch(clearFail());
+		}
+	}, [fail, previousFail]);
 
 	const onSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();
@@ -57,22 +72,6 @@ const Login: React.FC<RouteChildrenProps> = ({ history }) => {
 				});
 		}
 	};
-
-	const user = useSelector((state: typeof reducers) => state.login.user);
-	useEffect(() => {
-		if (user) {
-			history.replace("/");
-		}
-	}, [user]);
-
-	const fail = useSelector((state: typeof reducers) => state.login.fail);
-	const previousFail = usePrevious(fail);
-	useEffect(() => {
-		if (fail && fail.length && fail !== previousFail) {
-			message.error(translate(fail));
-			dispatch(clearFail());
-		}
-	}, [fail, previousFail]);
 
 	return (
 		<form className={styles.container} onSubmit={onSubmit}>

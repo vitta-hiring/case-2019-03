@@ -1,32 +1,31 @@
 import React, { useEffect, useState } from "react";
+import { Form, Select, message } from "antd";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Form, Select, message } from "antd";
 
-import { clearPatientsFail, getPatients } from "../../../../actions";
 import { reducers } from "../../../../../../store/reducers";
-import { Person } from "../../../../types";
 import { usePrevious } from "../../../../../../utils/hooks";
+import { clearPatientsFail, getPatients } from "../../../../actions";
+import { Person } from "../../../../types";
 
 const { Item } = Form;
 const { Option } = Select;
 
-const Patients: React.FC<{ error?: string }> = ({ error }) => {
-	const { t: translate } = useTranslation();
+type Props = { error?: string };
 
-	const [patient, setPatient] = useState<number | string>("");
-
+const Patients: React.FC<Props> = ({ error }) => {
+	const dispatch = useDispatch();
 	const { patients, patientsFail, patientsLoading } = useSelector(
 		(state: typeof reducers) => state.prescriptions
 	);
-
-	const dispatch = useDispatch();
+	const previousPatientsFail = usePrevious(patientsFail);
+	const [patient, setPatient] = useState<number | string>("");
+	const { t: translate } = useTranslation();
 
 	useEffect(() => {
 		dispatch(getPatients());
 	}, []);
 
-	const previousPatientsFail = usePrevious(patientsFail);
 	useEffect(() => {
 		if (
 			patientsFail &&

@@ -22,7 +22,6 @@ import {
 	DELETE_PRESCRIPTION_FAIL,
 	DELETE_PRESCRIPTION_SUCCESS
 } from "./constants";
-import { string } from "prop-types";
 
 export type Person = {
 	id: number;

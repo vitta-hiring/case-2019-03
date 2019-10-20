@@ -1,10 +1,10 @@
 import React from "react";
 import { Routes } from "./types";
 
-import Login from "../modules/Login";
-import Home from "../modules/Home";
-import Prescriptions from "../modules/Prescriptions";
 import Exceptions from "../modules/Exceptions";
+import Home from "../modules/Home";
+import Login from "../modules/Login";
+import Prescriptions from "../modules/Prescriptions";
 
 export const routes: Routes = [
 	{

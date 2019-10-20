@@ -1,22 +1,26 @@
 import React, { useState, SyntheticEvent } from "react";
+import { AutoComplete, Form, message, Row, Col, Input, Button } from "antd";
+import { SelectValue } from "antd/lib/select";
+import _debounce from "lodash/debounce";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { AutoComplete, Form, message, Row, Col, Input, Button } from "antd";
-import _debounce from "lodash/debounce";
 
+import { AxiosResponse } from "../../../../../../types";
+import { makeErrorsFromYup } from "../../../../../../utils/forms";
 import { getMedicines } from "../../../../actions";
 import {
 	GET_MEDICINES_SUCCESS,
 	addMedicineSchema
 } from "../../../../constants";
-import { SelectValue } from "antd/lib/select";
+import { Medicine, MedicinePrescription } from "../../../../types";
 
 import styles from "./theme/index.module.scss";
-import { AxiosResponse } from "../../../../../../types";
-import { Medicine, MedicinePrescription } from "../../../../types";
-import { makeErrorsFromYup } from "../../../../../../utils/forms";
 
 const { Item } = Form;
+
+type Props = {
+	onAdd: (medicine: MedicinePrescription) => void;
+};
 
 type State = {
 	errors: {
@@ -26,11 +30,9 @@ type State = {
 	};
 };
 
-const Medicines: React.FC<{
-	onAdd: (medicine: MedicinePrescription) => void;
-}> = ({ onAdd }) => {
+const Medicines: React.FC<Props> = ({ onAdd }) => {
+	const dispatch = useDispatch();
 	const { t: translate } = useTranslation();
-
 	const [errors, setErrors] = useState<State["errors"]>({});
 	const [loading, setLoading] = useState(false);
 	const [medicines, setMedicines] = useState([]);
@@ -40,8 +42,6 @@ const Medicines: React.FC<{
 		dosage: "",
 		administrationRoute: ""
 	});
-
-	const dispatch = useDispatch();
 
 	const onSearch = _debounce(val => {
 		setLoading(false);

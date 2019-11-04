@@ -1,0 +1,17 @@
+{
+  "NODE_ENV": "local",
+  "API_PORT": 3000,
+  "SEQUELIZE_DB": {
+    "database": "Vitta",
+    "dialect": "sqlite",
+    "storage": ":memory:"
+  },
+  "RESULT_LIMIT": 1,
+  "AUTH_JWT_ALGORITHM": "RS256",
+  "AUTH_JWT_PRIVATE_KEY_PATH": "./server/security/private.pem",
+  "AUTH_JWT_EXPIRE": "720h",
+  "AUTH_JWT_EXPIRE_CUSTOMER": 30,
+  "AUTH_JWT_EXPIRE_CUSTOMER_PERIOD": "days",
+  "DB_POOL_SIZE": 5,
+  "DB_CONNECTION_IDLE": 5000
+}

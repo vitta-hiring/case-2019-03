@@ -1,125 +1,179 @@
-## Sobre a Vitta
+# MS-Vitta
 
-A Vitta nasceu com a missão de transformar a saúde do Brasil. Em poucos anos se tornou uma das maiores startups de health tech no mercado, e mesmo com o crescimento, mantemos em nosso DNA a inovação, a experiência, a praticidade e a segurança. 
-Desde então temos trabalhado para construir nossa marca e cultura a fim de desenvolver um produto altamente eficiente, capaz de revolucionar a saúde no nosso país. 
-Além das melhores soluções de tecnologia e atendimento excepcional voltadas ao mercado de saúde, contamos também com as melhores pessoas, os nossos Vittanos. 
+### Resumo de funcionamento
+MS-Vitta tem o papel de controle para as prescricões médicas alertando sobre os riscos da interação entre os remedios e consultar as prescições já realizadas.
 
-Nossos valores:
-- Guerreiros por natureza; 
-- Vencemos em time;
-- O cliente é a nossa vida;
-- Excelência inegociável.
+### Topologia
 
-Estamos procurando pessoas interessadas em atuar em projetos desafiadores, dispostas a revolucionar a saúde do Brasil junto com a gente. 
+```mermaid
+graph LR
+  Customer-->MS-Vitta
+  subgraph ms-vitta
+    MS-Vitta
+    MS-Vitta-->recipe
+   MS-Vitta-->medicine
+   MS-Vitta-->recipe/doctor
+  MS-Vitta-->recipe/pacient
+  end
 
-A Vitta mantém sedes em São Paulo e Uberlândia.
+  %% Internos do MS %%
+  style Customer fill:#fff,stroke:#aaa
+ 
+```
+### Estrutura de diretórios
+```
+    .
+    ├── configs            # Dentro dessa pasta estão os arquivos contendo as constantes da aplicação
+    ├── server             # Arquivos contendo as configurações gerais do servidor da aplicação
+    ├── src                # lib, models, services, logs...
+    └── test               # Testes unitários
+```
 
-\#vemmudarasaudedobrasil #saudenonstop
+### Chamadas exemplo
 
+### **GET** /health
+- Retorna o status do serviço.
 
-## Sobre o desafio
+>:white_check_mark: **_Retorno com sucesso_**
 
-Atualmente existem muitos erros na prescrição médica, que por vezes podem levar a um agravamento no quadro clínico do paciente. Neste desafio você deve construir uma aplicação que irá ajudar médicos a evitarem erros, verificando e alertando sobre interações medicamentosas dos princípios ativos dos medicamentos.
-
-A aplicação deve permitir que o usuário identifique o médico e o paciente sendo atendido e posteriormente a criação da prescrição de um ou mais medicamentos. Para cada medicamento é necessário informar seu nome, posologia e via de administração.
-
-Ao identificar uma interação medicamentosa entre dois ou mais dos medicamentos escolhidos o médico deve receber um alerta da gravidade da interação, os fármacos envolvidos e a descrição. Também deve ser possível visualizar as prescrições anteriores, com data e a lista de medicamentos.
-
-## Considerações
-
-- Caso o seu teste seja de front-end e você desenvolva atividades de back-end (ou vice-versa) terá pontos extras na avaliação;
-- Serão avaliados a qualidade do código e capricho na organização, portanto esperamos que realize seu melhor trabalho!
-- Você deverá enviar um e-mail para ti@vitta.me com quantos dias precisará para responder o teste. Leve em consideração que quanto maior o prazo solicitado, maior o rigor na avaliação. A pontualidade na entrega também será avaliada;
-- O arquivo medicamentos.json possui uma coleção de medicamentos e os princípios ativos que fazem parte de sua composição. Os dados seguem o formato do exemplo abaixo, mas você pode modificar a estrutura no seu projeto se precisar:
-
-```javascript
+>**HTTP Status** `200`
+```
 {
-	"IdMedicamento":36385,
-	"Nome":"RETAPAMULINA",
-	"Farmaco":null,
-	"Farmacos":["RETAPAMULINA"],
-	"Concentracao":"10",
-	"Unidade":"MG/G",
-	"TipoMedicamento":"GENERICO",
-	"FormaFarmaceutica":"POMADA DERMATOLOGICA",
-	"ViaAdministracao":"TOP",
-	"CodigoATC":"D06AX13",
-	"UsoInterno":true,
-	"Antimicrobiano":true,
-"Bula":"http://www.anvisa.gov.br/datavisa/fila_bula/frmVisualizarBula.asp?pNuTransacao=9442872014&pIdAnexo=2273137",
-	"Portaria344":"",
-	"ControleEspecial":false,
-	"TISS":"510611203161218",
-	"MIP":false,
-	"Label":"RETAPAMULINA 10MG/G - POMADA DERMATOLOGICA",
-	"Unificado":null
+    "/health": true
 }
 ```
-- O arquivo interacao_medicamentosa.json possui uma coleção de objetos que representam a interação medicamentosa entre os componentes dos medicamentos listados no arquivo anterior. Abaixo temos um exemplo do formato do objeto que também pode ter a estrutura modificada caso julgue necessário.
 
-```javascript
-{
-	"Farmaco1":"VORTIOXETINA",
-	"Farmaco2":"CITALOPRAM",
-	"Nome":"Grave",
-	"Descricao":"O uso concomitante de vortioxetina e agentes serotonérgicos pode resultar em aumento do risco de síndrome serotoninérgica (hipertensão, hipertermia,mioclonia,alterações do estado mental)."
- }
+>:x: **_Retorno default_**
+
+>**HTTP Status** `500`
+
+>**Response**
+```
+{ "description": "Serviço indisponível" }
 ```
 
-## Front-end
+### **GET** /medicine/page/:id
+- Retorna a listagem de medicamentos
 
-### Pré-requisitos
-- Desenvolvimento utilizando um framework/biblioteca Javascript como Vue,React,Angular;
-- Documentar como rodamos o projeto no README.MD;
-- Dados deverão ser salvos em LocalStorage (No caso da implementação do Back-end isso não se faz necessário);
-- Layout responsivo;
-- Deve ser uma SPA;
+>:white_check_mark: **_Retorno com sucesso_**
 
-### Diferenciais/Extras
-- Desenvolvimento de um Dockerfile/Docker-Compose.yml para rodar o projeto;
-- Criação de servidor para os mocks da tela;
-- Usabilidade e feedback para o usuário no carregamento da consulta;
-- Seguir algum Javascript Style Guide;
-- Utilização de es2015;
-- Utilização de padrões de projeto;
-- Utilização de um pré-processador (Less, Sass, Stylus);
-- Deve ser possível rodar a aplicação com um só comando;
-- Desenvolvimento utilizando Vue.js.
+>**HTTP Status** `200`
+```
+{
+   {
+    "totalPages": 177,
+    "page": "1",
+    "data": [
+			{
+            "IdMedicamento": 33474,
+            "Nome": "PRATURE",
+            "Farmaco": null,
+            "Farmacos": [
+                "PANTOPRAZOL SODICO SESQUI-HIDRATADO"
+            ],
+            "Concentracao": "40",
+            "Unidade": "MG",
+            "TipoMedicamento": "SIMILAR",
+            "FormaFarmaceutica": "COMPRIMIDO REVESTIDO DE LIBERACAO RETARDADA",
+            "ViaAdministracao": "ORAL",
+            "CodigoATC": "A02B2",
+            "UsoInterno": true,
+            "Antimicrobiano": false,
+            "Bula": null,
+            "Portaria344": "",
+            "ControleEspecial": false,
+            "TISS": "525917020050403",
+            "MIP": false,
+            "Label": "PRATURE 40MG - COMPRIMIDO REVESTIDO DE LIBERACAO RETARDADA",
+            "Unificado": null
+        }
+		]
+	 }
+}
+```
+
+>:x: **_Pagina invalida_**
+
+>**HTTP Status** `400`
+
+>**Response**
+```
+{"message": "Limit of page is 177"}
+```
+
+>:x: **_Pagina invalida_**
+
+>**HTTP Status** `401`
+
+>**Response**
+```
+{"error": "Not authorized to access this resource"}
+```
 
 
-## Back-end
+### **GET** /medicine/:id
+- Retorna o medicamento
 
-### Pré-requisitos
-- Desenvolvimento de uma API REST;
-- Documentar como rodamos o projeto no README.MD;
-- Desenvolvimento de um Dockerfile/Docker-Compose.yml para rodar o projeto;
-- Utilização de banco relacional;
+>:white_check_mark: **_Retorno com sucesso_**
 
-### Diferenciais/Extras
-- Resistência a falhas de containers na arquitetura desenvolvida;
-- Implementação de Testes de unidade e/ou integração;
-- Seguir algum Javascript Style Guide;
-- Utilização de es2015;
-- Utilização de padrões de projeto;
-- Migrations e seeders;
-- Deve ser possível rodar a aplicação com um só comando;
-- Desenvolvimento utilizando Node.js.
+>**HTTP Status** `200`
+```
 
-## Pronto para começar o desafio?
+{
+			"IdMedicamento": 33474,
+			"Nome": "PRATURE",
+			"Farmaco": null,
+			"Farmacos": [
+					"PANTOPRAZOL SODICO SESQUI-HIDRATADO"
+			],
+			"Concentracao": "40",
+			"Unidade": "MG",
+			"TipoMedicamento": "SIMILAR",
+			"FormaFarmaceutica": "COMPRIMIDO REVESTIDO DE LIBERACAO RETARDADA",
+			"ViaAdministracao": "ORAL",
+			"CodigoATC": "A02B2",
+			"UsoInterno": true,
+			"Antimicrobiano": false,
+			"Bula": null,
+			"Portaria344": "",
+			"ControleEspecial": false,
+			"TISS": "525917020050403",
+			"MIP": false,
+			"Label": "PRATURE 40MG - COMPRIMIDO REVESTIDO DE LIBERACAO RETARDADA",
+			"Unificado": null
+}
+```
 
-- Faça um "fork" deste repositório na sua conta do Github;
-- Após completar o desafio, crie um pull request nesse repositório comparando a sua branch com a master com o seu nome no título deste;
-- Envie um e-mail para ti@vitta.me notificando que a solução está entregue;
-Analisaremos sua solução e entraremos em contato via e-mail.
+>:x: **_Medicamento Não encontrado**
 
-## FAQ
-> Posso utilizar algum tipo de boilerplate como vue-cli?
+>**HTTP Status** `404`
 
-Sim qualquer tipo de boilerplate, manda bala o que vai valer é o seu código e como estruturou ele dentro do boilerplate;
-> Preciso necessariamente fazer um fork do projeto?
+>**Response**
+```
+{"message": "Medicine 1 is not valid"}
+```
 
-Sim, desta forma utilizaremos isso para monitorar o tempo gasto desde o momento do fork até a entrega do projeto!
+>:x: **_Pagina invalida_**
 
-> Ainda tem dúvidas?
+>**HTTP Status** `401`
 
-Mande um e-mail para ti@vitta.me e iremos respondê-lo o mais breve possível
+>**Response**
+```
+{"error": "Not authorized to access this resource"}
+```
+
+
+### Instalação
+**Caso esteja em ambiente Windows, você deverá utilizar o terminal do Ubuntu para Windows.**
+
+Para executar a aplicação em ambiente local, basta executar os seguintes comandos no terminal: 
+```bash
+git clone https://gitlab.nexteldigital.com.br/NextelDigital/nextel-promotion .
+nvm use
+sudo npm install
+npm run dev
+```
+A aplicação estará rodando em http://localhost:3000
+
+### Testes
+Com a aplicação instalada, para executar os testes unitários, utilize o comando `npm test` no terminal.

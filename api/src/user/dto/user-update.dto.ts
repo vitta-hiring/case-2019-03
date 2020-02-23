@@ -2,15 +2,16 @@ import {
     IsNotEmpty,
     IsString,
     IsOptional,
-    ValidateIf,
     IsArray,
     IsEmail,
-    IsPhoneNumber,
     IsEmpty,
-    Allow,
+    IsNumber,
   } from 'class-validator';
   
   export class UserUpdateDto {
+    @IsNotEmpty()
+    @IsNumber()
+    id: number;
     @IsNotEmpty()
     @IsString()
     firstName: string;
@@ -37,5 +38,5 @@ import {
   
     @IsOptional()
     @IsArray()
-    prescriptions?: Array<{ id: string }>;
+    prescriptions?: number[];
   }

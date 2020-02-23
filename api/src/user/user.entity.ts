@@ -2,7 +2,9 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
+  OneToMany,
 } from 'typeorm';
+import { Prescription } from '../prescription/prescription.entity';
 
 
 export enum UserRole {
@@ -23,6 +25,7 @@ export interface User {
   emailToken: string;
   emailTokenExpirationDate: string;
   role: UserRole;
+  prescriptions: Prescription[];
   createdAt: string;
   updatedAt: string;
 }
@@ -37,9 +40,9 @@ export class User {
   lastName: string;
   @Column('varchar', { length: 100 })
   password: string;
-  @Column()
+  @Column({nullable: true})
   recoveryPassToken: number;
-  @Column()
+  @Column({nullable: true})
   recoveryPassExpirationDate: string;
   
   @Column({unique: true})
@@ -61,4 +64,7 @@ export class User {
     default: UserRole.PATIENT,
   })
   role: UserRole;
+
+  @OneToMany(type => Prescription, prescription => prescription.patient)
+  prescriptions: Prescription[];
 }

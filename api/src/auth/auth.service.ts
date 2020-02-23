@@ -22,7 +22,10 @@ export class AuthService {
   }
 
   async login(user: LoginDTO): Promise<IToken> {
-    const data = await this.userService.findBy({ email: user.email }, true);
+    const data = (
+      await this.userService.findBy({ where: { email: user.email } })
+    )[0];
+    console.log(data);
     if (data) {
       if (await bcrypt.compare(user.password, data.password)) {
         const payload = {
@@ -48,14 +51,19 @@ export class AuthService {
   }
 
   async recoverPassword(email: string) {
-    const data = await this.userService.findBy({ email });
+    const data = await this.userService.findBy({ where: { email } })[0];
     if (data) {
       const token = Math.floor(100000 + Math.random() * 900000);
       data.recoveryPassToken = token;
-      data.recoveryPassExpirationDate = add(Date.now(), { hours: 2 }).toString();
-      return await this.userService.updateUser({ id: data.id }, data);
-
+      data.recoveryPassExpirationDate = add(Date.now(), {
+        hours: 2,
+      }).toString();
+      return await this.userService.updateUser(data);
     }
-    
+
+    throw new HttpException(
+      { ...CUSTOM_HTTP_ERRORS.NOT_FOUND },
+      HttpStatus.NOT_FOUND,
+    );
   }
 }

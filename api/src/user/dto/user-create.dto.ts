@@ -35,6 +35,6 @@ import {
   
     @IsOptional()
     @IsArray()
-    prescriptions?: Array<{ id: string }>;
+    prescriptions?: number[];
 
   }

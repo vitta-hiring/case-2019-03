@@ -1,6 +1,6 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, FindManyOptions } from 'typeorm';
+import { Repository, FindManyOptions, Like } from 'typeorm';
 
 import { GenericService } from '../utils/generics/service.generic';
 import { Drug } from './drug.entity';
@@ -18,12 +18,34 @@ export class DrugService extends GenericService<
     super(drugRepository);
   }
 
+  async drugExists(id: string): Promise<boolean> {
+    const drug = await this.fetchBy({ where: { id } });
+    if (drug) {
+      return true;
+    }
+
+    return false;
+  }
+
   async storeDrug(drug: DrugCreateDto) {
     return await this.create(drug);
   }
 
-  async findById( id: string | number | number[], withPassword: boolean = false) {
-    const drug = await this.fetchBy({where: { id }});
+  async deleteDrug(id: string | number | number[]) {
+    if (this.drugExists(String(id))) {
+      return await this.delete({ id: Number(id) });
+    }
+    throw new HttpException(
+      { ...CUSTOM_HTTP_ERRORS.NOT_FOUND },
+      HttpStatus.NOT_FOUND,
+    );
+  }
+
+  async findById(
+    id: string | number | number[],
+    withPassword: boolean = false,
+  ) {
+    const drug = await this.fetchBy({ where: { id } });
     if (drug) return drug;
     throw new HttpException(
       { ...CUSTOM_HTTP_ERRORS.NOT_FOUND },
@@ -40,13 +62,26 @@ export class DrugService extends GenericService<
     );
   }
 
-  async getAll(route: string, currentPage: string | number = 1, perPage: string | number = 10) {
+  async getAll(
+    route: string,
+    currentPage: string | number = 1,
+    perPage: string | number = 10,
+    id: string = '',
+    nome: string = ''
+  ) {
+    if(id == 'undefined') id = '';
+    if(nome == 'undefined') nome = '';
     return await this.fetchAll(
       {
         limit: Number(perPage),
         page: Number(currentPage),
-        route
-      }
+        route,
+      },
+      {
+        where: { nome: Like(`%${nome}%`), id: Like(`%${id}%`) },
+        order: { nome: 'ASC' },
+      },
     );
-  }Ï
+  }
+  Ï;
 }

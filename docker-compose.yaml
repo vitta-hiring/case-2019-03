@@ -1,0 +1,50 @@
+version: '3'
+services:
+  prescriptions_api:
+    build:
+      context: ./api
+      # dockerfile: ./Dockerfile
+    container_name: prescriptions_api
+    working_dir: /prescriptions_app_api/node_modules
+    environment:
+      - NODE_ENV=prod
+    volumes:
+      # - ./api:/prescriptions_app_api
+      - /prescriptions_app_api/node_modules
+    # command: npm run start:dev
+    ports:
+      - 3123:3123
+    depends_on:
+      - mysql
+  prescriptions_frontend:
+    build:
+      context: ./frontend
+      # dockerfile: ./Dockerfile
+    container_name: prescriptions_frontend
+    environment:
+      - NODE_ENV=production
+    working_dir: /prescriptions_app_frontend/
+    volumes:
+      # - ./frontend:/prescriptions_app_frontend
+      - /prescriptions_app_frontend/node_modules
+    # command: npm run dev
+    ports:
+      - 3124:3000
+    depends_on:
+      - prescriptions_api
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    working_dir: /prescriptions_app/db/data
+    # volumes:
+    #   - ./db/data:/prescriptions_app/db/data
+    env_file:
+      - ./api/environments/.env
+    # environment:
+    #   - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    #   - MYSQL_DATABASE=${MYSQL_DATABASE}
+    #   - MYSQL_USER=${MYSQL_USER}
+    #   - MYSQL_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "3389:3306"

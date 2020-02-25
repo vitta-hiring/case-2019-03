@@ -19,7 +19,8 @@ import { PrescriptionModule } from './prescription/prescription.module';
     ConfigModule.forRoot({
       envFilePath: `${path.resolve(
         'environments',
-        `.${process.env.NODE_ENV || 'dev'}.env`,
+        // `.${process.env.NODE_ENV || 'dev'}.env`,
+        `.env`,
       )}`,
       isGlobal: true,
       load: [appConfig, databaseConfig, authConfig]

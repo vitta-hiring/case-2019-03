@@ -28,7 +28,7 @@ module.exports = withCss(
     },
     env: {
       BACKEND_URL:
-        // process.env.NODE_ENV === "production"
+        process.env.NODE_ENV === "production" ? "http://localhost:3123" :
         //   ? "https://simplenoteapi.becoder.com.br"
         //   : process.env.NODE_ENV === "local"
         //   ? "http://localhost:3000"

@@ -1,8 +1,9 @@
-import { Controller, Post, Body, Get, Param, Query } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Query, Delete, UseGuards } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 import { DrugService } from './drug.service';
 import { DrugCreateDto } from './dto/drug-create.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @Controller('drug')
 export class DrugController {
@@ -11,18 +12,27 @@ export class DrugController {
     this.route = config.get('app.apiUrl') + '/drug';
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
-  async login(@Body() req: DrugCreateDto) {
+  async store(@Body() req: DrugCreateDto) {
     return await this.drugService.storeDrug(req);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   async getById(@Param('id') id: string) {
     return await this.drugService.findById(id);
   }
 
+
   @Get()
-  async getAll(@Query() query: {page?: string, limit?: string}) {
-    return await this.drugService.getAll(this.route, query.page, query.limit);
+  async getAll(@Query() query: {page?: string, limit?: string, search: { searchedColumn: string, searchText: string }}) {
+    return await this.drugService.getAll(this.route, query.page, query.limit, query.search);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete(':id')
+  async delete(@Param('id') id: string) {
+    return await this.drugService.deleteDrug(id);
   }
 }

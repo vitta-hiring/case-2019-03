@@ -24,9 +24,16 @@ export class Prescription {
   id: number;
   @Column({ type: 'text' })
   description: string;
-  @ManyToMany(type => Medicine)
+  @ManyToMany(
+    type => Medicine,
+    medicine => medicine.prescriptions,
+    { eager: true },
+  )
   @JoinTable()
   medicines: Medicine[];
-  @ManyToOne(type => User, user => user.prescriptions)
+  @ManyToOne(
+    type => User,
+    user => user.prescriptions,
+  )
   patient: User;
 }

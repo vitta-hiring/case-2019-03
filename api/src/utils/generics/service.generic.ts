@@ -44,7 +44,7 @@ export class GenericService<T, CreateInput, UpdateInput> {
     }
   }
 
-  protected async create(data: CreateInput): Promise<T> {
+  protected async create(data: CreateInput[]): Promise<(CreateInput & T)[]> {
     try {
       return await this.model.save(data);
     } catch (error) {
@@ -53,8 +53,8 @@ export class GenericService<T, CreateInput, UpdateInput> {
   }
 
   protected async update(
-    updatedData: T,
-  ): Promise<T> {
+    updatedData: UpdateInput[],
+  ): Promise<T[]> {
     try {
       return await this.model.save(updatedData);
     } catch (error) {

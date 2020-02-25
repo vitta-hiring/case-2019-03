@@ -66,7 +66,7 @@ export class Medicine {
   @Column({ nullable: true })
   unificado: string;
 
-  @ManyToMany(type => Drug)
+  @ManyToMany(type => Drug, drug => drug.medicines, { eager: true })
   @JoinTable()
   farmacos: Drug[];
   @ManyToMany(type => Prescription, prescription => prescription.medicines)

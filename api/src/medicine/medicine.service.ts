@@ -1,6 +1,6 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, FindManyOptions } from 'typeorm';
+import { Repository, FindManyOptions, Like } from 'typeorm';
 
 import { GenericService } from '../utils/generics/service.generic';
 import { Medicine } from './medicine.entity';
@@ -50,7 +50,7 @@ export class MedicineService extends GenericService<
         );
       }
     }
-    return await this.create(medicine);
+    return (await this.create([medicine]))[0];
   }
 
   async updateMedicine(id: string, medicine: MedicineUpdateDto) {
@@ -73,7 +73,7 @@ export class MedicineService extends GenericService<
         );
       }
       medicine.id = Number(id);
-      return await this.update(medicine as unknown as Medicine);
+      return (await this.update([medicine]))[0];
     }
 
     throw new HttpException(
@@ -99,11 +99,33 @@ export class MedicineService extends GenericService<
     route: string,
     currentPage: string | number = 1,
     perPage: string | number = 10,
+    search: { searchedColumn: string; searchText: string } = {
+      searchText: '',
+      searchedColumn: 'id',
+    },
   ) {
-    return await this.fetchAll({
-      route,
-      page: Number(currentPage),
-      limit: Number(perPage),
-    }, { relations: ['farmacos']});
+    if(search.searchText == 'undefined') search.searchText = '';
+    if(search.searchedColumn == 'undefined') search.searchedColumn = 'id';
+    return await this.fetchAll(
+      {
+        route,
+        page: Number(currentPage),
+        limit: Number(perPage),
+      },
+      {
+        where: { [search.searchedColumn]: Like(`%${search.searchText}%`) },
+        order: { [search.searchedColumn]: 'ASC' },
+      },
+    );
+  }
+
+  async deleteMedicine(id: string | number | number[]) {
+    if (this.medicineExists(String(id))) {
+      return await this.delete({ id: Number(id) });
+    }
+    throw new HttpException(
+      { ...CUSTOM_HTTP_ERRORS.NOT_FOUND },
+      HttpStatus.NOT_FOUND,
+    );
   }
 }

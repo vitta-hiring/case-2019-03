@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsString, IsArray, IsNumber } from 'class-validator';
 
 export class DrugInteractionCreateDto {
   @IsNotEmpty()
@@ -8,9 +8,9 @@ export class DrugInteractionCreateDto {
   @IsString()
   descricao: string;
   @IsNotEmpty()
-  @IsString()
-  farmaco1: string;
+  @IsNumber()
+  farmaco1: number;
   @IsNotEmpty()
-  @IsString()
-  farmaco2: string;
+  @IsArray()
+  farmaco2: number[];
 }

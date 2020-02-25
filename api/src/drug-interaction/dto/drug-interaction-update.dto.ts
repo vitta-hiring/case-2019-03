@@ -1,4 +1,4 @@
-import { IsString, IsOptional } from 'class-validator';
+import { IsString, IsOptional, IsArray, IsNumber } from 'class-validator';
 
 export class DrugInteractionUpdateDto {
   @IsOptional()
@@ -8,9 +8,9 @@ export class DrugInteractionUpdateDto {
   @IsString()
   descricao: string;
   @IsOptional()
-  @IsString()
-  farmaco1: string;
+  @IsNumber()
+  farmaco1: number;
   @IsOptional()
-  @IsString()
-  farmaco2: string;
+  @IsArray()
+  farmaco2: number[];
 }

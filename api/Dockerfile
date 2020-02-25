@@ -6,5 +6,5 @@ COPY ./api/package.json /safe_prescriptions/api/package.json
 RUN npm --unsafe-perm install
 COPY ./api /safe_prescriptions/api
 RUN npm run build
-EXPOSE 3000
+EXPOSE 3123
 # CMD [ "npm", "run", "start:prod" ]

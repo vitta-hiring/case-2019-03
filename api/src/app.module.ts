@@ -3,20 +3,26 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as path from 'path';
 
+import appConfig from './config/app.config';
 import databaseConfig from './config/database.config';
 import authConfig from './config/auth.config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AuthModule } from './auth/auth.module';
+import { DrugModule } from './drug/drug.module';
+import { DrugInteractionModule } from './drug-interaction/drug-interaction.module';
+import { MedicineModule } from './medicine/medicine.module';
+import { PrescriptionModule } from './prescription/prescription.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       envFilePath: `${path.resolve(
         'environments',
-        `.${process.env.NODE_ENV || 'local'}.env`,
+        `.${process.env.NODE_ENV || 'dev'}.env`,
       )}`,
       isGlobal: true,
-      load: [databaseConfig, authConfig]
+      load: [appConfig, databaseConfig, authConfig]
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -24,6 +30,11 @@ import { AppService } from './app.service';
         await configService.get('database'),
       inject: [ConfigService],
     }),
+    AuthModule,
+    DrugModule,
+    DrugInteractionModule,
+    MedicineModule,
+    PrescriptionModule
   ],
   controllers: [AppController],
   providers: [AppService],

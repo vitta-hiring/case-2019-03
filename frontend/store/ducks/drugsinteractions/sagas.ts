@@ -1,4 +1,4 @@
-import { call, put } from "redux-saga/effects";
+import { call, put, select } from "redux-saga/effects";
 import Router from "next/router";
 import axios, { AxiosRequestConfig } from "axios";
 import {
@@ -15,15 +15,20 @@ const api = (url, options: AxiosRequestConfig) => {
 };
 
 export function* fetchDrugsInteractions(action) {
+  const { pagination, search } = action.payload;
+  const authState = yield select(state => state.auth);
+  const { token } = authState.data;
+
   try {
     let response = yield call(
       api,
-      `${process.env.BACKEND_URL}/druginteraction?page=${action.payload.pagination.current}&limit=${action.payload.pagination.pageSize}`,
+      `${process.env.BACKEND_URL}/druginteraction?page=${pagination.current}&limit=${pagination.pageSize}&${search.searchedColumn}=${search.searchText}`,
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
+          "Access-Control-Allow-Origin": "*",
+          Authorization: `Bearer ${token}`
         }
       }
     );
@@ -38,6 +43,8 @@ export function* fetchDrugsInteractions(action) {
 export function* createDrugsInteractions(action) {
   const { selectedRecord } = action.payload;
   const key = selectedRecord.id;
+  const authState = yield select(state => state.auth);
+  const { token } = authState.data;
 
   try {
     let response = yield call(
@@ -47,7 +54,8 @@ export function* createDrugsInteractions(action) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
+          "Access-Control-Allow-Origin": "*",
+          Authorization: `Bearer ${token}`
         },
         data: selectedRecord
       }
@@ -79,6 +87,9 @@ export function* createDrugsInteractions(action) {
 export function* deleteDrugsInteractions(action) {
   const { selectedRecord } = action.payload;
   const key = selectedRecord.id;
+  const authState = yield select(state => state.auth);
+  const { token } = authState.data;
+
   notification.open({
     message: "Deletando",
     key,
@@ -93,7 +104,8 @@ export function* deleteDrugsInteractions(action) {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
+          "Access-Control-Allow-Origin": "*",
+          Authorization: `Bearer ${token}`
         }
       }
     );

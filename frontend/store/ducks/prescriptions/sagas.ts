@@ -1,27 +1,27 @@
-import { call, put, select} from "redux-saga/effects";
+import { call, put, select } from "redux-saga/effects";
 import axios, { AxiosRequestConfig } from "axios";
+import { message, notification } from "antd";
+
 import {
-  drugFetchFailure,
-  drugFetchSuccess,
-  drugDeleteSuccess,
-  drugDeleteFailure
+  prescriptionFetchFailure,
+  prescriptionFetchSuccess,
+  prescriptionDeleteSuccess,
+  prescriptionDeleteFailure
 } from "./actions";
-import { notification } from "antd";
 import Icon from "../../../components/Icon";
 
 const api = (url, options: AxiosRequestConfig) => {
   return axios(url, options);
 };
 
-export function* fetchDrug(action) {
+export function* fetchPrescriptions(action) {
   const { pagination, search } = action.payload;
   const authState = yield select(state => state.auth);
   const { token } = authState.data;
-  
   try {
     let response = yield call(
       api,
-      `${process.env.BACKEND_URL}/drug?page=${pagination.current}&limit=${pagination.pageSize}&${search.searchedColumn}=${search.searchText}`,
+      `${process.env.BACKEND_URL}/prescription?page=${pagination.current}&limit=${pagination.pageSize}&${search.searchedColumn}=${search.searchText}`,
       {
         method: "GET",
         headers: {
@@ -33,21 +33,19 @@ export function* fetchDrug(action) {
     );
     if (response.status === 200 && response.status === 201) throw response;
     response = yield response.data;
-    yield put(drugFetchSuccess(response));
+    yield put(prescriptionFetchSuccess(response));
   } catch (error) {
-    yield put(drugFetchFailure(error));
+    yield put(prescriptionFetchFailure(error));
   }
 }
 
-export function* createDrug(action) {
+export function* createPrescription(action) {
   const { selectedRecord } = action.payload;
   const key = selectedRecord.id;
-
   const authState = yield select(state => state.auth);
   const { token } = authState.data;
-  
   try {
-    let response = yield call(api, `${process.env.BACKEND_URL}/drug`, {
+    let response = yield call(api, `${process.env.BACKEND_URL}/prescription`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,45 +54,44 @@ export function* createDrug(action) {
       },
       data: selectedRecord
     });
-    console.log("RESPONSE: ", response);
     if (response.status === 200 && response.status === 201) throw response;
+    console.log(response);
     setTimeout(() => {
       notification.success({
         message: "Criado com Sucesso!",
         key,
-        description: `Item ${response.data.id + " - " + response.data.nome}...`
+        description: `Item ${response.data.id}`
       });
     }, 1000);
-    yield put(drugDeleteSuccess(selectedRecord));
+    yield put(prescriptionDeleteSuccess(selectedRecord));
   } catch (error) {
     error = error.toJSON();
-    const dataError: { nome: string } = JSON.parse(error.config.data);
-    const message = `O registro "${dataError.nome}" já existe.`;
+    const dataError: { description: string } = JSON.parse(error.config.data);
+    const message = `O registro "${dataError.description}" já existe.`;
     notification.error({
       message: "Erro ao criar!",
       key,
       description: message
     });
-    yield put(drugDeleteFailure({ message }));
+    yield put(prescriptionDeleteFailure({ message }));
   }
 }
 
-export function* deleteDrug(action) {
+export function* deletePrescription(action) {
   const { selectedRecord } = action.payload;
   const key = selectedRecord.id;
+  const authState = yield select(state => state.auth);
+  const { token } = authState.data;
   notification.open({
     message: "Deletando",
     key,
-    description: `Item ${selectedRecord.id + " - " + selectedRecord.nome}...`,
+    description: `Item ${selectedRecord.id + " - " + selectedRecord.description}...`,
     icon: Icon
   });
-  const authState = yield select(state => state.auth);
-  const { token } = authState.data;
-  
   try {
     let response = yield call(
       api,
-      `${process.env.BACKEND_URL}/drug/${selectedRecord.id}`,
+      `${process.env.BACKEND_URL}/prescription/${selectedRecord.id}`,
       {
         method: "DELETE",
         headers: {
@@ -111,10 +108,10 @@ export function* deleteDrug(action) {
         key,
         description: `Item ${selectedRecord.id +
           " - " +
-          selectedRecord.nome}...`
+          selectedRecord.description}...`
       });
     }, 1000);
-    yield put(drugDeleteSuccess(selectedRecord));
+    yield put(prescriptionDeleteSuccess(selectedRecord));
   } catch (error) {
     setTimeout(() => {
       notification.error({
@@ -122,9 +119,9 @@ export function* deleteDrug(action) {
         key,
         description: `Item ${selectedRecord.id +
           " - " +
-          selectedRecord.nome}...`
+          selectedRecord.description}...`
       });
     }, 1000);
-    yield put(drugDeleteFailure(error));
+    yield put(prescriptionDeleteFailure(error));
   }
 }

@@ -1,27 +1,29 @@
-import { call, put, select} from "redux-saga/effects";
+import { call, put, select } from "redux-saga/effects";
+import Router from "next/router";
 import axios, { AxiosRequestConfig } from "axios";
+
 import {
-  drugFetchFailure,
-  drugFetchSuccess,
-  drugDeleteSuccess,
-  drugDeleteFailure
+  medicineFetchFailure,
+  medicineFetchSuccess,
+  medicineDeleteSuccess,
+  medicineDeleteFailure
 } from "./actions";
-import { notification } from "antd";
+import { message, notification } from "antd";
 import Icon from "../../../components/Icon";
 
 const api = (url, options: AxiosRequestConfig) => {
   return axios(url, options);
 };
 
-export function* fetchDrug(action) {
+export function* fetchMedicines(action) {
   const { pagination, search } = action.payload;
   const authState = yield select(state => state.auth);
   const { token } = authState.data;
-  
+
   try {
     let response = yield call(
       api,
-      `${process.env.BACKEND_URL}/drug?page=${pagination.current}&limit=${pagination.pageSize}&${search.searchedColumn}=${search.searchText}`,
+      `${process.env.BACKEND_URL}/medicine?page=${pagination.current}&limit=${pagination.pageSize}&${search.searchedColumn}=${search.searchText}`,
       {
         method: "GET",
         headers: {
@@ -33,68 +35,71 @@ export function* fetchDrug(action) {
     );
     if (response.status === 200 && response.status === 201) throw response;
     response = yield response.data;
-    yield put(drugFetchSuccess(response));
+    yield put(medicineFetchSuccess(response));
   } catch (error) {
-    yield put(drugFetchFailure(error));
+    yield put(medicineFetchFailure(error));
   }
 }
 
-export function* createDrug(action) {
+export function* createMedicine(action) {
   const { selectedRecord } = action.payload;
   const key = selectedRecord.id;
-
   const authState = yield select(state => state.auth);
   const { token } = authState.data;
-  
+
   try {
-    let response = yield call(api, `${process.env.BACKEND_URL}/drug`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        Authorization: `Bearer ${token}`
-      },
-      data: selectedRecord
-    });
-    console.log("RESPONSE: ", response);
+    let response = yield call(
+      api,
+      `${process.env.BACKEND_URL}/medicine`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          Authorization: `Bearer ${token}`
+        },
+        data: selectedRecord
+      }
+    );
     if (response.status === 200 && response.status === 201) throw response;
     setTimeout(() => {
       notification.success({
         message: "Criado com Sucesso!",
         key,
-        description: `Item ${response.data.id + " - " + response.data.nome}...`
+        description: `Item ${response.data.id +
+          " - " +
+          response.data.nome}...`
       });
     }, 1000);
-    yield put(drugDeleteSuccess(selectedRecord));
+    yield put(medicineDeleteSuccess(selectedRecord));
   } catch (error) {
     error = error.toJSON();
-    const dataError: { nome: string } = JSON.parse(error.config.data);
-    const message = `O registro "${dataError.nome}" já existe.`;
-    notification.error({
-      message: "Erro ao criar!",
-      key,
-      description: message
-    });
-    yield put(drugDeleteFailure({ message }));
+    const dataError: {nome: string} = JSON.parse(error.config.data);
+    const message = `O registro "${dataError.nome}" já existe.`
+      notification.error({
+        message: "Erro ao criar!",
+        key,
+        description: message
+      });
+    yield put(medicineDeleteFailure({message}));
   }
 }
 
-export function* deleteDrug(action) {
+export function* deleteMedicine(action) {
   const { selectedRecord } = action.payload;
   const key = selectedRecord.id;
+  const authState = yield select(state => state.auth);
+  const { token } = authState.data;
   notification.open({
     message: "Deletando",
     key,
     description: `Item ${selectedRecord.id + " - " + selectedRecord.nome}...`,
     icon: Icon
   });
-  const authState = yield select(state => state.auth);
-  const { token } = authState.data;
-  
   try {
     let response = yield call(
       api,
-      `${process.env.BACKEND_URL}/drug/${selectedRecord.id}`,
+      `${process.env.BACKEND_URL}/medicine/${selectedRecord.id}`,
       {
         method: "DELETE",
         headers: {
@@ -114,7 +119,7 @@ export function* deleteDrug(action) {
           selectedRecord.nome}...`
       });
     }, 1000);
-    yield put(drugDeleteSuccess(selectedRecord));
+    yield put(medicineDeleteSuccess(selectedRecord));
   } catch (error) {
     setTimeout(() => {
       notification.error({
@@ -125,6 +130,6 @@ export function* deleteDrug(action) {
           selectedRecord.nome}...`
       });
     }, 1000);
-    yield put(drugDeleteFailure(error));
+    yield put(medicineDeleteFailure(error));
   }
 }

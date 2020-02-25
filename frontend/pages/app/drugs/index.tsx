@@ -1,4 +1,4 @@
-import DataTable from "../../components/DataTable";
+import DataTable from "../../../components/DataTable";
 import { ColumnProps } from "antd/lib/table";
 import { Popconfirm, Button, Form, Input, Icon } from "antd";
 import { useEffect, useState } from "react";
@@ -12,38 +12,9 @@ import {
 import Highlighter from "react-highlight-words";
 import { WrappedFormUtils } from "antd/lib/form/Form";
 
-import { AppState } from "../../store/ducks/rootReducer";
-import { DrugTypes, Drug, DrugState } from "../../store/ducks/drug/types";
-
-const data = {
-  items: [
-    {
-      id: 5,
-      nome: "Teste3"
-    },
-    {
-      id: 6,
-      nome: "Teste4"
-    },
-    {
-      id: 7,
-      nome: "Teste5"
-    },
-    {
-      id: 8,
-      nome: "Teste6"
-    },
-    {
-      id: 9,
-      nome: "Teste7"
-    }
-  ],
-  itemCount: 5,
-  totalItems: 12,
-  pageCount: 3,
-  next: "http://localhost:3000/drug?page=3&limit=5",
-  previous: "http://localhost:3000/drug?page=1&limit=5"
-};
+import { AppState } from "../../../store/ducks/rootReducer";
+import { DrugTypes, Drug, DrugState } from "../../../store/ducks/drug/types";
+import { withAuthSync } from "../../../utils/auth";
 
 type Props<T> = {
   state: T;
@@ -278,4 +249,4 @@ const Drugs = ({ form }: Props<DrugState>) => {
   );
 };
 
-export default Form.create()(Drugs);
+export default withAuthSync(Form.create()(Drugs));

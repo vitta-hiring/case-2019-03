@@ -1,7 +1,7 @@
-import { DrugsInteractionsState, DrugsInteractionsTypes } from "./types";
+import { PrescriptionState, PrescriptionTypes } from "./types";
 import { Reducer } from "redux";
 
-const signUpInitialState: DrugsInteractionsState = {
+const signUpInitialState: PrescriptionState = {
   data: {
     items: [],
     itemCount: 0,
@@ -15,8 +15,8 @@ const signUpInitialState: DrugsInteractionsState = {
     pageSize: 5
   },
   search: {
-    searchedColumn: "id",
-    searchText: ""
+    searchText: "",
+    searchedColumn: "id"
   },
   oldRecord: null,
   selectedRecord: null,
@@ -25,9 +25,9 @@ const signUpInitialState: DrugsInteractionsState = {
   error: false,
 };
 
-const reducer: Reducer<DrugsInteractionsState> = (state = signUpInitialState, action) => {
+const reducer: Reducer<PrescriptionState> = (state = signUpInitialState, action) => {
   switch (action.type) {
-    case DrugsInteractionsTypes.DRUG_INTERACTIONS_FETCH:
+    case PrescriptionTypes.PRESCRIPTION_FETCH:
       return {
         ...state,
         action: action.type,
@@ -35,28 +35,28 @@ const reducer: Reducer<DrugsInteractionsState> = (state = signUpInitialState, ac
         pagination: action.payload.pagination,
         search: action.payload.search
       };
-    case DrugsInteractionsTypes.DRUG_INTERACTIONS_CREATE:
+    case PrescriptionTypes.PRESCRIPTION_CREATE:
       return {
         ...state,
         action: action.type,
         loading: true,
         selectedRecord: action.payload.selectedRecord
       };
-    case DrugsInteractionsTypes.DRUG_INTERACTIONS_UPDATE:
+    case PrescriptionTypes.PRESCRIPTION_UPDATE:
       return {
         ...state,
         action: action.type,
         loading: true,
         selectedRecord: action.payload.selectedRecord
       };
-    case DrugsInteractionsTypes.DRUG_INTERACTIONS_DELETE:
+    case PrescriptionTypes.PRESCRIPTION_DELETE:
       return {
         ...state,
         action: action.type,
         loading: true,
         selectedRecord: action.payload.selectedRecord
       };
-    case DrugsInteractionsTypes.DRUG_INTERACTIONS_FETCH_SUCCESS:
+    case PrescriptionTypes.PRESCRIPTION_FETCH_SUCCESS:
       return {
         ...state,
         action: action.type,
@@ -67,7 +67,7 @@ const reducer: Reducer<DrugsInteractionsState> = (state = signUpInitialState, ac
         error: false,
         data: action.payload.data
       };
-    case DrugsInteractionsTypes.DRUG_INTERACTIONS_CREATE_SUCCESS:
+    case PrescriptionTypes.PRESCRIPTION_CREATE_SUCCESS:
       return {
         ...state,
         action: action.type,
@@ -76,7 +76,7 @@ const reducer: Reducer<DrugsInteractionsState> = (state = signUpInitialState, ac
         oldRecord: action.payload.data,
         selectedRecord: null
       };
-    case DrugsInteractionsTypes.DRUG_INTERACTIONS_UPDATE_SUCCESS:
+    case PrescriptionTypes.PRESCRIPTION_UPDATE_SUCCESS:
       return {
         ...state,
         action: action.type,
@@ -85,7 +85,7 @@ const reducer: Reducer<DrugsInteractionsState> = (state = signUpInitialState, ac
         oldRecord: action.payload.data,
         selectedRecord: null
       };
-    case DrugsInteractionsTypes.DRUG_INTERACTIONS_DELETE_SUCCESS:
+    case PrescriptionTypes.PRESCRIPTION_DELETE_SUCCESS:
       return {
         ...state,
         action: action.type,
@@ -94,7 +94,7 @@ const reducer: Reducer<DrugsInteractionsState> = (state = signUpInitialState, ac
         oldRecord: action.payload.data,
         selectedRecord: null
       };
-    case DrugsInteractionsTypes.DRUG_INTERACTIONS_FETCH_FAILURE:
+    case PrescriptionTypes.PRESCRIPTION_FETCH_FAILURE:
       return {
         ...state,
         action: action.type,
@@ -102,7 +102,7 @@ const reducer: Reducer<DrugsInteractionsState> = (state = signUpInitialState, ac
         error: true,
         errorType: action.payload.data.message,
       };
-    case DrugsInteractionsTypes.DRUG_INTERACTIONS_CREATE_FAILURE:
+    case PrescriptionTypes.PRESCRIPTION_CREATE_FAILURE:
       return {
         ...state,
         action: action.type,
@@ -110,7 +110,7 @@ const reducer: Reducer<DrugsInteractionsState> = (state = signUpInitialState, ac
         error: true,
         errorType: action.payload.data.message,
       };
-    case DrugsInteractionsTypes.DRUG_INTERACTIONS_UPDATE_FAILURE:
+    case PrescriptionTypes.PRESCRIPTION_UPDATE_FAILURE:
       return {
         ...state,
         action: action.type,
@@ -118,7 +118,7 @@ const reducer: Reducer<DrugsInteractionsState> = (state = signUpInitialState, ac
         error: true,
         errorType: action.payload.data.message,
       };
-    case DrugsInteractionsTypes.DRUG_INTERACTIONS_DELETE_FAILURE:
+    case PrescriptionTypes.PRESCRIPTION_DELETE_FAILURE:
       return {
         ...state,
         action: action.type,

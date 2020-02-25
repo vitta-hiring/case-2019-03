@@ -7,6 +7,10 @@ import { DrugTypes } from './drug/types';
 import { fetchDrug, deleteDrug, createDrug } from './drug/sagas';
 import { DrugsInteractionsTypes } from './drugsinteractions/types';
 import { fetchDrugsInteractions, createDrugsInteractions, deleteDrugsInteractions } from './drugsinteractions/sagas';
+import { MedicineTypes } from './medicines/types';
+import { fetchMedicines, createMedicine, deleteMedicine } from './medicines/sagas';
+import { PrescriptionTypes } from './prescriptions/types';
+import { fetchPrescriptions, createPrescription, deletePrescription } from './prescriptions/sagas';
 
 export default function* rootSaga() {
     return yield all([
@@ -19,5 +23,11 @@ export default function* rootSaga() {
         takeLatest(DrugsInteractionsTypes.DRUG_INTERACTIONS_FETCH, fetchDrugsInteractions),
         takeLatest(DrugsInteractionsTypes.DRUG_INTERACTIONS_CREATE, createDrugsInteractions),
         takeLatest(DrugsInteractionsTypes.DRUG_INTERACTIONS_DELETE, deleteDrugsInteractions),
+        takeLatest(MedicineTypes.MEDICINE_FETCH, fetchMedicines),
+        takeLatest(MedicineTypes.MEDICINE_CREATE, createMedicine),
+        takeLatest(MedicineTypes.MEDICINE_DELETE, deleteMedicine),
+        takeLatest(PrescriptionTypes.PRESCRIPTION_FETCH, fetchPrescriptions),
+        takeLatest(PrescriptionTypes.PRESCRIPTION_CREATE, createPrescription),
+        takeLatest(PrescriptionTypes.PRESCRIPTION_DELETE, deletePrescription),
     ])
 }

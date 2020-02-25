@@ -1,11 +1,9 @@
 import Head from 'next/head'
 import MainLayout from '../components/MainLayout'
-
+import Signin from './signin';
 
 const Home = () => (
-  <div>
-    TEsteee
-  </div>
+  <Signin />
 )
 
 export default Home

@@ -26,3 +26,4 @@ export const signInSuccess = (data: SignInPayload) =>
   action(AuthTypes.SIGNIN_SUCCESS, { data });
   
 export const signInFailure = () => action(AuthTypes.SIGNIN_FAILURE);
+export const logoutRequest = () => action(AuthTypes.LOGOUT_REQUEST);

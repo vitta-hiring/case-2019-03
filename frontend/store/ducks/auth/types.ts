@@ -5,6 +5,7 @@ export enum AuthTypes {
   SIGNIN_REQUEST = 'SIGNIN_REQUEST',
   SIGNIN_SUCCESS = 'SIGNIN_SUCCESS',
   SIGNIN_FAILURE = 'SIGNIN_FAILURE',
+  LOGOUT_REQUEST = 'LOGOUT_REQUEST',
 }
 
 export interface SignInPayload {
@@ -22,6 +23,8 @@ export interface SigninForm {
 
 export interface SignInState {
   readonly data: SignInPayload;
+  readonly isLogged: boolean;
+  readonly appIsLoading: boolean;
   readonly loading: boolean;
   readonly error: boolean;
 }

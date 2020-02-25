@@ -24,6 +24,7 @@ interface Props {
   onHandleCreate: () => void;
   onHandleUpdate: (entity) => void;
   children;
+  modalWidth?: string | number;
 }
 
 const DataTable = ({
@@ -36,7 +37,8 @@ const DataTable = ({
   onHandleUpdate,
   onSetModalVisible,
   rowKey,
-  children
+  children,
+  modalWidth,
 }: Props) => {
   const setModalVisible = isVisible => {
     onSetModalVisible(isVisible);
@@ -74,6 +76,7 @@ const DataTable = ({
         visible={isModalVisible}
         title="Criar um Fármaco"
         onOk={handleCreate}
+        width={modalWidth}
         onCancel={() => setModalVisible(false)}
         footer={[
           <Button key="back" onClick={() => setModalVisible(false)}>

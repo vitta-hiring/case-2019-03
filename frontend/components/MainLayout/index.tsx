@@ -1,8 +1,15 @@
-import React from "react";
-import { Layout, Menu, Breadcrumb, Icon } from "antd";
+import React, { useEffect } from "react";
+import { Layout, Menu, Breadcrumb, Icon, Button } from "antd";
 import Link from "next/link";
 import "./style.scss";
 import SubMenu from "antd/lib/menu/SubMenu";
+import Title from "antd/lib/typography/Title";
+import { AppState } from "../../store/ducks/rootReducer";
+import { shallowEqual, useSelector, useDispatch } from "react-redux";
+import LandingPage from "../LandingPage";
+import { logout } from "../../utils/auth";
+import { AuthTypes } from "../../store/ducks/auth/types";
+import Router from "next/router";
 
 const { Header, Content, Footer } = Layout;
 // type Props = {
@@ -15,53 +22,122 @@ const { Header, Content, Footer } = Layout;
 
 const MainLayout = props => {
   //   const classes = useStyle(props.theme);
+  const authState = useSelector((state: AppState) => state.auth, shallowEqual);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!authState.appIsLoading) {
+      if (
+        !authState.isLogged &&
+        Router.pathname !== "/" &&
+        Router.pathname !== "/signin" &&
+        Router.pathname !== "/signup"
+      ) {
+        Router.replace("/");
+      } else if (
+        Router.pathname == "/" ||
+        Router.pathname == "/signin" ||
+        Router.pathname == "/signup"
+      ) {
+        Router.replace("/app");
+      }
+    }
+  }, [authState.isLogged]);
+
+  const handleLogout = e => {
+    e.preventDefault();
+    dispatch({
+      type: AuthTypes.LOGOUT_REQUEST
+    });
+    logout();
+  };
+
   return (
     <Layout style={{ height: "100vh" }}>
-      <Header style={{ position: "fixed", zIndex: 1, width: "100%" }}>
-        <div className="logo" />
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          // defaultSelectedKeys={["1"]}
-          style={{ lineHeight: "64px" }}
+      {authState.isLogged && (
+        <Header
+          style={{
+            position: "fixed",
+            zIndex: 1,
+            width: "100%",
+            display: "flex"
+          }}
         >
-          <Menu.Item key={1}>
-            <Link href="/prescriptions">
-              <span>
-                <Icon type="setting" />
-                Receita
-              </span>
-            </Link>
-          </Menu.Item>
-          <SubMenu
-            title={
-              <span className="submenu-title-wrapper">
-                <Icon type="setting" />
-                Remédios
-              </span>
-            }
+          <Title
+            level={4}
+            style={{
+              color: "white",
+              margin: 0,
+              display: "flex",
+              alignItems: "center"
+            }}
           >
-            <Menu.Item key="setting:1">
-              <Link href="/medicines">
-                <a>Remédios</a>
+            SAFE PRESCRIPTIONS
+          </Title>
+          <Menu
+            theme="dark"
+            mode="horizontal"
+            // defaultSelectedKeys={["1"]}
+            style={{ lineHeight: "64px" }}
+          >
+            <Menu.Item key={1}>
+              <Link href="/app/prescriptions">
+                <span>
+                  <Icon type="book" />
+                  Receita
+                </span>
               </Link>
             </Menu.Item>
-            <Menu.Item key="setting:2">
-              <Link href="/drugs">
-                <a>Farmacos</a>
+            <SubMenu
+              title={
+                <span className="submenu-title-wrapper">
+                  <Icon type="setting" />
+                  Cadastro de Remédios
+                </span>
+              }
+            >
+              <Menu.Item key="setting:1">
+                <Link href="/app/medicines">
+                  <a>Remédios</a>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="setting:2">
+                <Link href="/app/drugs">
+                  <a>Farmacos</a>
+                </Link>
+              </Menu.Item>
+            </SubMenu>
+            <Menu.Item key={3}>
+              <Link href="/app/drugsinteractions">
+                <span>
+                  <Icon type="interaction" />
+                  Interações Medicamentosas
+                </span>
               </Link>
             </Menu.Item>
-          </SubMenu>
-          <Menu.Item key={3}>
-            <Link href="/drugsinteractions">
-              <span>
-                <Icon type="setting" />
-                Interações Medicamentosas
-              </span>
-            </Link>
-          </Menu.Item>
-        </Menu>
-      </Header>
+          </Menu>
+          <div style={{ marginRight: "auto" }} />
+          <Menu
+            theme="dark"
+            mode="horizontal"
+            // defaultSelectedKeys={["1"]}
+            style={{ lineHeight: "64px" }}
+          >
+            <SubMenu
+              title={
+                <span className="submenu-title-wrapper">
+                  <Icon type="user" />
+                  {authState.data.firstName}
+                </span>
+              }
+            >
+              <Menu.Item key="setting:1">
+                <a onClick={handleLogout}>Sair</a>
+              </Menu.Item>
+            </SubMenu>
+          </Menu>
+        </Header>
+      )}
       <Content style={{ padding: "0 50px", marginTop: 64 }}>
         {/* <Breadcrumb style={{ margin: "16px 0" }}>
           <Breadcrumb.Item>Home</Breadcrumb.Item>
@@ -70,13 +146,14 @@ const MainLayout = props => {
         </Breadcrumb> */}
         <div
           style={{
-            background: "#fff",
+            background: authState.isLogged && "#fff",
+            height: !authState.isLogged && "100%",
             padding: 24,
             minHeight: 380,
             margin: "16px 0"
           }}
         >
-          {props.children}
+          {authState.isLogged ? props.children : <LandingPage {...props} />}
         </div>
       </Content>
       <Footer style={{ textAlign: "center" }}>

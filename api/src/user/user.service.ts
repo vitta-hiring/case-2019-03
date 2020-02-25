@@ -1,6 +1,6 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, FindConditions, FindManyOptions } from 'typeorm';
+import { Repository, FindConditions, FindManyOptions, Like } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
 import { GenericService } from '../utils/generics/service.generic';
@@ -22,7 +22,7 @@ export class UserService extends GenericService<
   }
 
   async userExists(email: string): Promise<boolean> {
-    const user = await this.findBy({ where: { email } });
+    const user = (await this.findBy({ where: { email } }))[0];
     if (user) {
       return true;
     }
@@ -30,14 +30,13 @@ export class UserService extends GenericService<
     return false;
   }
 
-  async storeUser(user: UserCreateDto): Promise<User> {
-    if (!(await this.userExists(user.email))) {
+  async storeUser(user: UserCreateDto, withPassword = false): Promise<User[]> {
+    const userExist = await this.userExists(user.email);
+    if (!userExist) {
       user.password = await bcrypt.hash(user.password, 12);
-      const userCreated: any = await this.create(user);
-      if (userCreated.password || userCreated.emailToken) {
-        userCreated.password = undefined;
-        userCreated.emailToken = undefined;
-      }
+      const userCreated = await this.create([user]);
+      if (!withPassword) userCreated[0].password = undefined;
+      userCreated[0].emailToken = undefined;
       return userCreated;
     }
 
@@ -47,17 +46,17 @@ export class UserService extends GenericService<
     );
   }
 
-  async updateUser(user: User) {
-    const userUpdated: any = await this.update(user);
+  async updateUser(user: UserUpdateDto, withPassword = false) {
+    const userUpdated: any = await this.update([user]);
     userUpdated.emailToken = undefined;
-    userUpdated.password = undefined;
+    if (!withPassword) userUpdated.password = undefined;
     return userUpdated;
   }
 
-  async findBy(field: FindManyOptions<User>) {
-    const users = await this.fetchBy(field);
+  async findBy(field: FindManyOptions<User>, withPassword = false) {
+    const users = await this.fetchBy(withPassword ? { select: ['password', 'id', 'firstName', 'lastName', 'email'], ...field}  : field);
     if (users) {
-      users.map(user => user.password = undefined);
+      // if (!withPassword) users.map(user => (user.password = undefined));
       return users;
     }
     throw new HttpException(
@@ -70,11 +69,24 @@ export class UserService extends GenericService<
     route: string,
     currentPage: string | number = 1,
     perPage: string | number = 10,
+    search: { searchedColumn: string; searchText: string } = {
+      searchText: '',
+      searchedColumn: 'id',
+    },
   ) {
-    return await this.fetchAll({
-      limit: Number(perPage),
-      page: Number(currentPage),
-      route,
-    });
+    if (search.searchText == 'undefined') search.searchText = '';
+    if (search.searchedColumn == 'undefined') search.searchedColumn = 'id';
+    return await this.fetchAll(
+      {
+        route,
+        page: Number(currentPage),
+        limit: Number(perPage),
+      },
+      {
+        relations: ['prescriptions'],
+        where: { [search.searchedColumn]: Like(`%${search.searchText}%`) },
+        order: { [search.searchedColumn]: 'ASC' },
+      },
+    );
   }
 }

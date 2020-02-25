@@ -38,7 +38,7 @@ export class User {
   firstName: string;
   @Column('varchar', { length: 200 })
   lastName: string;
-  @Column('varchar', { length: 100 })
+  @Column('varchar', { length: 100, select: false })
   password: string;
   @Column({nullable: true})
   recoveryPassToken: number;

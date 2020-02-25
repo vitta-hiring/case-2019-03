@@ -28,7 +28,7 @@ export class DrugService extends GenericService<
   }
 
   async storeDrug(drug: DrugCreateDto) {
-    return await this.create(drug);
+    return (await this.create([drug]))[0];
   }
 
   async deleteDrug(id: string | number | number[]) {
@@ -66,11 +66,11 @@ export class DrugService extends GenericService<
     route: string,
     currentPage: string | number = 1,
     perPage: string | number = 10,
-    id: string = '',
-    nome: string = ''
+    search: {searchedColumn: string, searchText: string} = { searchText: "", searchedColumn: "id"}
   ) {
-    if(id == 'undefined') id = '';
-    if(nome == 'undefined') nome = '';
+    console.log(search)
+    if(search.searchText == 'undefined') search.searchText = '';
+    if(search.searchedColumn == 'undefined') search.searchedColumn = 'id';
     return await this.fetchAll(
       {
         limit: Number(perPage),
@@ -78,8 +78,8 @@ export class DrugService extends GenericService<
         route,
       },
       {
-        where: { nome: Like(`%${nome}%`), id: Like(`%${id}%`) },
-        order: { nome: 'ASC' },
+        where: { [search.searchedColumn]: Like(`%${search.searchText}%`) },
+        order: { [search.searchedColumn]: 'ASC' },
       },
     );
   }

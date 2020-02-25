@@ -1,6 +1,6 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, FindManyOptions } from 'typeorm';
+import { Repository, FindManyOptions, Like } from 'typeorm';
 
 import { GenericService } from '../utils/generics/service.generic';
 import { Prescription } from './prescription.entity';
@@ -38,14 +38,14 @@ export class PrescriptionService extends GenericService<
 
   async store(prescription: PrescriptionCreateDto) {
     prescription = await this.verifyRelations(prescription);
-    return await this.create(prescription);
+    return (await this.create([prescription]))[0];
   }
 
   async updatePrescription(id: string, prescription: PrescriptionUpdateDto) {
     if (await this.prescriptionExists(id)) {
       prescription = await this.verifyRelations(prescription);
       prescription.id = Number(id);
-      return await this.update((prescription as unknown) as Prescription);
+      return (await this.update([prescription]))[0];
     }
   }
 
@@ -99,24 +99,46 @@ export class PrescriptionService extends GenericService<
   }
 
   async getById(id: string | number | number[]) {
-    return await this.fetchBy({
+    const prescription = await this.fetchBy({
       where: { id },
-      relations: ['medicines', 'patient'],
+      relations: ['patient'],
     });
+    prescription[0].patient.password = undefined;
+    return prescription;
   }
 
   async getAll(
     route: string,
     currentPage: string | number = 1,
     perPage: string | number = 10,
+    search: { searchedColumn: string; searchText: string } = {
+      searchText: '',
+      searchedColumn: 'id',
+    },
   ) {
+    if(search.searchText == 'undefined') search.searchText = '';
+    if(search.searchedColumn == 'undefined') search.searchedColumn = 'id';
     return await this.fetchAll(
       {
         route,
         page: Number(currentPage),
         limit: Number(perPage),
       },
-      { relations: ['medicines', 'patient'] },
+      {
+        relations: ['patient'],
+        where: { [search.searchedColumn]: Like(`%${search.searchText}%`) },
+        order: { [search.searchedColumn]: 'ASC' },
+      },
+    );
+  }
+
+  async deletePrescription(id: string | number | number[]) {
+    if (this.prescriptionExists(String(id))) {
+      return await this.delete({ id: Number(id) });
+    }
+    throw new HttpException(
+      { ...CUSTOM_HTTP_ERRORS.NOT_FOUND },
+      HttpStatus.NOT_FOUND,
     );
   }
 }

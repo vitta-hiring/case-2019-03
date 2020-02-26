@@ -1,20 +1,9 @@
 import DataTable from "../../../components/DataTable";
 import { ColumnProps } from "antd/lib/table";
-import {
-  Popconfirm,
-  Button,
-  Form,
-  Input,
-  Icon,
-  Tag,
-} from "antd";
+import { Popconfirm, Button, Form, Input, Icon, Tag, Modal } from "antd";
 import { useEffect, useState } from "react";
 import Highlighter from "react-highlight-words";
-import {
-  useSelector,
-  useDispatch,
-  shallowEqual,
-} from "react-redux";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
 
 import { AppState } from "../../../store/ducks/rootReducer";
 import {
@@ -246,6 +235,34 @@ const PrescriptionPage = ({ form, ...props }: Props<PrescriptionState>) => {
   }, [prescriptionStore.action]);
 
   useEffect(() => {
+    if (medicineStore.action === MedicineTypes.MEDICINE_INTERACTION_SUCCESS) {
+      Modal.confirm({
+        title: `Alerta de interação medicamentosa, tem certeza de que quer adicionar?`,
+        content: (
+          <div>
+            <span>
+              Os remédios a seguir possuem interações medicamentosas entre si:{" "}
+            </span>
+            <ul>
+              {medicineStore.medicineInteractions.interactions.map(
+                interaction => (
+                  <li> Remédio: {interaction.medicineName} </li>
+                )
+              )}
+            </ul>
+          </div>
+        ),
+        okText: "Sim",
+        okType: "danger",
+        cancelText: "Não",
+        onOk() {
+          setTargetKeys(medicineStore.medicineInteractions.ids);
+        }
+      });
+    }
+  }, [medicineStore.action]);
+
+  useEffect(() => {
     dispatch({
       type: PrescriptionTypes.PRESCRIPTION_FETCH,
       payload: { ...PRESCRIPTION_FETCH_PAGINATION, search: { searchText: "" } }
@@ -358,7 +375,14 @@ const PrescriptionPage = ({ form, ...props }: Props<PrescriptionState>) => {
   };
 
   const onTableTransferChange = nextTargetKeys => {
-    setTargetKeys(nextTargetKeys);
+    dispatch({
+      type: MedicineTypes.MEDICINE_INTERACTION_FETCH,
+      payload: {
+        search: {
+          searchText: { nextTargetKeys, targetKeys }
+        }
+      }
+    });
   };
 
   return (

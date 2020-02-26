@@ -41,6 +41,33 @@ export function* fetchMedicines(action) {
   }
 }
 
+export function* fetchMedicineInteractions(action) {
+  const { nextTargetKeys, targetKeys } = action.payload.search;
+  const ids = [...nextTargetKeys, ...targetKeys];
+  const authState = yield select(state => state.auth);
+  const { token } = authState.data;
+
+  try {
+    let response = yield call(
+      api,
+      `${process.env.BACKEND_URL}/medicine/interactions?ids=${ids}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+    if (response.status === 200 && response.status === 201) throw response;
+    response = yield response.data;
+    yield put(medicineFetchSuccess(response));
+  } catch (error) {
+    yield put(medicineFetchFailure(error));
+  }
+}
+
 export function* createMedicine(action) {
   const { selectedRecord } = action.payload;
   const key = selectedRecord.id;

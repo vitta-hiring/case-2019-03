@@ -15,16 +15,6 @@ const Application = ({ token, userInfo }) => {
     if (process.browser) logout();
   }
 
-  // router.events.on('routeChangeComplete', (url) => {
-  //   console.log("URL: ", url);
-  //   router.replace("/app/prescriptions");
-  // })
-  // if (token) {
-  //   if(process.browser) router.push("/app/prescriptions");
-  // } else {
-  //   if (process.browser) router.replace("/");
-  // }
-
   return null;
 };
 

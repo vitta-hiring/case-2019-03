@@ -304,18 +304,6 @@ const DrugInteractions = ({ form }: Props<DrugsInteractionsState>) => {
 
   const handleUpdate = () => {};
 
-  const onFarmaco1Change = value => {
-    console.log(`selected ${value}`);
-  };
-
-  const onFarmaco1Blur = () => {
-    console.log("blur");
-  };
-
-  const onFarmaco1Focus = () => {
-    console.log("focus");
-  };
-
   const onFarmaco1Search = val => {
     dispatch({
       type: DrugTypes.DRUG_FETCH,
@@ -420,13 +408,7 @@ const DrugInteractions = ({ form }: Props<DrugsInteractionsState>) => {
           disabled={form.getFieldsValue().farmaco1 ? false : true}
           onChange={onTableTransferChange}
           onSearch={onTableTransferSearch}
-          filterOption={(inputValue, item) =>
-            // item.nome.indexOf(inputValue) !== -1
-            {
-              console.log("INPUT: ", inputValue);
-              console.log("ITEM: ", item);
-            }
-          }
+
           leftColumns={drugsTableTransferLeftColumns}
           rightColumns={drugsTableTransferRightColumns}
           rowKey={record => record.id}

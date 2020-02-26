@@ -56,7 +56,6 @@ export function* createDrug(action) {
       },
       data: selectedRecord
     });
-    console.log("RESPONSE: ", response);
     if (response.status === 200 && response.status === 201) throw response;
     setTimeout(() => {
       notification.success({

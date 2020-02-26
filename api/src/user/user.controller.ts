@@ -24,7 +24,6 @@ export class UserController {
     },
     @Request() req
   ) {
-    console.log("CONTROLLER: ", req.user);
     return await this.userService.getAll(
       this.route,
       query.page,

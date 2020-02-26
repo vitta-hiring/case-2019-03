@@ -8,7 +8,9 @@ import { MedicineCreateDto } from './dto/medicine-create.dto';
 import { MedicineUpdateDto } from './dto/medicine-update.dto';
 import { CUSTOM_HTTP_ERRORS } from '../utils/exception-filters/custom-http-errors.filter';
 import { DrugService } from '../drug/drug.service';
-import { Drug } from 'src/drug/drug.entity';
+import { Drug } from '../drug/drug.entity';
+import { DrugInteractionService } from '../drug-interaction/drug-interaction.service';
+import { DrugInteraction } from '../drug-interaction/drug-interaction.entity';
 
 @Injectable()
 export class MedicineService extends GenericService<
@@ -19,6 +21,7 @@ export class MedicineService extends GenericService<
   constructor(
     @InjectRepository(Medicine) medicineRepository: Repository<Medicine>,
     private readonly drugService: DrugService,
+    private readonly drugInteractionService: DrugInteractionService,
   ) {
     super(medicineRepository);
   }
@@ -59,11 +62,9 @@ export class MedicineService extends GenericService<
         if (medicine.farmacos.length > 0) {
           const ids = [];
           medicine.farmacos.map(id => ids.push({ id }));
-          console.log('ids: ', ids);
           const farmacos = await this.drugService.findBy({
             where: ids,
           });
-          console.log('farmacos: ', farmacos);
           ((medicine as unknown) as { farmacos: Drug[] }).farmacos = farmacos;
         }
       } else {
@@ -104,8 +105,8 @@ export class MedicineService extends GenericService<
       searchedColumn: 'id',
     },
   ) {
-    if(search.searchText == 'undefined') search.searchText = '';
-    if(search.searchedColumn == 'undefined') search.searchedColumn = 'id';
+    if (search.searchText == 'undefined') search.searchText = '';
+    if (search.searchedColumn == 'undefined') search.searchedColumn = 'id';
     return await this.fetchAll(
       {
         route,
@@ -127,5 +128,106 @@ export class MedicineService extends GenericService<
       { ...CUSTOM_HTTP_ERRORS.NOT_FOUND },
       HttpStatus.NOT_FOUND,
     );
+  }
+
+  async getMedicinesInteraction(ids: number[]) {
+    if (ids && ids.length > 0) {
+      const medicines = await this.fetchBy({
+        where: ids,
+      });
+      const medicineFarmacos: {
+        medicineName: string;
+        medicineId: number;
+        farmacoIds: number[];
+      }[] = [];
+
+      medicines.map(med => {
+        const farmacoMapedIds = [];
+        med.farmacos.map(farmaco => {
+          ids.push(farmaco.id);
+        });
+        medicineFarmacos.push({
+          medicineName: med.nome,
+          medicineId: med.id,
+          farmacoIds: farmacoMapedIds,
+        });
+      });
+
+      if (medicineFarmacos && medicineFarmacos.length > 0) {
+        const filteredIds = [];
+        const formattedIdsToFetch: { farmaco1Id; farmaco2Id }[] = [];
+        medicineFarmacos.map(medicineFarmaco => {
+          medicineFarmaco.farmacoIds.map(
+            (farmacoId, farmacoIdIndex, farmacoIdArray) => {
+              farmacoIdArray.map((farmacoArrayId, farmacoArrayIndex) => {
+                if (
+                  farmacoIdIndex >= farmacoArrayIndex &&
+                  filteredIds.findIndex(value => value === farmacoId) === -1
+                ) {
+                  filteredIds.push(farmacoId);
+                }
+              });
+            },
+          );
+        });
+
+        filteredIds.map((id, idIndex, idArray) => {
+          let farmaco1Id;
+          let farmaco2Id;
+          idArray.map((arrayId, arrayIndex) => {
+            farmaco1Id = arrayId;
+            if (id !== arrayId && idIndex < arrayIndex) {
+              farmaco2Id = id;
+              formattedIdsToFetch.push({
+                farmaco1Id,
+                farmaco2Id,
+              });
+            }
+          });
+        });
+
+        const interactions = await this.drugInteractionService.getInteraction(
+          formattedIdsToFetch,
+        );
+
+        const obj: {
+          medicineName: string;
+          medicineId: number;
+          farmaco: {
+            farmaco1Id: number;
+            farmaco2Id: number;
+          };
+          interaction1?: DrugInteraction;
+          interaction2?: DrugInteraction;
+          hasDrugInteraction: boolean;
+        }[] = [];
+        interactions.map(interaction => {
+          if (interaction.hasDrugInteraction) {
+            medicineFarmacos.map(value => {
+              if (
+                value.farmacoIds.findIndex(
+                  farmId =>
+                    farmId === interaction.farmaco.farmaco1Id ||
+                    farmId === interaction.farmaco.farmaco2Id,
+                ) >= 0
+              ) {
+                const { farmacoIds, ...med } = value;
+                obj.push({
+                  ...med,
+                  ...interaction,
+                });
+              }
+            });
+          }
+        });
+
+        return {ids, obj};
+      }
+    } else {
+      throw new HttpException(
+        { ...CUSTOM_HTTP_ERRORS.OBJECT_INVALID },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 }

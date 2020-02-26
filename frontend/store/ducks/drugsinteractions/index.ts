@@ -22,10 +22,13 @@ const signUpInitialState: DrugsInteractionsState = {
   selectedRecord: null,
   action: null,
   loading: false,
-  error: false,
+  error: false
 };
 
-const reducer: Reducer<DrugsInteractionsState> = (state = signUpInitialState, action) => {
+const reducer: Reducer<DrugsInteractionsState> = (
+  state = signUpInitialState,
+  action
+) => {
   switch (action.type) {
     case DrugsInteractionsTypes.DRUG_INTERACTIONS_FETCH:
       return {
@@ -56,6 +59,7 @@ const reducer: Reducer<DrugsInteractionsState> = (state = signUpInitialState, ac
         loading: true,
         selectedRecord: action.payload.selectedRecord
       };
+
     case DrugsInteractionsTypes.DRUG_INTERACTIONS_FETCH_SUCCESS:
       return {
         ...state,
@@ -94,13 +98,14 @@ const reducer: Reducer<DrugsInteractionsState> = (state = signUpInitialState, ac
         oldRecord: action.payload.data,
         selectedRecord: null
       };
+
     case DrugsInteractionsTypes.DRUG_INTERACTIONS_FETCH_FAILURE:
       return {
         ...state,
         action: action.type,
         loading: false,
         error: true,
-        errorType: action.payload.data.message,
+        errorType: action.payload.data.message
       };
     case DrugsInteractionsTypes.DRUG_INTERACTIONS_CREATE_FAILURE:
       return {
@@ -108,7 +113,7 @@ const reducer: Reducer<DrugsInteractionsState> = (state = signUpInitialState, ac
         action: action.type,
         loading: false,
         error: true,
-        errorType: action.payload.data.message,
+        errorType: action.payload.data.message
       };
     case DrugsInteractionsTypes.DRUG_INTERACTIONS_UPDATE_FAILURE:
       return {
@@ -116,7 +121,7 @@ const reducer: Reducer<DrugsInteractionsState> = (state = signUpInitialState, ac
         action: action.type,
         loading: false,
         error: true,
-        errorType: action.payload.data.message,
+        errorType: action.payload.data.message
       };
     case DrugsInteractionsTypes.DRUG_INTERACTIONS_DELETE_FAILURE:
       return {
@@ -124,7 +129,7 @@ const reducer: Reducer<DrugsInteractionsState> = (state = signUpInitialState, ac
         action: action.type,
         loading: false,
         error: true,
-        errorType: action.payload.data.message,
+        errorType: action.payload.data.message
       };
 
     default:

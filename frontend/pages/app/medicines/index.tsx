@@ -418,14 +418,7 @@ const MedicinePage = ({ form }: Props<MedicineState>) => {
             labelCol={{ span: 18 }}
             style={{ flex: "0 1 auto" }}
           >
-            {getFieldDecorator("usoInterno", {
-              rules: [
-                {
-                  required: true,
-                  message: "Campo obrigatório."
-                }
-              ]
-            })(
+            {getFieldDecorator("usoInterno")(
               <Switch
                 checkedChildren={<Icon type="check" />}
                 unCheckedChildren={<Icon type="close" />}
@@ -438,14 +431,7 @@ const MedicinePage = ({ form }: Props<MedicineState>) => {
             labelCol={{ span: 18 }}
             style={{ flex: "0 1 auto" }}
           >
-            {getFieldDecorator("antimicrobiano", {
-              rules: [
-                {
-                  required: true,
-                  message: "Campo obrigatório."
-                }
-              ]
-            })(
+            {getFieldDecorator("antimicrobiano")(
               <Switch
                 checkedChildren={<Icon type="check" />}
                 unCheckedChildren={<Icon type="close" />}
@@ -458,14 +444,7 @@ const MedicinePage = ({ form }: Props<MedicineState>) => {
             labelCol={{ span: 18 }}
             style={{ flex: "0 1 auto" }}
           >
-            {getFieldDecorator("controleEspecial", {
-              rules: [
-                {
-                  required: true,
-                  message: "Campo obrigatório."
-                }
-              ]
-            })(
+            {getFieldDecorator("controleEspecial")(
               <Switch
                 checkedChildren={<Icon type="check" />}
                 unCheckedChildren={<Icon type="close" />}
@@ -478,14 +457,7 @@ const MedicinePage = ({ form }: Props<MedicineState>) => {
             labelCol={{ span: 18 }}
             style={{ flex: "0 1 auto" }}
           >
-            {getFieldDecorator("MIP", {
-              rules: [
-                {
-                  required: true,
-                  message: "Campo obrigatório."
-                }
-              ]
-            })(
+            {getFieldDecorator("MIP")(
               <Switch
                 checkedChildren={<Icon type="check" />}
                 unCheckedChildren={<Icon type="close" />}
@@ -496,10 +468,10 @@ const MedicinePage = ({ form }: Props<MedicineState>) => {
         <div
           style={{
             display: "flex",
-            flexWrap: "wrap",
+            flexWrap: "wrap"
           }}
         >
-          <div style={{flex: 'auto'}}>
+          <div style={{ flex: "auto" }}>
             <Form.Item label="Nome:">
               {getFieldDecorator("nome", {
                 rules: [
@@ -599,7 +571,7 @@ const MedicinePage = ({ form }: Props<MedicineState>) => {
               })(<Input />)}
             </Form.Item>
           </div>
-          <div style={{flex: 'auto'}}>
+          <div style={{ flex: "auto" }}>
             <Form.Item label="Código ATC:">
               {getFieldDecorator("codigoATC", {
                 rules: [
@@ -620,10 +592,6 @@ const MedicinePage = ({ form }: Props<MedicineState>) => {
                   {
                     type: "url",
                     message: "Campo deve ser uma url."
-                  },
-                  {
-                    required: true,
-                    message: "Campo obrigatório."
                   }
                 ]
               })(<Input />)}

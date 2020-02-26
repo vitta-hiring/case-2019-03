@@ -14,7 +14,10 @@ export enum MedicineTypes {
   MEDICINE_UPDATE_FAILURE = "MEDICINE_UPDATE_FAILURE",
   MEDICINE_DELETE = "MEDICINE_DELETE",
   MEDICINE_DELETE_SUCCESS = "MEDICINE_DELETE_SUCCESS",
-  MEDICINE_DELETE_FAILURE = "MEDICINE_DELETE_FAILURE"
+  MEDICINE_DELETE_FAILURE = "MEDICINE_DELETE_FAILURE",
+  MEDICINE_INTERACTION_FETCH = "MEDICINE_INTERACTION_FETCH",
+  MEDICINE_INTERACTION_SUCCESS = "MEDICINE_INTERACTION_SUCCESS",
+  MEDICINE_INTERACTION_FAILURE = "MEDICINE_INTERACTION_FAILURE"
 }
 
 export interface Medicine {
@@ -36,6 +39,49 @@ export interface Medicine {
   label: string;
   unificado: string;
   farmacos: Drug[];
+}
+
+export interface MedicineInteraction {
+  ids: number[];
+  interactions: {
+    medicineName: string;
+    medicineId: number;
+    farmaco: {
+      farmaco1Id: number;
+      farmaco2Id: number;
+    };
+    interaction1: {
+      id: number;
+      nome: string;
+      descricao: string;
+      farmaco1: {
+        id: number;
+        nome: string;
+      };
+      farmaco2: {
+        id: number;
+        nome: string;
+      };
+      farmaco1id: number;
+      farmaco2id: number;
+    };
+    interaction2: {
+      id: number;
+      nome: string;
+      descricao: string;
+      farmaco1: {
+        id: number;
+        nome: string;
+      };
+      farmaco2: {
+        id: number;
+        nome: string;
+      };
+      farmaco1id: number;
+      farmaco2id: number;
+    };
+    hasDrugInteraction: boolean;
+  }[];
 }
 
 export interface MedicineFetchPayload extends PagedResponse<Medicine> {}
@@ -66,8 +112,12 @@ export interface MedicineForm {
 
 export interface MedicineState {
   readonly data: MedicineFetchPayload;
+  readonly medicineInteractions?: MedicineInteraction;
   readonly pagination: PaginationConfig;
-  readonly search?: { searchedColumn: string; searchText: string };
+  readonly search?: {
+    searchedColumn: string;
+    searchText: string | { nextTargetKeys: [], targetKeys: [] };
+  };
   readonly oldRecord?: Medicine;
   readonly selectedRecord?: Medicine;
   readonly action: MedicineTypes;

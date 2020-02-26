@@ -68,7 +68,6 @@ export class DrugService extends GenericService<
     perPage: string | number = 10,
     search: {searchedColumn: string, searchText: string} = { searchText: "", searchedColumn: "id"}
   ) {
-    console.log(search)
     if(search.searchText == 'undefined') search.searchText = '';
     if(search.searchedColumn == 'undefined') search.searchedColumn = 'id';
     return await this.fetchAll(

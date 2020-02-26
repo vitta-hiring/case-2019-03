@@ -24,9 +24,7 @@ export function* signUp(action) {
       data: action.payload
     });
     if (response.status !== 200 && response.status !== 201) throw response;
-    console.log("RESPONSE ANTES: ", response);
     response = yield response.data;
-    console.log("RESPONSE DEPOIS: ", response);
     setTimeout(() => {
       notification.success({
         message: "Conta criada com sucesso!",

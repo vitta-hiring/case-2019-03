@@ -10,6 +10,6 @@ import { DrugModule } from '../drug/drug.module';
   imports: [TypeOrmModule.forFeature([DrugInteraction]), DrugModule],
   providers: [DrugInteractionService],
   controllers: [DrugInteractionController],
-  exports: [TypeOrmModule]
+  exports: [TypeOrmModule, DrugInteractionService]
 })
 export class DrugInteractionModule {}

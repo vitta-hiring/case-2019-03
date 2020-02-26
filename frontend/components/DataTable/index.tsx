@@ -45,7 +45,6 @@ const DataTable = ({
   };
 
   const onChange = (pagination, filters, sorter, extra) => {
-    console.log("params", pagination, filters, sorter, extra);
 
     onTableChange(pagination, filters, sorter, extra);
   };

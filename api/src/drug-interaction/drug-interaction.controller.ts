@@ -52,7 +52,6 @@ export class DrugInteractionController {
     return await this.drugInteractionService.getById(id);
   }
 
-
   @Get()
   async getAll(
     @Query()

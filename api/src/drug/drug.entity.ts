@@ -23,7 +23,6 @@ export class Drug {
   @PrimaryGeneratedColumn()
   id?: number;
   @Column('varchar', { length: 255, unique: true })
-  @Index({ unique: true })
   nome: string;
   @ManyToMany(type => Medicine, medicine => medicine.farmacos)
   medicines: Medicine[];

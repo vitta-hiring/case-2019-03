@@ -24,14 +24,12 @@ export class AuthService {
   async validateUser(email: string, password: string): Promise<any> {
     const user = (await this.userService.findBy({ where: { email } }, true))[0];
     if (user && (await bcrypt.compare(password, user.password))) {
-      console.log("service: ", user)
       return user;
     }
     return null;
   }
 
   login(user: User): IToken {
-    console.log("LOGIN: ",user);
     const payload = {
       id: user.id,
       userEmail: user.email,
@@ -47,35 +45,6 @@ export class AuthService {
       lastName: user.lastName,
     };
   }
-
-  // async login(user: LoginDTO): Promise<IToken> {
-  //   const data = (
-  //     await this.userService.findBy({ where: { email: user.email } }, true)
-  //   )[0];
-  //   console.log(data);
-  //   if (data) {
-  //     if (await bcrypt.compare(user.password, data.password)) {
-  //       const payload = {
-  //         id: data.id,
-  //         userEmail: data.email,
-  //       };
-
-  //       const token = this.jwtService.sign(payload);
-  //       return {
-  //         userId: data.id,
-  //         token,
-  //         userEmail: data.email,
-  //         firstName: data.firstName,
-  //         lastName: data.lastName,
-  //       };
-  //     }
-  //   }
-
-  //   throw new HttpException(
-  //     { ...CUSTOM_HTTP_ERRORS.UNAUTHORIZED },
-  //     HttpStatus.BAD_REQUEST,
-  //   );
-  // }
 
   async recoverPassword(email: string) {
     const data = await this.userService.findBy({ where: { email } })[0];

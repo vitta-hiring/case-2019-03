@@ -10,6 +10,10 @@ const signUpInitialState: MedicineState = {
     next: null,
     previous: null
   },
+  medicineInteractions: {
+    ids: [],
+    interactions: []
+  },
   pagination: {
     total: 0,
     pageSize: 5
@@ -22,10 +26,13 @@ const signUpInitialState: MedicineState = {
   selectedRecord: null,
   action: null,
   loading: false,
-  error: false,
+  error: false
 };
 
-const reducer: Reducer<MedicineState> = (state = signUpInitialState, action) => {
+const reducer: Reducer<MedicineState> = (
+  state = signUpInitialState,
+  action
+) => {
   switch (action.type) {
     case MedicineTypes.MEDICINE_FETCH:
       return {
@@ -55,6 +62,14 @@ const reducer: Reducer<MedicineState> = (state = signUpInitialState, action) => 
         action: action.type,
         loading: true,
         selectedRecord: action.payload.selectedRecord
+      };
+    case MedicineTypes.MEDICINE_INTERACTION_FETCH:
+      return {
+        ...state,
+        action: action.type,
+        loading: true,
+        pagination: action.payload.pagination,
+        search: action.payload.search
       };
     case MedicineTypes.MEDICINE_FETCH_SUCCESS:
       return {
@@ -94,13 +109,22 @@ const reducer: Reducer<MedicineState> = (state = signUpInitialState, action) => 
         oldRecord: action.payload.data,
         selectedRecord: null
       };
+    case MedicineTypes.MEDICINE_INTERACTION_SUCCESS:
+      return {
+        ...state,
+        action: action.type,
+        medicineInteractions: action.payload.data,
+        loading: false,
+        error: false,
+        selectedRecord: null
+      };
     case MedicineTypes.MEDICINE_FETCH_FAILURE:
       return {
         ...state,
         action: action.type,
         loading: false,
         error: true,
-        errorType: action.payload.data.message,
+        errorType: action.payload.data.message
       };
     case MedicineTypes.MEDICINE_CREATE_FAILURE:
       return {
@@ -108,7 +132,7 @@ const reducer: Reducer<MedicineState> = (state = signUpInitialState, action) => 
         action: action.type,
         loading: false,
         error: true,
-        errorType: action.payload.data.message,
+        errorType: action.payload.data.message
       };
     case MedicineTypes.MEDICINE_UPDATE_FAILURE:
       return {
@@ -116,7 +140,7 @@ const reducer: Reducer<MedicineState> = (state = signUpInitialState, action) => 
         action: action.type,
         loading: false,
         error: true,
-        errorType: action.payload.data.message,
+        errorType: action.payload.data.message
       };
     case MedicineTypes.MEDICINE_DELETE_FAILURE:
       return {
@@ -124,7 +148,15 @@ const reducer: Reducer<MedicineState> = (state = signUpInitialState, action) => 
         action: action.type,
         loading: false,
         error: true,
-        errorType: action.payload.data.message,
+        errorType: action.payload.data.message
+      };
+    case MedicineTypes.MEDICINE_INTERACTION_FAILURE:
+      return {
+        ...state,
+        action: action.type,
+        loading: false,
+        error: true,
+        errorType: action.payload.data.message
       };
 
     default:

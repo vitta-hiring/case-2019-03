@@ -1,4 +1,14 @@
-import { Controller, Post, Body, Get, Param, Query, Put, Delete, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  Query,
+  Put,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 import { MedicineService } from './medicine.service';
@@ -55,5 +65,11 @@ export class MedicineController {
       query.limit,
       query.search,
     );
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('interactions')
+  async getInteractions(@Query('ids') ids: number[]) {
+    return await this.medicineService.getMedicinesInteraction(ids);
   }
 }

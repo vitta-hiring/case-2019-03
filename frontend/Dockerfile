@@ -7,6 +7,7 @@ WORKDIR /prescriptions_app_frontend
 
 # Installing dependencies
 COPY ./package.json /prescriptions_app_frontend/package.json
+COPY ./package-lock.json /prescriptions_app_frontend/package-lock.json
 RUN npm --unsafe-perm install
 
 # Copying source files
@@ -14,6 +15,7 @@ COPY ./ /prescriptions_app_frontend
 
 # Building app
 RUN npm run build
+EXPOSE 3000
 
 # Running the app
 CMD [ "npm", "start" ]

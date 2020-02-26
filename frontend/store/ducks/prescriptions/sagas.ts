@@ -55,7 +55,6 @@ export function* createPrescription(action) {
       data: selectedRecord
     });
     if (response.status === 200 && response.status === 201) throw response;
-    console.log(response);
     setTimeout(() => {
       notification.success({
         message: "Criado com Sucesso!",

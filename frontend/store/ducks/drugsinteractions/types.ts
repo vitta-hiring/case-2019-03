@@ -24,7 +24,8 @@ export interface DrugsInteractions {
   farmaco2: string;
 }
 
-export interface DrugsInteractionsFetchPayload extends PagedResponse<DrugsInteractions> {}
+export interface DrugsInteractionsFetchPayload
+  extends PagedResponse<DrugsInteractions> {}
 export interface DrugInteractionsCreatePayload extends DrugsInteractions {}
 export interface DrugInteractionsUpdatePayload extends DrugsInteractions {}
 export interface DrugInteractionsDeletePayload extends DrugsInteractions {}
@@ -39,7 +40,7 @@ export interface DrugsInteractionsForm {
 export interface DrugsInteractionsState {
   readonly data: DrugsInteractionsFetchPayload;
   readonly pagination: PaginationConfig;
-  readonly search?: { searchedColumn: string, searchText: string};
+  readonly search?: { searchedColumn: string; searchText: string };
   readonly oldRecord?: DrugsInteractions;
   readonly selectedRecord?: DrugsInteractions;
   readonly action: DrugsInteractionsTypes;

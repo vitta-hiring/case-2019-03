@@ -5,7 +5,7 @@ function Error({ statusCode }) {
     <Result
       status="404"
       title="404"
-      subTitle="Desculpe, ta página que você visitou não existe."
+      subTitle="Desculpe, esta página que você visitou não existe."
       extra={<Button type="primary">Voltar</Button>}
     />
   );

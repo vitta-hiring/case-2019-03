@@ -45,20 +45,6 @@ class MyApp extends App<Props> {
         payload: { data: { token, ...(userInfo as {}) } }
       });
     }
-    // if(process.browser) {
-
-    //   console.log("DID MOUTE TOKEN: ", token);
-    //   console.log("DID MOUTE STORE: ", storeState);
-    //   if (!storeState.auth.isLogged) {
-    //     Router.replace("/");
-    //   } else if (
-    //     Router.pathname == "/" ||
-    //     Router.pathname == "/signin" ||
-    //     Router.pathname == "/signup"
-    //   ) {
-    //     Router.push("/app");
-    //   }
-    // }
   }
 
   render() {

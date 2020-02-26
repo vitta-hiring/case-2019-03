@@ -16,13 +16,16 @@ services:
       - 3123:3123
     depends_on:
       - mysql
+    networks:
+      - prescriptions_app
+
   prescriptions_frontend:
     build:
       context: ./frontend
       # dockerfile: ./Dockerfile
     container_name: prescriptions_frontend
-    environment:
-      - NODE_ENV=production
+    # environment:
+      # - NODE_ENV=production
     working_dir: /prescriptions_app_frontend/
     volumes:
       # - ./frontend:/prescriptions_app_frontend
@@ -32,6 +35,8 @@ services:
       - 3124:3000
     depends_on:
       - prescriptions_api
+    networks:
+      - prescriptions_app
 
   mysql:
     image: mysql:5.7
@@ -48,3 +53,9 @@ services:
     #   - MYSQL_PASSWORD=${MYSQL_ROOT_PASSWORD}
     ports:
       - "3389:3306"
+    networks:
+      - prescriptions_app
+
+networks:
+  prescriptions_app:
+    # external: false

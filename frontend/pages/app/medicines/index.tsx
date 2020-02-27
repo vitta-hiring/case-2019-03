@@ -403,6 +403,7 @@ const MedicinePage = ({ form }: Props<MedicineState>) => {
       rowKey={record => record.id}
       key="Medicine"
       modalWidth="70vw"
+      modalTitle="Criar um remédio"
     >
       <Form {...formItemLayout} onSubmit={handleCreate}>
         <div

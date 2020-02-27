@@ -9,6 +9,8 @@ import {
   prescriptionDeleteFailure
 } from "./actions";
 import Icon from "../../../components/Icon";
+import { logoutRequest } from "../auth/actions";
+import { logout } from "../../../utils/auth";
 
 const api = (url, options: AxiosRequestConfig) => {
   return axios(url, options);
@@ -35,7 +37,12 @@ export function* fetchPrescriptions(action) {
     response = yield response.data;
     yield put(prescriptionFetchSuccess(response));
   } catch (error) {
-    yield put(prescriptionFetchFailure(error));
+    if (error.response.status == 401) {
+      yield put(logoutRequest());
+      return;
+    } else {
+      yield put(prescriptionFetchFailure(error));
+    }
   }
 }
 
@@ -64,15 +71,20 @@ export function* createPrescription(action) {
     }, 1000);
     yield put(prescriptionDeleteSuccess(selectedRecord));
   } catch (error) {
-    error = error.toJSON();
-    const dataError: { description: string } = JSON.parse(error.config.data);
-    const message = `O registro "${dataError.description}" já existe.`;
-    notification.error({
-      message: "Erro ao criar!",
-      key,
-      description: message
-    });
-    yield put(prescriptionDeleteFailure({ message }));
+    if (error.response.status == 401) {
+      yield put(logoutRequest());
+      return;
+    } else {
+      error = error.toJSON();
+      const dataError: { description: string } = JSON.parse(error.config.data);
+      const message = `O registro "${dataError.description}" já existe.`;
+      notification.error({
+        message: "Erro ao criar!",
+        key,
+        description: message
+      });
+      yield put(prescriptionDeleteFailure({ message }));
+    }
   }
 }
 
@@ -84,7 +96,9 @@ export function* deletePrescription(action) {
   notification.open({
     message: "Deletando",
     key,
-    description: `Item ${selectedRecord.id + " - " + selectedRecord.description}...`,
+    description: `Item ${selectedRecord.id +
+      " - " +
+      selectedRecord.description}...`,
     icon: Icon
   });
   try {
@@ -112,15 +126,20 @@ export function* deletePrescription(action) {
     }, 1000);
     yield put(prescriptionDeleteSuccess(selectedRecord));
   } catch (error) {
-    setTimeout(() => {
-      notification.error({
-        message: "Erro ao deletar!",
-        key,
-        description: `Item ${selectedRecord.id +
-          " - " +
-          selectedRecord.description}...`
-      });
-    }, 1000);
-    yield put(prescriptionDeleteFailure(error));
+    if (error.response.status == 401) {
+      yield put(logoutRequest());
+      return;
+    } else {
+      setTimeout(() => {
+        notification.error({
+          message: "Erro ao deletar!",
+          key,
+          description: `Item ${selectedRecord.id +
+            " - " +
+            selectedRecord.description}...`
+        });
+      }, 1000);
+      yield put(prescriptionDeleteFailure(error));
+    }
   }
 }

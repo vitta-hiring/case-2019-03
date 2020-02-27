@@ -4,7 +4,7 @@ import { PrescriptionService } from './prescription.service';
 import { PrescriptionCreateDto } from './dto/prescription-create.dto';
 import { PrescriptionUpdateDto } from './dto/prescription-update.dto';
 import { ConfigService } from '@nestjs/config';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @Controller('prescription')
 export class PrescriptionController {

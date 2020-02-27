@@ -343,6 +343,7 @@ const DrugInteractions = ({ form }: Props<DrugsInteractionsState>) => {
       rowKey={record => record.id}
       key="DrugsInteractions"
       modalWidth="60vw"
+      modalTitle="Criar uma interação medicamentosa"
     >
       <Form {...formItemLayout} onSubmit={handleCreate}>
         <Form.Item label="Gravidade Interação:">

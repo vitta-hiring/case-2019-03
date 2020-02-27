@@ -1,4 +1,4 @@
-import { call, put, select} from "redux-saga/effects";
+import { call, put, select } from "redux-saga/effects";
 import axios, { AxiosRequestConfig } from "axios";
 import {
   drugFetchFailure,
@@ -8,6 +8,7 @@ import {
 } from "./actions";
 import { notification } from "antd";
 import Icon from "../../../components/Icon";
+import { logoutRequest } from "../auth/actions";
 
 const api = (url, options: AxiosRequestConfig) => {
   return axios(url, options);
@@ -17,7 +18,7 @@ export function* fetchDrug(action) {
   const { pagination, search } = action.payload;
   const authState = yield select(state => state.auth);
   const { token } = authState.data;
-  
+
   try {
     let response = yield call(
       api,
@@ -31,11 +32,17 @@ export function* fetchDrug(action) {
         }
       }
     );
+
     if (response.status === 200 && response.status === 201) throw response;
     response = yield response.data;
     yield put(drugFetchSuccess(response));
   } catch (error) {
-    yield put(drugFetchFailure(error));
+    if (error.response.status == 401) {
+      yield put(logoutRequest());
+      return;
+    } else {
+      yield put(drugFetchFailure(error));
+    }
   }
 }
 
@@ -45,7 +52,7 @@ export function* createDrug(action) {
 
   const authState = yield select(state => state.auth);
   const { token } = authState.data;
-  
+
   try {
     let response = yield call(api, `${process.env.BACKEND_URL}/drug`, {
       method: "POST",
@@ -56,6 +63,7 @@ export function* createDrug(action) {
       },
       data: selectedRecord
     });
+
     if (response.status === 200 && response.status === 201) throw response;
     setTimeout(() => {
       notification.success({
@@ -66,15 +74,20 @@ export function* createDrug(action) {
     }, 1000);
     yield put(drugDeleteSuccess(selectedRecord));
   } catch (error) {
-    error = error.toJSON();
-    const dataError: { nome: string } = JSON.parse(error.config.data);
-    const message = `O registro "${dataError.nome}" já existe.`;
-    notification.error({
-      message: "Erro ao criar!",
-      key,
-      description: message
-    });
-    yield put(drugDeleteFailure({ message }));
+    if (error.response.status == 401) {
+      yield put(logoutRequest());
+      return;
+    } else {
+      error = error.toJSON();
+      const dataError: { nome: string } = JSON.parse(error.config.data);
+      const message = `O registro "${dataError.nome}" já existe.`;
+      notification.error({
+        message: "Erro ao criar!",
+        key,
+        description: message
+      });
+      yield put(drugDeleteFailure({ message }));
+    }
   }
 }
 
@@ -89,7 +102,7 @@ export function* deleteDrug(action) {
   });
   const authState = yield select(state => state.auth);
   const { token } = authState.data;
-  
+
   try {
     let response = yield call(
       api,
@@ -103,6 +116,7 @@ export function* deleteDrug(action) {
         }
       }
     );
+
     if (response.status === 200 && response.status === 201) throw response;
     setTimeout(() => {
       notification.success({
@@ -115,15 +129,20 @@ export function* deleteDrug(action) {
     }, 1000);
     yield put(drugDeleteSuccess(selectedRecord));
   } catch (error) {
-    setTimeout(() => {
-      notification.error({
-        message: "Erro ao deletar!",
-        key,
-        description: `Item ${selectedRecord.id +
-          " - " +
-          selectedRecord.nome}...`
-      });
-    }, 1000);
-    yield put(drugDeleteFailure(error));
+    if (error.response.status == 401) {
+      yield put(logoutRequest());
+      return;
+    } else {
+      setTimeout(() => {
+        notification.error({
+          message: "Erro ao deletar!",
+          key,
+          description: `Item ${selectedRecord.id +
+            " - " +
+            selectedRecord.nome}...`
+        });
+      }, 1000);
+      yield put(drugDeleteFailure(error));
+    }
   }
 }

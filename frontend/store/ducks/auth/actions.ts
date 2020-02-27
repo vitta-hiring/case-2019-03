@@ -4,6 +4,8 @@ import {
   AuthTypes,
   SignInPayload,
 } from './types';
+import { logout } from '../../../utils/auth';
+import { notification } from 'antd';
 
 // export function signup(signupForm: SignupForm): AuthActionTypes {
 //   return {
@@ -26,4 +28,12 @@ export const signInSuccess = (data: SignInPayload) =>
   action(AuthTypes.SIGNIN_SUCCESS, { data });
   
 export const signInFailure = () => action(AuthTypes.SIGNIN_FAILURE);
-export const logoutRequest = () => action(AuthTypes.LOGOUT_REQUEST);
+export const logoutRequest = () => {
+  notification.error({
+    message: "Sua sessão expirou, entre novamente!",
+    key: "tokenExpired"
+  });
+
+  logout();
+  return action(AuthTypes.LOGOUT_REQUEST);
+}

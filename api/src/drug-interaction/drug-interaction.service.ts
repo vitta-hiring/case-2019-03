@@ -8,7 +8,7 @@ import { DrugInteractionCreateDto } from './dto/drug-interaction-create.dto';
 import { DrugInteractionUpdateDto } from './dto/drug-interaction-update.dto';
 import { CUSTOM_HTTP_ERRORS } from '../utils/exception-filters/custom-http-errors.filter';
 import { DrugService } from '../drug/drug.service';
-import { Drug } from 'src/drug/drug.entity';
+import { Drug } from '../drug/drug.entity';
 
 @Injectable()
 export class DrugInteractionService extends GenericService<

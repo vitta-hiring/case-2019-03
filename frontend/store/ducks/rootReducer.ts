@@ -5,6 +5,7 @@ import drug from './drug';
 import drugsinteractions from './drugsinteractions';
 import medicine from './medicines';
 import prescription from './prescriptions';
+import users from './users';
 
 
 const rootReducer = combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   drug,
   drugsinteractions,
   medicine,
-  prescription
+  prescription,
+  users,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

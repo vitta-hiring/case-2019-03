@@ -41,8 +41,9 @@ export interface Medicine {
   farmacos: Drug[];
 }
 
-export interface MedicineInteraction {
+export interface MedicineInteractionPayload {
   ids: number[];
+  hasDrugInteraction: boolean;
   interactions: {
     medicineName: string;
     medicineId: number;
@@ -112,11 +113,11 @@ export interface MedicineForm {
 
 export interface MedicineState {
   readonly data: MedicineFetchPayload;
-  readonly medicineInteractions?: MedicineInteraction;
+  readonly medicineInteractions?: MedicineInteractionPayload;
   readonly pagination: PaginationConfig;
   readonly search?: {
     searchedColumn: string;
-    searchText: string | { nextTargetKeys: [], targetKeys: [] };
+    searchText: string | { nextTargetKeys: [] };
   };
   readonly oldRecord?: Medicine;
   readonly selectedRecord?: Medicine;

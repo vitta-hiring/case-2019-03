@@ -13,6 +13,7 @@ import { DrugModule } from './drug/drug.module';
 import { DrugInteractionModule } from './drug-interaction/drug-interaction.module';
 import { MedicineModule } from './medicine/medicine.module';
 import { PrescriptionModule } from './prescription/prescription.module';
+import { SeederModule } from './seeder/seeder.module';
 
 @Module({
   imports: [
@@ -35,7 +36,8 @@ import { PrescriptionModule } from './prescription/prescription.module';
     DrugModule,
     DrugInteractionModule,
     MedicineModule,
-    PrescriptionModule
+    PrescriptionModule,
+    SeederModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -11,10 +11,13 @@ import { MedicineTypes } from './medicines/types';
 import { fetchMedicines, createMedicine, deleteMedicine, fetchMedicineInteractions } from './medicines/sagas';
 import { PrescriptionTypes } from './prescriptions/types';
 import { fetchPrescriptions, createPrescription, deletePrescription } from './prescriptions/sagas';
+import { UserTypes } from './users/types';
+import { fetchUsers } from './users/sagas';
 
 export default function* rootSaga() {
     return yield all([
         takeLatest(AuthTypes.SIGNIN_REQUEST, signIn),
+        takeLatest(UserTypes.USERS_FETCH, fetchUsers),
         takeLatest(SignUpTypes.SIGNUP_REQUEST, signUp),
         takeLatest(SignUpTypes.VALIDATE_EMAIL_REQUEST, validateEmail),
         takeLatest(DrugTypes.DRUG_FETCH, fetchDrug),

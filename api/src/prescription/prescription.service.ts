@@ -28,8 +28,8 @@ export class PrescriptionService extends GenericService<
   }
 
   async prescriptionExists(id: string): Promise<boolean> {
-    const user = await this.fetchBy({ where: { id } });
-    if (user) {
+    const prescription = await this.fetchBy({ where: { id } });
+    if (prescription) {
       return true;
     }
 

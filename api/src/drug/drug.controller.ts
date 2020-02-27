@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 
 import { DrugService } from './drug.service';
 import { DrugCreateDto } from './dto/drug-create.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @Controller('drug')
 export class DrugController {

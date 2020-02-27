@@ -14,7 +14,7 @@ import { ConfigService } from '@nestjs/config';
 import { DrugInteractionService } from './drug-interaction.service';
 import { DrugInteractionCreateDto } from './dto/drug-interaction-create.dto';
 import { DrugInteractionUpdateDto } from './dto/drug-interaction-update.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @Controller('druginteraction')
 export class DrugInteractionController {

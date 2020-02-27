@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Router from "next/router";
 import nextCookie from "next-cookies";
 import cookie from "js-cookie";
+import { AuthTypes } from "../store/ducks/auth/types";
 
 export const login = ({ token, ...userInfo }) => {
   cookie.set("token", token, { expires: 1 });
@@ -22,6 +23,7 @@ export const auth = ctx => {
 
   // We already checked for server. This should only happen on client.
   if (!token) {
+    ctx.store.dispatch({ type: AuthTypes.LOGOUT_REQUEST });
     Router.push("/");
   }
 
@@ -40,6 +42,7 @@ export const withAuthSync = WrappedComponent => {
   const Wrapper = props => {
     const syncLogout = event => {
       if (event.key === "logout") {
+        props.store.dispatch({ type: AuthTypes.LOGOUT_REQUEST });
         Router.push("/");
       }
     };

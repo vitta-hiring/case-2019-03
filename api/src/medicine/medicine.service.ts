@@ -131,9 +131,10 @@ export class MedicineService extends GenericService<
   }
 
   async getMedicinesInteraction(ids: number[]) {
+    ids = JSON.parse((ids as unknown) as string);
     if (ids && ids.length > 0) {
       const medicines = await this.fetchBy({
-        where: ids,
+        where: ids.map(id => ({ id })),
       });
       const medicineFarmacos: {
         medicineName: string;
@@ -144,7 +145,7 @@ export class MedicineService extends GenericService<
       medicines.map(med => {
         const farmacoMapedIds = [];
         med.farmacos.map(farmaco => {
-          ids.push(farmaco.id);
+          farmacoMapedIds.push(farmaco.id);
         });
         medicineFarmacos.push({
           medicineName: med.nome,
@@ -201,8 +202,12 @@ export class MedicineService extends GenericService<
           interaction2?: DrugInteraction;
           hasDrugInteraction: boolean;
         }[] = [];
+        let hasDrugInteraction: boolean = false;
         interactions.map(interaction => {
           if (interaction.hasDrugInteraction) {
+            if (!hasDrugInteraction) {
+              hasDrugInteraction = true;
+            }
             medicineFarmacos.map(value => {
               if (
                 value.farmacoIds.findIndex(
@@ -221,7 +226,7 @@ export class MedicineService extends GenericService<
           }
         });
 
-        return {ids, obj};
+        return { ids, interactions: obj, hasDrugInteraction };
       }
     } else {
       throw new HttpException(

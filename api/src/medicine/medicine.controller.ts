@@ -14,7 +14,7 @@ import { ConfigService } from '@nestjs/config';
 import { MedicineService } from './medicine.service';
 import { MedicineCreateDto } from './dto/medicine-create.dto';
 import { MedicineUpdateDto } from './dto/medicine-update.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @Controller('medicine')
 export class MedicineController {
@@ -30,6 +30,12 @@ export class MedicineController {
   @Post()
   async store(@Body() medicine: MedicineCreateDto) {
     return await this.medicineService.store(medicine);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('interactions')
+  async getInteractions(@Query('ids') ids: number[]) {
+    return this.medicineService.getMedicinesInteraction(ids);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -67,9 +73,5 @@ export class MedicineController {
     );
   }
 
-  @UseGuards(JwtAuthGuard)
-  @Get('interactions')
-  async getInteractions(@Query('ids') ids: number[]) {
-    return await this.medicineService.getMedicinesInteraction(ids);
-  }
+  
 }

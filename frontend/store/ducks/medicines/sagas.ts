@@ -6,10 +6,13 @@ import {
   medicineFetchFailure,
   medicineFetchSuccess,
   medicineDeleteSuccess,
-  medicineDeleteFailure
+  medicineDeleteFailure,
+  medicineInteractionSuccess,
+  medicineInteractionFailure
 } from "./actions";
 import { message, notification } from "antd";
 import Icon from "../../../components/Icon";
+import { logoutRequest } from "../auth/actions";
 
 const api = (url, options: AxiosRequestConfig) => {
   return axios(url, options);
@@ -37,13 +40,18 @@ export function* fetchMedicines(action) {
     response = yield response.data;
     yield put(medicineFetchSuccess(response));
   } catch (error) {
-    yield put(medicineFetchFailure(error));
+    if (error.response.status == 401) {
+      yield put(logoutRequest());
+      return;
+    } else {
+      yield put(medicineFetchFailure(error));
+    }
   }
 }
 
 export function* fetchMedicineInteractions(action) {
-  const { nextTargetKeys, targetKeys } = action.payload.search;
-  const ids = [...nextTargetKeys, ...targetKeys];
+  const { nextTargetKeys, targetKeys } = action.payload.search.searchText;
+  let ids: any = JSON.stringify([...nextTargetKeys]);
   const authState = yield select(state => state.auth);
   const { token } = authState.data;
 
@@ -62,9 +70,14 @@ export function* fetchMedicineInteractions(action) {
     );
     if (response.status === 200 && response.status === 201) throw response;
     response = yield response.data;
-    yield put(medicineFetchSuccess(response));
+    yield put(medicineInteractionSuccess(response));
   } catch (error) {
-    yield put(medicineFetchFailure(error));
+    if (error.response.status == 401) {
+      yield put(logoutRequest());
+      return;
+    } else {
+      yield put(medicineInteractionFailure(error));
+    }
   }
 }
 
@@ -75,40 +88,40 @@ export function* createMedicine(action) {
   const { token } = authState.data;
 
   try {
-    let response = yield call(
-      api,
-      `${process.env.BACKEND_URL}/medicine`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          Authorization: `Bearer ${token}`
-        },
-        data: selectedRecord
-      }
-    );
+    let response = yield call(api, `${process.env.BACKEND_URL}/medicine`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${token}`
+      },
+      data: selectedRecord
+    });
+
     if (response.status === 200 && response.status === 201) throw response;
     setTimeout(() => {
       notification.success({
         message: "Criado com Sucesso!",
         key,
-        description: `Item ${response.data.id +
-          " - " +
-          response.data.nome}...`
+        description: `Item ${response.data.id + " - " + response.data.nome}...`
       });
     }, 1000);
     yield put(medicineDeleteSuccess(selectedRecord));
   } catch (error) {
-    error = error.toJSON();
-    const dataError: {nome: string} = JSON.parse(error.config.data);
-    const message = `O registro "${dataError.nome}" já existe.`
+    if (error.response.status == 401) {
+      yield put(logoutRequest());
+      return;
+    } else {
+      error = error.toJSON();
+      const dataError: { nome: string } = JSON.parse(error.config.data);
+      const message = `O registro "${dataError.nome}" já existe.`;
       notification.error({
         message: "Erro ao criar!",
         key,
         description: message
       });
-    yield put(medicineDeleteFailure({message}));
+      yield put(medicineDeleteFailure({ message }));
+    }
   }
 }
 
@@ -136,6 +149,7 @@ export function* deleteMedicine(action) {
         }
       }
     );
+
     if (response.status === 200 && response.status === 201) throw response;
     setTimeout(() => {
       notification.success({
@@ -148,15 +162,20 @@ export function* deleteMedicine(action) {
     }, 1000);
     yield put(medicineDeleteSuccess(selectedRecord));
   } catch (error) {
-    setTimeout(() => {
-      notification.error({
-        message: "Erro ao deletar!",
-        key,
-        description: `Item ${selectedRecord.id +
-          " - " +
-          selectedRecord.nome}...`
-      });
-    }, 1000);
-    yield put(medicineDeleteFailure(error));
+    if (error.response.status == 401) {
+      yield put(logoutRequest());
+      return;
+    } else {
+      setTimeout(() => {
+        notification.error({
+          message: "Erro ao deletar!",
+          key,
+          description: `Item ${selectedRecord.id +
+            " - " +
+            selectedRecord.nome}...`
+        });
+      }, 1000);
+      yield put(medicineDeleteFailure(error));
+    }
   }
 }

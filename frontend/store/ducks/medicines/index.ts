@@ -12,7 +12,8 @@ const signUpInitialState: MedicineState = {
   },
   medicineInteractions: {
     ids: [],
-    interactions: []
+    interactions: [],
+    hasDrugInteraction: false
   },
   pagination: {
     total: 0,

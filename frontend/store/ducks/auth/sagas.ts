@@ -3,8 +3,9 @@ import axios from "axios";
 import { AxiosRequestConfig } from "axios";
 import { notification } from "antd";
 
-import { signInSuccess, signInFailure } from "./actions";
-import { login } from "../../../utils/auth";
+
+import { signInSuccess, signInFailure, logoutRequest } from "./actions";
+import { login, logout } from "../../../utils/auth";
 
 const api = (url, options: AxiosRequestConfig) => {
   return axios(url, options);

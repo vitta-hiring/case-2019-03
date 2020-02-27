@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "proxy": "lcp --proxyUrl http://localhost:3123",
+    "debug": "NODE_OPTIONS=\"--inspect=9230\" next dev",
     "dev": "npm run proxy & next dev",
     "build": "next build",
     "start": "next start"

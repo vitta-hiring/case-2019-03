@@ -6,8 +6,8 @@ import {
   ManyToMany,
   Index,
 } from 'typeorm';
-import { DrugInteraction } from 'src/drug-interaction/drug-interaction.entity';
-import { Medicine } from 'src/medicine/medicine.entity';
+import { DrugInteraction } from '../drug-interaction/drug-interaction.entity';
+import { Medicine } from '../medicine/medicine.entity';
 
 
 export interface Drug {

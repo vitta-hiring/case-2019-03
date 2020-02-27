@@ -6,8 +6,8 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
-import { User } from 'src/user/user.entity';
-import { Medicine } from 'src/medicine/medicine.entity';
+import { User } from '../user/user.entity';
+import { Medicine } from '../medicine/medicine.entity';
 
 export interface Prescription {
   id: number;

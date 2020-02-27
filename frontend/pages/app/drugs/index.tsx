@@ -228,6 +228,7 @@ const Drugs = ({ form }: Props<DrugState>) => {
       onSetModalVisible={setModalVisible}
       rowKey={record => record.id}
       key="Drugs"
+      modalTitle="Criar um fármaco"
     >
       <Form onSubmit={handleCreate}>
         <Form.Item label="Nome do Fármaco:">

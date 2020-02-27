@@ -1,0 +1,50 @@
+version: '3'
+services:
+  prescriptions_api:
+    build:
+      context: ./api
+    container_name: prescriptions_api
+    working_dir: /prescriptions_app_api/node_modules
+    environment:
+      - NODE_ENV=prod
+    volumes:
+      - /prescriptions_app_api/node_modules
+    ports:
+      - 3123:3123
+    depends_on:
+      - mysql_prescriptions
+    networks:
+      - prescriptions_app
+
+  prescriptions_frontend:
+    build:
+      context: ./frontend
+    container_name: prescriptions_frontend
+    working_dir: /prescriptions_app_frontend/
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - /prescriptions_app_frontend/node_modules
+    ports:
+      - 3124:3000
+    depends_on:
+      - prescriptions_api
+    networks:
+      - prescriptions_app
+
+  mysql_prescriptions:
+    image: mysql:5.7
+    container_name: mysql_prescriptions
+    working_dir: /prescriptions_app/db/data
+    volumes:
+      - ./api/dbdata:/docker-entrypoint-initdb.d/:ro
+    env_file:
+      - ./api/environments/.env
+    ports:
+      - "3389:3306"
+    networks:
+      - prescriptions_app
+
+networks:
+  prescriptions_app:
+    # external: false

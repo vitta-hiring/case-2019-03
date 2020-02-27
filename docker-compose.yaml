@@ -42,15 +42,16 @@ services:
     image: mysql:5.7
     container_name: mysql
     working_dir: /prescriptions_app/db/data
-    # volumes:
-    #   - ./db/data:/prescriptions_app/db/data
-    env_file:
-      - ./api/environments/.env
-    # environment:
-    #   - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-    #   - MYSQL_DATABASE=${MYSQL_DATABASE}
-    #   - MYSQL_USER=${MYSQL_USER}
-    #   - MYSQL_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      # - ./db/data:/prescriptions_app/db/data
+      - ./api/dbdata:/docker-entrypoint-initdb.d/:ro
+    # env_file:
+    #   - ./api/environments/.env
+    environment:
+      - MYSQL_DATABASE=safe_prescriptions_db
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=rootuser
+      - MYSQL_PASSWORD=root
     ports:
       - "3389:3306"
     networks:

@@ -4,10 +4,6 @@ init:
 	sleep 10
 	make import-data
 
-init-frontend:
-	(cd frontend; docker-compose build --no-cache)
-	(cd frontend; docker-compose up -d)
-
 start:
 	docker-compose start
 
@@ -21,5 +17,6 @@ ps:
 	docker-compose ps
 
 import-data:
+	make stop
 	npm run seed
 	make restart

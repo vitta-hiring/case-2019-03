@@ -39,7 +39,7 @@ export class SeederService {
         if (dbDrug) {
           return Promise.resolve(null);
         }
-        return Promise.resolve(await this.drugRepository.create(drugs));
+        return Promise.resolve(await this.drugRepository.save(drugs));
       })
       .catch(error => Promise.reject(error));
   }
@@ -49,28 +49,34 @@ export class SeederService {
    * @function
    */
   createDrugInteractions(): Array<Promise<DrugInteraction>> {
-    return (drugInteractions as unknown as DrugInteraction[]).map(async (drugInteraction: DrugInteraction) => {
-      const drugs = await this.drugRepository.find({
-        where: [
-          { nome: drugInteraction.farmaco1 },
-          { nome: drugInteraction.farmaco2 },
-        ],
-      });
-      return await this.drugInteractionRepository
-        .findOne({ nome: drugInteraction.nome })
-        .then(async dbDrug => {
-          // If it does don't create a new one.
-          if (dbDrug) {
-            return Promise.resolve(null);
-          }
-          drugInteraction.farmaco1 = drugs[0];
-          drugInteraction.farmaco2 = drugs[1];
-          return Promise.resolve(
-            await this.drugInteractionRepository.create(drugInteraction)
-          );
-        })
-        .catch(error => Promise.reject(error));
-    });
+    return ((drugInteractions as unknown) as DrugInteraction[]).map(
+      async (drugInteraction: DrugInteraction) => {
+        const drugs = await this.drugRepository.find({
+          where: [
+            {
+              nome: drugInteraction.farmaco1 ? drugInteraction.farmaco1 : null,
+            },
+            {
+              nome: drugInteraction.farmaco2 ? drugInteraction.farmaco2 : null,
+            },
+          ],
+        });
+        return await this.drugInteractionRepository
+          .findOne({ nome: drugInteraction.nome })
+          .then(async dbDrug => {
+            // If it does don't create a new one.
+            if (dbDrug) {
+              return Promise.resolve(null);
+            }
+            drugInteraction.farmaco1 = drugs[0];
+            drugInteraction.farmaco2 = drugs[1];
+            return Promise.resolve(
+              await this.drugInteractionRepository.save(drugInteraction),
+            );
+          })
+          .catch(error => Promise.reject(error));
+      },
+    );
   }
   /**
    * Seed all medicines.
@@ -78,8 +84,12 @@ export class SeederService {
    * @function
    */
   createMedicines(): Array<Promise<Medicine[]>> {
-    return (medicines as unknown as Medicine[]).map(async medicine => {
-      const farmacos = await this.drugRepository.find({ where:  medicine.farmacos.map(farmaco => { nome: farmaco }) });
+    return ((medicines as unknown) as Medicine[]).map(async medicine => {
+      const farmacos = await this.drugRepository.find({
+        where: medicine.farmacos.map(farmaco => ({
+          nome: farmaco
+        })),
+      });
       return await this.medicineRepository
         .findOne({ nome: medicine.nome })
         .then(async dbDrug => {
@@ -87,12 +97,13 @@ export class SeederService {
           if (dbDrug) {
             return Promise.resolve(null);
           }
-          medicine.farmacos = farmacos;
-          return Promise.resolve(await this.medicineRepository.create(medicine));
+          medicine.farmacos = farmacos ? farmacos : undefined;
+          return Promise.resolve(
+            await this.medicineRepository.save(medicine),
+          );
         })
         .catch(error => Promise.reject(error));
-
-    })
+    });
   }
 
   async seed() {
@@ -102,25 +113,25 @@ export class SeederService {
         Promise.resolve(completed);
       })
       .catch(error => {
-        console.log('Failed seeding users...');
+        console.log('Failed seeding drugs...');
         Promise.reject(error);
       });
     await this.drugInteractionsExec()
       .then(completed => {
-        console.log('Successfuly completed seeding drugs...');
+        console.log('Successfuly completed seeding drugsInteractions...');
         Promise.resolve(completed);
       })
       .catch(error => {
-        console.log('Failed seeding users...');
+        console.log('Failed seeding drugsInteractions...');
         Promise.reject(error);
       });
     await this.medicinesExec()
       .then(completed => {
-        console.log('Successfuly completed seeding drugs...');
+        console.log('Successfuly completed seeding medicines...');
         Promise.resolve(completed);
       })
       .catch(error => {
-        console.log('Failed seeding users...');
+        console.log('Failed seeding medicines...');
         Promise.reject(error);
       });
   }

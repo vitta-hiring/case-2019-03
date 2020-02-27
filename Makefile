@@ -1,6 +1,7 @@
 init:
+	docker-compose down -v
 	docker-compose build --no-cache
-	docker-compose up -d
+	docker-compose up mysql_prescriptions -d
 	sleep 10
 	make import-data
 
@@ -17,6 +18,5 @@ ps:
 	docker-compose ps
 
 import-data:
-	make stop
 	npm run seed
-	make restart
+	docker-compose up -d

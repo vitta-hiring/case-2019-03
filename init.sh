@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-docker-compose build --no-cache
+docker-compose down -v
+docker-compose build
+# docker-compose up -d mysql_prescriptions
+# sleep 10
 docker-compose up -d
-sleep 10
-docker-compose stop
-(cd api; npm run seed)
-(docker-compose restart)

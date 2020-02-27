@@ -14,6 +14,7 @@ import { DrugInteractionModule } from './drug-interaction/drug-interaction.modul
 import { MedicineModule } from './medicine/medicine.module';
 import { PrescriptionModule } from './prescription/prescription.module';
 import { SeederModule } from './seeder/seeder.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -33,11 +34,11 @@ import { SeederModule } from './seeder/seeder.module';
       inject: [ConfigService],
     }),
     AuthModule,
+    UserModule,
     DrugModule,
     DrugInteractionModule,
     MedicineModule,
     PrescriptionModule,
-    SeederModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,9 +1,10 @@
 init:
-	docker-compose down -v
-	docker-compose build --no-cache
-	docker-compose up mysql_prescriptions -d
+	make down
+	sleep 5
+	make up
 	sleep 10
-	make import-data
+	$(info Frontend is running on http://localhost:3124)
+	$(info Backend is running on http://localhost:3123)
 
 start:
 	docker-compose start
@@ -17,6 +18,8 @@ stop:
 ps:
 	docker-compose ps
 
-import-data:
-	npm run seed
-	docker-compose up -d
+down:
+	docker-compose down -v
+
+up:
+	docker-compose up -d --build

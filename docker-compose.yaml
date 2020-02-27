@@ -3,15 +3,12 @@ services:
   prescriptions_api:
     build:
       context: ./api
-      # dockerfile: ./Dockerfile
     container_name: prescriptions_api
     working_dir: /prescriptions_app_api/node_modules
     environment:
       - NODE_ENV=prod
     volumes:
-      # - ./api:/prescriptions_app_api
       - /prescriptions_app_api/node_modules
-    # command: npm run start:dev
     ports:
       - 3123:3123
     depends_on:
@@ -19,39 +16,30 @@ services:
     networks:
       - prescriptions_app
 
-  # prescriptions_frontend:
-  #   build:
-  #     context: ./frontend
-  #     # dockerfile: ./Dockerfile
-  #   container_name: prescriptions_frontend
-  #   # environment:
-  #     # - NODE_ENV=production
-  #   working_dir: /prescriptions_app_frontend/
-  #   volumes:
-  #     # - ./frontend:/prescriptions_app_frontend
-  #     - /prescriptions_app_frontend/node_modules
-  #   # command: npm run dev
-  #   ports:
-  #     - 3124:3000
-  #   depends_on:
-  #     - prescriptions_api
-  #   networks:
-  #     - prescriptions_app
+  prescriptions_frontend:
+    build:
+      context: ./frontend
+    container_name: prescriptions_frontend
+    working_dir: /prescriptions_app_frontend/
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - /prescriptions_app_frontend/node_modules
+    ports:
+      - 3124:3000
+    depends_on:
+      - prescriptions_api
+    networks:
+      - prescriptions_app
 
   mysql_prescriptions:
     image: mysql:5.7
     container_name: mysql_prescriptions
     working_dir: /prescriptions_app/db/data
     volumes:
-      # - ./db/data:/prescriptions_app/db/data
       - ./api/dbdata:/docker-entrypoint-initdb.d/:ro
     env_file:
       - ./api/environments/.env
-    # environment:
-    #   - MYSQL_DATABASE=safe_prescriptions_db
-    #   - MYSQL_ROOT_PASSWORD=root
-      # - MYSQL_USER=root
-      # - MYSQL_PASSWORD=root
     ports:
       - "3389:3306"
     networks:

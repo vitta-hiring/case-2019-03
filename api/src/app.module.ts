@@ -39,6 +39,7 @@ import { UserModule } from './user/user.module';
     DrugInteractionModule,
     MedicineModule,
     PrescriptionModule,
+    SeederModule
   ],
   controllers: [AppController],
   providers: [AppService],

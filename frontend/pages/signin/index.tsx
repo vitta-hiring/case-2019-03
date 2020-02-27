@@ -78,9 +78,9 @@ const Signin = ({ form }: Props) => {
             valuePropName: "checked",
             initialValue: true
           })(<Checkbox>Lembrar</Checkbox>)}
-          <a style={{ float: "right" }} href="">
+          {/* <a style={{ float: "right" }} href="">
             Esqueci minha senha
-          </a>
+          </a> */}
           <Button
             type="primary"
             htmlType="button"

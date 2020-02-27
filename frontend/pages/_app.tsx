@@ -68,4 +68,4 @@ class MyApp extends App<Props> {
 }
 
 // export default withRedux(initStore, { debug: true })(withReduxSaga(MyApp));
-export default withRedux(initStore, { debug: true })(withReduxSaga(MyApp));
+export default withRedux(initStore, { debug: process.env.NODE_ENV !== 'production' })(withReduxSaga(MyApp));

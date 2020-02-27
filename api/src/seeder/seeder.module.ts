@@ -26,12 +26,12 @@ import localDatabase from '../config/local-database';
       isGlobal: true,
       load: [appConfig, databaseConfig, authConfig, localDatabase],
     }),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) =>
-        await configService.get('localDatabase'),
-      inject: [ConfigService],
-    }),
+    // TypeOrmModule.forRootAsync({
+    //   imports: [ConfigModule],
+    //   useFactory: async (configService: ConfigService) =>
+    //     await configService.get('localDatabase'),
+    //   inject: [ConfigService],
+    // }),
     AuthModule,
     UserModule,
     DrugModule,
@@ -40,5 +40,6 @@ import localDatabase from '../config/local-database';
     PrescriptionModule,
   ],
   providers: [SeederService],
+  exports: [SeederService]
 })
 export class SeederModule {}

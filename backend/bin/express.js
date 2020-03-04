@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const variables = require('../bin/configuration/variables');
 const userRouter = require('../routes/user-router');
+const medicamentoRouter = require('../routes/medicamento-router');
+const interacaomedicamentosRouter = require('../routes/interacao-medicamentos-router');
+const consultaRouter = require('../routes/consulta-router');
 const morgan = require('morgan');
 const app = express();
 
@@ -24,3 +27,6 @@ module.exports = app;
 mongoose.connect(variables.Database.connection,{ useNewUrlParser: true});
 
 app.use("/api/user",userRouter);
+app.use("/api/medicamento",medicamentoRouter);
+app.use("/api/interacaomedicamentos",interacaomedicamentosRouter);
+app.use("/api/consulta",consultaRouter);

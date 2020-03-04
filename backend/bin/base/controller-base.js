@@ -57,7 +57,7 @@ exports.getById = async (repository, req, res) => {
       let result = await repository.getById(id);
       res.status(200).send(result);
     } else {
-      res.status(400).send({ message: "id obrigatory" });
+      res.status(400).send({ message: "id required" });
     }
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error", error: error });
@@ -74,7 +74,7 @@ exports.delete = async (repository, req, res) => {
         res.status(400).send({ message: "Invalid Operation", error: error });
       }
     } else {
-      res.status(400).send({ message: "id obrigatory" });
+      res.status(400).send({ message: "id required" });
     }
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error", error: error });

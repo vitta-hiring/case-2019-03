@@ -34,20 +34,21 @@ function userController(){
     let _validationContract = new validation();
     _validationContract.isRequired(req.body.name, "Please inform your name");
     _validationContract.isRequired(req.params.id, "Please inform your id user");
-    _validationContract.isRequired(req.body.email, "Please inform your email");
-    _validationContract.isEmail(req.body.email, "Invalid email");
-    let userEmailExists = await _repo.IsEmailExists(req.body.email);
-    if (userEmailExists) {
-      if (req.body.email !== req.userLogged.user.email) {
-        if (userEmailExists._id !== req.usuarioLogado.user._id) {
-          _validationContract.isTrue(
-            userEmailExists.name != undefined &&
-            userEmailExists._id != req.params.id,
-            `Email ${req.body.email} registered yet`
-          );
+    if(req.body.email){
+      _validationContract.isEmail(req.body.email, "Invalid email");
+      let userEmailExists = await _repo.IsEmailExists(req.body.email);
+      if (userEmailExists) {
+        if (req.body.email !== req.userLogged.user.email) {
+          if (userEmailExists._id !== req.usuarioLogado.user._id) {
+            _validationContract.isTrue(
+              userEmailExists.name != undefined &&
+              userEmailExists._id != req.params.id,
+              `Email ${req.body.email} registered yet`
+            );
+        }
       }
     }
-  }
+    }
     ctrlBase.put(_repo, _validationContract, req, res);
   };
   userController.prototype.get = async (req, res) => {

@@ -15,8 +15,6 @@ function medicamentoController(){
     _validationContract.isRequired(req.body.formaFarmaceutica,"  formaFarmaceutica is required");  
     _validationContract.isRequired(req.body.viaAdministracao,"   viaAdministracao is required"); 
     _validationContract.isRequired(req.body.codigoATC,"   codigoATC is required"); 
-    _validationContract.isRequired(req.body.usoInterno,"  usoInterno is required");
-    _validationContract.isRequired(req.body.antimicrobiano,"    antimicrobiano is required");
     _validationContract.isRequired(req.body.bula,"   bula is required"); 
     _validationContract.isRequired(req.body.portaria344,"portaria344 is required");    
     _validationContract.isRequired(req.body.tiss,"   tiss is required"); 

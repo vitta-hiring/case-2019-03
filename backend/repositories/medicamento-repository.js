@@ -24,7 +24,7 @@ class medicamentoRepository {
     return await this._base.getById(id);
   }
   async getByFarmaco(farmaco) {
-    return await this._base._model.find({ farmacos: { $elemMatch: { nome: farmaco } } });
+    return await this._base._model.find({ farmacos: { $elemMatch: { nome: farmaco } } },"_id nome");
   }
   async delete(id) {
     return await this._base.delete(id);

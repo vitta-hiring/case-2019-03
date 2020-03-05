@@ -18,16 +18,16 @@ class consultaRepository {
    }
   }
   async getAll() {
-    return await this._base.getAll();
+    return await this._base._model.find().populate({ path: 'paciente', select: 'name' }).populate({ path: 'medico', select: 'name' });
   }
   async getById(id) {
     return await this._base.getById(id);
   }
   async getMy(id,type) {
     if(type == 'medico'){
-      return await this._base._model.find({ medico: id });
+      return await this._base._model.find({ medico: id }).populate({ path: 'paciente', select: 'name' });
     } else {
-      return await this._base._model.find({ paciente: id });
+      return await this._base._model.find({ paciente: id }).populate({ path: 'medico', select: 'name' });;
     }
   }
   async delete(id) {

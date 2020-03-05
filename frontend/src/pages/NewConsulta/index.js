@@ -55,8 +55,12 @@ export default function NewConsulta({ history }) {
             dataConsulta: new Date(),
         };
         try {
-            await api.post('/consulta', objConsulta);
-            history.push('/consultas');
+            const response = await api.post('/consulta', objConsulta);
+            if (response.data.message) {
+                toast.error(response.data.message);
+            } else {
+                history.push('/consultas');
+            }
         } catch (e) {
             toast.error('Falha ao criar consulta, verifique os dados');
         }

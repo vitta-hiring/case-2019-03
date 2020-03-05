@@ -12,6 +12,15 @@ exports.post = async (repository, validationContract, req, res) => {
       return;
     }
     let result = await repository.create(data);
+    if(!result){
+      res
+      .status(200)
+      .send({
+        message: "Há interações graves entre os medicamentos receitados",
+      })
+      .end();
+    return;
+    }
     res.status(201).send(result);
   } catch (error) {
     console.log("Post with error: ", error);

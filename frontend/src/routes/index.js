@@ -8,8 +8,10 @@ import SignUp from '~/pages/SignUp';
 
 import Home from '~/pages/Home';
 import Interacoes from '~/pages/Interacoes';
+import Consultas from '~/pages/Consulta';
 import New from '~/pages/New';
 import NewInteration from '~/pages/NewInteration';
+import NewConsulta from '~/pages/NewConsulta';
 import Profile from '~/pages/Profile';
 import history from '~/services/history';
 
@@ -23,8 +25,10 @@ export default function Routes() {
                     component={NewInteration}
                     isPrivate
                 />
+                <Route path="/newconsulta" component={NewConsulta} isPrivate />
                 <Route path="/home" component={Home} isPrivate />
                 <Route path="/interacoes" component={Interacoes} isPrivate />
+                <Route path="/consultas" component={Consultas} isPrivate />
                 <Route path="/register" component={SignUp} />
                 <Route path="/" exact component={SignIn} />
                 <Route path="/profile" component={Profile} isPrivate />

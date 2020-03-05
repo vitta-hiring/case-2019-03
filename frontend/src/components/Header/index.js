@@ -12,8 +12,13 @@ export default function Header() {
             <Content>
                 <nav>
                     <img height={30} src={logo} alt="goMedic" />
-                    <Link to="/home">MEDICAMENTOS</Link>
-                    <Link to="/interacoes">INTERAÇÕES</Link>
+                    {profile.type === 'medico' ? (
+                        <>
+                            <Link to="/home">MEDICAMENTOS</Link>
+                            <Link to="/interacoes">INTERAÇÕES</Link>{' '}
+                        </>
+                    ) : null}
+                    <Link to="/consultas">CONSULTAS</Link>{' '}
                 </nav>
                 <aside>
                     <Consultas />

@@ -84,6 +84,9 @@ class userRepository {
   async getAll() {
     return await this._base._model.find({}, this._projection);
   }
+  async getPatients() {
+    return await this._base._model.find({type:'patient'}, this._projection);
+  }
   async getById(id) {
     return await this._base._model.findById(id, this._projection);
   }

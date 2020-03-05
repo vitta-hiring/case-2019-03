@@ -9,7 +9,8 @@ let _ctrl = new controller();
 router.post('/authenticate',_ctrl.authenticate);
 router.post('/register',_ctrl.post);
 router.get('/',auth,_ctrl.get);
-router.get('/:id',auth,_ctrl.getById);
+router.get('/patients',auth,_ctrl.getPatients);
+router.get('/byid/:id',auth,_ctrl.getById);
 router.put('/:id',auth,_ctrl.put);
 router.delete('/:id',auth,_ctrl.delete);
 

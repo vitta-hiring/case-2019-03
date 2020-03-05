@@ -57,6 +57,13 @@ function userController(){
   userController.prototype.getById = async (req, res) => {
     ctrlBase.getById(_repo, req, res);
   };
+  userController.prototype.getPatients = async (req, res) => {
+    try {
+        let result = await _repo.getPatients();
+        res.status(200).send(result);
+    } catch (error) {
+      res.status(500).send({ message: "Internal Server Error", error: error });
+    }  };
   userController.prototype.delete = async (req, res) => {
     ctrlBase.delete(_repo, req, res);
   };

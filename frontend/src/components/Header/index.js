@@ -13,7 +13,7 @@ export default function Header() {
                 <nav>
                     <img height={30} src={logo} alt="goMedic" />
                     <Link to="/home">MEDICAMENTOS</Link>
-                    <Link to="/home">INTERAÇÕES</Link>
+                    <Link to="/interacoes">INTERAÇÕES</Link>
                 </nav>
                 <aside>
                     <Consultas />

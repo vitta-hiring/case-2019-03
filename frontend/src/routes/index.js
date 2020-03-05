@@ -7,6 +7,7 @@ import SignIn from '~/pages/SignIn';
 import SignUp from '~/pages/SignUp';
 
 import Home from '~/pages/Home';
+import Interacoes from '~/pages/Interacoes';
 import New from '~/pages/New';
 import NewInteration from '~/pages/NewInteration';
 import Profile from '~/pages/Profile';
@@ -23,6 +24,7 @@ export default function Routes() {
                     isPrivate
                 />
                 <Route path="/home" component={Home} isPrivate />
+                <Route path="/interacoes" component={Interacoes} isPrivate />
                 <Route path="/register" component={SignUp} />
                 <Route path="/" exact component={SignIn} />
                 <Route path="/profile" component={Profile} isPrivate />

@@ -2,10 +2,11 @@ module.exports = (sequelize, Sequelize) => {
     const Medication = sequelize.define("medications", {
         id: {
             type: Sequelize.INTEGER,
-            primaryKey: true
+            autoIncrement: true
         },
         name: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            primaryKey: true
         },
         concentration: {
             type: Sequelize.INTEGER

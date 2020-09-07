@@ -27,6 +27,7 @@ db.sequelize = sequelize;
 db.user = require("../models/user.model.js")(sequelize, Sequelize);
 db.role = require("../models/role.model.js")(sequelize, Sequelize);
 db.pharmaco = require("../models/pharmaco.model.js")(sequelize, Sequelize);
+db.medication = require("../models/medication.model.js")(sequelize, Sequelize);
 
 db.role.belongsToMany(db.user, {
   through: "user_roles",
@@ -37,6 +38,17 @@ db.user.belongsToMany(db.role, {
   through: "user_roles",
   foreignKey: "userId",
   otherKey: "roleId"
+});
+
+db.pharmaco.belongsToMany(db.medication, {
+  through: "medication_pharmacos",
+  foreignKey: "pharmacoId",
+  otherKey: "medicationId"
+});
+db.medication.belongsToMany(db.pharmaco, {
+  through: "medication_pharmacos",
+  foreignKey: "medicationId",
+  otherKey: "pharmacoId"
 });
 
 db.ROLES = ["user", "admin", "moderator"];

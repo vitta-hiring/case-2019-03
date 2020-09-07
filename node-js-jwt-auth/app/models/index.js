@@ -46,6 +46,7 @@ db.pharmaco.belongsToMany(db.medication, {
   otherKey: "medicationId"
 });
 db.medication.belongsToMany(db.pharmaco, {
+  as: "pharmacos",
   through: "medication_pharmacos",
   foreignKey: "medicationId",
   otherKey: "pharmacoId"

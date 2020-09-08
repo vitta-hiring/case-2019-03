@@ -12,4 +12,5 @@ module.exports = function(app) {
   app.post("/api/pharmaco", [authJwt.verifyToken], controller.post);
   app.get("/api/pharmaco/findOne", [authJwt.verifyToken], controller.findOne);
   app.delete("/api/pharmaco", [authJwt.verifyToken], controller.deleteOne); 
+  app.get("/api/pharmaco/findAll", [authJwt.verifyToken], controller.findAll);   
 };

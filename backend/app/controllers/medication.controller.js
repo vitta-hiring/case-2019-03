@@ -53,7 +53,7 @@ exports.findOne = (req, res) => {
 };
 
 exports.deleteOne = (req, res) => {
-  Pharmaco.destroy({
+  Medication.destroy({
     where: {
       id: req.body.id
     }
@@ -66,5 +66,18 @@ exports.deleteOne = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({ message: err.message });
+    });
+};
+
+exports.findAll = (req, res) => {
+  Medication.findAll()
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving medications."
+      });
     });
 };

@@ -11,5 +11,6 @@ module.exports = function(app) {
   });
   app.post("/api/medication", [authJwt.verifyToken], controller.post);
   app.get("/api/medication/findOne", [authJwt.verifyToken], controller.findOne);
+  app.get("/api/medication/findAll", [authJwt.verifyToken], controller.findAll);
   app.delete("/api/medication", [authJwt.verifyToken], controller.deleteOne); 
 };

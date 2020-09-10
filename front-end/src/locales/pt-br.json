@@ -1,0 +1,1249 @@
+{
+  "answer": "Resposta",
+  "cancel": "CANCELAR",
+  "channel": "Canal",
+  "client": "Cliente",
+  "subsection": "Sem subseção",
+  "configuration": {
+    "channel": "GRUPOS POR CANAL",
+    "generalProperties": "PROPRIEDADES GERAIS",
+    "jiraProperties": "PROPRIEDADES JIRA",
+    "label": {
+      "auth": "AUTENTICAR",
+      "baseUrl": "URL DE ACESSO AO JIRA",
+      "bootSla": "SLA de inicialização (ms)",
+      "callback": "URL DE ATUALIZAÇÃO",
+      "callBackSendMessage": "URL DE ATUALIZAÇÃO DO STATUS DO ENVIO ATIVO",
+      "channel": "CANAL",
+      "configType": "CONFIGURAR TIPOS",
+      "consumerKey": "CHAVE",
+      "email": "E-MAIL",
+      "enableTls": "HABILITAR TLS",
+      "endPointSatisfactionSurvey": "URL PESQUISA DE SATISFAÇÃO (BACK END)",
+      "external": "EXTERNO",
+      "from": "DE",
+      "group": "GRUPO",
+      "groupSendMessage": "GRUPO PADRÃO USADO PARA ENVIO ATIVO",
+      "host": "ENDEREÇO",
+      "internal": "INTERNO",
+      "link": "URL BASE PARA COMPOSIÇÃO DO LINK DE ACESSO",
+      "notifierChangeStatusClosed": "NOTIFICAR MUDANÇA DE STATUS AO FECHAR TICKET",
+      "password": "SENHA",
+      "port": "PORTA",
+      "privateKey": "CHAVE PRIVADA",
+      "saveTmaUrl": "URL DE ACESSO AO SERVIÇO DE ATUALIZAÇÃO DE TEMPO MÉDIO",
+      "secret": "SECRET",
+      "sla": "SLA (ms)",
+      "sms": "SMS",
+      "type": "TIPO",
+      "urlSatisfactionSurvey": "URL PESQUISA DE SATISFAÇÃO (FRONT END)",
+      "urlSendMessage": "URL DE ACESSO AO SERVIÇO DE ENVIO ATIVO",
+      "urlUpload": "URL PARA UPLOAD DE ARQUIVOS",
+      "user": "USUÁRIO",
+      "webdavToken": "TOKEN DE ACESSO AO REPOSITÓRIO DE ARQUIVOS",
+      "whatsapp": "WHATSAPP"
+    },
+    "notifiers": "NOTIFICAÇÕES INTERNO/EXTERNO",
+    "select": {
+      "no": "Não",
+      "select": "Selecione",
+      "yes": "Sim"
+    },
+    "slaProperties": "PROPRIEDADES SLA",
+    "smtpProperties": "PROPRIEDADES E-MAIL",
+    "tab": {
+      "general": "Geral",
+      "notification": "Notificações"
+    },
+    "tm2Properties": "PROPRIEDADES TM2"
+  },
+  "Configurações": "Configurações",
+  "dashboard": {
+    "chartCSAT": {
+      "answered": "Respondido(s)",
+      "header": "Customer Satisfaction Score",
+      "punctuation": "Pontuação",
+      "quantity": "Quantidade",
+      "search": "Pesquisa",
+      "statistics": {
+        "indifferent": "Indiferente",
+        "percentSearchAnswered": "% de pesquisas respondidas",
+        "result": "Resultado",
+        "satisfied": "Satisfeito",
+        "totalFinalizedTickets": "Total de Tickets Finalizados",
+        "totalSearchAnswered": "Total de pesquisas respondidas",
+        "totalSentSearch": "Total de Pesquisas Enviadas",
+        "unsatisfied": "Insatisfeito",
+        "verySatisfied": "Muito satisfeito",
+        "veryUnsatisfied": "Muito insatisfeito"
+      },
+      "subtitle": "CSAT",
+      "title": "Pontuação Pesquisa Satisfação"
+    },
+    "chartFCR": {
+      "header": "Resolvidos no primeiro contato",
+      "quantity": "Quantidade",
+      "subtitle": "FCR",
+      "title": "Tickets resolvidos no primeiro contato",
+      "total": "Total",
+      "withFCR": "COM FCR",
+      "withOutFCR": "SEM FCR"
+    },
+    "chartNPS": {
+      "answered": "Respondido(s)",
+      "header": "Net Promoter Score",
+      "punctuation": "Pontuação",
+      "quantity": "Quantidade",
+      "search": "Pesquisa",
+      "statistics": {
+        "detractors": "Detratores",
+        "neutrals": "Neutros",
+        "percentSearchAnswered": "% de pesquisas respondidas",
+        "promoters": "Promotores",
+        "result": "Resultado",
+        "totalFinalizedTickets": "Total de Tickets Finalizados",
+        "totalSearchAnswered": "Total de pesquisas respondidas",
+        "totalSentSearch": "Total de Pesquisas Enviadas"
+      },
+      "subtitle": "NPS",
+      "title": "Pontuação Pesquisa Satisfação"
+    },
+    "chartSPR": {
+      "header": "Status Por Ticket",
+      "quantity": "Quantidade",
+      "subtitle": "SPR",
+      "title": "Total de Tickets por Status"
+    },
+    "minutes": "minutos",
+    "setUpdateTimer": "Definir tempo de atualização"
+  },
+  "description": "Descrição",
+  "edit": "EDITAR",
+  "editTicket": {
+    "activeSend": " COMUNICAR CLIENTE",
+    "AGENTS": "UNIDADE",
+    "AGENTSSELECT": "Selecione um agente",
+    "AGENTSSELECTUP": "SELECIONE UM AGENTE",
+    "answer": {
+      "askMessage": "Por favor insira sua mensagem",
+      "confirmMergeTicket": "Deseja unificar esse ticket?",
+      "confirmSplitTicket": "Deseja separar esse ticket?",
+      "errorSwal": "Infelizmente não foi possível enviar sua resposta",
+      "merge": "Unificar",
+      "mergeTicket": "Unificar ticket",
+      "mergeTicketUP": "UNIFICAR TICKET",
+      "redirectSplitTicket": "Deseja ir para o novo ticket gerado?",
+      "split": "Separar",
+      "splitTicket": "Separar ticket",
+      "splitTicketUP": "SEPARAR TICKET",
+      "textSwal": "Você pode vê-la na listagem de mensagens",
+      "ticketAfterMerge": "Ir para o ticket gerado pela unificação",
+      "ticketAfterSplit": "Ir para o ticket gerado pela separação",
+      "titleSwal": "Sua resposta foi enviada com sucesso"
+    },
+    "answers": {
+      "answer": "COMUNICAR CLIENTE",
+      "downloadFile": "Fazer download do arquivo",
+      "private": "PRIVADA",
+      "public": "PÚBLICA",
+      "send": "ENVIAR",
+      "title": "RESPOSTAS",
+      "typeYourAnswer": "DIGITE SUA RESPOSTA",
+      "typeYourAnswerLOWER": "Digite sua resposta"
+    },
+    "assigningTo": "Atribuindo ticket para ",
+    "assignToMe": "Atribuir para mim",
+    "assignToOther": "Atribuir para outro",
+    "attributed": "ATRIBUÍDO",
+    "createdBy": "Criado por:",
+    "details": {
+      "form": {
+        "issue": {
+          "department": "DEPARTAMENTO",
+          "issuePriority": "PRIORIDADE",
+          "levelServiceAgreement": "SLA",
+          "selectAgreement": "SELECIONE UM SLA",
+          "selectDepartment": "SELECIONE O DEPARTAMENTO",
+          "selectIssueType": "SELECIONE UM TIPO",
+          "selectPriority": "SELECIONE UMA PRIORIDADE",
+          "selectProductType": "SELECIONE UM PRODUTO",
+          "title": "PENDÊNCIA",
+          "typeIssue": "TIPO",
+          "typeProduct": "TIPO DO PRODUTO"
+        },
+        "ticket": {
+          "associatedProtocol": "PROTOCOLO ASSOCIADO",
+          "communicationChannel": "CANAL DE COMUNICAÇÃO",
+          "relatedTags": "TAGS RELACIONADAS",
+          "selectChannel": "SELECIONE UM CANAL",
+          "selectState": "SELECIONE UM STATUS",
+          "state": "FORMA FARMACÊUTICA",
+          "title": "TICKET",
+          "typeAssociatedProtocol": "Digite um protocolo associado",
+          "typeTags": "DIGITE TAGS"
+        }
+      },
+      "subject": "ASSUNTO",
+      "title": "DETALHES"
+    },
+    "edit": {
+      "errorClientUser": "Campo Cliente e Usuário devem ser preenchidos",
+      "errorSwal": "Infelizmente não foi possível editar esse ticket",
+      "errorTimeTracker": "Não há horas lançadas nesse ticket, deseja lançar agora?",
+      "textSwal": "Seu ticket teve as alterações conforme esperado",
+      "titleSwal": "Ticket editado com sucesso"
+    },
+    "editYourTicket": "EDITE SEU TICKET",
+    "header": {
+      "attachedFile": "ARQUIVO ANEXO",
+      "clientName": "NOME CLIENTE",
+      "creationDate": "DATA DE CRIAÇÃO",
+      "department": "DEPARTAMENTO",
+      "description": "DESCRIÇÃO DO TICKET",
+      "ticketId": "TICKET ID",
+      "username": "USUÁRIO"
+    },
+    "history": "HISTÓRICO",
+    "lastUpdate": "ÚLTIMA ALTERAÇÃO",
+    "message": {
+      "errorSwal": "Infelizmente não foi possível atribuir",
+      "textSwal": "A ação ocorreu conforme esperado",
+      "titleSwal": "Ticket reatribuído com sucesso"
+    },
+    "noAtributed": "Não atribuido",
+    "noUpdate": "SEM ALTERAÇÃO",
+    "privateObservation": "OBS. PRIVADA",
+    "reassignTicket": "REATRIBUIR TICKET",
+    "selectAgent": "Selecine um agente",
+    "selectDepartment": "Selecione um Departamento",
+    "state": "STATUS",
+    "uploads": {
+      "filesAttach": "Arquivos Anexados",
+      "noArchives": "Nenhum ticket",
+      "title": "ANEXOS"
+    },
+    "validate": {
+      "acessDenied": "Você não possui acesso ao ticket",
+      "returnListTickets": "Ir para Listagem de Tickets"
+    }
+  },
+  "editTicketUser": {
+    "comment": "COMENTÁRIO",
+    "discardTicket": "DESCARTAR TICKET",
+    "editSubject": "EDITE O ASSUNTO",
+    "header": {
+      "attachedFile": "ARQUIVO ANEXO",
+      "creationDate": "DATA DE CRIAÇÃO",
+      "productName": "NOME DO PRODUTO",
+      "ticketId": "TICKET ID",
+      "typeOfProblem": "TIPO DE PROBLEMA"
+    },
+    "history": "HISTÓRICO",
+    "lastUpdate": "ÚLTIMA ALTERAÇÃO",
+    "newComment": "NOVO COMENTÁRIO",
+    "noUpdate": "SEM ALTERAÇÃO",
+    "placeholderMessage": "DIGITE SUA MENSAGEM",
+    "reply": "SUA RESPOSTA",
+    "state": "STATUS"
+  },
+  "error": {
+    "templates": {
+      "duplicated": {
+        "name": "Template com nome já existente"
+      }
+    }
+  },
+  "Error: Request failed with status code 403": "Infelizmente você não tem acesso a esse recurso",
+  "Error: Request failed with status code 404": "Esse recurso não existe ainda",
+  "Error: Request failed with status code 500": "Algo inesperado aconteceu com nosso servidor",
+  "id": "ID",
+  "jiraIntegration": {
+    "addComment": "DESEJA ADICIONAR UM COMENTÁRIO?",
+    "assigne": "DESIGNADO:",
+    "assigned": "Atribuido para",
+    "cancel": "CANCELAR",
+    "copyFieldsTicket": "Copiar Campos do Ticket",
+    "create": "Criar",
+    "description": "Descrição *",
+    "descriptionUP": "DESCRIÇÃO *",
+    "infoAssignedTo": "Designado para: ",
+    "infoCreatedAt": "Criado em: ",
+    "infoDescription": "Descrição: ",
+    "infoIssueType": "Pendência: ",
+    "infoJiraUrl": "Jira Url: ",
+    "infoProject": "Projeto: ",
+    "infoSummary": "Resumo: ",
+    "issue": "PENDÊNCIA *",
+    "issueRegister": "CADASTRO DE PENDÊNCIA - JIRA",
+    "link": "Assoc.",
+    "linkButton": "ASSOCIAR",
+    "linkedJiraIssues": "Associado c/ Pendências Jira",
+    "linkIssue": "ASSOCIAR PENDÊNCIA",
+    "loading": "Carregando...",
+    "newIssue": "NOVA PENDÊNCIA",
+    "notify": "Notificar",
+    "project": "PROJETO *",
+    "projectLinked": "Projeto",
+    "searchForUser": "Buscar Usuários",
+    "selectIssue": "Selecione a PENDÊNCIA *",
+    "selectIssuePlease": "Por favor, Selecione uma pendência",
+    "selectProject": "Selecione um Projeto *",
+    "selectTypeIssue": "Selecione uma pendência *",
+    "subject": "Assunto",
+    "subjectUP": "ASSUNTO",
+    "summary": "Resumo",
+    "ticketCheckbox": "Vincular pêndencia com o ticket",
+    "title": "INTEGRAÇÃO JIRA",
+    "typeComment": "Digite o comentário",
+    "unlink": "Ticket Desassociado",
+    "unlinkSuccess": "Ticket Desassociado com sucesso.",
+    "unlinktText": "<span class='f-22-300-gray'>Deseja Realmente <br /><b>desassociar</b> o ticket?</span>",
+    "unnassigned": "NAO DESIGNADO"
+  },
+  "label": {
+    "prescription": "Prescrição",
+    "client": "Cliente",
+    "comment": "Comentário",
+    "configuration": "Parâmetro do Sistema",
+    "department": "Departamento",
+    "draft": "Rascunho",
+    "issue": "Pendência",
+    "issueLink": "Pendência associada ao Ticket",
+    "issueType": "Tipo de Pendência",
+    "jira": "Jira",
+    "priority": "Prioridade",
+    "profile": "Perfil",
+    "satisfactionSurvey": "Pesquisa de satisfação",
+    "sla": "SLA",
+    "statusTicket": "Status de Ticket",
+    "template": "Template",
+    "ticket": "Ticket",
+    "user": "Usuário"
+  },
+  "listOfClients": {
+    "header": {
+      "answered": "RESPONDIDO",
+      "clientsCount": "NÚMERO DE CLIENTES",
+      "inReview": "EM REVISAO",
+      "newTickets": "NOVAS PRESCRIÇÕES",
+      "tickets": "Tickets",
+      "totalTickets": "TICKETS TOTAIS"
+    },
+    "list": {
+      "admin": "ADMINISTRADOR",
+      "clientPartnerName": "NOME DO CLIENTE/PARCEIRO",
+      "draft": "RASCUNHO",
+      "emptyClients": "NENHUM CLIENTE ENCONTRADO",
+      "lastUpdate": "ÚLTIMA ALTERAÇÃO",
+      "of": "de",
+      "out": "dos",
+      "registers": "Registros",
+      "search": "Buscar",
+      "showing": "Mostrando",
+      "state": "STATUS"
+    }
+  },
+  "listOfDepartments": {
+    "header": {
+      "activeDepartaments": "ATIVOS",
+      "inactiveDepartaments": "INATIVOS",
+      "totalDepartaments": "DEPARTAMENTOS TOTAIS"
+    },
+    "list": {
+      "active": "ATIVO",
+      "department": "DEPARTAMENTO",
+      "emptyDepartment": "NENHUM DEPARTAMENTO ENCONTRADO",
+      "inactive": "INATIVO",
+      "lastUpdate": "ÚLTIMA ALTERAÇÃO",
+      "of": "de",
+      "out": "dos",
+      "registers": "Registros",
+      "search": "Buscar",
+      "showing": "Mostrando",
+      "status": "STATUS"
+    }
+  },
+  "listOfIssueTypes": {
+    "header": {
+      "actives": "ATIVOS",
+      "admins": "ADMINISTRADORES",
+      "inactives": "INATIVOS"
+    },
+    "list": {
+      "draft": "RASCUNHO",
+      "emptyIssueTypes": "NENHUM TIPO DE PÊNDENCIA ENCONTRADO",
+      "name": "NOME",
+      "search": "Buscar",
+      "state": "STATUS"
+    }
+  },
+  "listOfNotifications": {
+    "list": {
+      "createdAt": "DATA",
+      "message": "MENSAGEM",
+      "ticketId": "TICKET ID"
+    }
+  },
+  "listOfPriorities": {
+    "header": {
+      "activePriorities": "ATIVOS",
+      "inactivePriorities": "INATIVOS",
+      "totalPriorities": "PRIORIDADES TOTAIS"
+    },
+    "list": {
+      "active": "ATIVO",
+      "color": "COR",
+      "emptyPriorities": "NENHUMA PRIORIDADE ENCONTRADA",
+      "inactive": "INATIVO",
+      "lastUpdate": "ÚLTIMA ALTERAÇÃO",
+      "of": "de",
+      "out": "dos",
+      "priority": "PRIORIDADE",
+      "registers": "Registros",
+      "search": "Buscar",
+      "showing": "Mostrando",
+      "status": "STATUS"
+    }
+  },
+  "listOfProfiles": {
+    "header": {
+      "activeProfiles": "ATIVOS",
+      "inactiveProfiles": "INATIVOS",
+      "totalProfiles": "PERFIS TOTAIS"
+    },
+    "list": {
+      "active": "ATIVO",
+      "emptyDepartment": "NENHUM PERFIL ENCONTRADO",
+      "inactive": "INATIVO",
+      "lastUpdate": "ÚLTIMA ATUALIZAÇÃO",
+      "of": "de",
+      "out": "dos",
+      "profile": "PERFIL",
+      "registers": "Registros",
+      "search": "Buscar",
+      "showing": "Mostrando",
+      "status": "STATUS",
+      "type": "TIPO"
+    }
+  },
+  "listOfSlas": {
+    "header": {
+      "activeSlas": "ATIVO",
+      "inactiveSlas": "INATIVO",
+      "slaHeaderList": "Sla: ",
+      "slas": "SLAs",
+      "totalSlas": "TOTAL SLAS"
+    },
+    "list": {      
+      "active": "ATIVA",
+      "description": "DESCRIÇÃO/RECOMENDAÇÕES",
+      "emptySla": "NENHUMA SLA ENCONTRADA",
+      "inactive": "INATIVA",
+      "lastUpdate": "ÚLTIMA ATUALIZAÇÃO",
+      "name": "SLA NAME",
+      "of": "de",
+      "out": "dos",
+      "registers": "Registros",
+      "search": "Buscar",
+      "showing": "Mostrando",
+      "sla": "SLA",
+      "state": "ESTADO",
+      "status": "STATUS:"
+    }
+  },
+  "listOfStatusTickets": {
+    "header": {
+      "activeStatusTickets": "ATIVOS",
+      "inactiveStatusTickets": "INATIVOS",
+      "totalStatusTickets": "STATUS DE TICKET TOTAIS"
+    },
+    "list": {
+      "active": "ATIVO",
+      "closed": "Fechado",
+      "emptyDepartment": "NENHUM STATUS DE TICKET ENCONTRADO",
+      "inactive": "INATIVO",
+      "isClosed": "SIM",
+      "lastUpdate": "ÚLTIMA ALTERAÇÃO",
+      "notClosed": "NÃO",
+      "of": "de",
+      "out": "dos",
+      "registers": "Status",
+      "search": "Buscar",
+      "showing": "Mostrando",
+      "status": "STATUS",
+      "statusTicket": "Status de Ticket"
+    }
+  },
+  "listOfTickets": {
+    "filter": {
+      "channelFilter": "CANAL",
+      "cleanFilters": "LIMPAR FILTROS",
+      "filterByDateRange": "DATA",
+      "filterByDateRangeDefined": "DATA DEFINIDA",
+      "filterByDepartament": "FILTRO DEPARTAMENTO",
+      "filterByEmails": "FILTRO POR EMAILS",
+      "filterByTags": "FILTRO POR TAGS",
+      "last15Days": "Últimos 15 dias",
+      "last30Days": "Últimos 30 dias",
+      "last7Days": "Últimos 7 dias",
+      "merged": "BUSCAR UNIFICADOS",
+      "myTickets": "ATRIBUÍDOS A MIM",
+      "priority": "PRIORIDADE",
+      "searchAssignments": "BUSCAR ATRIBUÍDOS",
+      "searchDrafts": "BUSCAR RASCUNHOS",
+      "selectChannel": "SELECIONE UM CANAL",
+      "selectDepartament": "SELECIONE UM DEPARTAMENTO",
+      "selectInterval": "SELECIONE UM INTERVALO",
+      "selectOption": "SELECIONE UMA OPÇÃO",
+      "selectPriority": "SELECIONE UMA PRIORIDADE",
+      "selectState": "SELECIONE UM STATUS",
+      "state": "STATUS",
+      "tags": "TAGs",
+      "title": "FILTRO",
+      "today": "Hoje",
+      "yesterday": "Ontem"
+    },
+    "header": {
+      "answered": "RESOLVIDA",
+      "assigned": "ATRIBUÍDOS",
+      "departmentTickets": "DEPART. TICKETS",
+      "inReview": "EM ANDAMENTO",
+      "newTickets": "NOVAS PRESCRIÇÕES",
+      "reportedByMe": "RELATADOS POR MIM",
+      "tickets": "Tickets",
+      "totalTickets": "TOTAL DE TICKETS",
+      "unassigned": "NÃO ATRIBUÍDOS",
+      "yourTickets": "SEUS TICKETS"
+    },
+    "list": {
+      "client": "TIPO DE MEDICAMENTO",
+      "draft": "RASCUNHO",
+      "emptyTickets": "NENHUM TICKET ENCONTRADO",
+      "lastUpdate": "ÚLTIMA ALTERAÇÃO",
+      "loading": "Carregando",
+      "of": "de",
+      "out": "dos",
+      "registers": "Registros",
+      "search": "Buscar",
+      "showing": "Mostrando",
+      "slaExpired": "SLA Vencida",
+      "slaWarning": "SLA de inicialização Vencida",
+      "state": "STATUS",
+      "ticketId": "PRESCRIÇÃO ID",
+      "ticketTitle": "TICKET TÍTULO",
+      "username": "USUÁRIO"
+    }
+  },
+  "listOfUsers": {
+    "header": {
+      "admins": "ADMINISTRADORES",
+      "agents": "AGENTES",
+      "users": "USUÁRIOS"
+    },
+    "list": {
+      "client": "CLIENTE",
+      "displayName": "NOME",
+      "draft": "RASCUNHO",
+      "emptyUsers": "NENHUM USUÁRIO ENCONTRADO",
+      "search": "Buscar",
+      "state": "STATUS",
+      "username": "USERNAME",
+      "userType": "TIPO DE USUÁRIO"
+    }
+  },
+  "login": {
+    "back": "VOLTAR",
+    "changePassword": "ALTERAÇÃO DE SENHA",
+    "confirmPassword": "Confirmar a senha",
+    "description": "Digite seu nome de usuário e você receberá uma nova senha em sua conta de e-mail.",
+    "forgotPassword": "Esqueceu a senha?",
+    "login": "ENTRAR",
+    "newPassword": "Nova senha",
+    "noSuccess": "NÃO FOI POSSIVEL REDEFINIR SENHA",
+    "password": "Senha",
+    "passwordSuccess": "Senha salva com sucesso!",
+    "resetByBlockedProfile": "Seu perfil foi desativado",
+    "resetByTokenExpired": "Sua autorização para essas páginas expiraram ou suas permissões foram modificadas",
+    "resetPassword": "REDEFINIR SENHA",
+    "setNewPassword": "DIGITE SUA NOVA SENHA",
+    "success": "SUCESSO",
+    "tickets": "TICKETS",
+    "username": "Usuário"
+  },
+  "lowerNo": "<i class='fa fa-thumbs-down'></i> Não",
+  "lowerYes": "<i class='fa fa-thumbs-up'></i> Sim",
+  "merge": "UNIFICAR",
+  "mergedId": "ID do ticket unificado",
+  "multiselect": {
+    "empty": "Lista vazia",
+    "noElementsFound": "Opa! Nenhum elemento encontrado",
+    "pressCreate": "Aperte Enter para criar",
+    "pressEnter": "Adicionar",
+    "pressRemove": "Remover",
+    "select": "Selecionar",
+    "selected": "Selecionado"
+  },
+  "navbar": {
+    "menu": {
+      "attributes": "Atributos",
+      "back": "Voltar",
+      "clients": "Clientes",
+      "configuration": "Parâmetros do Sistema",
+      "dashboard": "Dashboard",
+      "departments": "Departamentos",
+      "escalation-demands-tracking": "Relatório De Acompanhamento De Demandas Escaladas",
+      "fcr-report": "Chamados Resolvidos No Primeiro Contato",
+      "logout": "Sair",
+      "priorities": "Prioridades",
+      "profiles": "Perfis",
+      "reports": "Relatórios",
+      "satisfactionSurveys": "Pesquisas de Satisfação",
+      "settings": "Configurações",
+      "slas": "SLAs",
+      "statusTicket": "Status de Ticket",
+      "survey-report": "Relatório De Pesquisa",
+      "templates": "Templates",
+      "ticket-report": "Relatório Geral De Tickets",
+      "tickets": "Tickets",
+      "typePendencies": "Tipos de Pendências",
+      "users": "Usuários"
+    }
+  },
+  "newClient": {
+    "addUser": "Adicionar usuário",
+    "invalidCnpj": "CNPJ inválido!",
+    "label": {
+      "address": {
+        "cep": "CEP",
+        "city": "CIDADE",
+        "complement": "COMPLEMENTO",
+        "neighborhood": "BAIRRO",
+        "number": "NÚMERO",
+        "publicPlace": "LOGRADOURO",
+        "state": "ESTADO"
+      },
+      "cnpj": "CNPJ",
+      "description": "DESCRIÇÃO",
+      "emailContact": "EMAIL",
+      "levelServiceAgreement": "ACORDO DE NÍVEL DE SERVIÇO",
+      "name": "EMPRESA",
+      "phoneContact": "TELEFONE",
+      "responsibleUser": "USUÁRIO RESPONSÁVEL",
+      "state": "STATUS ATUAL",
+      "stateSubscription": "INSCRIÇÃO ESTADUAL"
+    },
+    "placeholder": {
+      "address": {
+        "cep": "Insira o CEP",
+        "city": "Insira a cidade",
+        "complement": "Insira o complemento",
+        "neighborhood": "Insira o bairro",
+        "number": "Insira o número",
+        "publicPlace": "Insira o logradouro",
+        "state": "Insira o status"
+      },
+      "cnpj": "Insira o CNPJ",
+      "description": "Insira a descrição",
+      "emailContact": "Insira o email",
+      "name": "Insira a empresa",
+      "phoneContact": "Insira o telefone",
+      "responsibleUser": "Insira o usuário responsável",
+      "stateSubscription": "Insira a inscrição estadual"
+    },
+    "pleaseFill": "Para adicionar um novo cliente, preencha as informações solicitadas abaixo",
+    "stepFive": "USUÁRIOS",
+    "stepFourth": "PROPRIEDADES",
+    "stepOne": "INFORMAÇÕES GERAIS",
+    "stepThree": "CONTATO",
+    "stepTwo": "ENDEREÇO"
+  },
+  "newDepartment": {
+    "attribute": "ATRIBUTOS",
+    "label": {
+      "description": "DESCRIÇÃO",
+      "email": "EMAIL",
+      "levelServiceAgreement": "ACORDO DE NÍVEL DE SERVIÇO",
+      "name": "NOME",
+      "state": "STATUS ATUAL",
+      "surveyType": "TIPO DE PESQUISA"
+    },
+    "placeholder": {
+      "description": "Insira a descrição do departamento",
+      "name": "Insira o nome do departamento"
+    },
+    "select": {
+      "state": "SELECIONE O STATUS",
+      "survey": "SELECIONE O TIPO DE PESQUISA"
+    }
+  },
+  "newIssueType": {
+    "createNewIssueType": "Criar novo tipo de pendência",
+    "form": {
+      "IssueType": {
+        "description": "DESCRIÇÃO DO TIPO DE PENDÊNCIA",
+        "name": "NOME DO TIPO DE PENDÊNCIA",
+        "status": "STATUS DO TIPO DE PENDÊNCIA",
+        "title": "TIPO DE PENDÊNCIA"
+      },
+      "label": {
+        "typeDescription": "Digite a descrição do tipo de pendência",
+        "typeName": "Digite o nome do tipo de pendência"
+      },
+      "selectStatus": "SELECIONE O STATUS",
+      "statusOptions": {
+        "false": "Desativado",
+        "true": "Ativado"
+      }
+    }
+  },
+  "newPriority": {
+    "label": {
+      "color": "COR",
+      "name": "NOME",
+      "state": "Status"
+    },
+    "placeholder": {
+      "name": "Insira o nome da prioridade"
+    },
+    "priority": "PRIORIDADE",
+    "select": {
+      "color": "SELECIONE A COR",
+      "state": "SELECIONE O STATUS"
+    }
+  },
+  "newProfile": {
+    "sameName": "Já existe um perfil com esse nome, por favor insira outro",
+    "addProfile": "ADICIONAR PERFIL",
+    "generalInfo": "INFORMAÇÕES GERAIS",
+    "label": {
+      "associated": "ASSOCIADO",
+      "name": "NOME DO PERFIL",
+      "noAssociated": "NÃO ASSOCIADO",
+      "read": "LEITURA",
+      "rules": "REGRAS",
+      "status": "STATUS",
+      "user": "TIPO DE USUÁRIO PARA ESSE PERFIL",
+      "visible": "VISÍVEL?",
+      "write": "ESCRITA"
+    },
+    "listTypeUsers": {
+      "ADMIN": "Administrador",
+      "AGENT": "Agente",
+      "CLIENT": "Cliente",
+      "SUPER_ADMIN": "Super Administrador",
+      "USER": "Usuário"
+    },
+    "orderColumn": "ORDENAR COLUNA",
+    "placeholder": {
+      "name": "Insira o nome do perfil",
+      "user": "SELECIONE O TIPO"
+    },
+    "rules": {
+      "all-notifications": "Listar Todas as Notificações",
+      "attributes": "Menu de Atributos",
+      "configuration": "Parâmetros do Sistema",
+      "dashboard": "Dashboard",
+      "edit-client": "Editar Cliente",
+      "edit-department": "Editar Departamento",
+      "edit-issue-type": "Editar Tipo de Pendência",
+      "edit-priority": "Editar Prioridade",
+      "edit-profile": "Editar Perfil",
+      "edit-satisfaction-survey": "Editar Pesquisa de Satisfação",
+      "edit-sla": "Editar SLA",
+      "edit-status-ticket": "Editar Status de Ticket",
+      "edit-template": "Editar Templates",
+      "edit-ticket": "Editar Ticket",
+      "edit-ticket-user": "Editar Tickets Cliente",
+      "edit-user": "Editar Usuário",
+      "escalation-demands-tracking": "Relatório De Acompanhamento De Demandas Escaladas",
+      "fcr-report": "Relatório de Chamados Resolvidos No Primeiro Contato",
+      "list-clients": "Listar Clientes",
+      "list-departments": "Listar Departamentos",
+      "list-issue-types": "Listar Tipos de Pendência",
+      "list-priorities": "Listar Prioridades",
+      "list-profiles": "Listar Perfis",
+      "list-satisfaction-surveys": "Listar Pesquisas de Satisfação",
+      "list-slas": "Listar SLAs",
+      "list-status-ticket": "Listar Status Ticket",
+      "list-templates": "Listar Templates",
+      "list-tickets": "Listar Tickets",
+      "list-users": "Listar Usuários",
+      "new-client": "Cadastrar Cliente",
+      "new-department": "Cadastrar Departamento",
+      "new-issue-type": "Cadastrar Tipo de Problema",
+      "new-priority": "Cadastrar Prioridade",
+      "new-profile": "Cadastrar Perfil",
+      "new-satisfaction-survey": "Cadastrar Pesquisa de Satisfação",
+      "new-sla": "Cadastrar SLA",
+      "new-status-ticket": "Cadastrar Status de Ticket",
+      "new-template": "Cadastrar Template",
+      "new-ticket": "Cadastrar Ticket",
+      "new-ticket-draft": "Cadastrar Rascunho de Ticket",
+      "new-ticket-user": "Cadastrar Ticket como Cliente",
+      "new-ticket-user-draft": "Cadastrar Rascunho de Ticket como Cliente",
+      "new-user": "Cadastrar Usuário",
+      "report": "Menu de Relatórios",
+      "search-satisfaction": "Responder Pesquisa de Satisfação",
+      "settings": "Menu de Configurações",
+      "survey-report": "Relatório De Pesquisa",
+      "ticket-report": "Relatório Geral De Tickets"
+    },
+    "select": {
+      "status": "SELECIONE O STATUS"
+    },
+    "status": {
+      "active": "Ativo",
+      "inactive": "Inativo"
+    },
+    "txt": {
+      "afterCreate": "Agora selecione as regras para esse perfil"
+    }
+  },
+  "newSla": {
+    "confirm": {
+      "yes": "<i class='far fa-check-circle'></i> SIM",
+      "msgTicket": "<p>O SLA está vinculado a um Ticket em aberto.</p>",
+      "msgConfirm": "<p>Ao desativar o SLA, caso haja informação deste com o Departamento/Cliente, será removido o valor informado.</p> <br> <p>Deseja realmente desativar o SLA?</p>",
+      "no": "<i class='far fa-times-circle'></i> NÃO",
+      "titleTicket": "Operação Inválida",
+      "warning": "ALERTA"
+    },
+    "createNewSla": "Criar SLA",
+    "form": {
+      "placeholders": {
+        "description": "Digite a descrição da SLA",
+        "name": "Digite o nome SLA",
+        "selectStatus": "STATUS ATUAL"
+      },
+      "sla": {
+        "deadline": "TEMPO LIMITE",
+        "description": "DESCRIÇÃO DA SLA",
+        "initial": "TEMPO INICIAL",
+        "name": "NOME DA SLA",
+        "properties": "PROPRIEDADES",
+        "status": "STATUS DA SLA",
+        "title": "INFORMAÇÕES GERAIS"
+      },
+      "statusOptions": {
+        "false": "Inativa",
+        "true": "Ativa"
+      }
+    }
+  },
+  "newStatusTicket": {
+    "label": {
+      "finishStatus": "STATUS DE FINALIZAÇÃO",
+      "name": "NOME DO STATUS",
+      "status": "STATUS"
+    },
+    "labelContent": "Dados do Status de Ticket",
+    "placeholder": {
+      "finishStatus": "Selecione se é status de finalização ou não",
+      "name": "Insira o nome do Status",
+      "status": "Selecione se o status está ativo ou não"
+    },
+    "select": {
+      "active": "Sim",
+      "inactive": "Não"
+    }
+  },
+  "newPrescription": {
+    "pharmacos": "FÁRMACOS",
+    "patients": "PACIENTES",
+    "doctors": "MÉDICOS",
+    "yes": "Sim",
+    "no": "Não",
+    "draftErrorTitle": "Essa função ainda não está disponível",
+    "draftErrorText": "Por favor aguarde às próximas atualizações",
+    "searchOrAddPharmaco": "BUSCAR FÁRMACO",
+    "searchOrAddPatient": "BUSCAR PACIENTE",        
+    "searchOrAddDoctor": "BUSCAR MÉDICO",
+    "concentration": "CONCENTRAÇÃO",
+    "concentrationPlaceholder": "Informe a concentração do medicamento",
+    "unit": "UNIDADE",
+    "unitPlaceholder": "Informe o tipo de unidade",
+    "pharmaceuticalForm": "FORMA FARMACÊUTICA",
+    "pharmaceuticalFormPlaceholder": "Informe a forma farmacêutica",
+    "medicationType": "TIPO DE MEDICAÇÃO",
+    "medicationTypePlaceholder": "Informe o tipo de medicação",
+    "viaAdministrative": "VIA DE ADMINISTRAÇÃO",
+    "viaAdministrativePlaceholder": "Informe a via de administração",
+    "atcCode": "CÓDIGO ATC",
+    "atcCodePlaceholder": "Informe o Código ATC",
+    "internalUse": "USO INTERNO",
+    "internalUsePlaceholder": "Informe se o uso do medicamento é internamente",
+    "antimicrobial": "ANTIMICROBIANO",
+    "antimicrobialPlaceholder": "Informe se esse medicamento é antimicrobiano",
+    "bula": "BULA",
+    "bulaPlaceholder": "Informe a URL onde a bula está contida",
+    "ordinance344": "Portaria 344/98",
+    "ordinance344Placeholder": "Informe a Portaria 344/98",
+    "specialCenter": "Controle Especial",
+    "specialCenterPlaceholder": "Informe se há Controle Especial",
+    "tiss": "TISS",
+    "tissPlaceholder": "Informe o TISS",
+    "mip": "MIP",
+    "mipPlaceholder": "Informe se o medicamento é um MIP",
+    "label": "LABEL",
+    "labelPlaceholder": "Informe o rótulo",
+    "unified": "UNIFICADO",
+    "unifiedPlaceholder": "Informe se o medicamento é unificado"
+  },
+  "newTicket": {
+    "createNewTicket": "CRIAR NOVO TICKET",
+    "draft": {
+      "draftErrorText": "Tente novamente depois da correção acima",
+      "draftErrorTitle": "Obrigatório preencher o Assunto"
+    },
+    "form": {
+      "general": {
+        "answer": "RESPOSTA",
+        "client": "CLIENTE",
+        "communicationChannel": "CANAL DE COMUNICAÇÃO",
+        "existTicketWarning": "Já existe um ticket cadastrado para o cliente com o mesmo tipo de problema, deseja enviar uma resposta?",
+        "merge": "UNIFICAR COM O TICKET:",
+        "requestBy": "SOLICITADO POR",
+        "selectChannel": "SELECIONE UM CANAL",
+        "selectClient": "SELECIONE UM CLIENTE",
+        "selectRequestBy": "SELECIONE UM SOLICITADO",
+        "selectUser": "SELECIONE UM USUÁRIO",
+        "title": "GERAL",
+        "user": "USUÁRIO"
+      },
+      "issue": {
+        "departmentResponsible": "DEPARTAMENTO RESPONSÁVEL",
+        "issuePriority": "PRIORIDADE",
+        "levelServiceAgreement": "SLA",
+        "notifyTo": "NOTIFICAR PARA",  
+        "searchOrAddEmail": "BUSCAR EMAIL",
+        "selectAgreement": "SELECIONE UM SLA",
+        "selectDepartment": "SELECIONE UM DEPARTAMENTO",
+        "selectIssueType": "SELECIONE UM TIPO",
+        "selectPriority": "SELECIONE UMA PRIORIDADE",
+        "selectTicket": "Selecione um ticket para unificar",
+        "title": "INFORMATIVOS",
+        "typeOfIssue": "TIPO"
+      },
+      "ticket": {
+        "answerSaveSuccess": "Resposta salva com sucesso",
+        "associatedProtocols": "PROTOCOLOS ASSOCIADOS",
+        "attachFiles": "ARQUIVOS ANEXOS",
+        "description": "DESCRIÇÃO",
+        "enterAssociatedProtocol": "Pressione enter para inserir o protocolo",
+        "enterToSelect": "Pressione enter para selecionar",
+        "selectFile": "SELECIONE UM ARQUIVO DE ANEXO",
+        "subject": "ASSUNTO",
+        "subjectOfTheNewTicket": "ASSUNTO DO NOVO TICKET",
+        "title": "TICKET",
+        "typeAssociatedProtocol": "INSERIR PROTOCOLO",
+        "typeDescription": "Digite a descrição do seu ticket",
+        "typeSubject": "Digite o assunto",
+        "typeSubjectOfTheNewTicket": "Digite o assunto do novo ticket"
+      }
+    },
+    "loadMore": "Carregar mais",
+    "pleaseFill": "Para criar seu novo ticket, preencha as informações solicitadas abaixo:",
+    "saveDraft": "SALVAR RASCUNHO",
+    "sendAs": "ENVIAR COMO:"
+  },
+  "newTicketUser": {
+    "pleaseFill": "Para criar seu novo ticket, preencha as informações solicitadas abaixo:",
+    "saveDraft": "SALVAR RASCUNHO",
+    "sendAs": "ENVIAR COMO",
+    "stepOne": {
+      "productOrService": "SELECIONE UM PRODUTO / SERVIÇO",
+      "selectProductOrService": "SELECIONE UM PRODUTO",
+      "title": "PASSO 1"
+    },
+    "stepThree": {
+      "attachFiles": "ARQUIVOS ANEXOS",
+      "description": "DESCRIÇÃO DA PENDÊNCIA",
+      "subject": "ASSUNTO",
+      "title": "PASSO 3",
+      "typeDescription": "Digite uma descrição do seu Ticket",
+      "typeSubject": "Digite o assunto"
+    },
+    "stepTwo": {
+      "selectTypeIssue": "SELECIONE UM TIPO",
+      "title": "PASSO 2",
+      "typeIssue": "SELECIONE O TIPO"
+    },
+    "typeSubjectTicket": "IDENTIFICADOR DA PRESCRIÇÃO"
+  },
+  "newUser": {
+    "activeFalse": "Inativo",
+    "activeTrue": "Ativo",
+    "createNewUser": "CRIAR UM NOVO USUÁRIO",
+    "invalidPhone": "Esse número de telefone é inválido.",
+    "label": {
+      "company": "EMPRESA",
+      "department": "DEPARTAMENTO",
+      "displayName": "NOME",
+      "email": "EMAIL",
+      "jiraToken": "JIRA TOKEN",
+      "password": "SENHA",
+      "phone": "NÚMERO DE TELEFONE",
+      "profile": "PERFIL DO USUÁRIO",
+      "rePassword": "CONFIRME A SENHA",
+      "reset_pass": "RESETAR SENHA",
+      "status": "STATUS",
+      "username": "NOME DO USUÁRIO",
+      "userType": "TIPO DE USUÁRIO"
+    },
+    "listTypeUsers": {
+      "ADMIN": "Administrador",
+      "AGENT": "Agente",
+      "CLIENT": "Cliente",
+      "USER": "Usuário"
+    },
+    "placeholder": {
+      "countrySelectorError": "Selecione um país",
+      "countrySelectorLabel": "Código do país",
+      "displayName": "Digite um nome",
+      "email": "Digite o email",
+      "example": "Exemplo",
+      "jiraToken": "Digite o jira token",
+      "password": "Digite a senha",
+      "phone": "Digite o número de telefone",
+      "phoneNumberLabel": "Numero de telefone",
+      "profile": "Selecione o perfil desse usuário",
+      "rePassword": "Confirme a senha",
+      "username": "Digite um nome de usuario"
+    },
+    "registerNewUser": "Cadastrar um Usuário",
+    "select": {
+      "active": "SELECIONE O STATUS",
+      "company": "SELECIONE A EMPRESA",
+      "department": "SELECIONE UM DEPARTAMENTO",
+      "profile": "SELECIONE UM PERFIL",
+      "userType": "SELECIONE UM TIPO DE USUÁRIO"
+    },
+    "stepFour": "PROPRIEDADES",
+    "stepOne": "TIPO DE USUÁRIO",
+    "stepThree": "PESSOAL",
+    "stepTwo": "GERAL"
+  },
+  "no": "NÃO",
+  "notifications": {
+    "seeMore": "VER MAIS",
+    "title": "NOTIFICAÇÕES",
+    "noNotifications": "Não há notificações!"
+  },
+  "question": "Pergunta",
+  "report": {
+    "choseSurveyType": "Selecione o tipo de pesquisa",
+    "escalation-demands-tracking": "Relatório de Acompanhamento de Demandas Escaladas",
+    "fcr-report": "Chamados resolvidos no primeiro contato",
+    "filter": {
+      "button": "FILTRAR",
+      "ticket": "ID do ticket"
+    },
+    "list": {
+      "agent": "Agente",
+      "changeDate": "Data de modificação",
+      "client": "Cliente",
+      "clientSla": "SLA do cliente",
+      "closeDate": "Data de fechamento",
+      "department": "Departamento",
+      "departmentDeadline": "SLA do departamento",
+      "departmentSla": "SLA do departamento",
+      "duration": "Duração",
+      "empty": "Lista vazia.",
+      "jiraKey": "Jira Keys",
+      "openDate": "Data de abertura",
+      "relatedIssues": "Pendências relacionadas",
+      "replyDate": "Data da resposta",
+      "slaName": "SLA",
+      "subject": "Assunto",
+      "surveyReply": "Reposta",
+      "user": "Usuário"
+    },
+    "survey-report": "Relatório de pesquisa de satisfação",
+    "survey-report-CSAT": "Relatório de pesquisa CSAT",
+    "survey-report-NPS": "Relatório de pesquisa NPS",
+    "ticket-report": "Relatório geral de Tickets"
+  },
+  "routeNotValid": "Você não tem permissão pra acessar essa página",
+  "satisfactionSurveys": {
+    "active": "ATIVAS",
+    "activeSatisfactionSurvey": "PESQUISA ATIVA",
+    "addSatisfactionSurvey": "ADICIONAR NOVA PESQUISA",
+    "confirmPutOrPostSatisfactionText": "Deseja desativar essa outra pesquisa e prosseguir com essa?",
+    "confirmPutOrPostSatisfactionTitle": "Pesquisa de Satisfação do mesmo tipo ativada",
+    "currentStatusSatisfactionSurvey": "STATUS ATUAL",
+    "duplicated": "Pesquisa de Satisfação com nome ou pergunta já existente",
+    "editSatisfactionSurvey": "EDITAR PESQUISA DE SATISFAÇÃO",
+    "emptySatisfactionSurveys": "NENHUMA PESQUISA DE SATISFAÇÃO ENCONTRADA",
+    "header": {
+      "totalSatisfactionSurveys": "TOTAL DE PESQUISAS DE SATISFAÇÃO"
+    },
+    "inactive": "INATIVAS",
+    "inactiveSatisfactionSurvey": "PESQUISA INATIVA",
+    "namePlaceholderSatisfactionSurvey": "Digite o nome da pesquisa",
+    "nameSatisfactionSurvey": "NOME DA PESQUISA DE SATISFAÇÃO",
+    "newSatisfactionSurvey": "NOVA PESQUISA DE SATISFAÇÃO",
+    "placeholderSearchType": "SELECIONE UM DOS TIPOS ABAIXO",
+    "questionPlaceholderSatisfactionSurvey": "Digite aqui sua pergunta",
+    "questionSatisfactionSurvey": "PERGUNTA",
+    "sameNameAndQuestion": "O nome e a pergunta da pesquisa são iguais, preencha novamente esses dados",
+    "satisfactionSurvey": "NOVA PESQUISA DE SATISFAÇÃO",
+    "scaleOneSatisfactionSurvey": "ESCALA DE 1 A 5",
+    "scaleTwoSatisfactionSurvey": "ESCALA DE 0 A 10",
+    "selectSearchType": "SELECIONE O TIPO DE PESQUISA",
+    "title": "Lista de Pesquisas de Satisfação"
+  },
+  "save": "SALVAR",
+  "search": "BUSCAR",
+  "searchSatisfaction": {
+    "opinion": "Sua opinião é muito importante para toda a Equipe, para nos auxiliar a melhorar cada vez mais o nosso trabalho, principalmente em relação aos nossos produtos e ao atendimento oferecido.",
+    "sorry": "Desculpe, ",
+    "success": "sucesso",
+    "thanks": "Obrigado pela pré-disposição e cooperação em participar da nossa pesquisa de satisfação.",
+    "tryLater": "por favor tente mais tarde",
+    "yourOpinion": "Sua opinião foi enviada com"
+  },
+  "split": "SEPARAR",
+  "splittedId": "ID do ticket separado",
+  "state": {
+    "active": "ATIVO",
+    "inactive": "INATIVO"
+  },
+  "status": "Status",
+  "subject": "Assunto",
+  "swal": {
+    "errorFields": "É necessário que todos os campos sejam preenchidos corretamente",
+    "merged": "Esse ticket já foi unificado com outro, então não é possível editá-lo",
+    "success": "Ticket separado com sucesso",
+    "successMerge": "Ticket unificado com sucesso",
+    "textError": "Tente novamente depois da correção acima",
+    "textSuccess": "A ação ocorreu conforme esperado",
+    "titleError": "Não foi possível executar a ação",
+    "titleSuccess": " salvo com sucesso",
+    "titleSuccessFem": " salva com sucesso"
+  },
+  "templates": {
+    "active": "TEMPLATE ATIVO",
+    "addTemplate": "ADICIONAR TEMPLATE",
+    "addValue": "Adicionar valor",
+    "channels": "CANAL",
+    "description": {
+      "changeAgent": "Template usado para enviar notificações ao alterar o agente em um ticket",
+      "changeStatus": "Template usado para enviar notificações ao alterar o status de um ticket",
+      "closeTicket": "Template usado para enviar notificações caso um ticket seja fechado",
+      "hsm": "Uma mensagem altamente estruturada é um modelo de mensagem que precisa ser usado quando você deseja iniciar a conversa com seu cliente",
+      "merge": "Template usado para enviar notificações ao unificar um ticket",
+      "name": "NOME DO TEMPLATE",
+      "newAnswer": "Template usado para enviar notificações caso haja uma nova resposta em um ticket",
+      "newTicket": "Template usado para enviar notificações ao criar um ticket",
+      "read": "LEITURA",
+      "resetPassword": "Template usado para enviar notificações caso a senha de um usuário seja alterada",
+      "satisfactionSurvey": "Template usado para enviar notificações caso haja resposta de uma pesquisa de satisfação",
+      "slaExpired": "Template usado para enviar notificações caso um SLA expire",
+      "slaWarning": "Template usado para enviar notificações caso haja um alerta para SLA",
+      "split": "Template usado para enviar notificações ao separar um ticket",
+      "status": "STATUS",
+      "user": "TIPO DE USUÁRIO PARA ESSE PERFIL",
+      "visible": "VISÍVEL?",
+      "write": "ESCRITA"
+    },
+    "editTemplate": "EDITAR TEMPLATE",
+    "emptyTemplates": "NENHUM TEMPLATE ENCONTRADO",
+    "en": "Inglês",
+    "es": "Espanhol",
+    "generalInfo": "INFORMAÇÕES GERAIS",
+    "hasAnnex": "Enviar anexos dos comentários",
+    "header": {
+      "activeTemplates": "ATIVOS",
+      "inactiveTemplates": "INATIVOS",
+      "totalTemplates": "TOTAL DE TEMPLATES"
+    },
+    "inactive": "TEMPLATE INATIVO",
+    "keys": {
+      "associated": "ASSOCIADO",
+      "idTicket": "ID do Ticket",
+      "name": "NOME DO TEMPLATE",
+      "noAssociated": "NÃO ASSOCIADO",
+      "read": "LEITURA",
+      "status": "STATUS",
+      "user": "TIPO DE USUÁRIO PARA ESSE PERFIL",
+      "visible": "VISÍVEL?",
+      "write": "ESCRITA"
+    },
+    "name": "NOME DO TEMPLATE",
+    "newTemplate": "NOVO TEMPLATE",
+    "notShowPreviewHTML": "Voltar para a mensagem sem preview",
+    "orderColumn": "ORDENAR COLUNA",
+    "placeholder": {
+      "name": "Digite o nome do template"
+    },
+    "pt-br": "Português",
+    "selectChannel": "Selecione um canal",
+    "selectTypeOfTemplate": "Selecione um tipo de template",
+    "showPreviewHTML": "Mostrar preview em HTML",
+    "subjectEmail": "Digite o assunto do email",
+    "text": "Digite o texto da mensagem",
+    "title": "Lista de Templates",
+    "typeOfTemplate": "TIPO DE TEMPLATE"
+  },
+  "ticket": {
+    "reply": {
+      "notfound": "Resposta não encontrada."
+    },
+    "survey": {
+      "already": {
+        "answered": "obrigado pela pré-disposição e cooperação em participar da nossa pesquisa, mas essa pesquisa de satisfação já foi respondida."
+      },
+      "hash": "identificador da pesquisa não encontrado.",
+      "notfound": "pesquisa de satisfação não encontrada.",
+      "save": "falha ao salvar resposta para pesquisa de satisfação."
+    }
+  },
+  "timeTracker": {
+    "cancel": "CANCELAR",
+    "confirmReset": "<span class='f-22-300-gray'>Tem certeza que deseja <br /><b>reiniciar</b> o contador?</span>",
+    "customTime": "ADICIONAR TEMPO CUSTOMIZADO",
+    "pleaseStartTheAccountant": "<span class='f-22-300-gray'>O contador ainda não foi iniciado, <br /><b>inicie-o</b> primeiro</span>",
+    "selectTime": "Selecione as horas trabalhadas",
+    "send": "LANÇAR HORAS",
+    "textSwal": "Suas horas foram enviadas conforme esperado",
+    "title": "TEMPO TRACKER",
+    "titleSwal": "Horas lançadas com sucesso",
+    "totalTime": "TEMPO TOTAL"
+  },
+  "title": {
+    "configuration": "CONFIGURAÇÕES",
+    "editClient": "EDITAR CLIENTE",
+    "editDepartment": "EDITAR DEPARTAMENTO",
+    "editIssueType": "EDITAR TIPO DE PENDÊNCIA",
+    "editPriority": "EDITAR PRIORIDADE",
+    "editProfile": "EDITAR PERFIL",
+    "editSla": "EDITAR SLA",
+    "editStatusTicket": "EDITAR STATUS DE TICKET",
+    "editTicket": "EDITAR TICKET",
+    "editUser": "EDITAR USUÁRIO",
+    "listOfClients": "Lista de clientes",
+    "listOfDepartments": "Lista de Departamentos",
+    "listOfIssueTypes": "Lista de tipos de pêndencia",
+    "listOfNotifications": "Lista de Notificações",
+    "listOfPriorities": "Lista de Prioridades",
+    "listOfProfiles": "Lista de Perfis",
+    "listOfSla": "SERVICE LEVEL AGREEMENT",
+    "listOfSlas": "Lista de SLAs",
+    "listOfStatusTickets": "Lista de Status de Ticket",
+    "listOfTickets": "Lista de Prescrições",
+    "listOfUsers": "Lista de usuários",
+    "newClient": "NOVO CLIENTE",
+    "newDepartment": "CRIAR DEPARTAMENTO",
+    "newIssueType": "NOVO TIPO DE PENDÊNCIA",
+    "newPriority": "NOVA PRIORIDADE",
+    "newProfile": "NOVO PERFIL",
+    "newSla": "NOVO SLA",
+    "newStatusTicket": "NOVO STATUS DE TICKET",
+    "newTicket": "NOVA PRESCRIÇÃO",
+    "newUser": "NOVO USUÁRIO"
+  },
+  "today": "HOJE",
+  "url_reply": "URL para resposta",
+  "username": "USUÁRIO",
+  "yes": "SIM"
+}

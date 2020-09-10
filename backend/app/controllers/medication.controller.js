@@ -19,7 +19,7 @@ exports.findOne = (req, res) => {
     where: {
       name: req.body.name
     },
-    include: "pharmacos"
+    include: ["pharmacos", "patients", "doctors"]
   })
     .then(medication => {
       if (!medication) {
@@ -30,6 +30,8 @@ exports.findOne = (req, res) => {
         id: medication.id,
         name: medication.name,
         pharmacos: medication.pharmacos,
+        patients: medication.patients,
+        doctors: medication.doctors,
         concentration: medication.concentration,
         unit: medication.unit,
         medicationType: medication.medicationType,
@@ -60,9 +62,9 @@ exports.deleteOne = (req, res) => {
   })
     .then(pharmaco => {
       if (!pharmaco) {
-        return res.status(404).send({ message: "Pharmaco Not found." });
+        return res.status(404).send({ message: "Medication Not found." });
       }
-      return res.status(404).send({ message: "Pharmaco successfully deleted" });
+      return res.status(404).send({ message: "Medication successfully deleted" });
     })
     .catch(err => {
       res.status(500).send({ message: err.message });
@@ -70,7 +72,10 @@ exports.deleteOne = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  Medication.findAll()
+  Medication.findAll({
+    include: ["pharmacos", "patients", "doctors"]
+  }
+  )
     .then(data => {
       res.send(data);
     })

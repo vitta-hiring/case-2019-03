@@ -1,0 +1,260 @@
+@import "_main.css";
+
+.f-10-300-gray {
+    font-size: 10px;
+    font-size: 0.71rem;
+    color: #5c5c5c;
+    font-weight: 300;
+    text-decoration: none solid rgb(92, 92, 92);
+    line-height: 14px;
+}
+
+.f-10-500-gray {
+    font-size: 10px;
+    font-size: 0.71rem;
+    color: #5c5c5c;
+    font-weight: 500;
+    text-decoration: none solid rgb(92, 92, 92);
+    line-height: 15px;
+}
+
+.f-12-gray {
+    font-size: 12px;
+    font-size: 0.85rem;
+    color: #d1d1d1;
+    text-decoration: none solid rgb(209, 209, 209);
+}
+
+.f-12-300-gray-light {
+    font-size: 12px;
+    font-size: 0.85rem;
+    color: #9a9a9a;
+    font-weight: 300;
+    text-decoration: none solid rgb(154, 154, 154);
+}
+
+.f-12-300-gray {
+    font-size: 12px;
+    font-size: 0.85rem;
+    color: var(--gray);
+    font-weight: 300;
+    text-decoration: none solid rgb(92, 92, 92);
+}
+
+.f-12-300-gray-bold {
+  font-size: 12px;
+  font-size: 0.85rem;
+  color: var(--gray);
+  font-weight: 500;
+  text-decoration: none solid rgb(92, 92, 92);
+}
+
+.f-12-500-gray {
+  font-size: 12px;
+  color: var(--gray);
+  font-weight: 500;
+  text-decoration: none solid rgb(154, 154, 154);
+}
+
+.f-12-500-gray-light {
+    font-size: 12px;
+    font-size: 0.85rem;
+    color: #9a9a9a;
+    font-weight: 500;
+    text-decoration: none solid rgb(154, 154, 154);
+}
+
+.f-12-500-gray-medium {
+    font-size: 12px;
+    font-size: 0.85rem;
+    color: #5c5c5c;
+    font-weight: 500;
+    text-decoration: none solid rgb(92, 92, 92);
+    line-height: 15px;
+}
+
+.f-12-500-gray-light-2 {
+    font-size: 12px;
+    font-size: 0.85rem;
+    color: #d1d1d1;
+    font-weight: 500;
+    text-decoration: none solid rgb(209, 209, 209);
+}
+
+.f-14-300-gray {
+    font-size: 14px;
+    font-size: 1rem;
+    color: #5c5c5c;
+    font-weight: 300;
+    text-decoration: none solid rgb(154, 154, 154);
+}
+
+.f-14-300-gray-bold {
+    font-size: 14px;
+    font-size: 1rem;
+    color: #5c5c5c;
+    font-weight: 500;
+    text-decoration: none solid rgb(92, 92, 92);
+}
+
+.f-14-500-gray {
+    font-size: 14px;
+    font-size: 1rem;
+    color: var(--gray);
+    font-weight: 500;
+    text-decoration: none solid rgb(154, 154, 154);
+}
+
+.f-14-gray-light-2 {
+    font-size: 14px;
+    font-size: 1rem;
+    color: #9a9a9a;
+    text-decoration: none solid rgb(154, 154, 154);
+}
+
+.f-14-500-gray-light-2 {
+    font-size: 14px;
+    font-size: 1rem;
+    color: #9a9a9a;
+    font-weight: 500;
+    text-decoration: none solid rgb(154, 154, 154);
+}
+
+.f-18-100-gray {
+    font-size: 18px;
+    font-size: 1.285rem;
+    color: var(--gray);
+    font-weight: 100;
+    text-decoration: none solid rgb(92, 92, 92);
+    /* text-align: center; */
+}
+
+.f-18-300-gray {
+    font-size: 18px;
+    font-size: 1.285rem;
+    color: var(--gray);
+    font-weight: 300;
+    text-decoration: none solid rgb(92, 92, 92);
+}
+
+.f-20-100-gray {
+    font-size: 20px;
+    font-size: 1.428rem;
+    color: var(--gray);
+    font-weight: 100;
+    text-decoration: none solid rgb(92, 92, 92);
+    /* text-align: center; */
+}
+
+.f-22-300-gray {
+    font-size: 22px;
+    font-size: 1.57rem;
+    color: #5c5c5c;
+    font-weight: 300;
+    text-decoration: none solid rgb(92, 92, 92);
+}
+
+.f-10-500-darkcyan {
+    font-size: 10px;
+    font-size: 0.71rem;
+    color: var(--primary);
+    font-weight: 500;
+    text-decoration: none solid rgb(0, 151, 167);
+}
+
+.f-12-300-darkcyan {
+    font-size: 12px;
+    font-size: 0.85em;
+    color: var(--primary);
+    font-weight: 300;
+    text-decoration: none solid rgb(0, 151, 167);
+}
+
+.f-12-500-darkcyan {
+    font-size: 12px;
+    font-size: 0.85em;
+    color: var(--primary);
+    font-weight: 500;
+    text-decoration: none solid rgb(0, 151, 167);
+}
+
+.f-12-500-darkcyan-italic {
+    font-size: 14px;
+    font-size: 1rem;
+    color: var(--primary);
+    font-weight: 500;
+    text-decoration: none solid rgb(0, 151, 167);
+    font-style: italic;
+}
+
+.f-14-500-darkcyan {
+    font-size: 14px;
+    font-size: 1rem;
+    color: var(--primary);
+    text-decoration: none solid rgb(0, 151, 167);
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.f-14-300-darkcyan {
+    font-size: 14px;
+    font-size: 1rem;
+    color: var(--primary);
+    font-weight: 300;
+    text-decoration: none solid rgb(0, 151, 167);
+}
+
+.f-12-500-red {
+    font-size: 12px;
+    font-size: 0.85rem;
+    color: #ff5a5f;
+    font-weight: 500;
+    line-height: 14px;
+}
+
+.f-12-500-blue-dark {
+    font-size: 12px;
+    font-size: 0.85rem;
+    color: #3b5998;
+    font-weight: 500;
+    text-decoration: none solid rgb(59, 89, 152);
+    line-height: 15px;
+}
+
+.f-14-500-gray-light {
+    font-size: 14px;
+    font-size: 1rem;
+    color: #d1d1d1;
+    font-weight: 500;
+    line-height: 16px;
+    text-transform: uppercase;
+}
+
+.f-14-gray-light {
+    font-size: 12px;
+    font-size: 0.85rem;
+    color: #d1d1d1;
+    line-height: 14px;
+    text-transform: uppercase;
+}
+
+.f-12-500-white {
+  font-size: 12px;
+  font-size: 0.85rem;
+  color: #ffffff;
+  text-decoration: none solid rgb(255, 255, 255);
+}
+
+.f-14-500-white {
+  font-size: 14px;
+  font-size: 1rem;
+  color: var(--white);
+  font-weight: 500;
+  text-decoration: none solid rgb(255, 255, 255);
+}
+
+.color-red-hover:hover {
+    color: rgb(216, 30, 15)
+}
+
+

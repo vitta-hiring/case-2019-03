@@ -1,0 +1,88 @@
+// Gera todos padding ate 50
+@for $i from 0 through 100 {
+    .padding-#{$i}-trbl {
+      padding: $i + px;
+    }
+
+    .padding-#{$i}-tb {
+        padding: $i + px 0 $i + px 0;
+    }
+
+    .padding-#{$i}-rl {
+        padding: 0 $i + px 0 $i + px;
+    }
+
+    .padding-#{$i}-t {
+      padding-top: $i + px;
+    }
+
+    .padding-#{$i}-r {
+    padding-right: $i + px;
+    }
+
+    .padding-#{$i}-b {
+    padding-bottom: $i + px;
+    }
+
+    .padding-#{$i}-l {
+      padding-left: $i + px;
+    }
+}
+
+// Gera todos margin ate 50
+@for $i from 0 through 100 {
+    .margin-#{$i}-trbl {
+        margin: $i + px;
+    }
+
+    .margin-#{$i}-tb {
+        margin: $i + px 0 $i + px 0;
+    }
+
+    .margin-#{$i}-rl {
+        margin: 0 $i + px 0 $i + px;
+    }
+
+    .margin-#{$i}-t {
+      margin-top: $i + px;
+    }
+
+    .margin-#{$i}-r {
+        margin-right: $i + px;
+    }
+
+    .margin-#{$i}-b {
+        margin-bottom: $i + px;
+    }
+
+    .margin-#{$i}-l {
+        margin-left: $i + px;
+    }
+}
+
+// Gera todos with ate 100%
+@for $i from 0 through 100 {
+    .width-#{$i} {
+      width: $i * 1%;
+    }
+}
+
+// Gera todos min-width ate 100%
+@for $i from 0 through 100 {
+    .min-width-#{$i} {
+      min-width: $i * 1%;
+    }
+}
+
+// Gera todos min-width ate 100%
+@for $i from 0 through 30 {
+    .font-#{$i} {
+      font-size: $i + px;
+    }
+}
+
+@for $i from 0 through 100 {
+  .height-#{$i} {
+    height: $i * 1%;
+  }
+}

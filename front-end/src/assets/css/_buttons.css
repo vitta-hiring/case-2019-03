@@ -1,0 +1,151 @@
+.btn-blue {
+  height: 2rem;
+  border-radius: 5px;
+  background-color: #0097a7;
+  background-size: cover;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);
+  font-size: 0.8rem;
+  color: #ffffff;
+  font-weight: 500;
+  line-height: 14px;
+  padding: 0px 20px;
+  cursor: pointer;
+}
+
+.btn-red {
+  height: 1.5rem;
+  border-radius: 5px;
+  background-color: #ff5a5f;
+  background-size: cover;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);
+  font-size: 0.8rem;
+  color: #ffffff;
+  font-weight: 500;
+  line-height: 14px;
+  padding: 0px 20px;
+  cursor: pointer;
+}
+
+.btn-red:hover {
+  box-shadow: #e9a7a9 0px 2px 3px 0px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.btn-state {
+  border: 1px solid #0097a7;
+  border-radius: 5px;
+  background-color: #ffffff;
+  background-size: cover;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  text-align: center;
+  height: 2rem;
+  padding: 0px 20px;
+  cursor: pointer;
+  min-width: 110px;
+}
+
+.btn-state:hover {
+  color: rgb(0, 151, 167);
+}
+
+.btn-jira {
+  height: 2rem;
+  border-radius: 5px;
+  background-color: #ffffff;
+  background-size: cover;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  color: #9a9a9a;
+  font-weight: 500;
+  line-height: 14px;
+  padding: 0px 20px;
+  cursor: pointer;
+}
+
+.btn-jira:hover {
+  background-color: rgb(0, 151, 167);
+  background-image: none;
+  color: #fff;
+}
+
+.btn-big {
+  height: 4rem;
+  min-width: 105px;
+  padding: 6px 10px;
+  border: 1px solid #9a9a9a;
+  border-radius: 3px;
+  background-color: #ffffff;
+  background-size: cover;
+  font-size: 12px;
+  color: #5c5c5c;
+  line-height: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn-medium {
+  height: 3rem;
+  min-width: 105px;
+  padding: 6px 10px;
+  border: 1px solid #9a9a9a;
+  border-radius: 3px;
+  background-color: #ffffff;
+  background-size: cover;
+  font-size: 12px;
+  color: #5c5c5c;
+  line-height: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn-blue {
+  color: #ffffff;
+  background-color: #0097a7;
+}
+
+.btn-blue:hover {
+  box-shadow: rgba(0, 151, 167, 0.5) 0px 2px 3px 0px;
+}
+
+.btn-cancel:hover {
+  border: 1px solid #0097a7;
+  color: rgb(0, 151, 167);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px 0px;
+}
+
+.btn-play {
+  width: 31px;
+  height: 25px;
+  border-radius: 5px;
+  background-image: linear-gradient(45deg, #6ec4db 3%, #0097a7 100%);
+  background-position: center center;
+  background-size: cover;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);
+}
+
+.btn-private {
+  background-color: rgb(0, 151, 167);
+  border-radius: 20px;
+  border-width: 0px;
+  border-color: rgb(102, 102, 102);
+  border-style: solid;
+  padding: 0px;
+  min-width: 115px;
+  height: 2rem;
+  font-size: 10px;
+  color: #ffffff;
+  font-weight: 500;
+  line-height: 11px;
+  margin-top: 1.8rem;
+  margin-left: 0.8rem;
+}
+
+.btn-rounded {
+  padding: 0 10px;
+  border-radius: 15px;
+}

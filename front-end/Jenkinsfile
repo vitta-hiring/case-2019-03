@@ -1,0 +1,93 @@
+String sectionHeaderStyle = '''
+    color: white;
+    background: gray;
+    font-family: Roboto, sans-serif !important;
+    padding: 3px;
+    text-align: center;
+'''
+
+String separatorStyle = '''
+    border: 0;
+    border-bottom: 1px #ccc;
+    background: #999;
+'''
+
+properties([
+    disableConcurrentBuilds(),
+    [$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '10']],
+    parameters([                  
+        [
+            $class: 'ParameterSeparatorDefinition',
+            name: 'BUILDER_HEADER',
+            sectionHeader: 'Docker Builder Parameters',
+            separatorStyle: separatorStyle,
+            sectionHeaderStyle: sectionHeaderStyle
+        ],
+        booleanParam(defaultValue: false, description: 'Update builder', name: 'makeBuilder'),
+        string(
+            name: 'builderVersion',
+            defaultValue: 'x.x.x',
+            description: 'Type the version of the docker container to be created.'
+        ),        
+        [
+            $class: 'ParameterSeparatorDefinition',
+            name: 'BUILD_HEADER',
+            sectionHeader: 'Build Parameters',
+            separatorStyle: separatorStyle,
+            sectionHeaderStyle: sectionHeaderStyle
+        ],
+        booleanParam(defaultValue: true, description: 'Build', name: 'build'),
+        string(
+            name: 'selectedBuilderVersion',
+            defaultValue: '1.0.0',
+            description: 'Type the version of the docker container to be used in the build stage.'
+        ),
+        [
+            $class: 'ParameterSeparatorDefinition',
+            name: 'DEPLOY_HEADER',
+            sectionHeader: 'Deploy Parameters',
+            separatorStyle: separatorStyle,
+            sectionHeaderStyle: sectionHeaderStyle
+        ],
+        booleanParam(defaultValue: false, description: 'Deploy', name: 'deploy'),
+        choice(choices: 'hml\nprd', description: 'Select the deploy environment', name: 'ambiente')
+    ])
+])
+
+@Library("neppochat") _
+node{
+    
+    def pipeline    = new com.neppo.TM2()
+    
+    def projectName = "tm2-ticket-front"
+    def buildername = "tm2-ticket-front-builder"
+    def dockerService = "tm2_ticket-front"
+    def dockerRegistryCredentials = "dockerRegistryCredentials"
+    def bitbucketCredentials = "jenkins"
+    def builderImageVersion  = "${params.selectedBuilderVersion}"
+
+    pipeline.cleanDir()
+    pipeline.cloneRepository(projectName)
+    pipeline.updateBuilderImage(buildername, //Builder image name
+                                dockerRegistryCredentials //Docker Registry Credentials id
+                                )
+    
+    pipeline.pullBuilder(buildername,  // Builder image name
+                            builderImageVersion, // Builder image version
+                            dockerRegistryCredentials // Docker Registry Credentials id
+                            )
+
+    def shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+    
+     pipeline.buildVueJS(
+        buildername, // Builder image name
+        builderImageVersion, // Builder image version
+        "/bin/sh -c \"npm i -f --save && npm run build\"", // Effective build command
+        "/bin/sh -c \"npm i -f --save && npm run build\"", // Test build command
+        projectName // project name used in rocket messaging
+    )    
+
+
+    pipeline.deploy(projectName,dockerService)
+
+}

@@ -1,0 +1,15 @@
+version: '3.5'
+services:
+    database:
+        image: vitta-hiring-db
+        ports:
+            - 3306:3036
+        environment:
+            MYSQL_ROOT_PASSWORD: supersecret
+            MYSQL_DATABASE: company
+            MYSQL_USER: root
+            MYSQL_PASSWORD: supersecret
+        volumes:
+            db-volume:/var/lib/mysql
+volumes:
+    db-volume:

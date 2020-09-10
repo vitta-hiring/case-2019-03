@@ -100,3 +100,20 @@ CRUD paciente
 CRUD prescricao - contem uma lista de medicamentos para uma relacao unica entre medico e paciente
 CRUD medicamento
 CRUD interacao medicamentosa - conflito entre dois medicamentos, devemos exibir um alerta caso uma prescricao tenha esses dois medicamentos
+
+#### CADASTRAR UM USUÁRIO
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/P49Nq1v/E5-BCB597-BDE2-4-D5-C-BD6-F-82-A266908864-4-5005-c.jpg" alt="E5-BCB597-BDE2-4-D5-C-BD6-F-82-A266908864-4-5005-c" border="0"></a>
+
+#### CADASTRAR UM FÁRMACO
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/TPJhV3P/FC511272-EF84-4409-B6-DA-3-DD8-EBFCD1-F6-4-5005-c.jpg" alt="FC511272-EF84-4409-B6-DA-3-DD8-EBFCD1-F6-4-5005-c" border="0"></a>
+
+#### CADASTRAR UMA INTERAÇÃO MEDICAMENTOSA
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/sj0qnjh/86352819-CC61-4803-8-D8-C-B807-BF8005-C3-4-5005-c.jpg" alt="86352819-CC61-4803-8-D8-C-B807-BF8005-C3-4-5005-c" border="0"></a>
+
+#### CADASTRAR UMA PRESCRIÇÃO MÉDICA
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/tmSjZ2c/212-C6633-1-C03-4-E95-A355-BC550-BB7-BA4-C.jpg" alt="212-C6633-1-C03-4-E95-A355-BC550-BB7-BA4-C" border="0"></a>
+
+#### DEMAIS ENDPOINTS
+<a href="https://ibb.co/KzQmpRD"><img src="https://i.ibb.co/2YL51mS/CF062-B8-B-B904-44-FB-9075-0-C033-F5-D8-DF3-4-5005-c.jpg" alt="CF062-B8-B-B904-44-FB-9075-0-C033-F5-D8-DF3-4-5005-c" border="0"></a>
+
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/MGPRQQg/3658-A0-E7-F0-B5-4637-ADF3-748-AF8118-F9-F-4-5005-c.jpg" alt="3658-A0-E7-F0-B5-4637-ADF3-748-AF8118-F9-F-4-5005-c" border="0"></a>

@@ -17,7 +17,7 @@ exports.post = (req, res, next) => {
 exports.findOne = (req, res) => {
   Medication.findOne({
     where: {
-      name: req.body.name
+      id: req.query.id
     },
     include: ["pharmacos", "patients", "doctors"]
   })
